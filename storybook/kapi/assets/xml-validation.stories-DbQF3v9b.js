@@ -1,4 +1,0 @@
-import{i as e}from"./preload-helper-UBj2dHFs.js";import{t}from"./jsx-runtime-BP1p1oUl.js";import{i as n,r}from"./schema-story-MSghSO04.js";var i,a,o,s;e((()=>{n(),i=t(),a={title:`Formats & Tools/Tools/Quality Assurance/XML Validation`,parameters:{layout:`padded`}},o={name:`Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`xml-validation`,source:`builtIn`})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  name: "Configuration",
-  render: () => <ToolConfig schemaName="xml-validation" source="builtIn" />
-}`,...o.parameters?.docs?.source}}},s=[`NativeConfig`]}))();export{o as NativeConfig,s as __namedExportsOrder,a as default};
