@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-DBuSV-bh.js";var t=e((()=>{Object.fromEntries||Object.defineProperty(Object,"fromEntries",{value:function(e){if(!e||!e[Symbol.iterator])throw Error(`Object.fromEntries() requires a single iterable argument`);let t={};return Object.keys(e).forEach(n=>{let[r,i]=e[n];t[r]=i}),t}})}));export{t};

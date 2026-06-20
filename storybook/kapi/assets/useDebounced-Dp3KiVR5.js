@@ -1,0 +1,1 @@
+import{i as e,s as t}from"./preload-helper-UBj2dHFs.js";import{t as n}from"./react-_meXEDpg.js";function r(e,t=200){let[n,r]=(0,i.useState)(e);return(0,i.useEffect)(()=>{let n=setTimeout(()=>r(e),t);return()=>clearTimeout(n)},[e,t]),n}var i,a=e((()=>{i=t(n(),1)}));export{r as n,a as t};
