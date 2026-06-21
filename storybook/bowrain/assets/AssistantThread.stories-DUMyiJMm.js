@@ -1,9 +1,0 @@
-import{i as e}from"./preload-helper-DBuSV-bh.js";import{t}from"./jsx-runtime-CNPDJLAB.js";import{O as n,P as r,t as i}from"./dist-pCe1bOa3.js";import{n as a,t as o}from"./thread-DmA6utmR.js";import{a as s,i as c,n as l,r as u,t as d}from"./fixtures-aui-CoJXI_B4.js";function f({messages:e=[],isRunning:t=!1}){return(0,p.jsx)(n,{runtime:r({messages:e,isRunning:t,convertMessage:e=>e,onNew:async()=>{},onCancel:async()=>{}}),children:(0,p.jsx)(`div`,{className:`h-[500px] w-[400px] border rounded-lg overflow-hidden flex flex-col bg-background text-foreground`,children:(0,p.jsx)(o,{})})})}var p,m,h,g,_,v,y;e((()=>{i(),a(),d(),p=t(),m={title:`Bravo/Assistant UI/Thread`,tags:[`autodocs`],parameters:{layout:`centered`}},h={render:()=>(0,p.jsx)(f,{})},g={render:()=>(0,p.jsx)(f,{messages:u})},_={render:()=>(0,p.jsx)(f,{messages:c,isRunning:!0})},v={render:()=>(0,p.jsx)(f,{messages:[s,l]})},h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime />
-}`,...h.parameters?.docs?.source}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime messages={sampleAuiMessages} />
-}`,...g.parameters?.docs?.source}}},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime messages={sampleAuiStreamingMessages} isRunning />
-}`,..._.parameters?.docs?.source}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime messages={[sampleAuiUserMessage, sampleAuiMarkdownMessage]} />
-}`,...v.parameters?.docs?.source}}},y=[`Empty`,`WithMessages`,`Streaming`,`RichMarkdown`]}))();export{h as Empty,v as RichMarkdown,_ as Streaming,g as WithMessages,y as __namedExportsOrder,m as default};
