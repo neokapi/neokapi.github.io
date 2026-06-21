@@ -1,0 +1,27 @@
+import{i as e}from"./preload-helper-DBuSV-bh.js";import{t}from"./jsx-runtime-CNPDJLAB.js";import{Un as n,Wn as r}from"./iframe-A0WV2tPc.js";import{h as i,s as a}from"./fixtures-BuhTuUh8.js";var o,s,c,l,u,d,f,p;e((()=>{r(),a(),o=t(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/RecycleBinView`,component:n,tags:[`autodocs`],decorators:[e=>(0,o.jsx)(`div`,{style:{maxWidth:800,padding:24},children:(0,o.jsx)(e,{})})]},l={args:{projects:[],onRestoreProject:s(),onPermanentlyDelete:s()}},u={args:{projects:i,onRestoreProject:s(),onPermanentlyDelete:s()}},d={args:{projects:[],loading:!0,onRestoreProject:s(),onPermanentlyDelete:s()}},f={args:{projects:i,retentionDays:7,onRestoreProject:s(),onPermanentlyDelete:s()}},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    projects: [],
+    onRestoreProject: fn(),
+    onPermanentlyDelete: fn()
+  }
+}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    projects: sampleArchivedProjects,
+    onRestoreProject: fn(),
+    onPermanentlyDelete: fn()
+  }
+}`,...u.parameters?.docs?.source}}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    projects: [],
+    loading: true,
+    onRestoreProject: fn(),
+    onPermanentlyDelete: fn()
+  }
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    projects: sampleArchivedProjects,
+    retentionDays: 7,
+    onRestoreProject: fn(),
+    onPermanentlyDelete: fn()
+  }
+}`,...f.parameters?.docs?.source}}},p=[`Empty`,`WithProjects`,`Loading`,`CustomRetention`]}))();export{f as CustomRetention,l as Empty,d as Loading,u as WithProjects,p as __namedExportsOrder,c as default};
