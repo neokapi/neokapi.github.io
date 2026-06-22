@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[9311],{79311(e,a,s){s.d(a,{createWardleyServices:()=>c.J});var c=s(78774);s(59778)}}]);
