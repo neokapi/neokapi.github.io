@@ -1,0 +1,4 @@
+import{i as e}from"./preload-helper-DRGloZ2I.js";import{t}from"./jsx-runtime-Co6hkppD.js";import{i as n,r}from"./schema-story-BgQ9loiD.js";var i,a,o,s;e((()=>{n(),i=t(),a={title:`Formats & Tools/Tools/Conversion/BOM Convert`,parameters:{layout:`padded`}},o={name:`Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`bom-convert`,source:`builtIn`})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  name: "Configuration",
+  render: () => <ToolConfig schemaName="bom-convert" source="builtIn" />
+}`,...o.parameters?.docs?.source}}},s=[`NativeConfig`]}))();export{o as NativeConfig,s as __namedExportsOrder,a as default};
