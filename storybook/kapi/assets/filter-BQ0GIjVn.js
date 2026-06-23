@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-DRGloZ2I.js";function t(e){return e?(e.collections?.length??0)===0&&!e.glob?.trim()&&(e.languages?.length??0)===0:!0}function n(e,t){let n=t?.languages??[];return n.length?e.filter(e=>n.includes(e)):e}var r=e((()=>{}));export{r as n,t as r,n as t};
