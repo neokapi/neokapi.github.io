@@ -1,0 +1,7 @@
+import{c as e,i as t}from"./preload-helper-DRGloZ2I.js";import{t as n}from"./react-CTEnZGpN.js";import{t as r}from"./jsx-runtime-Co6hkppD.js";import{n as i,t as a}from"./ConceptDashboard-B3YaDt72.js";import{n as o,t as s}from"./fixtures-BDeq4w-1.js";function c({source:e,start:t=`checkout`}){let[n,r]=(0,l.useState)(t);return(0,u.jsx)(`div`,{className:`mx-auto max-w-5xl p-6`,children:(0,u.jsx)(a,{conceptId:n,source:e,onNavigate:r,onBack:d(),onEdit:d()})})}var l,u,d,f,p,m,h,g,_;t((()=>{l=e(n(),1),i(),s(),u=r(),{fn:d}=__STORYBOOK_MODULE_TEST__,f=o(),p=o({rich:!1,editable:!1}),m={title:`Concept UI/ConceptDashboard`,component:a,parameters:{layout:`fullscreen`}},h={render:()=>(0,u.jsx)(c,{source:f})},g={render:()=>(0,u.jsx)(c,{source:p})},h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  render: () => <Harness source={richSource} />
+}`,...h.parameters?.docs?.source},description:{story:`Platform path: rich data source (markets, observations, comments, timeline).`,...h.parameters?.docs?.description}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  render: () => <Harness source={coreSource} />
+}`,...g.parameters?.docs?.source},description:{story:`Framework path: a local termbase only — core concept, terms, relations,
+ tag-derived geography, constraints, and a synthesized timeline. Observations
+ and discussion are absent and simply do not render.`,...g.parameters?.docs?.description}}},_=[`Full`,`CoreOnly`]}))();export{g as CoreOnly,h as Full,_ as __namedExportsOrder,m as default};
