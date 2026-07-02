@@ -1,0 +1,44 @@
+import{i as e}from"./preload-helper-DBuSV-bh.js";import{t}from"./jsx-runtime-CNPDJLAB.js";import{n,t as r}from"./LocalePill-C5srijqt.js";var i,a,o,s,c,l,u,d,f,p;e((()=>{n(),i=t(),a={title:`Resource Browser/LocalePill`,component:r,tags:[`autodocs`],parameters:{docs:{description:{component:`Compact locale badge with a deterministic color derived from the locale code. Uses OKLCH color space with CSS custom properties for dark mode support.`}}}},o={args:{locale:`en-US`}},s={args:{locale:`fr-FR`}},c={args:{locale:`zh-CN`}},l={args:{locale:`ar-SA`}},u={args:{locale:`de-DE`}},d={render:()=>(0,i.jsxs)(`div`,{className:`flex items-center gap-2`,children:[(0,i.jsx)(r,{locale:`en-US`}),(0,i.jsx)(r,{locale:`fr-FR`}),(0,i.jsx)(r,{locale:`zh-CN`}),(0,i.jsx)(r,{locale:`ar-SA`}),(0,i.jsx)(r,{locale:`de-DE`}),(0,i.jsx)(r,{locale:`ja-JP`}),(0,i.jsx)(r,{locale:`ko-KR`}),(0,i.jsx)(r,{locale:`pt-BR`}),(0,i.jsx)(r,{locale:`es-MX`})]})},f={render:()=>(0,i.jsxs)(`div`,{className:`flex items-center gap-2`,children:[(0,i.jsx)(r,{locale:`de-DE`,muted:!0}),(0,i.jsx)(r,{locale:`fr-FR`}),(0,i.jsx)(r,{locale:`ja-JP`}),(0,i.jsx)(r,{locale:`nb-NO`,muted:!0}),(0,i.jsx)(r,{locale:`ar-SA`,muted:!0})]})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    locale: "en-US"
+  }
+}`,...o.parameters?.docs?.source}}},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
+  args: {
+    locale: "fr-FR"
+  }
+}`,...s.parameters?.docs?.source}}},c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    locale: "zh-CN"
+  }
+}`,...c.parameters?.docs?.source}}},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    locale: "ar-SA"
+  }
+}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    locale: "de-DE"
+  }
+}`,...u.parameters?.docs?.source}}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  render: () => <div className="flex items-center gap-2">
+      <LocalePill locale="en-US" />
+      <LocalePill locale="fr-FR" />
+      <LocalePill locale="zh-CN" />
+      <LocalePill locale="ar-SA" />
+      <LocalePill locale="de-DE" />
+      <LocalePill locale="ja-JP" />
+      <LocalePill locale="ko-KR" />
+      <LocalePill locale="pt-BR" />
+      <LocalePill locale="es-MX" />
+    </div>
+}`,...d.parameters?.docs?.source},description:{story:`Multiple locale pills displayed together as they would appear in a TM entry row.`,...d.parameters?.docs?.description}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  render: () => <div className="flex items-center gap-2">
+      <LocalePill locale="de-DE" muted />
+      <LocalePill locale="fr-FR" />
+      <LocalePill locale="ja-JP" />
+      <LocalePill locale="nb-NO" muted />
+      <LocalePill locale="ar-SA" muted />
+    </div>
+}`,...f.parameters?.docs?.source},description:{story:`When an active language filter is applied, filtered-in locales keep their
+colour and the rest render grey (\`muted\`) — used on the project header and
+collection cards so the language scope reads at a glance. Here fr-FR and
+ja-JP are the active languages.`,...f.parameters?.docs?.description}}},p=[`EnglishUS`,`FrenchFrance`,`ChineseSimplified`,`ArabicSaudiArabia`,`GermanGermany`,`AllLocales`,`MutedOutsideFilter`]}))();export{d as AllLocales,l as ArabicSaudiArabia,c as ChineseSimplified,o as EnglishUS,s as FrenchFrance,u as GermanGermany,f as MutedOutsideFilter,p as __namedExportsOrder,a as default};
