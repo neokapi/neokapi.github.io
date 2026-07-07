@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-DRGloZ2I.js";import{nr as t,or as n}from"./iframe-B5ozvPZP.js";import{r,t as i}from"./useWailsEvent-9-n-N2Jk.js";function a(e,t){let i=n();r(Array.isArray(e)?e:[e],()=>{for(let e of t)i.invalidateQueries({queryKey:e})})}var o=e((()=>{t(),i()}));export{a as n,o as t};
