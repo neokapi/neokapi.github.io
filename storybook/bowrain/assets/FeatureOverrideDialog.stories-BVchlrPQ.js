@@ -1,5 +1,0 @@
-import{i as e}from"./preload-helper-DBuSV-bh.js";import{n as t,t as n}from"./FeatureOverrideDialog-CNg8-bAh.js";var r,i,a,o;e((()=>{t(),{fn:r}=__STORYBOOK_MODULE_TEST__,i={title:`Ctrl/FeatureOverrideDialog`,component:n,parameters:{layout:`fullscreen`},args:{onOpenChange:r(),workspaceId:`ws_acme`}},a={args:{open:!0}},a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
-  args: {
-    open: true
-  }
-}`,...a.parameters?.docs?.source}}},o=[`Open`]}))();export{a as Open,o as __namedExportsOrder,i as default};
