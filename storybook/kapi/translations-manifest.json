@@ -962,7 +962,6 @@
     "FormatsPage.stories": [
       "11TmEi",
       "1A1tx4",
-      "1GnuO3",
       "1MiWFG",
       "1Opx6J",
       "1ZeV2g",
@@ -1247,6 +1246,11 @@
     "LocaleSelect.stories": [
       "3WxUkF",
       "4coIc9"
+    ],
+    "Markdown.stories": [
+      "1bM3Vm",
+      "2hRXZo",
+      "3cYDa8"
     ],
     "MarketsPanel": [
       "283X1W",
