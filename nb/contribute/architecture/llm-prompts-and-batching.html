@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.1">
 <title data-rh="true">AD-036: LLM prompts, batching, and the model boundary | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/llm-prompts-and-batching"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AD-036: LLM prompts, batching, and the model boundary | neokapi"><meta data-rh="true" name="description" content="How kapi builds the prompts it sends to a language model, how much it sends at once, and what contains the damage when the content is hostile."><meta data-rh="true" property="og:description" content="How kapi builds the prompts it sends to a language model, how much it sends at once, and what contains the damage when the content is hostile."><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/llm-prompts-and-batching"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/llm-prompts-and-batching" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/llm-prompts-and-batching" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/llm-prompts-and-batching" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"036: LLM prompts & batching","item":"https://neokapi.github.io/nb/contribute/architecture/llm-prompts-and-batching"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.a63bd3a0.css">
-<script src="/nb/assets/js/runtime~main.df4c32d9.js" defer="defer"></script>
-<script src="/nb/assets/js/main.56d72e15.js" defer="defer"></script>
+<script src="/nb/assets/js/runtime~main.24900f17.js" defer="defer"></script>
+<script src="/nb/assets/js/main.523c1847.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -138,18 +138,93 @@ any corpus, in any language pair, for the price of the calls.</p>
 (degradation is worst when items are long), placeholders and inline markup, and the
 same source text under two different keys — the case positional batch mapping used
 to corrupt silently.</p>
-<p>The harness ships; the measurement has not been run. A run against the demo stub
-exercises the plumbing and measures nothing about any model, and says so in both
-the terminal output and the JSON report (<code>&quot;simulated&quot;: true</code>). Only a real-model
-sweep can move <code>MaxBlocksPerCall</code> off its current evidence-by-analogy footing.</p>
+<p>A run against the demo stub exercises the plumbing and measures nothing about any
+model. Such runs are marked <code>&quot;simulated&quot;: true</code> and the dashboard excludes them
+from every chart — a stub&#x27;s flawless curve is exactly the number someone would
+otherwise quote.</p>
+<h3 class="anchor anchorTargetStickyNavbar_FvW1" id="the-measurement-is-kept-not-taken-once">The measurement is kept, not taken once<a href="#the-measurement-is-kept-not-taken-once" class="hash-link" aria-label="Direkte lenke til The measurement is kept, not taken once" title="Direkte lenke til The measurement is kept, not taken once" translate="no">​</a></h3>
+<p><code>make batch-eval-publish</code> sweeps the real models and appends to a committed history
+(<code>web/src/pages/batch-eval/_batcheval.json</code>), published at <strong>/batch-eval</strong>. Three
+choices in that record are what make it worth keeping:</p>
+<ul>
+<li class=""><strong>Runs are stamped with the corpus digest.</strong> Change the corpus and the digest
+moves, and runs measured on the old one stop being comparable. The dashboard
+says so rather than drawing one line through two different experiments.</li>
+<li class=""><strong>A same-day re-run corrects its entry</strong> instead of appending a second point, so
+pressing enter twice cannot masquerade as change over time.</li>
+<li class=""><strong>Transient failures are retried before being recorded.</strong> An overloaded API or a
+dropped socket, published as &quot;the model could not answer at this batch size&quot;,
+would be a fabricated cliff — and the most damaging kind, because it is the exact
+shape of the finding we are looking for and would therefore be believed.</li>
+</ul>
+<p>The record exists because model aliases are not stable artefacts. <code>sonnet</code> and
+<code>gemini-3.5-flash</code> point at different weights over time; a ceiling measured once
+and never re-checked decays into folklore. Re-run the sweep when the models move.</p>
+<h3 class="anchor anchorTargetStickyNavbar_FvW1" id="what-the-first-sweep-actually-found">What the first sweep actually found<a href="#what-the-first-sweep-actually-found" class="hash-link" aria-label="Direkte lenke til What the first sweep actually found" title="Direkte lenke til What the first sweep actually found" translate="no">​</a></h3>
+<p>Six models (Anthropic opus/sonnet/haiku via the claude-code subscription; Gemini
+3.5-flash, 3.1-flash-lite, 3.1-pro), swept N ∈ <!-- -->32<!-- -->:</p>
+<p><strong>No batching cliff.</strong> Every model came back 100% structurally intact at every
+batch size up to 32 — nothing dropped, nothing renumbered, no placeholder or tag
+broken. <code>MaxBlocksPerCall = 16</code> is not too high; on this evidence it is
+conservative. Every apparent degradation the sweep first showed turned out to be a
+bug in kapi, not in a model.</p>
+<p><strong>Batching is not a cost lever.</strong> This is the counterintuitive one. Going from N=1
+to N=32 roughly halves input tokens (9,540 → 4,728) — and roughly doubles output
+tokens (1,681 → 3,727), because a batched reply must carry an id and a JSON
+envelope per segment. Output is priced around 6× input, so the two cancel: cost per
+1,000 words comes out flat, or slightly <em>worse</em>, than one call per string. What
+batching actually buys is throughput — 2–3× the words per second, since you wait on
+a handful of round trips instead of thirty. Worth having, but not the thing it is
+usually sold as.</p>
+<p>And three bugs in kapi, which is the more useful outcome and the reason to build the
+instrument before trusting the intuition.</p>
+<p><strong>Inline tags were reaching the model as escape sequences.</strong> <code>encoding/json</code>
+escapes <code>&lt;</code>, <code>&gt;</code> and <code>&amp;</code> by default (a defence for embedding JSON in a <code>&lt;script&gt;</code>
+tag, irrelevant to a prompt), so every <code>&lt;ph id=&quot;1&quot;/&gt;</code> was sent as
+<code>&lt;ph id=&quot;1&quot;/&gt;</code>. Anthropic&#x27;s models decoded it; <code>gemini-3.5-flash</code> echoed
+back a literal <code>3cph id=&quot;1&quot;/3e</code>, silently corrupting the markup of every tagged
+segment it translated. Batching was never the cause — the batch payload was. Fixed
+by turning HTML escaping off: the model is asked to reproduce a tag, so it must be
+shown a tag.</p>
+<p><strong>No Gemini pro model worked at all.</strong> kapi sent <code>thinkingBudget: 0</code> (translation
+is a transformation, not a reasoning problem), and the pro models reject that
+outright — &quot;Budget 0 is invalid. This model only works in thinking mode&quot;. Every
+call, at every batch size, was a 400. Fixed by omitting the thinking config for
+that family.</p>
+<p><strong>Thinking models were being truncated mid-answer.</strong> The batch packer sizes an
+output budget for the <em>answer</em> (<code>need*2+512</code>), but Gemini draws thoughts from the
+same <code>maxOutputTokens</code> allowance. The model thought its way through the budget and
+emitted a translation cut off mid-tag (<code>&lt;ph id=&quot;2</code>), which the harness scored as
+the model mangling markup. Fixed: a thinking model gets the ceiling. You are billed
+for what is emitted, not for what is permitted, so the cap costs nothing and only
+removes a way to corrupt output silently.</p>
+<p>A fourth, found while wiring the model-availability check: <strong>the provider registry
+advertised retired models as defaults.</strong> <code>ProviderInfo.DefaultModel</code> said
+<code>gemini-3-flash-preview</code> (which the API now answers 404 &quot;no longer available&quot; for)
+and <code>claude-sonnet-4-20250514</code> (retired), while the constructors had moved on. Its
+doc comment claimed the two were the same value; nothing checked it, so <code>kapi models</code> was advertising a default that would 404 on a user&#x27;s first call. The
+constructor constant is now the single source of truth, with a test.</p>
+<p>All four were invisible to the unit tests, and three of them would have been
+published as <em>model</em> findings by a less suspicious harness — degradation curves for
+weaknesses the models did not have. That is why a break must be inspectable
+(<code>-dump</code>) rather than merely counted, and why a transient failure is retried before
+it is recorded as a cliff.</p>
 <h2 class="anchor anchorTargetStickyNavbar_FvW1" id="open">Open<a href="#open" class="hash-link" aria-label="Direkte lenke til Open" title="Direkte lenke til Open" translate="no">​</a></h2>
 <ul>
-<li class=""><strong>The quality-versus-N curve has not been measured yet</strong> — the instrument exists
-(<code>make batch-eval</code>), the sweep has not been run against a real model. Until it
-is, <code>MaxBlocksPerCall = 16</code> remains an inference from adjacent tasks.</li>
-<li class=""><strong>Context is limited to the key and immediate neighbours.</strong> TM matches, the
-file path, and prior translations of the same key are all things the evidence
-says would help and that kapi already holds, and none of them reach the prompt.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_Jrdq"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/036-llm-prompts-and-batching.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JYtG" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_ex5z"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/035-in-context-review"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">AD-035: In-Context Review</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/notes-internal/index"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Implementation Notes Overview</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_defO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#prompts-are-built-not-written" class="table-of-contents__link toc-highlight">Prompts are built, not written</a></li><li><a href="#batch-size-is-derived-not-configured" class="table-of-contents__link toc-highlight">Batch size is derived, not configured</a></li><li><a href="#the-payload-is-id-keyed-json" class="table-of-contents__link toc-highlight">The payload is id-keyed JSON</a></li><li><a href="#prompt-injection-is-contained-structurally-not-by-asking-nicely" class="table-of-contents__link toc-highlight">Prompt injection is contained structurally, not by asking nicely</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#measuring-the-ceiling" class="table-of-contents__link toc-highlight">Measuring the ceiling</a></li><li><a href="#open" class="table-of-contents__link toc-highlight">Open</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">Kapi React</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_OcnH"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_OcnH"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-07-14 04:05 UTC · a12fd36</div></div></div></footer></div>
+<li class=""><strong>The curve is flat to N=32; we have not found where it breaks.</strong> The measured
+ceiling is therefore a lower bound, not a cliff. Sweeping further (64, 128, and a
+corpus large enough to make those meaningful) would say whether 16 is leaving
+throughput on the table.</li>
+<li class=""><strong>No cost figure for the Anthropic models.</strong> They were reached over the
+claude-code subscription, which is not billed per token and whose token counts do
+not describe an API call — the CLI bills its own agent system prompt as cache
+creation, reporting 240 input tokens across sixty calls. Costing them needs a
+sweep against the metered API.</li>
+<li class=""><strong>kapi has no Bedrock provider</strong>, so nothing can be measured or priced against
+that route.</li>
+<li class=""><strong>Context is limited to the key and immediate neighbours.</strong> TM matches, the file
+path, and prior translations of the same key are all things the evidence says
+would help and that kapi already holds, and none of them reach the prompt.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_Jrdq"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/036-llm-prompts-and-batching.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JYtG" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_ex5z"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/035-in-context-review"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">AD-035: In-Context Review</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/notes-internal/index"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Implementation Notes Overview</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_defO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#prompts-are-built-not-written" class="table-of-contents__link toc-highlight">Prompts are built, not written</a></li><li><a href="#batch-size-is-derived-not-configured" class="table-of-contents__link toc-highlight">Batch size is derived, not configured</a></li><li><a href="#the-payload-is-id-keyed-json" class="table-of-contents__link toc-highlight">The payload is id-keyed JSON</a></li><li><a href="#prompt-injection-is-contained-structurally-not-by-asking-nicely" class="table-of-contents__link toc-highlight">Prompt injection is contained structurally, not by asking nicely</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#measuring-the-ceiling" class="table-of-contents__link toc-highlight">Measuring the ceiling</a><ul><li><a href="#the-measurement-is-kept-not-taken-once" class="table-of-contents__link toc-highlight">The measurement is kept, not taken once</a></li><li><a href="#what-the-first-sweep-actually-found" class="table-of-contents__link toc-highlight">What the first sweep actually found</a></li></ul></li><li><a href="#open" class="table-of-contents__link toc-highlight">Open</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">Kapi React</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_OcnH"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_OcnH"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-07-14 06:25 UTC · 121be0a</div></div></div></footer></div>
 <script defer="defer" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;3b1c27d17cee44beb47518685678a1e6&quot;}"></script></body>
 </html>
