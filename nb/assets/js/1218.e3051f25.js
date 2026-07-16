@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[1218],{71218(e,a,s){s.d(a,{createTreemapServices:()=>c.d});var c=s(66477);s(59778)}}]);
