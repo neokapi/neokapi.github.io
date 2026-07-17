@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkbowrain_docs=globalThis.webpackChunkbowrain_docs||[]).push([[9178],{9178(a,s,c){c.d(s,{createInfoServices:()=>e.v});var e=c(7593);c(3228)}}]);
