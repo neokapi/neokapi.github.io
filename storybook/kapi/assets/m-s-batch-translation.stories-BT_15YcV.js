@@ -1,4 +1,0 @@
-import{i as e}from"./preload-helper-a38IrJcw.js";import{t}from"./jsx-runtime-DuIU0fMU.js";import{i as n,r}from"./schema-story-LZP0LsJI.js";var i,a,o,s;e((()=>{n(),i=t(),a={title:`Formats & Tools/Tools/Translation/Microsoft Batch Translation`,parameters:{layout:`padded`}},o={name:`Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`m-s-batch-translation`,source:`bridge`})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  name: "Configuration",
-  render: () => <ToolConfig schemaName="m-s-batch-translation" source="bridge" />
-}`,...o.parameters?.docs?.source}}},s=[`OkapiConfig`]}))();export{o as OkapiConfig,s as __namedExportsOrder,a as default};
