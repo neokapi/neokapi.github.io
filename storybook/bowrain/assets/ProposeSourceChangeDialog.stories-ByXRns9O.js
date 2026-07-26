@@ -1,0 +1,5 @@
+import{i as e}from"./preload-helper-DMFJQbmU.js";import{$r as t,ei as n}from"./iframe-Dxf_EX8J.js";import{n as r,r as i}from"./decorators-C4hWFyjg.js";var a,o,s,c,l;e((()=>{n(),r(),{fn:a}=__STORYBOOK_MODULE_TEST__,o={title:`Review/ProposeSourceChangeDialog`,component:t,decorators:[i],args:{open:!0,onOpenChange:a(),projectId:`proj-1`,blockId:`b1`,itemName:`ui.json`,sourceLocale:`en-US`,foundInLocale:`fr-FR`,initialSource:`Colour picker`,localeCount:3,onDone:a()}},s={},c={args:{localeCount:1}},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{}`,...s.parameters?.docs?.source},description:{story:`The back-to-source lane: propose a source fix while reviewing a target.`,...s.parameters?.docs?.description}}},c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    localeCount: 1
+  }
+}`,...c.parameters?.docs?.source},description:{story:`Proposing for a project with a single target locale.`,...c.parameters?.docs?.description}}},l=[`Default`,`SingleLocale`]}))();export{s as Default,c as SingleLocale,l as __namedExportsOrder,o as default};
