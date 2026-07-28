@@ -1,0 +1,42 @@
+import{i as e}from"./preload-helper-DMFJQbmU.js";import{Jr as t,qr as n}from"./iframe-5Z2hnUM_.js";var r,i,a,o,s,c;e((()=>{t(),{fn:r}=__STORYBOOK_MODULE_TEST__,i={title:`Review/ReviewInbox`,component:n,args:{onOpenReview:r()}},a={args:{projects:[{projectId:`p1`,projectName:`Marketing Website`,stream:`main`,pending:12,governed:3,aiShippable:5},{projectId:`p2`,projectName:`Mobile App`,stream:`main`,pending:4,governed:8,aiShippable:2},{projectId:`p3`,projectName:`Help Center`,stream:`main`,pending:1,governed:10,aiShippable:0}]}},o={args:{projects:[{projectId:`p1`,projectName:`Marketing Website`,stream:`main`,pending:0,governed:9,aiShippable:3}]}},s={args:{projects:[],loading:!0}},a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    projects: [{
+      projectId: "p1",
+      projectName: "Marketing Website",
+      stream: "main",
+      pending: 12,
+      governed: 3,
+      aiShippable: 5
+    }, {
+      projectId: "p2",
+      projectName: "Mobile App",
+      stream: "main",
+      pending: 4,
+      governed: 8,
+      aiShippable: 2
+    }, {
+      projectId: "p3",
+      projectName: "Help Center",
+      stream: "main",
+      pending: 1,
+      governed: 10,
+      aiShippable: 0
+    }]
+  }
+}`,...a.parameters?.docs?.source},description:{story:`Several projects awaiting review, most-pending first.`,...a.parameters?.docs?.description}}},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  args: {
+    projects: [{
+      projectId: "p1",
+      projectName: "Marketing Website",
+      stream: "main",
+      pending: 0,
+      governed: 9,
+      aiShippable: 3
+    }]
+  }
+}`,...o.parameters?.docs?.source},description:{story:`Nothing awaiting review across the workspace.`,...o.parameters?.docs?.description}}},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
+  args: {
+    projects: [],
+    loading: true
+  }
+}`,...s.parameters?.docs?.source}}},c=[`Default`,`Empty`,`Loading`]}))();export{a as Default,o as Empty,s as Loading,c as __namedExportsOrder,i as default};
