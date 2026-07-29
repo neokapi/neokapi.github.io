@@ -1,4 +1,0 @@
-import{i as e}from"./preload-helper-a38IrJcw.js";import{t}from"./jsx-runtime-DuIU0fMU.js";import{i as n,n as r}from"./schema-story-B79BUI5f.js";var i,a,o,s;e((()=>{n(),i=t(),a={title:`Formats & Tools/Formats/Data/Table Filter`,parameters:{layout:`padded`}},o={name:`Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`okf_table`,source:`bridge`})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  name: "Configuration",
-  render: () => <FormatConfig schemaName="okf_table" source="bridge" />
-}`,...o.parameters?.docs?.source}}},s=[`OkapiConfig`]}))();export{o as OkapiConfig,s as __namedExportsOrder,a as default};
