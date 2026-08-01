@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-PE7_xIU0.js";import{t}from"./react-Ln9jC0v_.js";import{t as n}from"./jsx-runtime-DjOA8AOY.js";function r(){return(0,i.useContext)(a)}var i,a,o=e((()=>{i=t(),n(),a=(0,i.createContext)({activeStream:`main`,setActiveStream:()=>{}})}));export{r as n,o as t};

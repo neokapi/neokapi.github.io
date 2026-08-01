@@ -1,1 +1,0 @@
-import{c as e,i as t}from"./preload-helper-a38IrJcw.js";import{t as n}from"./react-hDuJKfaT.js";function r(e,t=200){let[n,r]=(0,i.useState)(e);return(0,i.useEffect)(()=>{let n=setTimeout(()=>r(e),t);return()=>clearTimeout(n)},[e,t]),n}var i,a=t((()=>{i=e(n(),1)}));export{r as n,a as t};
