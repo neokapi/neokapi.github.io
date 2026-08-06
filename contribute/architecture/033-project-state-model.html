@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">AD-033: Project State Model | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/033-project-state-model"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AD-033: Project State Model | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project&#x27;s authored workflow decisions — the review ladder, approvals, sign-off, parking — live in a first-class core/state store, distinct from the derived caches and the recycle content memory. The committed, diff-friendly serialization under .kapi/context/decisions/ is the source of truth; a working set inside the project&#x27;s one database stages decisions until kapi commit publishes them."><meta data-rh="true" property="og:description" content="Architecture decision: a project&#x27;s authored workflow decisions — the review ladder, approvals, sign-off, parking — live in a first-class core/state store, distinct from the derived caches and the recycle content memory. The committed, diff-friendly serialization under .kapi/context/decisions/ is the source of truth; a working set inside the project&#x27;s one database stages decisions until kapi commit publishes them."><meta data-rh="true" name="keywords" content="project state,state store,core/state,review,approval,convergence,kapi/units,working set,staged,commit,targetHash,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/033-project-state-model"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/033-project-state-model" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/033-project-state-model" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/033-project-state-model" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AD-033: Project State Model","item":"https://neokapi.github.io/contribute/architecture/033-project-state-model"}]}</script><link rel="stylesheet" href="/assets/css/styles.c6183204.css">
-<script src="/assets/js/runtime~main.12e669e3.js" defer="defer"></script>
-<script src="/assets/js/main.5d9c5520.js" defer="defer"></script>
+<title data-rh="true">AD-033: Project State Model | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/033-project-state-model"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AD-033: Project State Model | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project&#x27;s authored unit state — the review ladder, approvals, sign-off, parking — lives in a first-class core/state store, distinct from the derived caches and the recycle content memory. The committed, diff-friendly serialization under .kapi/state/ is the source of truth; a working set inside the project&#x27;s one database stages changes until kapi commit publishes them."><meta data-rh="true" property="og:description" content="Architecture decision: a project&#x27;s authored unit state — the review ladder, approvals, sign-off, parking — lives in a first-class core/state store, distinct from the derived caches and the recycle content memory. The committed, diff-friendly serialization under .kapi/state/ is the source of truth; a working set inside the project&#x27;s one database stages changes until kapi commit publishes them."><meta data-rh="true" name="keywords" content="project state,state store,core/state,review,approval,convergence,kapi/units,working set,staged,commit,targetHash,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/033-project-state-model"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/033-project-state-model" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/033-project-state-model" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/033-project-state-model" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AD-033: Project State Model","item":"https://neokapi.github.io/contribute/architecture/033-project-state-model"}]}</script><link rel="stylesheet" href="/assets/css/styles.c6183204.css">
+<script src="/assets/js/runtime~main.47f31544.js" defer="defer"></script>
+<script src="/assets/js/main.6be733dc.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -20,15 +20,15 @@ sits the project&#x27;s <strong>work</strong> — and that work is itself two ki
 <li class=""><strong>Derived state</strong> — parsed content, coverage percentages, the convergence
 ladder. Rebuildable from the files; it lives in the cache under <code>.kapi/work/cache/</code>
 and is gitignored. Delete it and a re-run reconstructs identical results.</li>
-<li class=""><strong>Authored decisions</strong> — a person approving a translation, signing it off,
-parking a unit, or recording who reviewed what. These are <em>not</em> derivable from
-anything; they must be <strong>kept</strong>.</li>
+<li class=""><strong>Authored unit state</strong> — a person approving a translation, signing it off,
+parking a unit, or recording who reviewed what. This is <em>not</em> derivable from
+anything; it must be <strong>kept</strong>.</li>
 </ul>
-<p>Authored decisions need a carrier that a plain target file (JSON, <code>.properties</code>)
+<p>Authored state needs a carrier that a plain target file (JSON, <code>.properties</code>)
 cannot provide: such a file records that a target <em>exists</em>, but not that a human
 <em>blessed</em> it. The <code>core/state</code> package is that carrier — a first-class,
-format-independent, committed record of per-unit workflow decisions, distinct
-from both the derived cache and the recycle content memory (<a class="" href="/contribute/architecture/009-content-memory">AD-009</a>).</p>
+format-independent, committed record of where each unit stands, distinct from
+both the derived cache and the recycle content memory (<a class="" href="/contribute/architecture/009-content-memory">AD-009</a>).</p>
 <p>The end-user view of what this state <em>means</em> — the ladders, gates, and the
 review queue derived from it — is <a class="" href="/kapi/convergence">Convergence</a> and
 <a class="" href="/kapi/project-store">the project store</a>.</p>
@@ -37,7 +37,7 @@ review queue derived from it — is <a class="" href="/kapi/convergence">Converg
 symmetric source ladder (<code>authored → checked → approved</code>). The lower rungs are
 derivable from content: an absent target is below the ladder; a present, non-empty
 target is at least <em>translated</em>. The <strong>higher</strong> rungs are not derivable — whether
-a person reviewed <em>this exact translation</em> is a decision someone made, and it has
+a person reviewed <em>this exact translation</em> is something someone did, and it has
 to be stored somewhere.</p>
 <p>The source ladder is <strong>not</strong> merely reported: it gates the loop symmetrically
 with the target ladder. Just as a target below its <code>ship_gate</code> cannot ship,
@@ -45,39 +45,39 @@ source below the project&#x27;s <code>source_gate</code> (default <code>checked<
 server-side convergence settles and gates the source <em>before</em> the fan-out and
 holds under-ready source rather than translating it
 (<a class="" href="/kapi/convergence#source-first">Convergence — source first</a>). So the source
-rungs a decision writes here are load-bearing, not informational.</p>
+rungs recorded here are load-bearing, not informational.</p>
 <p>The model already expresses these facts (<code>model.TargetStatus</code>,
 <code>model.SourceStatus</code>, <code>model.Origin</code>). What was missing was a <em>persistence</em> for
 them that is independent of the deliverable format. The danger is to overload an
 existing store — in particular the <code>.memory.json</code> content memory, which is
 content-keyed leverage, not project state. Conflating &quot;have we ever translated
 this string?&quot; (recycle, content-keyed) with &quot;is <em>this</em> unit signed off, by whom?&quot;
-(decision, unit-keyed) is a category error: the two have different keys and
-different lifecycles. AD-033 gives decisions their own engine.</p>
+(state, unit-keyed) is a category error: the two have different keys and
+different lifecycles. AD-033 gives unit state its own engine.</p>
 <h2 class="anchor anchorTargetStickyNavbar_myTv" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direct link to Decision" title="Direct link to Decision" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_myTv" id="two-kinds-of-state-two-homes">Two kinds of state, two homes<a href="#two-kinds-of-state-two-homes" class="hash-link" aria-label="Direct link to Two kinds of state, two homes" title="Direct link to Two kinds of state, two homes" translate="no">​</a></h3>
 <p>The invariant <em>&quot;delete the cache and lose nothing&quot;</em> holds precisely because the
 two kinds of state are separated:</p>
-<table><thead><tr><th>Kind</th><th>Examples</th><th>Home</th><th>Authoritative?</th></tr></thead><tbody><tr><td>Derived</td><td>parsed blocks, coverage %, ladder rungs reachable from content</td><td><code>.kapi/work/cache/</code>, and the derived tables of <code>.kapi/work/store.db</code></td><td>no — rebuildable, gitignored</td></tr><tr><td>Authored decision</td><td>approvals, sign-off, parking, reviewer, notes</td><td><code>.kapi/context/decisions/</code> (<code>core/state</code>)</td><td>yes — committed</td></tr></tbody></table>
-<p><code>.kapi/work/cache/</code> may <em>mirror</em> an authored decision in transit, but it never
-<em>owns</em> one; <code>rm -rf .kapi/work/cache</code> is free. Every decision&#x27;s durable home is
-the committed record under <code>.kapi/context/decisions/</code>, and the only window in
-which a decision exists nowhere else is between recording it and <code>kapi commit</code> —
+<table><thead><tr><th>Kind</th><th>Examples</th><th>Home</th><th>Authoritative?</th></tr></thead><tbody><tr><td>Derived</td><td>parsed blocks, coverage %, ladder rungs reachable from content</td><td><code>.kapi/work/cache/</code>, and the derived tables of <code>.kapi/work/store.db</code></td><td>no — rebuildable, gitignored</td></tr><tr><td>Authored unit state</td><td>approvals, sign-off, parking, reviewer, notes</td><td><code>.kapi/state/</code> (<code>core/state</code>)</td><td>yes — committed</td></tr></tbody></table>
+<p><code>.kapi/work/cache/</code> may <em>mirror</em> authored state in transit, but it never
+<em>owns</em> it; <code>rm -rf .kapi/work/cache</code> is free. Its durable home is
+the committed record under <code>.kapi/state/</code>, and the only window in
+which the record exists nowhere else is between writing it and <code>kapi commit</code> —
 see the working set below.</p>
 <h3 class="anchor anchorTargetStickyNavbar_myTv" id="content-memory-is-recycle-not-the-state-carrier">Content memory is recycle, not the state carrier<a href="#content-memory-is-recycle-not-the-state-carrier" class="hash-link" aria-label="Direct link to Content memory is recycle, not the state carrier" title="Direct link to Content memory is recycle, not the state carrier" translate="no">​</a></h3>
 <p>The <code>.memory.json</code> content memory (<a class="" href="/contribute/architecture/009-content-memory">AD-009</a>) is the
 <strong>recycle corpus</strong> — a content-keyed pool of source→target pairs reused to
 pre-fill and leverage future translation. It does <strong>not</strong> record review
-decisions. Adding a pair to the memory (<code>kapi apply</code> with <code>kind:&quot;memory&quot;</code>) is recycle
+outcomes. Adding a pair to the memory (<code>kapi apply</code> with <code>kind:&quot;memory&quot;</code>) is recycle
 leverage; approving a unit (<code>kapi apply</code> with <code>kind:&quot;review&quot;</code>) writes the state
 store. An approved pair may <em>also</em> land in the memory as leverage, but that is a
-side effect, not where the decision lives.</p>
+side effect, not where the state record lives.</p>
 <h3 class="anchor anchorTargetStickyNavbar_myTv" id="the-committed-serialization-is-the-truth-the-working-set-is-an-index">The committed serialization is the truth; the working set is an index<a href="#the-committed-serialization-is-the-truth-the-working-set-is-an-index" class="hash-link" aria-label="Direct link to The committed serialization is the truth; the working set is an index" title="Direct link to The committed serialization is the truth; the working set is an index" translate="no">​</a></h3>
 <p>State has two representations, and conflating them is the trap to avoid:</p>
 <ol>
 <li class="">
 <p><strong>Source of truth — a committed, diff-friendly serialization.</strong> JSON Lines
-under <code>.kapi/context/decisions/</code>, one shard per document, committed to git:
+under <code>.kapi/state/</code>, one shard per document, committed to git:
 mergeable, reviewable in a <code>git diff</code>, exchangeable to XLIFF
 (<code>&lt;target state=…&gt;</code>, notes, phase/owner — <a class="" href="/contribute/architecture/017-bilingual-format-interop">AD-017</a>),
 carried by a <code>.kpz</code> parcel&#x27;s bilingual profile. This is what a clone or
@@ -88,12 +88,12 @@ checkout restores from.</p>
 inside <code>.kapi/work/store.db</code>, <a class="" href="/contribute/architecture/039-local-context-graph-store">AD-039</a>), the fast
 random-access model with transactions and hash lookups. <strong>Derived</strong> from #1;
 seeded from it when empty, materialized back by <code>Commit</code>.</p>
-<p>Being a database rather than memory is what makes a decision durable the
-moment it is recorded, so committing is about <em>publishing</em> it rather than
+<p>Being a database rather than memory is what makes the record durable the
+moment it is written, so committing is about <em>publishing</em> it rather than
 about not losing it. That is what lets committing be explicit without
 inventing a way to lose work. It is an index in every respect but one:
 deleting <code>store.db</code> costs nothing already committed, and it costs exactly the
-decisions staged since. That bounded exposure is why <code>store.db</code> sits at the
+unit state staged since. That bounded exposure is why <code>store.db</code> sits at the
 top of <code>.kapi/work/</code> and not under <code>cache/</code>.</p>
 <p>In the browser, where there is no SQLite, the working set persists to a JSON
 sidecar, <code>.kapi/work/store.json</code>; the model is unchanged.</p>
@@ -105,10 +105,10 @@ text serialization and the database is only a working index over it. The
 invariant is preserved: discard the working index, reopen from the committed
 record, lose nothing beyond what was staged.</p>
 <p><strong>One line per unit, sharded by document</strong>, rather than one JSON array. A single
-indented document meant recording one decision rewrote every byte of the file:
+indented document meant one approval rewrote every byte of the file:
 the diff for a one-word change was the whole project, two branches touching
-unrelated documents conflicted on sight, and a run recording many decisions moved
-orders of magnitude more bytes than it wrote. A line per unit makes a decision a
+unrelated documents conflicted on sight, and a run approving many units moved
+orders of magnitude more bytes than it wrote. A line per unit makes an approval a
 one-line diff; a shard per document keeps a documentation edit from churning the
 shard holding the interface strings.</p>
 <blockquote>
@@ -124,9 +124,9 @@ a hosting platform.</p>
 <p>The committed record stays because it carries properties a server cannot:</p>
 <ul>
 <li class=""><strong>kapi runs without bowrain.</strong> The framework is standalone and never imports
-the platform. If decisions required a server, a plain kapi project could not
+the platform. If unit state required a server, a plain kapi project could not
 converge at all.</li>
-<li class=""><strong>A decision belongs to the change that caused it.</strong> Source drift happens in a
+<li class=""><strong>The record belongs to the change that caused it.</strong> Source drift happens in a
 pull request; the state change belongs in that same diff, where a reviewer can
 see that an edit invalidated twelve approvals. Server state is <em>now</em>, not <em>at
 this commit</em>.</li>
@@ -134,20 +134,20 @@ this commit</em>.</li>
 alongside the source gives that; a live database does not.</li>
 <li class=""><strong>Local-first is load-bearing elsewhere.</strong> Redaction (<a class="" href="/contribute/architecture/020-redaction">AD-020</a>)
 exists so content can be withheld from any named destination, bowrain included.
-A design where decisions must round-trip a server contradicts it.</li>
+A design where unit state must round-trip a server contradicts it.</li>
 </ul>
 <p>What the server adds is what git is bad at: concurrent review by several people,
-assignment and queues, and a place for decisions made by people who do not have
+assignment and queues, and a place for reviews done by people who do not have
 the repository checked out. That is coordination <em>around</em> the record, not a
 replacement for it — so the server syncs with the committed record rather than
 superseding it, and a project that never connects one loses nothing.</p>
 <h3 class="anchor anchorTargetStickyNavbar_myTv" id="recording-is-implicit-publishing-is-explicit">Recording is implicit; publishing is explicit<a href="#recording-is-implicit-publishing-is-explicit" class="hash-link" aria-label="Direct link to Recording is implicit; publishing is explicit" title="Direct link to Recording is implicit; publishing is explicit" translate="no">​</a></h3>
 <p>Mutations to the working set are <strong>not published until an explicit <code>Commit</code></strong>.
-This is deliberately the git/bowrain mental model: decisions are like staged
+This is deliberately the git/bowrain mental model: unit state is like staged
 changes you commit (or push) on purpose.</p>
 <ul>
 <li class=""><code>Put</code> / <code>Delete</code> mutate the working set.</li>
-<li class=""><code>Pending()</code> reports how many decisions are staged; <code>kapi status</code> surfaces it
+<li class=""><code>Pending()</code> reports how many unit-state changes are staged; <code>kapi status</code> surfaces it
 and names the command that publishes them, staying silent when there are none.</li>
 <li class=""><code>Commit()</code> materializes the working set to the durable home in one deliberate,
 auditable step, rather than churning a write on every approval. <code>kapi commit</code>
@@ -156,32 +156,32 @@ is the verb.</li>
 <p>Recording and publishing are different acts. A run of automated approvals should
 not land in the tracked record before anyone has looked at it, and an explicit
 commit is the moment at which someone can.</p>
-<p>Because the working set is a database rather than memory, staged decisions
-survive the process. That is a deliberate departure from the git analogy: staged
+<p>Because the working set is a database rather than memory, staged state
+survives the process. That is a deliberate departure from the git analogy: staged
 work here is not &quot;uncommitted changes you might lose&quot;, it is recorded work not
 yet published. The tiers are <em>staged</em> and <em>committed</em>, not <em>in-transit</em> and
 <em>durable</em>.</p>
 <h3 class="anchor anchorTargetStickyNavbar_myTv" id="the-committed-location-is-fixed">The committed location is fixed<a href="#the-committed-location-is-fixed" class="hash-link" aria-label="Direct link to The committed location is fixed" title="Direct link to The committed location is fixed" translate="no">​</a></h3>
-<p>The record lives at <code>.kapi/context/decisions/</code>, derived from the project layout —
+<p>The record lives at <code>.kapi/state/</code>, derived from the project layout —
 inside the committed context graph, beside the terms and the content memory it
 makes claims about. <code>kapi status</code> and <code>kapi commit</code> take no path, and the recipe
 binds nothing: the record is a directory whose contents kapi owns and prunes, so
 pointing it at an arbitrary location would invite a project to aim it somewhere
 kapi deletes from. That is the difference from <code>terms_source</code> and
 <code>memory_source</code>, which bind any path because a person authors those files.</p>
-<p>Getting decisions <em>out</em> of kapi&#x27;s own layout is a job for exchange rather than
+<p>Getting the record <em>out</em> of kapi&#x27;s own layout is a job for exchange rather than
 relocation — <code>kapi merge</code>, XLIFF <code>&lt;target state=…&gt;</code>, the <code>.kpz</code> bilingual
 profile — which converts the record into a format a third party can read instead
 of moving it.</p>
 <p>In server mode the same verbs point at a different remote: publishing is
 <code>kapi push</code>, and <code>kapi pull</code> imports server state into the working set. This
 rides the existing source/sink binding model rather than introducing a new one.</p>
-<h3 class="anchor anchorTargetStickyNavbar_myTv" id="decisions-are-unit-keyed-and-content-hash-bound">Decisions are unit-keyed and content-hash-bound<a href="#decisions-are-unit-keyed-and-content-hash-bound" class="hash-link" aria-label="Direct link to Decisions are unit-keyed and content-hash-bound" title="Direct link to Decisions are unit-keyed and content-hash-bound" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_myTv" id="unit-state-is-unit-keyed-and-content-hash-bound">Unit state is unit-keyed and content-hash-bound<a href="#unit-state-is-unit-keyed-and-content-hash-bound" class="hash-link" aria-label="Direct link to Unit state is unit-keyed and content-hash-bound" title="Direct link to Unit state is unit-keyed and content-hash-bound" translate="no">​</a></h3>
 <p>State is keyed by the <strong>unit</strong> — <code>(unit identity, variant)</code> where variant is
-locale plus optional tone/channel — not by content. Each decision additionally
+locale plus optional tone/channel — not by content. Each record additionally
 records a <code>targetHash</code>: the content hash of the <em>specific</em> translation it
-blesses. A decision is <strong>stale</strong> when the current translation&#x27;s hash differs from
-the one the decision recorded, so editing an approved translation drops the unit
+blesses. A record is <strong>stale</strong> when the current translation&#x27;s hash differs from
+the one it was written against, so editing an approved translation drops the unit
 back below <em>reviewed</em> on its own. A content-keyed index (the shape the old
 memory-based hack used) structurally cannot express this — unit-keying plus
 <code>targetHash</code> is what
@@ -203,7 +203,7 @@ decision, updated), a <code>Key</code>, the <code>Stale</code>/<code>Reviewed</c
 (<code>Open</code>/<code>Get</code>/<code>Put</code>/<code>Delete</code>/<code>All</code>/<code>Pending</code>/<code>Commit</code>). The on-disk form is
 schema-versioned (<code>SchemaVersion</code>, <code>Kind = &quot;kapi-project-state&quot;</code>).</li>
 <li class=""><strong>Approvals flow through one verb.</strong> <code>kapi apply</code> with <code>kind:&quot;review&quot;</code> records
-a decision in the state store, addressed by <code>(file, id, locale)</code> exactly as
+the unit state in the project store, addressed by <code>(file, id, locale)</code> exactly as
 <code>kapi status --review</code> lists it. The desktop &quot;approve&quot; action and the CLI verb
 share the same <code>ApproveReviewUnit</code> path.</li>
 <li class=""><strong>Coverage derives from the state store + target files</strong>, never from
@@ -213,13 +213,13 @@ for third-party exchange and rides inside a <code>.kpz</code> parcel&#x27;s bili
 for hand-off (<a class="" href="/contribute/architecture/017-bilingual-format-interop">AD-017</a>).</li>
 <li class=""><strong>The recipe stays clean.</strong> The recipe carries no state and binds no derived
 artifact. It binds <em>sources</em> — <code>defaults.terms_source</code>,
-<code>defaults.memory_source</code> (<a class="" href="/contribute/architecture/008-project-model">AD-008</a>) — while the decision
+<code>defaults.memory_source</code> (<a class="" href="/contribute/architecture/008-project-model">AD-008</a>) — while the state
 record and the database that stages it are both fixed by the project layout.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_myTv" id="see-also">See also<a href="#see-also" class="hash-link" aria-label="Direct link to See also" title="Direct link to See also" translate="no">​</a></h2>
 <ul>
 <li class=""><a class="" href="/contribute/architecture/008-project-model">AD-008: Project Model</a> — the project layout and where
-<code>.kapi/context/decisions/</code> sits among the ownership zones.</li>
+<code>.kapi/state/</code> sits among the ownership zones.</li>
 <li class=""><a class="" href="/contribute/architecture/039-local-context-graph-store">AD-039: The Local Context Graph Store</a> —
 <code>.kapi/work/store.db</code>, which holds the working set alongside every other subsystem.</li>
 <li class=""><a class="" href="/contribute/architecture/009-content-memory">AD-009: Content memory</a> — the recycle corpus
@@ -228,6 +228,6 @@ this state store is deliberately <em>not</em>.</li>
 <code>.kpz</code> exchange that carries state across a hand-off.</li>
 <li class=""><a class="" href="/kapi/convergence">Convergence</a> and <a class="" href="/kapi/project-store">the project store</a> —
 the end-user model derived from this state.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_uDp2"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/033-project-state-model.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Hftz" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_WdH3"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/032-math-and-equations"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">AD-032: Math and Equations</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/034-content-model-wire-schema"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">AD-034: Content-Model Wire Schema</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_NGel thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#two-kinds-of-state-two-homes" class="table-of-contents__link toc-highlight">Two kinds of state, two homes</a></li><li><a href="#content-memory-is-recycle-not-the-state-carrier" class="table-of-contents__link toc-highlight">Content memory is recycle, not the state carrier</a></li><li><a href="#the-committed-serialization-is-the-truth-the-working-set-is-an-index" class="table-of-contents__link toc-highlight">The committed serialization is the truth; the working set is an index</a></li><li><a href="#recording-is-implicit-publishing-is-explicit" class="table-of-contents__link toc-highlight">Recording is implicit; publishing is explicit</a></li><li><a href="#the-committed-location-is-fixed" class="table-of-contents__link toc-highlight">The committed location is fixed</a></li><li><a href="#decisions-are-unit-keyed-and-content-hash-bound" class="table-of-contents__link toc-highlight">Decisions are unit-keyed and content-hash-bound</a></li><li><a href="#layering--the-model-in-core-the-io-with-its-surface" class="table-of-contents__link toc-highlight">Layering — the model in <code>core/</code>, the IO with its surface</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">Kapi React</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_JER_"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_JER_"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-06 11:48 UTC · a1f7ccd</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_uDp2"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/033-project-state-model.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Hftz" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_WdH3"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/032-math-and-equations"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">AD-032: Math and Equations</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/034-content-model-wire-schema"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">AD-034: Content-Model Wire Schema</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_NGel thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#two-kinds-of-state-two-homes" class="table-of-contents__link toc-highlight">Two kinds of state, two homes</a></li><li><a href="#content-memory-is-recycle-not-the-state-carrier" class="table-of-contents__link toc-highlight">Content memory is recycle, not the state carrier</a></li><li><a href="#the-committed-serialization-is-the-truth-the-working-set-is-an-index" class="table-of-contents__link toc-highlight">The committed serialization is the truth; the working set is an index</a></li><li><a href="#recording-is-implicit-publishing-is-explicit" class="table-of-contents__link toc-highlight">Recording is implicit; publishing is explicit</a></li><li><a href="#the-committed-location-is-fixed" class="table-of-contents__link toc-highlight">The committed location is fixed</a></li><li><a href="#unit-state-is-unit-keyed-and-content-hash-bound" class="table-of-contents__link toc-highlight">Unit state is unit-keyed and content-hash-bound</a></li><li><a href="#layering--the-model-in-core-the-io-with-its-surface" class="table-of-contents__link toc-highlight">Layering — the model in <code>core/</code>, the IO with its surface</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">Kapi React</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_JER_"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_JER_"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-06 12:22 UTC · 72f39f1</div></div></div></footer></div>
 </body>
 </html>
