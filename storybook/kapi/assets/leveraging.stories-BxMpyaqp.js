@@ -1,4 +1,0 @@
-import{n as e}from"./rolldown-runtime-DAXXjFlN.js";import{t}from"./jsx-runtime-CFwixLRt.js";import{i as n,r}from"./schema-story-zdCqvIDl.js";var i,a,o,s;e((()=>{n(),i=t(),a={title:`Formats & Tools/Tools/Translation/Leveraging`,parameters:{layout:`padded`}},o={name:`Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`leveraging`,source:`bridge`})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  name: "Configuration",
-  render: () => <ToolConfig schemaName="leveraging" source="bridge" />
-}`,...o.parameters?.docs?.source}}},s=[`OkapiConfig`]}))();export{o as OkapiConfig,s as __namedExportsOrder,a as default};
