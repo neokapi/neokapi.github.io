@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-DAXXjFlN.js";import{t}from"./react-DEAHbL4P.js";function n(e,t=200){let[n,i]=(0,r.useState)(e);return(0,r.useEffect)(()=>{let n=setTimeout(()=>i(e),t);return()=>clearTimeout(n)},[e,t]),n}var r,i=e((()=>{r=t()}));export{n,i as t};
