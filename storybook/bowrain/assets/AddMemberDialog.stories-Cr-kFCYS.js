@@ -1,0 +1,5 @@
+import{n as e}from"./rolldown-runtime-PE7_xIU0.js";import{n as t,t as n}from"./AddMemberDialog-H9sDob-h.js";var r,i,a,o;e((()=>{t(),{fn:r}=__STORYBOOK_MODULE_TEST__,i={title:`Ctrl/AddMemberDialog`,component:n,parameters:{layout:`fullscreen`},args:{onOpenChange:r(),workspaceId:`ws_acme`}},a={args:{open:!0}},a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+  args: {
+    open: true
+  }
+}`,...a.parameters?.docs?.source}}},o=[`Open`]}))();export{a as Open,o as __namedExportsOrder,i as default};
