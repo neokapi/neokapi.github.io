@@ -1,5 +1,0 @@
-import{n as e}from"./rolldown-runtime-PE7_xIU0.js";import{t}from"./jsx-runtime-DjOA8AOY.js";import{at as n,it as r}from"./iframe-CWTIgfqy.js";import{n as i,t as a}from"./decorators-C5fjwZeX.js";import{n as o,t as s}from"./brandHubFixtures-Dy0SaiUk.js";var c,l,u,d,f,p,m,h;e((()=>{n(),o(),i(),c=t(),{fn:l}=__STORYBOOK_MODULE_TEST__,u=a(void 0,s),d=a(void 0,{...s,listActivities:async()=>({activities:[],next_cursor:``}),listChangesets:async()=>[],listConcepts:async()=>({concepts:[],total_count:0})}),f={title:`Brand Hub/Activity/ActivityView`,component:r,tags:[`autodocs`],parameters:{layout:`fullscreen`},args:{onOpenConcept:l(),onOpenExperiment:l()},decorators:[e=>(0,c.jsx)(`div`,{style:{padding:24},children:(0,c.jsx)(e,{})})]},p={decorators:[u]},m={decorators:[d]},p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`{
-  decorators: [populated]
-}`,...p.parameters?.docs?.source}}},m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`{
-  decorators: [empty]
-}`,...m.parameters?.docs?.source}}},h=[`Default`,`Empty`]}))();export{p as Default,m as Empty,h as __namedExportsOrder,f as default};
