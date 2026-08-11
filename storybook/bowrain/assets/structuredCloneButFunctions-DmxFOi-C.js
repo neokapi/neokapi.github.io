@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./Object.fromEntries-DKGJYL6V.js";function n(e){return!(e instanceof Object)||typeof e==`function`?e:e instanceof Array?e.map(n):Object.fromEntries(Object.entries(e).map(([e,t])=>[e,n(t)]))}function r(){return(r=e((()=>{t()})))()}export{n,r as t};

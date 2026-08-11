@@ -1,0 +1,24 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./react-DnzSF4pd.js";import{t as n}from"./jsx-runtime-CadfrxEJ.js";import{i as r,r as i}from"./id-D65dm9v7.js";import{n as a,t as o}from"./kcClsx-C1hEDwG0.js";import{n as s,t as c}from"./useInsertScriptTags-CRvKaByq.js";import{n as l}from"./waitForElementMountedOnDom-eu8pmOIo.js";function u(e){let{authButtonId:t,kcContext:n,i18n:r}=e,{url:i,challenge:a,userid:o,username:c,signatureAlgorithms:u,rpEntityName:f,rpId:p,attestationConveyancePreference:m,authenticatorAttachment:h,requireResidentKey:g,userVerificationRequirement:_,createTimeout:v,excludeCredentialIds:y}=n,{msgStr:b,isFetchingTranslations:x}=r,{insertScriptTags:S}=s({componentOrHookName:`LoginRecoveryAuthnCodeConfig`,scriptTags:[{type:`module`,textContent:()=>`
+                    import { registerByWebAuthn } from "${i.resourcesPath}/js/webauthnRegister.js";
+                    const registerButton = document.getElementById('${t}');
+                    registerButton.addEventListener("click", function() {
+                        const input = {
+                            challenge : '${a}',
+                            userid : '${o}',
+                            username : '${c}',
+                            signatureAlgorithms : ${JSON.stringify(u)},
+                            rpEntityName : ${JSON.stringify(f)},
+                            rpId : ${JSON.stringify(p)},
+                            attestationConveyancePreference : ${JSON.stringify(m)},
+                            authenticatorAttachment : ${JSON.stringify(h)},
+                            requireResidentKey : ${JSON.stringify(g)},
+                            userVerificationRequirement : ${JSON.stringify(_)},
+                            createTimeout : ${v},
+                            excludeCredentialIds : ${JSON.stringify(y)},
+                            initLabel : ${JSON.stringify(b(`webauthn-registration-init-label`))},
+                            initLabelPrompt : ${JSON.stringify(b(`webauthn-registration-init-label-prompt`))},
+                            errmsg : ${JSON.stringify(b(`webauthn-unsupported-browser-text`))}
+                        };
+                        registerByWebAuthn(input);
+                    });
+                `}]});(0,d.useEffect)(()=>{x||(async()=>{await l({elementId:t}),S()})()},[x])}var d;function f(){return(f=e((()=>{d=t(),c(),r(),i(),i()})))()}function p(e){let{kcContext:t,i18n:n,doUseDefaultCss:r,Template:i,classes:a}=e,{kcClsx:s}=o({doUseDefaultCss:r,classes:a}),{url:c,isSetRetry:l,isAppInitiatedAction:d}=t,{msg:f,msgStr:p}=n,g=`authenticateWebAuthnButton`;return u({authButtonId:g,kcContext:t,i18n:n}),(0,h.jsxs)(i,Object.assign({kcContext:t,i18n:n,doUseDefaultCss:r,classes:a,headerNode:(0,h.jsxs)(h.Fragment,{children:[(0,h.jsx)(`span`,{className:s(`kcWebAuthnKeyIcon`)}),f(`webauthn-registration-title`)]})},{children:[(0,h.jsx)(`form`,Object.assign({id:`register`,className:s(`kcFormClass`),action:c.loginAction,method:`post`},{children:(0,h.jsxs)(`div`,Object.assign({className:s(`kcFormGroupClass`)},{children:[(0,h.jsx)(`input`,{type:`hidden`,id:`clientDataJSON`,name:`clientDataJSON`}),(0,h.jsx)(`input`,{type:`hidden`,id:`attestationObject`,name:`attestationObject`}),(0,h.jsx)(`input`,{type:`hidden`,id:`publicKeyCredentialId`,name:`publicKeyCredentialId`}),(0,h.jsx)(`input`,{type:`hidden`,id:`authenticatorLabel`,name:`authenticatorLabel`}),(0,h.jsx)(`input`,{type:`hidden`,id:`transports`,name:`transports`}),(0,h.jsx)(`input`,{type:`hidden`,id:`error`,name:`error`}),(0,h.jsx)(m,{kcClsx:s,i18n:n})]}))})),(0,h.jsx)(`input`,{type:`submit`,className:s(`kcButtonClass`,`kcButtonPrimaryClass`,`kcButtonBlockClass`,`kcButtonLargeClass`),id:g,value:p(`doRegisterSecurityKey`)}),!l&&d&&(0,h.jsx)(`form`,Object.assign({action:c.loginAction,className:s(`kcFormClass`),id:`kc-webauthn-settings-form`,method:`post`},{children:(0,h.jsx)(`button`,Object.assign({type:`submit`,className:s(`kcButtonClass`,`kcButtonDefaultClass`,`kcButtonBlockClass`,`kcButtonLargeClass`),id:`cancelWebAuthnAIA`,name:`cancel-aia`,value:`true`},{children:f(`doCancel`)}))}))]}))}function m(e){let{kcClsx:t,i18n:n}=e,{msg:r}=n;return(0,h.jsx)(`div`,Object.assign({id:`kc-form-options`,className:t(`kcFormOptionsClass`)},{children:(0,h.jsx)(`div`,Object.assign({className:t(`kcFormOptionsWrapperClass`)},{children:(0,h.jsx)(`div`,Object.assign({className:`checkbox`},{children:(0,h.jsxs)(`label`,{children:[(0,h.jsx)(`input`,{type:`checkbox`,id:`logout-sessions`,name:`logout-sessions`,value:`on`}),r(`logoutOtherSessions`)]})}))}))}))}var h;function g(){return(g=e((()=>{h=n(),a(),f()})))()}g();export{p as default};

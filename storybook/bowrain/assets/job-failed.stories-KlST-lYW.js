@@ -1,0 +1,27 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./react-DnzSF4pd.js";import{t as n}from"./jsx-runtime-CadfrxEJ.js";import{A as r,C as i,D as a,E as o,F as s,I as c,L as l,M as u,N as d,O as f,P as p,S as m,T as h,_ as g,a as _,b as v,c as y,d as b,f as x,g as S,h as ee,i as C,j as w,k as T,l as E,m as D,n as O,o as k,p as A,r as j,s as M,t as N,u as P,v as F,w as I,x as L,y as R}from"./storybook-decorator-DlyKau63.js";import{n as z,t as B}from"./dist-Dybg9H6R.js";var V,H,U,W,G,K;function q(){return(q=e((()=>{l(),s(),d(),w(),T(),a(),h(),z(),i(),L(),R(),t(),x(),V=n(),H=({workspaceName:e,jobKind:t,subject:n,reason:i,jobURL:a})=>(0,V.jsxs)(I,{lang:`en`,dir:`ltr`,children:[(0,V.jsx)(r,{}),(0,V.jsx)(m,{children:`Work in your workspace stopped before it finished`}),(0,V.jsx)(c,{style:ee,children:(0,V.jsxs)(u,{style:k,children:[(0,V.jsxs)(v,{style:P,children:[(0,V.jsx)(F,{style:D,children:`Bowrain`}),(0,V.jsx)(F,{style:g,children:`The context graph for your content`})]}),(0,V.jsxs)(v,{style:_,children:[(0,V.jsx)(v,{style:W,children:(0,V.jsx)(F,{style:G,children:`Failed`})}),(0,V.jsx)(f,{as:`h1`,style:U,children:`A job stopped before it finished`}),(0,V.jsxs)(F,{style:S,children:[`A `,(0,V.jsx)(`strong`,{children:t}),` job for `,(0,V.jsx)(`strong`,{children:n}),` in`,` `,(0,V.jsx)(`strong`,{children:e}),` did not complete.`]}),(0,V.jsx)(F,{style:K,children:i}),(0,V.jsx)(F,{style:S,children:`The work was retried where retrying could help, and stopped when it could not. Nothing was left half-applied — the content it was working on is unchanged.`}),(0,V.jsx)(v,{style:C,children:(0,V.jsx)(p,{href:a,style:j,children:`Open the run history`})}),(0,V.jsx)(o,{style:b}),(0,V.jsx)(F,{style:M,children:`Button not working? Copy and paste this link into your browser:`}),(0,V.jsx)(B,{href:a,style:A,children:a})]}),(0,V.jsxs)(v,{style:y,children:[(0,V.jsx)(F,{style:E,children:`© Bowrain. All rights reserved.`}),(0,V.jsx)(F,{style:E,children:`You received this because work you are responsible for did not finish. Turn it off in notification preferences.`})]})]})})]}),U={color:`#0f172a`,fontSize:`26px`,fontWeight:`700`,margin:`0 0 16px`,lineHeight:`1.2`},W={marginBottom:`16px`},G={display:`inline-block`,backgroundColor:`#fef2f2`,color:`#b91c1c`,fontSize:`11px`,fontWeight:`600`,textTransform:`uppercase`,letterSpacing:`0.05em`,padding:`4px 10px`,borderRadius:`4px`,margin:`0`},K={color:`#334155`,fontSize:`14px`,fontFamily:`ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`,lineHeight:`1.5`,backgroundColor:`#f8fafc`,borderLeft:`3px solid #e2e8f0`,padding:`12px 14px`,borderRadius:`4px`,margin:`0 0 16px`},H.__docgenInfo={description:`Branded job-failure email for Bowrain.
+
+Sent once per failed job — after retries, not per attempt — to the person who
+asked for the work, or to the workspace's owners when the platform started it
+itself. Work that stops is the one outcome nobody discovers on their own: a
+job that silently failed looks exactly like a job that is still running.
+
+Props are populated at build time with Go text/template tokens
+(e.g. workspaceName = "{{.WorkspaceName}}") so the rendered HTML doubles as a
+Go template. Every sentence stays static English JSX so the i18n pipeline can
+extract it; only names, the reason, and the URL arrive as tokens.`,methods:[],displayName:`JobFailedEmail`,props:{workspaceName:{required:!0,tsType:{name:`string`},description:`Human-readable workspace name.`},jobKind:{required:!0,tsType:{name:`string`},description:`What kind of work this was, in prose (e.g. "translation", "push").`},subject:{required:!0,tsType:{name:`string`},description:`What the job was working on — an item name, or the project's name.`},reason:{required:!0,tsType:{name:`string`},description:`The one-line reason the job stopped, as the worker recorded it.`},jobURL:{required:!0,tsType:{name:`string`},description:`Deep link to where the failure can be inspected and re-run.`}}}})))()}var J,Y,X,Z,Q;function $(){return($=e((()=>{q(),O(),J=n(),Y={title:`Emails/JobFailed`,component:H,tags:[`autodocs`],parameters:{layout:`padded`},decorators:[(e,{args:t})=>(0,J.jsx)(N,{children:(0,J.jsx)(H,{...t})})]},X={args:{workspaceName:`Acme Translations`,jobKind:`translation`,subject:`en.json → nb`,reason:`openai: API error 401: invalid api key`,jobURL:`https://app.bowrain.cloud/acme/p/proj_7hK2/s/main/runs`}},Z={args:{workspaceName:`Globex Corp`,jobKind:`push`,subject:`Marketing site`,reason:`parse manifest: unexpected end of JSON input`,jobURL:`https://app.bowrain.cloud/globex/p/proj_9Qm4/s/main/runs`}},X.parameters={...X.parameters,docs:{...X.parameters?.docs,source:{originalSource:`{
+  args: {
+    workspaceName: "Acme Translations",
+    jobKind: "translation",
+    subject: "en.json → nb",
+    reason: "openai: API error 401: invalid api key",
+    jobURL: "https://app.bowrain.cloud/acme/p/proj_7hK2/s/main/runs"
+  }
+}`,...X.parameters?.docs?.source}}},Z.parameters={...Z.parameters,docs:{...Z.parameters?.docs,source:{originalSource:`{
+  args: {
+    workspaceName: "Globex Corp",
+    jobKind: "push",
+    subject: "Marketing site",
+    reason: "parse manifest: unexpected end of JSON input",
+    jobURL: "https://app.bowrain.cloud/globex/p/proj_9Qm4/s/main/runs"
+  }
+}`,...Z.parameters?.docs?.source}}},Q=[`Translation`,`Push`]})))()}$();export{Z as Push,X as Translation,Q as __namedExportsOrder,Y as default};

@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";var t,n,r;function i(){return(i=e((()=>{t=[`BROADER`,`NARROWER`,`PART_OF`,`HAS_PART`,`RELATED`,`REPLACED_BY`,`USE_INSTEAD`,`EXACT_MATCH`,`CLOSE_MATCH`,`COMPETITOR`],n=[`draft`,`in_review`,`approved`,`merged`,`abandoned`,`superseded`],r=new Set([`merged`,`abandoned`,`superseded`])})))()}export{i,t as n,r,n as t};
