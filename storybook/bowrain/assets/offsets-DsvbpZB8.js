@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";function t(e){let t=e.codePointAt(0)??0;return t<128?1:t<2048?2:t<65536?3:4}function n(e,n){if(n<=0)return 0;let r=0,i=0;for(let a of e){if(r>=n)return i;r+=t(a),i++}return i}function r(){return(r=e((()=>{})))()}export{r as n,n as t};
