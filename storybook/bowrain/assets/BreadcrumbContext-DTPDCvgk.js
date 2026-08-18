@@ -1,0 +1,7 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./react-DnzSF4pd.js";import{t as n}from"./jsx-runtime-CadfrxEJ.js";function r({base:e=[],children:t}){let[n,r]=(0,c.useState)([]),i=(0,c.useMemo)(()=>({base:e,extra:n,setExtra:r}),[e,n]);return(0,l.jsx)(u.Provider,{value:i,children:t})}function i(){let{base:e,extra:t}=(0,c.useContext)(u);return(0,c.useMemo)(()=>[...e,...t],[e,t])}function a(e){let{setExtra:t}=(0,c.useContext)(u),n=e.map(e=>e.label).join(`\0`),r=o(e);(0,c.useEffect)(()=>(t(r.current.map(e=>({...e}))),()=>t([])),[n,t])}function o(e){let[t]=(0,c.useState)(()=>({current:e}));return t.current=e,t}function s(e){a([{label:e}])}var c,l,u;function d(){return(d=e((()=>{c=t(),l=n(),u=(0,c.createContext)({base:[],extra:[],setExtra:()=>{}}),r.__docgenInfo={description:`The trail is assembled from two sources because it is known in two places.
+
+The shell can read everything the URL says — workspace, section, project,
+stream, the file a splat carries — and it derives that itself rather than
+making every route repeat it. What the URL holds only as an opaque id — which
+collection \`?collection=m9fHXC1n\` is, what a change-set is called — is known
+to the route that fetched it, and it appends those with useBreadcrumbExtra.`,methods:[],displayName:`BreadcrumbProvider`,props:{base:{required:!1,tsType:{name:`Array`,elements:[{name:`BreadcrumbItem`}],raw:`BreadcrumbItem[]`},description:``,defaultValue:{value:`[]`,computed:!1}},children:{required:!0,tsType:{name:`ReactNode`},description:``}}}})))()}export{s as i,d as n,i as r,r as t};
