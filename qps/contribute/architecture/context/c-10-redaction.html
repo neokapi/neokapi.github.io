@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Ç-10: Ŕéđàçţîöñ àñđ çļéàŕàñçé | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/qps/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/qps/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/qps/contribute/architecture/context/c-10-redaction"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="qps"><meta data-rh="true" name="docsearch:language" content="qps"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ç-10: Ŕéđàçţîöñ àñđ çļéàŕàñçé | neokapi"><meta data-rh="true" name="description" content="Àŕçĥîţéçţüŕé đéçîšîöñ: ŕéđàçţîöñ ŕéþļàçéš šéñšîţîṽé šþàñš ŵîţĥ þŕöţéçţéđ þļàçéĥöļđéŕš ƃéƒöŕé çöñţéñţ ļéàṽéš ţĥé ḿàçĥîñé, ķééþîñĝ ţĥé öŕîĝîñàļ îñ à ļöçàļ ṽàüļţ; ţĥé þöļîçý îš ŕéàđ àţ éẋţŕàçţ, àţ îñĝéšţ, àñđ ƃý ţĥé ƒļöŵ þļàçéḿéñţ ĝàţé."><meta data-rh="true" property="og:description" content="Àŕçĥîţéçţüŕé đéçîšîöñ: ŕéđàçţîöñ ŕéþļàçéš šéñšîţîṽé šþàñš ŵîţĥ þŕöţéçţéđ þļàçéĥöļđéŕš ƃéƒöŕé çöñţéñţ ļéàṽéš ţĥé ḿàçĥîñé, ķééþîñĝ ţĥé öŕîĝîñàļ îñ à ļöçàļ ṽàüļţ; ţĥé þöļîçý îš ŕéàđ àţ éẋţŕàçţ, àţ îñĝéšţ, àñđ ƃý ţĥé ƒļöŵ þļàçéḿéñţ ĝàţé."><meta data-rh="true" name="keywords" content="redaction,sensitive content,placeholders,unredact,vault,privacy,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/qps/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/qps/contribute/architecture/context/c-10-redaction"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-10-redaction" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/context/c-10-redaction" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/context/c-10-redaction" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-10-redaction" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ç-10: Ŕéđàçţîöñ àñđ çļéàŕàñçé","item":"https://neokapi.github.io/qps/contribute/architecture/context/c-10-redaction"}]}</script><link rel="stylesheet" href="/qps/assets/css/styles.78abe0e6.css">
-<script src="/qps/assets/js/runtime~main.6de2991d.js" defer="defer"></script>
-<script src="/qps/assets/js/main.1ddd1861.js" defer="defer"></script>
+<script src="/qps/assets/js/runtime~main.aa3c839f.js" defer="defer"></script>
+<script src="/qps/assets/js/main.61cdd4dc.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -21,8 +21,8 @@
 öŕîĝîñàļ-ţö-þļàçéĥöļđéŕ ḿàþþîñĝ ļîṽéš îñ à ļöçàļ ṽàüļţ ţĥàţ îš ñéṽéŕ šéŕîàļîžéđ
 îñţö ţĥé çöñţéñţ ĥàñđéđ ţö à ţööļ, à þŕöḿþţ, öŕ àñ éẋçĥàñĝé ƒîļé.</p>
 <p>Ţĥé çàþàƃîļîţý îš ƒŕàḿéŵöŕķ-ñàţîṽé — à þééŕ öƒ þšéüđö-ţŕàñšļàţîöñ àñđ
-šéàŕçĥ-àñđ-ŕéþļàçé — ļîṽîñĝ üñđéŕ <code>çöŕé/ŕéđàçţîöñ/</code>, ţŵö þîþéļîñé ţööļš
-(<code>ŕéđàçţ</code> / <code>üñŕéđàçţ</code>), à ƃüîļţ-îñ šéçüŕé-ţŕàñšļàţé ƒļöŵ, àñđ îñţéĝŕàţîöñ ŵîţĥ
+šéàŕçĥ-àñđ-ŕéþļàçé — ļîṽîñĝ üñđéŕ <code>core/redaction/</code>, ţŵö þîþéļîñé ţööļš
+(<code>redact</code> / <code>unredact</code>), à ƃüîļţ-îñ šéçüŕé-ţŕàñšļàţé ƒļöŵ, àñđ îñţéĝŕàţîöñ ŵîţĥ
 éẋţŕàçţ, ḿéŕĝé àñđ îñĝéšţ.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="çöñţéẋţ">Çöñţéẋţ<a href="#çöñţéẋţ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Çöñţéẋţ" title="Đîŕéçţ ļîñķ ţö Çöñţéẋţ" translate="no">​</a></h2>
 <p>Çöñţéñţ îš îñçŕéàšîñĝļý ţŕàñšļàţéđ ŵîţĥ çļöüđ ḿöđéļš àñđ éẋţéŕñàļ ţööļš, ƃüţ šöḿé
@@ -37,28 +37,28 @@
 þîþéļîñé àļŕéàđý þŕéšéŕṽéš îñļîñé çöđéš àçŕöšš ţŕàñšļàţîöñ.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="đéçîšîöñ">Đéçîšîöñ<a href="#đéçîšîöñ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Đéçîšîöñ" title="Đîŕéçţ ļîñķ ţö Đéçîšîöñ" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="ţĥé-þļàçéĥöļđéŕ-ḿöđéļ">Ţĥé þļàçéĥöļđéŕ ḿöđéļ<a href="#ţĥé-þļàçéĥöļđéŕ-ḿöđéļ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé þļàçéĥöļđéŕ ḿöđéļ" title="Đîŕéçţ ļîñķ ţö Ţĥé þļàçéĥöļđéŕ ḿöđéļ" translate="no">​</a></h3>
-<p>À ŕéđàçţéđ šþàñ ƃéçöḿéš à <code>ḿöđéļ.ÞļàçéĥöļđéŕŔüñ</code> ŵîţĥ à <code>Ţýþé</code> öƒ ţĥé ƒöŕḿ
-<code>ŕéđàçţîöñ:&lt;çàţéĝöŕý&gt;</code>, ḿîŕŕöŕîñĝ ţĥé <code>éñţîţý:</code> þŕéƒîẋ çöñṽéñţîöñ öƒ ţĥé šéḿàñţîç
+<p>À ŕéđàçţéđ šþàñ ƃéçöḿéš à <code>model.PlaceholderRun</code> ŵîţĥ à <code>Type</code> öƒ ţĥé ƒöŕḿ
+<code>redaction:&lt;category&gt;</code>, ḿîŕŕöŕîñĝ ţĥé <code>entity:</code> þŕéƒîẋ çöñṽéñţîöñ öƒ ţĥé šéḿàñţîç
 ṽöçàƃüļàŕý (<a class="" href="/qps/contribute/architecture/foundations/f-02-content-model">Ƒ-02</a>). Ţĥé ŕüñ çàŕŕîéš à
 šţàƃļé îđ (ţĥé ţöķéñ), à ṽîšîƃļé šţàñđ-îñ šţŕîñĝ (đéƒàüļţ ţéḿþļàţé
-<code>[ŔÉĐÀÇŢÉĐ:{category}]</code>), àñđ çöñšţŕàîñţš ḿàŕķîñĝ îţ ñöñ-đéļéţàƃļé àñđ
+<code>[REDACTED:{category}]</code>), àñđ çöñšţŕàîñţš ḿàŕķîñĝ îţ ñöñ-đéļéţàƃļé àñđ
 ñöñ-çļöñéàƃļé. Çàţéĝöŕîéš àŕé ƒŕéé-ƒöŕḿ šţŕîñĝš; à ŕéçöḿḿéñđéđ šéţ îš šüŕƒàçéđ îñ
 ţĥé đéƒàüļţš.</p>
 <p><strong>Ţĥé öŕîĝîñàļ ţéẋţ îš ñöţ þŕéšéñţ öñ ţĥé ŕüñ îñ àñý ƒîéļđ.</strong></p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="ţĥé-ļöçàļîţý-ĝüàŕàñţéé">Ţĥé ļöçàļîţý ĝüàŕàñţéé<a href="#ţĥé-ļöçàļîţý-ĝüàŕàñţéé" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé ļöçàļîţý ĝüàŕàñţéé" title="Đîŕéçţ ļîñķ ţö Ţĥé ļöçàļîţý ĝüàŕàñţéé" translate="no">​</a></h3>
 <p>Ţĥé öŕîĝîñàļ ļîṽéš öñļý îñ à <strong>ṽàüļţ</strong>, ñéṽéŕ îñ ţĥé çöñţéñţ. Ţĥŕéé ƃàçķîñĝš, öñé
 þéŕ ļîƒéţîḿé:</p>
-<table><thead><tr><th>Ƃàçķîñĝ</th><th>Ŵĥéŕé</th><th>Ƒöŕ</th></tr></thead><tbody><tr><td>Àñ îñ-þŕöçéšš šéçŕéţ àññöţàţîöñ öñ ţĥé ƃļöçķ</td><td>ḿéḿöŕý</td><td>šîñĝļé-ŕüñ ƒļöŵš</td></tr><tr><td>À þéŕ-ƃàţçĥ ĴŠÖÑ šîđéçàŕ</td><td><code>.ķàþî/ŵöŕķ/çàçĥé/ŕéđàçţîöñ/&lt;ƃàţçĥ-îđ&gt;.ĵšöñ</code></td><td>ţĥé éẋţŕàçţ → éẋţéŕñàļ ţööļ → ḿéŕĝé ŕöüñđ ţŕîþ</td></tr><tr><td>Ţĥé þŕöĵéçţ ṽàüļţ</td><td><code>.ķàþî/ŵöŕķ/ṽàüļţ/ŕéđàçţîöñ.ĵšöñ</code></td><td>çöñţîñüöüš îñĝéšţ, ŵĥîçĥ ĥàš ñö ƃàţçĥ îđ ţö ļööķ üñđéŕ</td></tr></tbody></table>
+<table><thead><tr><th>Ƃàçķîñĝ</th><th>Ŵĥéŕé</th><th>Ƒöŕ</th></tr></thead><tbody><tr><td>Àñ îñ-þŕöçéšš šéçŕéţ àññöţàţîöñ öñ ţĥé ƃļöçķ</td><td>ḿéḿöŕý</td><td>šîñĝļé-ŕüñ ƒļöŵš</td></tr><tr><td>À þéŕ-ƃàţçĥ ĴŠÖÑ šîđéçàŕ</td><td><code>.kapi/work/cache/redaction/&lt;batch-id&gt;.json</code></td><td>ţĥé éẋţŕàçţ → éẋţéŕñàļ ţööļ → ḿéŕĝé ŕöüñđ ţŕîþ</td></tr><tr><td>Ţĥé þŕöĵéçţ ṽàüļţ</td><td><code>.kapi/work/vault/redaction.json</code></td><td>çöñţîñüöüš îñĝéšţ, ŵĥîçĥ ĥàš ñö ƃàţçĥ îđ ţö ļööķ üñđéŕ</td></tr></tbody></table>
 <p>Ţĥé îñ-þŕöçéšš àññöţàţîöñ îš ķéýéđ üñđéŕ à ñàḿé ñö ƒöŕḿàţ ŵŕîţéŕ šéŕîàļîžéš, àñđ
-<code>üñŕéđàçţ</code> đéļéţéš îţ àƒţéŕ ŕéšţöŕîñĝ, šö îţ çàññöţ ŕéàçĥ àñ öüţþüţ ƒîļé. Ţĥé
+<code>unredact</code> đéļéţéš îţ àƒţéŕ ŕéšţöŕîñĝ, šö îţ çàññöţ ŕéàçĥ àñ öüţþüţ ƒîļé. Ţĥé
 šîđéçàŕš àñđ ţĥé ṽàüļţ àŕé ŵŕîţţéñ ŵîţĥ ŕéšţŕîçţîṽé þéŕḿîššîöñš.</p>
-<p><code>ṽàüļţ/</code> îš šéþàŕàţé ƒŕöḿ <code>çàçĥé/</code> öñ þüŕþöšé, àñđ ţĥé đîšţîñçţîöñ îš
+<p><code>vault/</code> îš šéþàŕàţé ƒŕöḿ <code>cache/</code> öñ þüŕþöšé, àñđ ţĥé đîšţîñçţîöñ îš
 ļöàđ-ƃéàŕîñĝ. <strong>Ţĥé çàçĥé îš đéƒîñéđ ƃý ƃéîñĝ đîšþöšàƃļé</strong> — ļöšîñĝ îţ çöšţš ÇÞÜ.
 <strong>Ţĥé ṽàüļţ îš đéƒîñéđ ƃý àñ éẋçļüšîöñ</strong>: à ñàḿéđ đéšţîñàţîöñ ḿüšţ ñéṽéŕ ŕéàđ îţ,
 àñđ ļöšîñĝ îţ ḿéàñš ŕéđàçţéđ çöñţéñţ çàñ ñéṽéŕ ƃé ŕéšţöŕéđ. Ƒîļîñĝ îţ üñđéŕ
-<code>çàçĥé/</code> ŵöüļđ ḿàķé îţ ļööķ ŕéĝéñéŕàƃļé, ŵĥîçĥ îţ îš ñöţ, àñđ þüţ îţ öñé đéļéţîöñ
-àŵàý ƒŕöḿ üñŕéçöṽéŕàƃļé þļàçéĥöļđéŕš. Šö <code>ŕḿ -ŕƒ .ķàþî/ŵöŕķ/çàçĥé</code> šţàýš ƒŕéé, àñđ
-<code>ṽàüļţ/</code> îš ţĥé öñé ţĥîñĝ üñđéŕ <code>ŵöŕķ/</code> ţĥàţ ķàþî ñéṽéŕ đéļéţéš öñ îţš öŵñ
+<code>cache/</code> ŵöüļđ ḿàķé îţ ļööķ ŕéĝéñéŕàƃļé, ŵĥîçĥ îţ îš ñöţ, àñđ þüţ îţ öñé đéļéţîöñ
+àŵàý ƒŕöḿ üñŕéçöṽéŕàƃļé þļàçéĥöļđéŕš. Šö <code>rm -rf .kapi/work/cache</code> šţàýš ƒŕéé, àñđ
+<code>vault/</code> îš ţĥé öñé ţĥîñĝ üñđéŕ <code>work/</code> ţĥàţ ķàþî ñéṽéŕ đéļéţéš öñ îţš öŵñ
 îñîţîàţîṽé.</p>
 <p>Ƒöŕ ḿöđéļ çàļļš ţĥé ĝüàŕàñţéé îš <em>šţŕüçţüŕàļ</em>, ñöţ àđṽîšöŕý: à ƃļöçķ ŵîţĥ îñļîñé
 çöđéš îš ŕéñđéŕéđ ţĥŕöüĝĥ ţĥé þļàçéĥöļđéŕ þŕöţöçöļ, ŵĥîçĥ þŕéšéñţš éàçĥ
@@ -68,7 +68,7 @@
 (<a class="" href="/qps/contribute/architecture/multilingual/m-05-prompts-and-batching">Ḿ-05</a>).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="đéţéçţîöñ">Đéţéçţîöñ<a href="#đéţéçţîöñ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Đéţéçţîöñ" title="Đîŕéçţ ļîñķ ţö Đéţéçţîöñ" translate="no">​</a></h3>
 <p>Đéţéçţîöñ þŕöđüçéš šþàñš, ƃýţé öƒƒšéţš þļüš à çàţéĝöŕý, çöñšüḿéđ ƃý
-<code>ŕéđàçţîöñ.Ŕéđàçţ</code>. Ţŵö ƃàçķéñđš:</p>
+<code>redaction.Redact</code>. Ţŵö ƃàçķéñđš:</p>
 <ul>
 <li class="">
 <p><strong>Ŕüļéš</strong> (đéƒàüļţ, ƒüļļý öƒƒļîñé): ļîţéŕàļ ţéŕḿš àñđ ŕéĝüļàŕ éẋþŕéššîöñš ƒŕöḿ
@@ -76,25 +76,25 @@
 ļöçàļîţý ĝüàŕàñţéé ŵîţĥöüţ ǫüàļîƒîçàţîöñ.</p>
 </li>
 <li class="">
-<p><strong>Éñţîţîéš</strong> (öþţ-îñ): <code>ŕéđàçţ</code> ŕéàđš ţĥé éñţîţý àññöţàţîöñš àļŕéàđý öñ ţĥé
-ƃļöçķ — þŕöđüçéđ üþšţŕéàḿ ƃý <code>éñţîţý-éẋţŕàçţ</code> — àñđ ŕéđàçţš ţĥé çöñƒîĝüŕéđ
+<p><strong>Éñţîţîéš</strong> (öþţ-îñ): <code>redact</code> ŕéàđš ţĥé éñţîţý àññöţàţîöñš àļŕéàđý öñ ţĥé
+ƃļöçķ — þŕöđüçéđ üþšţŕéàḿ ƃý <code>entity-extract</code> — àñđ ŕéđàçţš ţĥé çöñƒîĝüŕéđ
 çàţéĝöŕîéš. Ţĥé đéţéçţîöñ ḿöđéļ îš ţĥé çàļļéŕ&#x27;š çĥöîçé: à ļöçàļ ḿöđéļ ķééþš
 éṽéŕýţĥîñĝ öñ ţĥé ḿàçĥîñé, à çļöüđ ḿöđéļ ţŕàđéš ţĥàţ ƒöŕ çöṽéŕàĝé đüŕîñĝ ţĥé
 <em>đéţéçţîöñ</em> šţéþ öñļý.</p>
 <p>Ţĥé çàţéĝöŕîéš àŕé ţĥé <strong>öþţîöñ šüŕƒàçé</strong> à üšéŕ þîçķš — ŕéđàçţ þéöþļé, ŕéđàçţ
-đàţéš — ţĥŕöüĝĥ <code>ŕéđàçţ</code>&#x27;š éñţîţý-ţýþé ļîšţ, ŵîţĥ àļîàšéš àñđ ţĥé ḿöđéļ&#x27;š
-<code>éñţîţý:</code> þŕéƒîẋ ñöŕḿàļîžéđ àñđ ṽàļîđàţéđ. Ñàḿîñĝ àñý çàţéĝöŕý éñàƃļéš éñţîţý
+đàţéš — ţĥŕöüĝĥ <code>redact</code>&#x27;š éñţîţý-ţýþé ļîšţ, ŵîţĥ àļîàšéš àñđ ţĥé ḿöđéļ&#x27;š
+<code>entity:</code> þŕéƒîẋ ñöŕḿàļîžéđ àñđ ṽàļîđàţéđ. Ñàḿîñĝ àñý çàţéĝöŕý éñàƃļéš éñţîţý
 đéţéçţîöñ, šö ţĥé üšéŕ đöéš ñöţ àļšö ĥàṽé ţö ļîšţ ţĥé đéţéçţöŕ. Đàţéš, ţîḿéš,
 çüŕŕéñçîéš àñđ ḿéàšüŕéḿéñţš àŕé éẋçļüđéđ ƒŕöḿ ţĥé đéƒàüļţš, ƃéçàüšé ţĥéý
 üšüàļļý ñééđ ļöçàļé ƒöŕḿàţţîñĝ ŕàţĥéŕ ţĥàñ ĥîđîñĝ, ƃüţ àŕé àṽàîļàƃļé.</p>
 <p><strong>Çöñđîţîöñàļ ŕéǫüîŕéḿéñţ, ñöţ à ñéŵ šçĥéḿà ļàñĝüàĝé.</strong> Ţŵö đîšţîñçţ
 ŕéǫüîŕéḿéñţš àŕé îñ þļàý àñđ ñéîţĥéŕ ñééđš à çöñđîţîöñ ĐŠĻ. Ţĥé <em>ŕéšöüŕçé</em>
 ŕéǫüîŕéḿéñţ — ñàḿéđ-éñţîţý ŕéçöĝñîţîöñ îḿþļîéš à çŕéđéñţîàļ — ļîṽéš šţàţîçàļļý
-öñ <code>éñţîţý-éẋţŕàçţ</code>; <code>ŕéđàçţ</code> çàļļš ñö þŕöṽîđéŕ àñđ đéçļàŕéš ñö ŕéǫüîŕéḿéñţ öƒ
+öñ <code>entity-extract</code>; <code>redact</code> çàļļš ñö þŕöṽîđéŕ àñđ đéçļàŕéš ñö ŕéǫüîŕéḿéñţ öƒ
 îţš öŵñ, šö éñàƃļîñĝ à çàţéĝöŕý àđđš ñöñé ţö ŕéđàçţ. Ýöü àđđ ţĥé éẋţŕàçţîöñ
 ţööļ ţö ţĥé ƒļöŵ, ŵĥîçĥ îš çöḿþöšîţîöñ. Ţĥé <em>îñþüţ</em> ŕéǫüîŕéḿéñţ — ŕéđàçţ ñééđš
 àñ éñţîţý öṽéŕļàý ŵĥéñ éñţîţý đéţéçţîöñ îš öñ — îš à <strong>çöñƒîĝ-đéŕîṽéđ ÎÖ
-çöñţŕàçţ</strong>: à çöñţŕàçţ ŕéšöļṽéŕ ƒļîþš ŕéđàçţ&#x27;š <code>éñţîţý</code> çöñšüḿéđ þöŕţ ƒŕöḿ
+çöñţŕàçţ</strong>: à çöñţŕàçţ ŕéšöļṽéŕ ƒļîþš ŕéđàçţ&#x27;š <code>entity</code> çöñšüḿéđ þöŕţ ƒŕöḿ
 öþţîöñàļ ţö ŕéǫüîŕéđ ŵĥéñ îţš çöñƒîĝ éñàƃļéš éñţîţîéš, šö à ƒļöŵ ţĥàţ ŕéđàçţš
 éñţîţîéš ŵîţĥ ñö üþšţŕéàḿ þŕöđüçéŕ ƒàîļš đàţà-ƒļöŵ ṽàļîđàţîöñ îñšţéàđ öƒ
 šîļéñţļý ļéàṽîñĝ ţĥé çöñţéñţ üñŕéđàçţéđ àñđ ļéàķîñĝ îţ đöŵñšţŕéàḿ. Ŵîţĥ
@@ -103,7 +103,7 @@
 </li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="ŕéđàçţîöñ-îš-à-šţŕüçţüŕéđ-éđîţ">Ŕéđàçţîöñ îš à šţŕüçţüŕéđ éđîţ<a href="#ŕéđàçţîöñ-îš-à-šţŕüçţüŕéđ-éđîţ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ŕéđàçţîöñ îš à šţŕüçţüŕéđ éđîţ" title="Đîŕéçţ ļîñķ ţö Ŕéđàçţîöñ îš à šţŕüçţüŕéđ éđîţ" translate="no">​</a></h3>
-<p><code>ŕéđàçţ</code> îš à <strong>ţŕàñšƒöŕḿéŕ</strong> (<a class="" href="/qps/contribute/architecture/engine/e-03-tool-system">É-03</a>): îţ
+<p><code>redact</code> îš à <strong>ţŕàñšƒöŕḿéŕ</strong> (<a class="" href="/qps/contribute/architecture/engine/e-03-tool-system">É-03</a>): îţ
 þŕöđüçéš àñ éđîţ þļàñ — ţĥé šþàñ-ţö-ŕéþļàçéḿéñţ éđîţš þļüš ţĥé öŕîĝîñàļš ţö ṽàüļţ
 — àñđ ţĥé ƒŕàḿéŵöŕķ àþþļîéŕ ŕéŵŕîţéš ţĥé šöüŕçé. Ƃéçàüšé ţĥé þļàñ îš à ķñöŵñ
 šþàñ-ţö-ŕéþļàçéḿéñţ ḿàþ, ţĥé àþþļîéŕ <strong>ŕéƃàšéš</strong> ţĥé šüŕṽîṽîñĝ ŕüñ-àñçĥöŕéđ šöüŕçé
@@ -113,7 +113,7 @@
 àþþļîéŕ ṽàüļţš ţĥé öŕîĝîñàļš àš îţ ŕéþļàçéš, šö šöüŕçé ŕéŵŕîţé àñđ šéçŕéţ çàþţüŕé
 àŕé àţöḿîç.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="ŕéšţöŕàţîöñ">Ŕéšţöŕàţîöñ<a href="#ŕéšţöŕàţîöñ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ŕéšţöŕàţîöñ" title="Đîŕéçţ ļîñķ ţö Ŕéšţöŕàţîöñ" translate="no">​</a></h3>
-<p><code>üñŕéđàçţ</code> àñđ <code>ķàþî ḿéŕĝé</code> ŕéšţöŕé ţĥŕöüĝĥ ţŵö çöḿþļéḿéñţàŕý þàţĥš, ƃéçàüšé
+<p><code>unredact</code> àñđ <code>kapi merge</code> ŕéšţöŕé ţĥŕöüĝĥ ţŵö çöḿþļéḿéñţàŕý þàţĥš, ƃéçàüšé
 ƒöŕḿàţš đîƒƒéŕ îñ ŵĥéţĥéŕ ţĥéý þŕéšéŕṽé îñļîñé šţŕüçţüŕé öñ ŵŕîţé:</p>
 <ul>
 <li class=""><strong>Ƃý þļàçéĥöļđéŕ îđ</strong> — ƒöŕ šţŕüçţüŕé-þŕéšéŕṽîñĝ çàŕŕîéŕš: îñ-þŕöçéšš
@@ -124,41 +124,41 @@
 </ul>
 <p>Ţöĝéţĥéŕ ţĥéý çöṽéŕ éṽéŕý šüþþöŕţéđ çàŕŕîéŕ.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="ţĥé-þöļîçý-ĥàš-ţĥŕéé-ŕéàđéŕš">Ţĥé þöļîçý ĥàš ţĥŕéé ŕéàđéŕš<a href="#ţĥé-þöļîçý-ĥàš-ţĥŕéé-ŕéàđéŕš" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé þöļîçý ĥàš ţĥŕéé ŕéàđéŕš" title="Đîŕéçţ ļîñķ ţö Ţĥé þöļîçý ĥàš ţĥŕéé ŕéàđéŕš" translate="no">​</a></h3>
-<p>Ţĥé ŕéçîþé đéçļàŕéš ŕéđàçţîöñ üñđéŕ <code>đéƒàüļţš.ŕéđàçţîöñ</code>, àñđ þéŕ çöñţéñţ îţéḿ,
+<p>Ţĥé ŕéçîþé đéçļàŕéš ŕéđàçţîöñ üñđéŕ <code>defaults.redaction</code>, àñđ þéŕ çöñţéñţ îţéḿ,
 þöîñţîñĝ àţ à šéþàŕàţé ŕüļéš ƒîļé šö ţĥé šéñšîţîṽé ţéŕḿ ļîšţ šţàýš öüţ öƒ ţĥé
 çöḿḿîţţéđ ŕéçîþé:</p>
 <div class="language-yaml codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-yaml codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">defaults</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">redaction</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">enabled</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean important" style="color:#36acaa">true</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">rules</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> redaction.yaml         </span><span class="token comment" style="color:#999988;font-style:italic"># binds any path; keep it out of version control</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">detectors</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">rules</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain">            </span><span class="token comment" style="color:#999988;font-style:italic"># opt in: entities</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">placeholder</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;[REDACTED:{category}]&quot;</span><br></div></code></pre></div></div>
 <p>À þöļîçý ŵîţĥ öñé ŕéàđéŕ îš à þöļîçý ţĥàţ ƒàîļš öþéñ éṽéŕýŵĥéŕé éļšé, šö ţĥé
 þöļîçý îš ŕéàđ àţ éṽéŕý þöîñţ çöñţéñţ çàñ ļéàṽé:</p>
 <ol>
-<li class=""><strong><code>ķàþî éẋţŕàçţ</code></strong> ŕéšöļṽéš àñđ àþþļîéš îţ, éḿîţţîñĝ à ŕéđàçţéđ ƃîļîñĝüàļ ƒîļé
+<li class=""><strong><code>kapi extract</code></strong> ŕéšöļṽéš àñđ àþþļîéš îţ, éḿîţţîñĝ à ŕéđàçţéđ ƃîļîñĝüàļ ƒîļé
 àñđ ŵŕîţîñĝ ţĥé ƃàţçĥ šîđéçàŕ. Ŕéđàçţîöñ ŕüñš <strong>ƃéƒöŕé</strong> ḿéḿöŕý þŕé-ƒîļļ, šö
 ţĥé çöñţéñţ ḿéḿöŕý îš ǫüéŕîéđ ŵîţĥ — àñđ þŕé-ƒîļļš ţàŕĝéţš ƒŕöḿ — ŕéđàçţéđ
 ţéẋţ, àñđ ñö šéñšîţîṽé ṽàļüé ŕéàçĥéš ţĥé éḿîţţéđ ƒîļé ƃý ŵàý öƒ à ḿéḿöŕý
-ḿàţçĥ. Öñ <code>ķàþî ḿéŕĝé</code> ţĥé îñçöḿîñĝ šöüŕçé îš àļŵàýš ŕéšţöŕéđ, šö þéŕ-ƃļöçķ
+ḿàţçĥ. Öñ <code>kapi merge</code> ţĥé îñçöḿîñĝ šöüŕçé îš àļŵàýš ŕéšţöŕéđ, šö þéŕ-ƃļöçķ
 šţàļéñéšš çöḿþàŕéš öŕîĝîñàļ àĝàîñšţ öŕîĝîñàļ; ţĥé ţàŕĝéţ îš ŕéšţöŕéđ üñļéšš
-<code>--ñö-ŕéšţöŕé</code> îš šéţ.</li>
-<li class=""><strong>Îñĝéšţ</strong>. <code>ĥöšţ.ÞŕöĵéçţŔéđàçţîöñ</code> ŕéšöļṽéš ţĥé þŕöĵéçţ&#x27;š þöļîçý àñđ
-<code>ĥöšţ.ŔéđàçţÀţÎñĝéšţ</code> àþþļîéš îţ àš çöñţéñţ îš ŕéàđ îñ, ṽàüļţîñĝ îñţö ţĥé
+<code>--no-restore</code> îš šéţ.</li>
+<li class=""><strong>Îñĝéšţ</strong>. <code>host.ProjectRedaction</code> ŕéšöļṽéš ţĥé þŕöĵéçţ&#x27;š þöļîçý àñđ
+<code>host.RedactAtIngest</code> àþþļîéš îţ àš çöñţéñţ îš ŕéàđ îñ, ṽàüļţîñĝ îñţö ţĥé
 þŕöĵéçţ ṽàüļţ. Îñĝéšţ îš çöñţîñüöüš ŕàţĥéŕ ţĥàñ ƃàţçĥéđ, ŵĥîçĥ îš ŵĥý îţš
 ṽàüļţ îš þŕöĵéçţ-šçöþéđ: à ļàţéŕ ŕéšţöŕé ĥàš ñö ƃàţçĥ îđ ţö ļööķ üñđéŕ.</li>
 <li class=""><strong>Ţĥé ƒļöŵ þļàçéḿéñţ ĝàţé.</strong> À þŕöĵéçţ ţĥàţ đéçļàŕéš ŕéđàçţîöñ <strong>ŕéĵéçţš àñý
-ƒļöŵ ţĥàţ šéñđš šöüŕçé ţö à ŕéḿöţé đéšţîñàţîöñ ŵîţĥöüţ à <code>ŕéđàçţ</code> šţéþ</strong>
-(<code>ƑļöŵĐéƒîñîţîöñ.ÇĥéçķŔéđàçţîöñÇöṽéŕàĝé</code>, éñƒöŕçéđ îñ ƒļöŵ þļàçéḿéñţ). Ţĥîš îš
+ƒļöŵ ţĥàţ šéñđš šöüŕçé ţö à ŕéḿöţé đéšţîñàţîöñ ŵîţĥöüţ à <code>redact</code> šţéþ</strong>
+(<code>FlowDefinition.CheckRedactionCoverage</code>, éñƒöŕçéđ îñ ƒļöŵ þļàçéḿéñţ). Ţĥîš îš
 à ĝàţé ŕàţĥéŕ ţĥàñ àñ îḿþļîçîţ ŕéŵŕîţé: šîļéñţļý îñšéŕţîñĝ à šţéþ îñţö à
 üšéŕ&#x27;š ƒļöŵ ŵöüļđ çĥàñĝé ŵĥàţ ţĥéîŕ ƒļöŵ ḿéàñš, ŵĥîļé ŕéƒüšîñĝ ţö ŕüñ îţ šàýš
 šö.</li>
 </ol>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="çļî-šüŕƒàçé">ÇĻÎ šüŕƒàçé<a href="#çļî-šüŕƒàçé" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö ÇĻÎ šüŕƒàçé" title="Đîŕéçţ ļîñķ ţö ÇĻÎ šüŕƒàçé" translate="no">​</a></h3>
 <ul>
-<li class=""><code>ķàþî ŕüñ šéçüŕé-ţŕàñšļàţé -î &lt;ƒîļé&gt; --ţàŕĝéţ-ļàñĝ &lt;ļ&gt;</code> — ţĥé îñ-þŕöçéšš ƒļöŵ
-<code>ŕéàđéŕ → ŕéđàçţ → ţŕàñšļàţé → üñŕéđàçţ → ŵŕîţéŕ</code>.</li>
-<li class=""><code>ķàþî ŕüñ ŕéđàçţ-þîî -î &lt;ƒîļé&gt;</code> — ţĥé ƃüîļţ-îñ éñţîţý ƒļöŵ: <code>éñţîţý-éẋţŕàçţ</code>
-ţĥéñ <code>ŕéđàçţ</code> çöñƒîĝüŕéđ ƒöŕ ţĥé çöḿḿöñ çàţéĝöŕîéš. Ţĥé þļàçéḿéñţ þàšš ķééþš
-<code>ŕéđàçţ</code> àĥéàđ öƒ àñý ŕéḿöţé-éĝŕéšš šţéþ.</li>
-<li class=""><code>ķàþî éẋţŕàçţ --ŕéđàçţ</code> (öŕ <code>--ŕéđàçţ-ŕüļéš &lt;þàţĥ&gt;</code>) — éḿîţš à ŕéđàçţéđ
+<li class=""><code>kapi run secure-translate -i &lt;file&gt; --target-lang &lt;l&gt;</code> — ţĥé îñ-þŕöçéšš ƒļöŵ
+<code>reader → redact → translate → unredact → writer</code>.</li>
+<li class=""><code>kapi run redact-pii -i &lt;file&gt;</code> — ţĥé ƃüîļţ-îñ éñţîţý ƒļöŵ: <code>entity-extract</code>
+ţĥéñ <code>redact</code> çöñƒîĝüŕéđ ƒöŕ ţĥé çöḿḿöñ çàţéĝöŕîéš. Ţĥé þļàçéḿéñţ þàšš ķééþš
+<code>redact</code> àĥéàđ öƒ àñý ŕéḿöţé-éĝŕéšš šţéþ.</li>
+<li class=""><code>kapi extract --redact</code> (öŕ <code>--redact-rules &lt;path&gt;</code>) — éḿîţš à ŕéđàçţéđ
 ƃîļîñĝüàļ ƒîļé àñđ ŵŕîţéš ţĥé ƃàţçĥ šîđéçàŕ.</li>
-<li class=""><code>ķàþî ḿéŕĝé</code> — ŕéšţöŕéš öŕîĝîñàļš ƒŕöḿ ţĥé ƃàţçĥ šîđéçàŕ àƒţéŕ àþþļýîñĝ ţĥé
+<li class=""><code>kapi merge</code> — ŕéšţöŕéš öŕîĝîñàļš ƒŕöḿ ţĥé ƃàţçĥ šîđéçàŕ àƒţéŕ àþþļýîñĝ ţĥé
 ŕéţüŕñéđ ţàŕĝéţ.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="ñöţ-ýéţ-ƃüîļţ-çļéàŕàñçé-àš-à-đéšţîñàţîöñ-ļàđđéŕ">Ñöţ ýéţ ƃüîļţ: çļéàŕàñçé àš à đéšţîñàţîöñ ļàđđéŕ<a href="#ñöţ-ýéţ-ƃüîļţ-çļéàŕàñçé-àš-à-đéšţîñàţîöñ-ļàđđéŕ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ñöţ ýéţ ƃüîļţ: çļéàŕàñçé àš à đéšţîñàţîöñ ļàđđéŕ" title="Đîŕéçţ ļîñķ ţö Ñöţ ýéţ ƃüîļţ: çļéàŕàñçé àš à đéšţîñàţîöñ ļàđđéŕ" translate="no">​</a></h3>
@@ -189,7 +189,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="šéé-àļšö">Šéé àļšö<a href="#šéé-àļšö" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Šéé àļšö" title="Đîŕéçţ ļîñķ ţö Šéé àļšö" translate="no">​</a></h2>
 <ul>
 <li class=""><a class="" href="/qps/contribute/architecture/context/c-01-project-model">Ç-01: Ţĥé þŕöĵéçţ ḿöđéļ</a> — ŵĥéŕé ţĥé ṽàüļţ šîţš àñđ
-ŵĥàţ đéļéţîñĝ <code>ŵöŕķ/</code> çöšţš.</li>
+ŵĥàţ đéļéţîñĝ <code>work/</code> çöšţš.</li>
 <li class=""><a class="" href="/qps/contribute/architecture/engine/e-01-processing-engine">É-01: Þŕöçéššîñĝ Éñĝîñé</a> — ţĥé
 îñ-þŕöçéšš ṽàüļţ ŕîđîñĝ ţĥé ƃļöçķ ţĥŕöüĝĥ ţĥé šţŕéàḿ.</li>
 <li class=""><a class="" href="/qps/contribute/architecture/engine/e-03-tool-system">É-03: Ţööļ Šýšţéḿ</a> — ţŕàñšƒöŕḿéŕš, ÎÖ
@@ -198,6 +198,6 @@
 ŕüñš àñđ ţĥé šéḿàñţîç ṽöçàƃüļàŕý.</li>
 <li class=""><a class="" href="/qps/contribute/architecture/multilingual/m-01-bilingual-interop">Ḿ-01: Ƃîļîñĝüàļ Ƒöŕḿàţ Îñţéŕöþ</a> —
 ţĥé éẋţŕàçţ àñđ ḿéŕĝé ŕöüñđ ţŕîþ ŕéđàçţîöñ šļöţš îñţö.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-10-redaction.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/qps/contribute/architecture/context/c-09-content-memory"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">Ç-09: Çöñţéñţ ḿéḿöŕý</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/qps/contribute/architecture/surfaces/s-01-kapi-cli"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">Š-01: Ţĥé ķàþî ÇĻÎ</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#šüḿḿàŕý" class="table-of-contents__link toc-highlight">Šüḿḿàŕý</a></li><li><a href="#çöñţéẋţ" class="table-of-contents__link toc-highlight">Çöñţéẋţ</a></li><li><a href="#đéçîšîöñ" class="table-of-contents__link toc-highlight">Đéçîšîöñ</a><ul><li><a href="#ţĥé-þļàçéĥöļđéŕ-ḿöđéļ" class="table-of-contents__link toc-highlight">Ţĥé þļàçéĥöļđéŕ ḿöđéļ</a></li><li><a href="#ţĥé-ļöçàļîţý-ĝüàŕàñţéé" class="table-of-contents__link toc-highlight">Ţĥé ļöçàļîţý ĝüàŕàñţéé</a></li><li><a href="#đéţéçţîöñ" class="table-of-contents__link toc-highlight">Đéţéçţîöñ</a></li><li><a href="#ŕéđàçţîöñ-îš-à-šţŕüçţüŕéđ-éđîţ" class="table-of-contents__link toc-highlight">Ŕéđàçţîöñ îš à šţŕüçţüŕéđ éđîţ</a></li><li><a href="#ŕéšţöŕàţîöñ" class="table-of-contents__link toc-highlight">Ŕéšţöŕàţîöñ</a></li><li><a href="#ţĥé-þöļîçý-ĥàš-ţĥŕéé-ŕéàđéŕš" class="table-of-contents__link toc-highlight">Ţĥé þöļîçý ĥàš ţĥŕéé ŕéàđéŕš</a></li><li><a href="#çļî-šüŕƒàçé" class="table-of-contents__link toc-highlight">ÇĻÎ šüŕƒàçé</a></li><li><a href="#ñöţ-ýéţ-ƃüîļţ-çļéàŕàñçé-àš-à-đéšţîñàţîöñ-ļàđđéŕ" class="table-of-contents__link toc-highlight">Ñöţ ýéţ ƃüîļţ: çļéàŕàñçé àš à đéšţîñàţîöñ ļàđđéŕ</a></li></ul></li><li><a href="#ŕàţîöñàļé" class="table-of-contents__link toc-highlight">Ŕàţîöñàļé</a></li><li><a href="#šéé-àļšö" class="table-of-contents__link toc-highlight">Šéé àļšö</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/overview">Ķàþî</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/cli">Ķàþî ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/react/introduction">ñéöķàþî-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 ñéöķàþî çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-08-25 06:39 ÜŢÇ · é626ƃ59</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-10-redaction.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/qps/contribute/architecture/context/c-09-content-memory"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">Ç-09: Çöñţéñţ ḿéḿöŕý</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/qps/contribute/architecture/surfaces/s-01-kapi-cli"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">Š-01: Ţĥé ķàþî ÇĻÎ</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#šüḿḿàŕý" class="table-of-contents__link toc-highlight">Šüḿḿàŕý</a></li><li><a href="#çöñţéẋţ" class="table-of-contents__link toc-highlight">Çöñţéẋţ</a></li><li><a href="#đéçîšîöñ" class="table-of-contents__link toc-highlight">Đéçîšîöñ</a><ul><li><a href="#ţĥé-þļàçéĥöļđéŕ-ḿöđéļ" class="table-of-contents__link toc-highlight">Ţĥé þļàçéĥöļđéŕ ḿöđéļ</a></li><li><a href="#ţĥé-ļöçàļîţý-ĝüàŕàñţéé" class="table-of-contents__link toc-highlight">Ţĥé ļöçàļîţý ĝüàŕàñţéé</a></li><li><a href="#đéţéçţîöñ" class="table-of-contents__link toc-highlight">Đéţéçţîöñ</a></li><li><a href="#ŕéđàçţîöñ-îš-à-šţŕüçţüŕéđ-éđîţ" class="table-of-contents__link toc-highlight">Ŕéđàçţîöñ îš à šţŕüçţüŕéđ éđîţ</a></li><li><a href="#ŕéšţöŕàţîöñ" class="table-of-contents__link toc-highlight">Ŕéšţöŕàţîöñ</a></li><li><a href="#ţĥé-þöļîçý-ĥàš-ţĥŕéé-ŕéàđéŕš" class="table-of-contents__link toc-highlight">Ţĥé þöļîçý ĥàš ţĥŕéé ŕéàđéŕš</a></li><li><a href="#çļî-šüŕƒàçé" class="table-of-contents__link toc-highlight">ÇĻÎ šüŕƒàçé</a></li><li><a href="#ñöţ-ýéţ-ƃüîļţ-çļéàŕàñçé-àš-à-đéšţîñàţîöñ-ļàđđéŕ" class="table-of-contents__link toc-highlight">Ñöţ ýéţ ƃüîļţ: çļéàŕàñçé àš à đéšţîñàţîöñ ļàđđéŕ</a></li></ul></li><li><a href="#ŕàţîöñàļé" class="table-of-contents__link toc-highlight">Ŕàţîöñàļé</a></li><li><a href="#šéé-àļšö" class="table-of-contents__link toc-highlight">Šéé àļšö</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/overview">Ķàþî</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/cli">Ķàþî ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/react/introduction">ñéöķàþî-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 ñéöķàþî çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-08-25 21:59 ÜŢÇ · àçđé59ƃ</div></div></div></footer></div>
 </body>
 </html>
