@@ -1,4 +1,0 @@
-import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{t}from"./jsx-runtime-BdxMnOeJ.js";import{i as n,r}from"./schema-story-CFA86kEz.js";var i,a,o,s;function c(){return(c=e((()=>{n(),i=t(),a={title:`Formats & Tools/Tools/Analysis/Word Count`,parameters:{layout:`padded`}},o={name:`Okapi Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`word-count`,source:`bridge`})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  name: "Okapi Configuration",
-  render: () => <ToolConfig schemaName="word-count" source="bridge" />
-}`,...o.parameters?.docs?.source}}},s=[`OkapiConfig`]})))()}c();export{o as OkapiConfig,s as __namedExportsOrder,a as default};
