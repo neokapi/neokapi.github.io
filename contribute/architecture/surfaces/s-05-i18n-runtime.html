@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">S-05: The i18n runtime for React | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="S-05: The i18n runtime for React | neokapi"><meta data-rh="true" name="description" content="@neokapi/i18n-react extracts translatable content from JSX at build time into the framework&#x27;s own Run sequences, keys it on the text rather than the tree, renders translations back through React elements, and reviews them on the running app via DOM stamps and a dev-server write-back."><meta data-rh="true" property="og:description" content="@neokapi/i18n-react extracts translatable content from JSX at build time into the framework&#x27;s own Run sequences, keys it on the text rather than the tree, renders translations back through React elements, and reviews them on the running app via DOM stamps and a dev-server write-back."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,i18n-react,JSX extraction,Run,content hash,ICU,in-context review,DOM stamping,CSS Custom Highlight"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"S-05: The i18n runtime for React","item":"https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
-<script src="/assets/js/runtime~main.6a77e6ad.js" defer="defer"></script>
-<script src="/assets/js/main.217225e7.js" defer="defer"></script>
+<title data-rh="true">S-05: The i18n runtime for React | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="S-05: The i18n runtime for React | neokapi"><meta data-rh="true" name="description" content="@neokapi/i18n-react extracts translatable content from JSX and TypeScript at build time into the framework&#x27;s own Run sequences, keys it on the text rather than the tree, renders translations back through React elements, and reviews them on the running app via DOM stamps and a dev-server write-back."><meta data-rh="true" property="og:description" content="@neokapi/i18n-react extracts translatable content from JSX and TypeScript at build time into the framework&#x27;s own Run sequences, keys it on the text rather than the tree, renders translations back through React elements, and reviews them on the running app via DOM stamps and a dev-server write-back."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,i18n-react,JSX extraction,Run,content hash,ICU,in-context review,DOM stamping,CSS Custom Highlight"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"S-05: The i18n runtime for React","item":"https://neokapi.github.io/contribute/architecture/surfaces/s-05-i18n-runtime"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
+<script src="/assets/js/runtime~main.2318bff8.js" defer="defer"></script>
+<script src="/assets/js/main.2c3341f6.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -15,7 +15,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h2>
 <p><code>@neokapi/i18n-react</code> extracts translatable content directly from React and JSX
 source at build time, producing <code>Block</code> records whose <code>Source</code> is a typed
-<code>Run[]</code> — the framework&#x27;s canonical inline-content model
+<code>Run[]</code>, the framework&#x27;s canonical inline-content model
 (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>). An inline JSX element with
 children becomes a paired open/close run triple in its parent&#x27;s sequence, so
 <code>&lt;p&gt;Click &lt;a href=&quot;/docs&quot;&gt;here&lt;/a&gt; to read.&lt;/p&gt;</code> extracts as <strong>one</strong> block whose
@@ -28,7 +28,7 @@ back into the same interchange files the pipeline already uses.</p>
 <p>A React-native multilingual story has two hard parts and one that only appears
 later.</p>
 <p><strong>Authoring.</strong> Developers write JSX. Translators want sentences with their
-inline structure intact — links, emphasis, variables, icons — not opaque
+inline structure intact (links, emphasis, variables, icons), not opaque
 placeholders or fragmented sub-strings. Forcing every string into a
 <code>t(&quot;hello-key&quot;)</code> call breaks a component&#x27;s reading order and pushes inline
 structure into separate sub-keys.</p>
@@ -39,20 +39,31 @@ loses handlers and bypasses reconciliation.</p>
 spreadsheet row cannot see that a word landed on a forty-pixel button, that the
 German wraps to two lines, or that the register is wrong for a destructive-action
 dialog. Everything that makes a translation right or wrong is a property of
-<em>where it renders</em> — exactly what extraction discards.</p>
+<em>where it renders</em>, exactly what extraction discards.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direct link to Decision" title="Direct link to Decision" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="build-time-extraction-into-run">Build-time extraction into <code>Run[]</code><a href="#build-time-extraction-into-run" class="hash-link" aria-label="Direct link to build-time-extraction-into-run" title="Direct link to build-time-extraction-into-run" translate="no">​</a></h3>
 <p>An SWC-AST walker (<code>src/extract/walker.ts</code>) descends each module looking for
 translatable JSX. Translatability comes from element vocabulary plus
 user-supplied <code>componentMap</code> and <code>rules</code>. For each translatable element the
 walker emits a block whose source run sequence is built by <code>extract/runs.ts</code>.</p>
+<p>The element vocabulary has one definition. <code>plugin/defaults.ts</code> holds the W3C
+HTML5 translatability table: which elements&#x27; text belongs to the translator,
+which must survive byte for byte, and which attributes carry visible copy.
+<code>scripts/gen-translatability.ts</code> emits it as <code>core/translatability/data/w3c.json</code>
+for the markdown and MDX readers, so the Go side classifies the same elements
+the same way, and <code>make check-translatability</code> fails on drift between the two.</p>
+<p>TypeScript modules extract too. A <code>.ts</code> file is parsed for <code>t()</code> calls with the
+syntax decided by its extension, in one function the extractor and the
+transform share, so the two cannot disagree; <code>tsx</code> is enabled only for <code>.tsx</code>,
+because in a <code>.ts</code> file <code>&lt;Foo&gt;x</code> is a type assertion. A file the parser cannot
+read is reported as a failure, never as a file with nothing to translate.</p>
 <p>The defining rule: <strong>an inline JSX element with at least one child becomes a
 paired inline code in its parent&#x27;s run sequence.</strong></p>
 <div class="language-tsx codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-tsx codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">p</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain-text"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain-text">  Click </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">a</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">href</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">/docs</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain-text">here</span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">a</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain-text"> to read the docs.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain-text"></span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">p</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></div></code></pre></div></div>
 <p>extracts as one block whose source is a <code>TextRun</code>, a <code>PcOpenRun</code>, a <code>TextRun</code>, a
 <code>PcCloseRun</code>, and a <code>TextRun</code>. Type and subtype follow the JSX vocabulary in
 <code>@neokapi/kapi-format</code>: every JSX element uses <code>type: &quot;jsx:element&quot;</code> with the
-resolved HTML tag — or the unmapped React component name — in <code>subType</code>, and the
+resolved HTML tag, or the unmapped React component name, in <code>subType</code>, and the
 vocabulary entry drives editor rendering, chip labels, and editing constraints
 (<a class="" href="/contribute/architecture/surfaces/s-06-visual-editor">S-06</a>).</p>
 <p>Pairs nest last-in-first-out, and inner content may hold text, expressions,
@@ -61,15 +72,15 @@ placeholders, or further pairs:</p>
 <p>This makes the translator the unit of decision: a German translation can wrap
 the link around a different word, and a French one can move it elsewhere in the
 sentence.</p>
-<p>Constructs without children — self-closing icons, line breaks, zero-child
-unmapped components, expression containers, conditional nodes — become a single
+<p>Constructs without children (self-closing icons, line breaks, zero-child
+unmapped components, expression containers, conditional nodes) become a single
 placeholder run instead, typed <code>jsx:element</code>, <code>jsx:var</code>, or <code>jsx:node</code>.
 Variable containers keep the JavaScript identifier as their equivalence text, so
 the flat form reads naturally to a translator and substitutes through the
 standard named-parameter path at runtime.</p>
 <p>Container elements with at least one direct non-whitespace text child and only
-inline children are auto-promoted to translatable. Promotion is silent — the
-pattern is too common in real interfaces to warn on every occurrence — and the
+inline children are auto-promoted to translatable. Promotion is silent (the
+pattern is too common in real interfaces to warn on every occurrence), and the
 opt-outs are <code>translate=&quot;no&quot;</code> or a <code>rules</code> entry. Fragment roots extract on the
 same terms, under a reserved descriptor standing in for the tag they do not
 have: a fragment is a real authoring idiom for &quot;inline content with no wrapper I
@@ -84,19 +95,18 @@ names are not reserved: on a plain HTML element, <code>label</code> or <code>hea
 often a DOM prop, an enum key, or a data-binding field than copy, and extracting
 those swept strings nobody wanted translated into the catalog. One predicate
 decides, and both the walker and the transform call it.</p>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-key-is-the-text-not-the-tree">The key is the text, not the tree<a href="#the-key-is-the-text-not-the-tree" class="hash-link" aria-label="Direct link to The key is the text, not the tree" title="Direct link to The key is the text, not the tree" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-key-is-the-text">The key is the text<a href="#the-key-is-the-text" class="hash-link" aria-label="Direct link to The key is the text" title="Direct link to The key is the text" translate="no">​</a></h3>
 <p><strong>The key is FNV-1a 64 over <code>JSON.stringify(flatText) + &quot;|&quot; + desc</code>,
-base62-encoded</strong>, where <code>flatText</code> is the block&#x27;s flat template — text verbatim,
-expressions as <code>{name}</code>, inline elements as <code>{=mN}</code> — and <code>desc</code> is a structural
+base62-encoded</strong>, where <code>flatText</code> is the block&#x27;s flat template (text verbatim,
+expressions as <code>{name}</code>, inline elements as <code>{=mN}</code>) and <code>desc</code> is a structural
 descriptor.</p>
 <p>The descriptor is the element&#x27;s <strong>own resolved tag</strong>: <code>&quot;p&quot;</code>, <code>&quot;button&quot;</code>,
 <code>&quot;fragment&quot;</code>, or a context-qualified form for an explicit <code>t()</code> call. Ancestors
 are deliberately excluded.</p>
-<p>This is the load-bearing decision of the whole model, because the key <em>is</em> the
-translator&#x27;s contract. The property we need is that <strong>a key changes when, and
-only when, a translator should look at the string again.</strong> Rewording changes the
-key. Moving a paragraph into a new wrapper does not — that is a layout refactor,
-and the German is still the German.</p>
+<p>The key <em>is</em> the translator&#x27;s contract. The property we need is that <strong>a key
+changes when, and only when, a translator should look at the string again.</strong>
+Rewording changes the key. Moving a paragraph into a new wrapper does not: that
+is a layout refactor, and the German is still the German.</p>
 <p>Two alternatives were rejected for concrete reasons. A <strong>full ancestor path</strong>
 makes every layout refactor a silent mass-orphaning event: wrap a section in one
 new <code>&lt;div&gt;</code> and every string beneath it gets a new key, loses its translation,
@@ -106,8 +116,8 @@ alone</strong> collapses <code>&lt;p&gt;Save&lt;/p&gt;</code> and <code>&lt;butt
 translator can then never give the noun and the verb different words; the
 immediate tag is the cheapest disambiguator that survives refactoring and maps to
 a real distinction.</p>
-<p>Where the tag is not enough — two buttons both reading &quot;Open&quot;, one a verb and one
-a state — the disambiguator is <em>explicit</em>: a <code>data-i18n-note</code> attribute or a
+<p>Where the tag is not enough (two buttons both reading &quot;Open&quot;, one a verb and one
+a state) the disambiguator is <em>explicit</em>: a <code>data-i18n-note</code> attribute or a
 context argument, folded into the descriptor. That puts the decision with the
 author who knows the two strings differ, rather than with an incidental fact
 about the DOM tree.</p>
@@ -115,15 +125,15 @@ about the DOM tree.</p>
 collision around eighty thousand strings, well inside what a large application
 reaches, so 64 gives headroom for million-string corpora.</p>
 <p>Because <code>componentMap</code> and <code>rules</code> feed the hash, the extract CLI and the build
-plugin <strong>must</strong> be configured identically. A desync is silent — both sides run
+plugin <strong>must</strong> be configured identically. A desync is silent: both sides run
 without error and compute different keys, so every affected string falls
 back to source. Projects should keep one configuration file that both sides read.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="one-template-builder-two-consumers">One template builder, two consumers<a href="#one-template-builder-two-consumers" class="hash-link" aria-label="Direct link to One template builder, two consumers" title="Direct link to One template builder, two consumers" translate="no">​</a></h3>
 <p>Extract and transform must agree on the flat template <strong>byte for byte</strong>: extract
 hashes it into the interchange file, transform hashes it to look the translation
-back up. As two independent walks over the same AST they would drift silently —
-a paired inline element leaking a literal close token into the DOM, a plural
-emitting unparseable JSX — because nothing compares them.</p>
+back up. As two independent walks over the same AST they would drift silently
+(a paired inline element leaking a literal close token into the DOM, a plural
+emitting unparseable JSX), because nothing compares them.</p>
 <p>So the decision is structural rather than procedural. <code>extract/runs.ts</code> owns the
 single <code>buildRuns()</code> builder and the transform <strong>consumes</strong> it, taking both the
 flat text and a list of per-appearance occurrence spans that it maps back onto
@@ -134,11 +144,19 @@ the same seam.</p>
 <div class="kdx"><div class="kdx-scroll"><div class="kdx-canvas" style="min-width:460px;max-width:1143px"><svg viewBox="0 0 1143 74" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline: JSX source then buildRuns then Block + hash then Translate then Dictionary then Render"><defs><marker id="kdx-arrow" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="kdx-arrow"></path></marker></defs><g><rect x="14" y="10" width="98" height="58" rx="9" class="kdx-box kdx-box--io"></rect><text x="63" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">JSX source</text><text x="63" y="52" text-anchor="middle" font-size="9" class="kdx-sub kdx-sub--io">SWC AST</text><line x1="112" y1="39" x2="150" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="154" y="10" width="134" height="58" rx="9" class="kdx-box"></rect><text x="221" y="33" text-anchor="middle" font-size="12.5" class="kdx-label">buildRuns</text><text x="221" y="47" text-anchor="middle" font-size="9" class="kdx-sub">extract/runs.ts</text><text x="221" y="59" text-anchor="middle" font-size="8" class="kdx-chan">one builder</text><line x1="288" y1="39" x2="326" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="330" y="10" width="163" height="58" rx="9" class="kdx-box kdx-box--annotate"></rect><text x="411.5" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">Block + hash</text><text x="411.5" y="52" text-anchor="middle" font-size="9" class="kdx-sub kdx-sub--annotate">Run[] → interchange</text><line x1="493" y1="39" x2="531" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="535" y="10" width="148" height="58" rx="9" class="kdx-box kdx-box--translate"></rect><text x="609" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">Translate</text><text x="609" y="52" text-anchor="middle" font-size="9" class="kdx-sub kdx-sub--translate">the kapi pipeline</text><line x1="683" y1="39" x2="721" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="725" y="10" width="170" height="58" rx="9" class="kdx-box"></rect><text x="810" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">Dictionary</text><text x="810" y="52" text-anchor="middle" font-size="9" class="kdx-sub">hash → flat template</text><line x1="895" y1="39" x2="933" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="937" y="10" width="192" height="58" rx="9" class="kdx-box kdx-box--io"></rect><text x="1033" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">Render</text><text x="1033" y="52" text-anchor="middle" font-size="9" class="kdx-sub kdx-sub--io">elements re-interleaved</text></g></svg></div></div><p class="kdx-caption">Extraction and rendering meet at the flat template: the same builder produces the text that is hashed, translated, and parsed back.</p></div>
 <p>At extract time the transform replaces the original JSX with a runtime call site
 and bundles a per-locale dictionary mapping each hash to a translation in the
-<strong>runtime textual projection</strong> — a flattened string where variables are
+<strong>runtime textual projection</strong>: a flattened string where variables are
 <code>{identifier}</code>, standalone JSX placeholders are <code>{=mN}</code> with no matching close,
 and paired elements are <code>{=mN}</code> … <code>{/=mN}</code> around their inner content. This is
 the only textual form the runtime parses; every other consumer uses one of the
 framework&#x27;s other projections.</p>
+<p>Compiling a dictionary also checks each target against its source on that
+flattened form. A translation whose placeholder and marker tokens do not match
+the source&#x27;s, counted rather than merely present (one token where the source
+had two still loses a value; a token the source never had renders as a literal
+brace), is left out of the dictionary and named in the compile output. The
+runtime then falls back to source for that key, which reads as pending
+target-language work rather than as a sentence missing its count, its name or
+its link.</p>
 <p>The runtime resolves the hash, substitutes named-variable tokens, and walks the
 remaining markers, scanning the resolved text once to identify pair scopes. An
 open token with a matching close in the same scope forms a <strong>paired</strong> range; one
@@ -151,15 +169,15 @@ disrupted.</p>
 <p>ICU lives inside the translated string: plural and select forms resolve through
 <code>Intl.PluralRules</code>, and number, date, and time skeletons through the
 corresponding <code>Intl</code> formatters. Because the format is in the <em>string</em>, a
-translator can add one to a target — German wants a grouped number where English
-did not — without a source change.</p>
+translator can add one to a target (German wants a grouped number where English
+did not) without a source change.</p>
 <p><strong>Inline mode</strong> bakes the translation into the JSX at build time. For rich text
 that means <em>rebuilding</em> the element: the translated template&#x27;s pairs are matched
 last-in-first-out and each range is re-wrapped in the original child&#x27;s opening
 and closing tags, props and handlers preserved verbatim, while standalone tokens
 splice the child&#x27;s source in. The translator may reorder and renest; the JSX
 follows. Anything the builder cannot account for is escaped as text rather than
-emitted raw — a leaked interchange token in the DOM is the one outcome that must
+emitted raw: a leaked interchange token in the DOM is the one outcome that must
 be impossible.</p>
 <p>ICU is the documented exception. A plural&#x27;s pivot is a runtime value, so no build
 step can choose the form. Blocks carrying ICU therefore keep a runtime call
@@ -167,21 +185,37 @@ step can choose the form. Blocks carrying ICU therefore keep a runtime call
 fallback: the dictionary fetch disappears, the small resolver stays. Emitting the
 source-locale form, or trying to inline a runtime choice, is either silently
 wrong or invalid JSX.</p>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="entry-points">Entry points<a href="#entry-points" class="hash-link" aria-label="Direct link to Entry points" title="Direct link to Entry points" translate="no">​</a></h3>
+<p>The package exposes one build adapter per bundler (<code>./vite</code>, <code>./webpack</code>,
+<code>./rollup</code>, <code>./esbuild</code>), the runtime (<code>./runtime</code>, with <code>./runtime/pseudo</code> for
+the pseudo locale), the head hooks (<code>./head</code>), the review layer (<code>./review</code>,
+<code>./review/hosted</code>, <code>./review/manifest</code>), the ship-status picker (<code>./ship</code>), and
+two more that exist for hosts the adapters cannot reach:</p>
+<ul>
+<li class=""><code>./loader</code> is a plain webpack loader, named by a path string in
+<code>module.rules</code>, for a host that evaluates its config through a transpiler
+that cannot load the unplugin adapter. Docusaurus is the case in hand. It
+carries only the per-file transform, so inline mode works exactly as through
+the adapter, while runtime mode&#x27;s chunk manifest and the review overlay&#x27;s
+script injection, both bundle-level, are given up.</li>
+<li class=""><code>./storybook</code> supplies a locale toolbar and a decorator that applies a
+dictionary to a story, so a published Storybook renders in each locale.</li>
+</ul>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="lint-keeps-the-source-extractable">Lint keeps the source extractable<a href="#lint-keeps-the-source-extractable" class="hash-link" aria-label="Direct link to Lint keeps the source extractable" title="Direct link to Lint keeps the source extractable" translate="no">​</a></h3>
 <p><code>@neokapi/i18n-react-lint</code> is a source-authoring plugin that works unchanged for
-both ESLint flat config and oxlint — oxlint&#x27;s plugin API is a strict subset of
-ESLint&#x27;s, so no adapter is needed — and ships shareable <code>recommended</code> and
+both ESLint flat config and oxlint (oxlint&#x27;s plugin API is a strict subset of
+ESLint&#x27;s, so no adapter is needed) and ships shareable <code>recommended</code> and
 <code>recommended-strict</code> configurations.</p>
 <p>Its rules flag patterns that would fragment or escape extraction: a non-literal
 first argument to <code>t()</code>, concatenation or interpolation inside <code>t()</code>,
 concatenation or a ternary in a translatable attribute, a bare string literal in
 a JSX expression container, a ternary with string-literal branches as a child,
 and label props or expressions that should be wrapped. It validates the <em>source</em>,
-not translated output — translation QA routes through kapi, and the compile step
+not translated output: translation QA routes through kapi, and the compile step
 only flattens target runs into per-locale dictionaries.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="head-strings-have-no-dom-node">Head strings have no DOM node<a href="#head-strings-have-no-dom-node" class="hash-link" aria-label="Direct link to Head strings have no DOM node" title="Direct link to Head strings have no DOM node" translate="no">​</a></h3>
 <p>A <code>&lt;title&gt;</code>, a meta description, or a card title is page metadata, not rendered
-content, so there is nothing to hover and nothing to outline — and these are
+content, so there is nothing to hover and nothing to outline, and these are
 frequently the highest-value strings on the page. They are reached through the
 opt-in head hooks, and because a head string never gets a DOM text node, the
 build transform cannot rewrite it the way it rewrites a call site.</p>
@@ -189,7 +223,7 @@ build transform cannot rewrite it the way it rewrites a call site.</p>
 of the build hasher over a dedicated head descriptor channel, and looks the
 translation up in the runtime dictionary. The extractor recognises the same hook
 calls and emits a matching block, so the hash the hook computes and the block
-hash the extractor writes are identical by construction — the hash-parity
+hash the extractor writes are identical by construction: the hash-parity
 invariant, extended to the head, and asserted by a test.</p>
 <p>As it applies the string, the hook registers its kind, hash, and source in a
 small framework-free registry the review overlay reads, so head translatables are
@@ -202,10 +236,10 @@ a page with none shows no panel.</p>
 each extracted element:</p>
 <table><thead><tr><th>Attribute</th><th>Carries</th></tr></thead><tbody><tr><td><code>data-kapi-id</code></td><td>the block hash</td></tr><tr><td><code>data-kapi-loc</code></td><td><code>file:line</code>, for jump-to-source</td></tr><tr><td><code>data-kapi-attr</code></td><td>the hashes of the element&#x27;s translatable attributes</td></tr></tbody></table>
 <p>The identifier goes in an <em>attribute</em>, never in the text. Two mechanisms were
-considered and not taken. <strong>Fiber inspection</strong> — reading React&#x27;s internal tree
-for debug source information — is not viable, because React 19 exposes none.
-<strong>In-band markers</strong> — invisible characters or private-use code points inside the
-rendered text — need no build step, but then the rendered string is not the
+considered and not taken. <strong>Fiber inspection</strong>, reading React&#x27;s internal tree
+for debug source information, is not viable, because React 19 exposes none.
+<strong>In-band markers</strong>, invisible characters or private-use code points inside the
+rendered text, need no build step, but then the rendered string is not the
 string the application computed: equality comparisons, measurement, and
 copy/paste all see the marker, and an attribute value has no text node to carry
 one at all. Review must be observation-free; the application under review has to
@@ -220,47 +254,63 @@ paths in the DOM and mounts a middleware that writes to disk.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-dev-server-serves-the-interchange-tree">The dev server serves the interchange tree<a href="#the-dev-server-serves-the-interchange-tree" class="hash-link" aria-label="Direct link to The dev server serves the interchange tree" title="Direct link to The dev server serves the interchange tree" translate="no">​</a></h3>
 <p>The Vite plugin mounts a middleware at <code>/__kapi/review</code>, written against plain
 Node HTTP so it ports to any dev server, over the local interchange directory:</p>
-<table><thead><tr><th>Route</th><th>Purpose</th></tr></thead><tbody><tr><td><code>GET {base}/{hash}</code></td><td>the block payload — source runs, targets, notes</td></tr><tr><td><code>PUT {base}/{hash}</code></td><td>write a target back into the block&#x27;s file</td></tr><tr><td><code>GET {base}/annotations</code></td><td>stand-off findings, keyed by block hash</td></tr><tr><td><code>GET {base}/events</code></td><td>server-sent events, broadcast to every open tab</td></tr></tbody></table>
+<table><thead><tr><th>Route</th><th>Purpose</th></tr></thead><tbody><tr><td><code>GET {base}/{hash}</code></td><td>the block payload: source runs, targets, notes</td></tr><tr><td><code>PUT {base}/{hash}</code></td><td>write a target back into the block&#x27;s file</td></tr><tr><td><code>GET {base}/annotations</code></td><td>stand-off findings, keyed by block hash</td></tr><tr><td><code>GET {base}/events</code></td><td>server-sent events, broadcast to every open tab</td></tr></tbody></table>
 <p>The index rebuilds whenever a block file or an overlay sidecar changes on disk,
 so an out-of-band translation or QA pass shows up without a restart.</p>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="a-review-is-a-diff-not-a-database-row">A review is a diff, not a database row<a href="#a-review-is-a-diff-not-a-database-row" class="hash-link" aria-label="Direct link to A review is a diff, not a database row" title="Direct link to A review is a diff, not a database row" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="a-review-is-a-diff">A review is a diff<a href="#a-review-is-a-diff" class="hash-link" aria-label="Direct link to A review is a diff" title="Direct link to A review is a diff" translate="no">​</a></h3>
 <p>A reviewed target is written into the block&#x27;s own file as a target run. The
-obvious alternative — a review database with comments, states, and an approve
-button — was rejected.</p>
+obvious alternative, a review database with comments, states, and an approve
+button, was rejected.</p>
 <p>That file tree is <em>already</em> the contract between developers and translators:
 extraction produces it, translation fills it, QA reads it, compilation ships it.
-Writing a reviewed target into it makes the review a <strong>git diff</strong> — reviewable in
+Writing a reviewed target into it makes the review a <strong>git diff</strong>: reviewable in
 a pull request, revertable, attributable, and consumed by the very next compile
 with no synchronisation step. A reviewer&#x27;s fix travels the identical path as a
 translator&#x27;s, because it is the identical artifact. It also means review needs no
 server, no account, and no network.</p>
-<p>The cost is that local review has no workflow state — assignment, approval,
-threaded comments. That is deliberate: those belong to a platform tier, and the
+<p>The cost is that local review has no workflow state (assignment, approval,
+threaded comments). That is deliberate: those belong to a platform tier, and the
 same stamping and the same hashes carry the overlay there unchanged.</p>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="reading-a-string-inside-the-component-that-ships-it">Reading a string inside the component that ships it<a href="#reading-a-string-inside-the-component-that-ships-it" class="hash-link" aria-label="Direct link to Reading a string inside the component that ships it" title="Direct link to Reading a string inside the component that ships it" translate="no">​</a></h3>
+<p>A catalog tells a reviewer what a string says; the component can show what it
+looks like in the button. For a JSX project the component is usually already
+published as a story. The join is by convention, resolved when someone looks:
+a bundle records the component file each block came from, and a Storybook&#x27;s
+index records the file each story was written in. Nothing bakes a story id into
+the catalog, which would couple the extractor to the consuming Storybook&#x27;s id
+derivation and freeze a stale id into every bundle.</p>
+<p>The translation is posted in rather than read from the published build. A story
+renders the dictionary it was built with, so the review surface sends what the
+reviewer is holding, drafts included, and the <code>./storybook</code> decorator merges it
+over what the story already had: the strings under review are the reviewer&#x27;s,
+and everything else stays translated instead of falling back to source. The key
+the runtime looks a string up by is the block hash, which the KBF reader carries
+into block properties so a block in a bundle has the same address inside a
+running page.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="content-addressing-makes-review-render-mode-independent">Content addressing makes review render-mode-independent<a href="#content-addressing-makes-review-render-mode-independent" class="hash-link" aria-label="Direct link to Content addressing makes review render-mode-independent" title="Direct link to Content addressing makes review render-mode-independent" translate="no">​</a></h3>
 <p><code>data-kapi-id</code> is the block&#x27;s content hash, computed identically whether the
 build <strong>inlines</strong> the translation for a static or server-rendered page or emits a
-<strong>runtime</strong> call — the same hash-parity invariant. Nothing about the stamp
+<strong>runtime</strong> call, the same hash-parity invariant. Nothing about the stamp
 depends on a runtime dictionary being present.</p>
 <p>To make a statically rendered page self-sufficient, the plugin emits a read-only
-review manifest whenever review is on — gated on review, not on mode, so an
-inline build emits it as much as a runtime one. A <strong>hosted overlay</strong> fetches that
-manifest, finds elements by <code>data-kapi-id</code>, and needs neither a dev server nor
-the application&#x27;s i18n runtime: deep-linking to a single block, a whole-page
+review manifest whenever review is on, gated on review rather than on mode, so
+an inline build emits it as much as a runtime one. A <strong>hosted overlay</strong> fetches
+that manifest, finds elements by <code>data-kapi-id</code>, and needs neither a dev server
+nor the application&#x27;s i18n runtime: deep-linking to a single block, a whole-page
 index, and read-only inspection all work on a plain static deploy. With editing
 enabled it writes through the identical <code>PUT</code> protocol and repaints by patching
-the element&#x27;s text directly — text-only, so blocks with inline codes or ICU
+the element&#x27;s text directly; text-only, so blocks with inline codes or ICU
 plurals save to the store but are not repainted live. Richer manifests, covering
 every locale and the term and QA annotations, still come from the compile step
 over the whole tree.</p>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="paint-findings-beside-the-dom-not-inside-it">Paint findings beside the DOM, not inside it<a href="#paint-findings-beside-the-dom-not-inside-it" class="hash-link" aria-label="Direct link to Paint findings beside the DOM, not inside it" title="Direct link to Paint findings beside the DOM, not inside it" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="findings-are-painted-beside-the-dom">Findings are painted beside the DOM<a href="#findings-are-painted-beside-the-dom" class="hash-link" aria-label="Direct link to Findings are painted beside the DOM" title="Direct link to Findings are painted beside the DOM" translate="no">​</a></h3>
 <p>Terminology and QA results are stand-off annotations anchored to run-index
-ranges — the framework&#x27;s existing overlay model
+ranges, the framework&#x27;s existing overlay model
 (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>). The browser renders them through
 the CSS Custom Highlight API: <code>Range</code> objects are registered in named highlights
 and styled with <code>::highlight(kapi-term)</code> and <code>::highlight(kapi-qa)</code>.</p>
-<p>Nothing is inserted into the DOM. The classic approach — wrapping matched text in
-a styled <code>&lt;span&gt;</code> — mutates the tree React owns, which means layout shifts,
+<p>Nothing is inserted into the DOM. The classic approach, wrapping matched text in
+a styled <code>&lt;span&gt;</code>, mutates the tree React owns, which means layout shifts,
 hydration mismatches, and a re-render silently discarding the highlights. Custom
 Highlight paints in the text renderer, <em>beside</em> the DOM: React&#x27;s tree is
 untouched, so what the reviewer sees is the application, not the application plus
@@ -290,13 +340,17 @@ variable inside&quot;.</li>
 half are the whole vocabulary; the runtime decides standalone versus paired by
 looking for a matching close in scope, so no separate marker prefix is needed.</li>
 <li class=""><strong>Refactor-stable keys.</strong> Rewording orphans a translation, restructuring does
-not — which is the property that makes a large React codebase survivable.</li>
+not, which is the property that makes a large React codebase survivable.</li>
+<li class=""><strong>One translatability table.</strong> The JSX transform and the Go readers classify
+the same elements the same way, and a change on either side fails a gate.</li>
+<li class=""><strong>A hole never ships silently.</strong> A target that lost a placeholder is left out
+and named; the reader sees the source sentence, not a broken one.</li>
 <li class=""><strong>The framework convention extends to JSX.</strong> The same <code>Run[]</code> model as the HTML
-reader, the same paired-code semantics, the same projections at boundaries — so
+reader, the same paired-code semantics, the same projections at boundaries, so
 the visual editor, interchange round-trip, memory matching, and translation
 tools work on this output with no special cases.</li>
 <li class=""><strong>The reviewer sees the application.</strong> Truncation, wrapping, tone in place, a
-term that reads wrong next to the button beside it — all visible at review time.</li>
+term that reads wrong next to the button beside it: all visible at review time.</li>
 <li class=""><strong>Review is a diff.</strong> No import, no export, no sync step, no platform
 dependency for the local tier.</li>
 <li class=""><strong>QA and terminology become visual.</strong> The checks kapi already runs stop being a
@@ -306,20 +360,20 @@ only form in which a reviewer acts on them.</li>
 block lets a hosted overlay find one, and a platform tier is a different backend
 behind the same client contract rather than a different feature.</li>
 <li class=""><strong>Enable review deliberately.</strong> It puts <code>file:line</code> in the DOM, mounts a
-writer, and bakes a manifest — appropriate for development and preview deploys,
+writer, and bakes a manifest: appropriate for development and preview deploys,
 and off for the production build end users get.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direct link to Related" title="Direct link to Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — run sequences, inline codes, stand-off overlays, projections at boundaries</li>
-<li class=""><a class="" href="/contribute/architecture/foundations/f-03-identity">F-03: Identity</a> — content-addressed block identity</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-02-format-system">E-02: The format system</a> — how an extractor plugs into the pipeline</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a> — the tools that consume extracted blocks</li>
-<li class=""><a class="" href="/contribute/architecture/context/c-04-unit-state-and-decisions">C-04: Unit state and decisions</a> — the ship and verified gates the picker reads</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a> — the interchange files review reads and writes</li>
-<li class=""><a class="" href="/contribute/architecture/surfaces/s-06-visual-editor">S-06: The visual editor data model</a> — the vocabulary that styles these runs</li>
-<li class=""><a class="" href="/react/introduction">React i18n guide</a> — the user-facing documentation</li>
-<li class=""><a class="" href="/react/in-context-review">In-context review</a> — the review guide</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/surfaces/s-05-i18n-runtime.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/surfaces/s-04-toolbox"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">S-04: Toolbox utilities</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/surfaces/s-06-visual-editor"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">S-06: The visual editor data model</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#build-time-extraction-into-run" class="table-of-contents__link toc-highlight">Build-time extraction into <code>Run[]</code></a></li><li><a href="#the-key-is-the-text-not-the-tree" class="table-of-contents__link toc-highlight">The key is the text, not the tree</a></li><li><a href="#one-template-builder-two-consumers" class="table-of-contents__link toc-highlight">One template builder, two consumers</a></li><li><a href="#runtime-rendering" class="table-of-contents__link toc-highlight">Runtime rendering</a></li><li><a href="#lint-keeps-the-source-extractable" class="table-of-contents__link toc-highlight">Lint keeps the source extractable</a></li><li><a href="#head-strings-have-no-dom-node" class="table-of-contents__link toc-highlight">Head strings have no DOM node</a></li></ul></li><li><a href="#review-on-the-running-app" class="table-of-contents__link toc-highlight">Review on the running app</a><ul><li><a href="#stamp-the-dom-at-build-time" class="table-of-contents__link toc-highlight">Stamp the DOM at build time</a></li><li><a href="#the-dev-server-serves-the-interchange-tree" class="table-of-contents__link toc-highlight">The dev server serves the interchange tree</a></li><li><a href="#a-review-is-a-diff-not-a-database-row" class="table-of-contents__link toc-highlight">A review is a diff, not a database row</a></li><li><a href="#content-addressing-makes-review-render-mode-independent" class="table-of-contents__link toc-highlight">Content addressing makes review render-mode-independent</a></li><li><a href="#paint-findings-beside-the-dom-not-inside-it" class="table-of-contents__link toc-highlight">Paint findings beside the DOM, not inside it</a></li><li><a href="#shipping-a-locale" class="table-of-contents__link toc-highlight">Shipping a locale</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:09 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: run sequences, inline codes, stand-off overlays, projections at boundaries</li>
+<li class=""><a class="" href="/contribute/architecture/foundations/f-03-identity">F-03: Identity</a>: content-addressed block identity</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-02-format-system">E-02: The format system</a>: how an extractor plugs into the pipeline, and the readers that share the translatability table</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a>: the tools that consume extracted blocks</li>
+<li class=""><a class="" href="/contribute/architecture/context/c-04-unit-state-and-decisions">C-04: Unit state and decisions</a>: the ship and verified gates the picker reads</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a>: the interchange files review reads and writes</li>
+<li class=""><a class="" href="/contribute/architecture/surfaces/s-06-visual-editor">S-06: The visual editor data model</a>: the vocabulary that styles these runs</li>
+<li class=""><a class="" href="/react/introduction">React i18n guide</a>: the user-facing documentation</li>
+<li class=""><a class="" href="/react/in-context-review">In-context review</a>: the review guide</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/surfaces/s-05-i18n-runtime.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/surfaces/s-04-toolbox"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">S-04: Toolbox utilities</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/surfaces/s-06-visual-editor"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">S-06: The visual editor data model</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#build-time-extraction-into-run" class="table-of-contents__link toc-highlight">Build-time extraction into <code>Run[]</code></a></li><li><a href="#the-key-is-the-text" class="table-of-contents__link toc-highlight">The key is the text</a></li><li><a href="#one-template-builder-two-consumers" class="table-of-contents__link toc-highlight">One template builder, two consumers</a></li><li><a href="#runtime-rendering" class="table-of-contents__link toc-highlight">Runtime rendering</a></li><li><a href="#entry-points" class="table-of-contents__link toc-highlight">Entry points</a></li><li><a href="#lint-keeps-the-source-extractable" class="table-of-contents__link toc-highlight">Lint keeps the source extractable</a></li><li><a href="#head-strings-have-no-dom-node" class="table-of-contents__link toc-highlight">Head strings have no DOM node</a></li></ul></li><li><a href="#review-on-the-running-app" class="table-of-contents__link toc-highlight">Review on the running app</a><ul><li><a href="#stamp-the-dom-at-build-time" class="table-of-contents__link toc-highlight">Stamp the DOM at build time</a></li><li><a href="#the-dev-server-serves-the-interchange-tree" class="table-of-contents__link toc-highlight">The dev server serves the interchange tree</a></li><li><a href="#a-review-is-a-diff" class="table-of-contents__link toc-highlight">A review is a diff</a></li><li><a href="#reading-a-string-inside-the-component-that-ships-it" class="table-of-contents__link toc-highlight">Reading a string inside the component that ships it</a></li><li><a href="#content-addressing-makes-review-render-mode-independent" class="table-of-contents__link toc-highlight">Content addressing makes review render-mode-independent</a></li><li><a href="#findings-are-painted-beside-the-dom" class="table-of-contents__link toc-highlight">Findings are painted beside the DOM</a></li><li><a href="#shipping-a-locale" class="table-of-contents__link toc-highlight">Shipping a locale</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:14 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

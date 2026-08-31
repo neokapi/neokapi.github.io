@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">E-08: Document structure tiers | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-08: Document structure tiers | neokapi"><meta data-rh="true" name="description" content="Where a format carries no reliable logical structure, it is recovered through a tiered model — the document&#x27;s own tags where they exist, geometric inference otherwise, and an ML layout tier above both — with PDF read out-of-core by PDFium through a native plugin and a browser WASM bridge."><meta data-rh="true" property="og:description" content="Where a format carries no reliable logical structure, it is recovered through a tiered model — the document&#x27;s own tags where they exist, geometric inference otherwise, and an ML layout tier above both — with PDF read out-of-core by PDFium through a native plugin and a browser WASM bridge."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,document structure,PDF,PDFium,geometry,glyphs,tagged structure,table detection,WebAssembly,plugin"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-08: Document structure tiers","item":"https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
-<script src="/assets/js/runtime~main.6a77e6ad.js" defer="defer"></script>
-<script src="/assets/js/main.217225e7.js" defer="defer"></script>
+<title data-rh="true">E-08: Document structure tiers | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-08: Document structure tiers | neokapi"><meta data-rh="true" name="description" content="Where a format carries no reliable logical structure, it is recovered through a tiered model (the document&#x27;s own tags where they exist, geometric inference otherwise, and an ML layout tier above both), with PDF read out-of-core by PDFium through a native plugin and a browser WASM bridge."><meta data-rh="true" property="og:description" content="Where a format carries no reliable logical structure, it is recovered through a tiered model (the document&#x27;s own tags where they exist, geometric inference otherwise, and an ML layout tier above both), with PDF read out-of-core by PDFium through a native plugin and a browser WASM bridge."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,document structure,PDF,PDFium,geometry,glyphs,tagged structure,table detection,WebAssembly,plugin"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-08: Document structure tiers","item":"https://neokapi.github.io/contribute/architecture/engine/e-08-document-structure-tiers"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
+<script src="/assets/js/runtime~main.2318bff8.js" defer="defer"></script>
+<script src="/assets/js/main.2c3341f6.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -15,7 +15,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h2>
 <p>Some formats state their own logical structure; some only imply it. Where a
 format carries headings, paragraphs, and tables as markup, the reader reads them.
-Where it does not — PDF is the archetype — structure is recovered through a
+Where it does not (PDF is the archetype), structure is recovered through a
 <strong>tiered model</strong>, in decreasing order of authority: the document&#x27;s own tagged
 structure tree where it exists, geometric inference from positions otherwise, and
 an ML layout model above both for what geometry cannot reach. Each tier falls
@@ -23,11 +23,11 @@ through cleanly to the one below, so a document always parses.</p>
 <p>PDF is read <strong>out-of-core</strong> by <a href="https://pdfium.googlesource.com/pdfium/" target="_blank" rel="noopener noreferrer" class="">PDFium</a>,
 through two backends that share their content-producing logic:</p>
 <ul>
-<li class=""><strong>Native</strong> — <code>kapi-pdfium</code>, a first-party Mode-C plugin
+<li class=""><strong>Native</strong>: <code>kapi-pdfium</code>, a first-party Mode-C plugin
 (<a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05</a>) linking PDFium via cgo and running as an
 isolated daemon, so a malformed-PDF crash dies with the subprocess rather than
 with <code>kapi</code>.</li>
-<li class=""><strong>Browser</strong> — a <code>WasmReader</code> (build-tagged <code>js</code>) that bridges Go-WASM to a
+<li class=""><strong>Browser</strong>: a <code>WasmReader</code> (build-tagged <code>js</code>) that bridges Go-WASM to a
 PDFium <strong>WebAssembly</strong> module loaded by the web app, giving the in-browser Lab
 the same extraction without a server.</li>
 </ul>
@@ -44,7 +44,7 @@ that engine, but it is a large C++ codebase with two consequences the framework
 must contain:</p>
 <ul>
 <li class=""><strong>Native weight.</strong> Linking PDFium via cgo defeats pure-Go cross-compilation and
-inflates every <code>kapi</code> install for a capability many invocations never use — the
+inflates every <code>kapi</code> install for a capability many invocations never use: the
 same isolation rationale as the Okapi bridge and the ML segmenter
 (<a class="" href="/contribute/architecture/multilingual/m-02-segmentation">M-02</a>). PDF therefore lives in a
 plugin, not in the framework.</li>
@@ -53,8 +53,8 @@ the reader in a subprocess daemon contains a crash to that process.</li>
 </ul>
 <p>Beyond text, the visual editor (<a class="" href="/contribute/architecture/surfaces/s-06-visual-editor">S-06</a>) and
 the browser Lab need each text fragment&#x27;s <strong>position on the page</strong>, and
-downstream processing wants <strong>document structure</strong> — which lines are headings,
-which blocks form a table — so that a translated document can be reflowed and so
+downstream processing wants <strong>document structure</strong> (which lines are headings,
+which blocks form a table), so that a translated document can be reflowed and so
 that table cells are translated as cells. PDF carries none of this uniformly:
 some PDFs are <em>tagged</em> with an explicit logical structure tree; most are not, and
 structure must be inferred from geometry.</p>
@@ -75,8 +75,8 @@ the installed <code>kapi-pdfium</code> plugin at runtime, or is absent with an a
 <code>github.com/neokapi/neokapi/plugins/pdfium</code>, outside the workspace so its cgo and
 PDFium dependencies never enter another module&#x27;s build graph:</p>
 <div class="language-text codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-text codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token plain">plugins/pdfium/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── go.mod                         module …/plugins/pdfium</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── manifest.json                  Mode-C daemon manifest (declares the pdf format + schema)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── formats/pdf/schema.json        config schema: geometry, glyphs, tier3</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">├── cmd/kapi-pdfium/main.go        daemon entry point (gRPC, Mode C)</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└── internal/pdfreader/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ├── reader.go                  ReadParts: fast path + geometry path</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    └── structtree.go              tier-1 tagged struct tree (build-tag-free; runtime-gated)</span><br></div></code></pre></div></div>
-<p>Both backends produce an identical <code>Part</code> stream — a document <code>Layer</code>, per-page
-<code>Layer</code>s, and Blocks — and share two pieces of framework logic so the native and
+<p>Both backends produce an identical <code>Part</code> stream (a document <code>Layer</code>, per-page
+<code>Layer</code>s, and Blocks) and share two pieces of framework logic so the native and
 browser results match:</p>
 <ul>
 <li class=""><strong><code>core/formats/pdf.GroupRuns</code></strong> merges PDFium&#x27;s per-rect fragments (it emits a
@@ -89,11 +89,11 @@ Without it a styled or isolated glyph becomes a one-character Block.</li>
 <p>The reader has two granularities, selected by the <code>geometry</code> config flag
 (<code>formats/pdf/schema.json</code>):</p>
 <ul>
-<li class=""><strong>Fast path</strong> (<code>geometry=false</code>, the default) — one plain-text Block per page.
+<li class=""><strong>Fast path</strong> (<code>geometry=false</code>, the default): one plain-text Block per page.
 Fewest allocations, no positional work; the right choice for batch text
 operations such as word counts, memory leverage, and the toolbox utilities
 (<a class="" href="/contribute/architecture/surfaces/s-04-toolbox">S-04</a>).</li>
-<li class=""><strong>Geometry path</strong> (<code>geometry=true</code>) — one Block per positioned text run, each
+<li class=""><strong>Geometry path</strong> (<code>geometry=true</code>): one Block per positioned text run, each
 carrying a <code>GeometryAnnotation</code>. With <code>glyphs=true</code> (which implies geometry)
 each Block additionally carries per-character boxes for character-precise
 highlighting.</li>
@@ -102,7 +102,7 @@ highlighting.</li>
 content model through the shared <code>core/docmeta</code> helper: <code>Title</code>, <code>Subject</code>, and
 <code>Keywords</code> become translatable Blocks on the metadata plane, while <code>Author</code>,
 <code>Creator</code>, <code>Producer</code>, <code>CreationDate</code>, and <code>ModDate</code> are recorded as
-<code>pdf:</code>-namespaced properties on the document layer — never translated, kept for
+<code>pdf:</code>-namespaced properties on the document layer, never translated, kept for
 inspection. This is the same metadata mechanism the image reader uses
 (<a class="" href="/contribute/architecture/multilingual/m-07-metadata-i18n">M-07</a>).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="geometry-model-and-coordinate-flip">Geometry model and coordinate flip<a href="#geometry-model-and-coordinate-flip" class="hash-link" aria-label="Direct link to Geometry model and coordinate flip" title="Direct link to Geometry model and coordinate flip" translate="no">​</a></h3>
@@ -111,19 +111,19 @@ increases upward. neokapi&#x27;s content and editor model use a <strong>top-left
 increases downward), matching screen and most document coordinate systems. Every
 box is flipped once, at extraction, when the page height is known:
 <code>Y_top-left = pageHeight − Y_upper</code>. The flip is implemented identically at all
-three sites — the native fast and geometry reader, the native tagged-tree reader,
-and the browser bridge — and each stamps <code>Origin: &quot;top-left&quot;</code>, or falls back to
+three sites (the native fast and geometry reader, the native tagged-tree reader,
+and the browser bridge), and each stamps <code>Origin: &quot;top-left&quot;</code>, or falls back to
 <code>&quot;bottom-left&quot;</code> when the page height is unavailable. <code>GeometryAnnotation</code> carries
 the page number, the union bounding box, the origin, and the optional per-glyph
 boxes (text plus box per character).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="structure-tiers">Structure tiers<a href="#structure-tiers" class="hash-link" aria-label="Direct link to Structure tiers" title="Direct link to Structure tiers" translate="no">​</a></h3>
 <p>Document structure is recovered through three tiers, in decreasing order of
 authority:</p>
-<table><thead><tr><th>Tier</th><th>Source</th><th>Where it runs</th><th>Authority</th></tr></thead><tbody><tr><td><strong>1 — Tagged struct tree</strong></td><td>The document&#x27;s own logical structure tree (Document › H1 › P › Table › TR › TH/TD …)</td><td>Native plugin only</td><td>Authoritative — the author&#x27;s own tags</td></tr><tr><td><strong>2 — Geometric inference</strong></td><td>Block positions: row clustering, column alignment, relative line height</td><td>Native <strong>and</strong> browser</td><td>Heuristic</td></tr><tr><td><strong>3 — ML layout</strong></td><td>A vision model over the rendered page</td><td>Native plugin + host</td><td>Heuristic, highest recall</td></tr></tbody></table>
+<table><thead><tr><th>Tier</th><th>Source</th><th>Where it runs</th><th>Authority</th></tr></thead><tbody><tr><td><strong>1: Tagged struct tree</strong></td><td>The document&#x27;s own logical structure tree (Document › H1 › P › Table › TR › TH/TD …)</td><td>Native plugin only</td><td>Authoritative: the author&#x27;s own tags</td></tr><tr><td><strong>2: Geometric inference</strong></td><td>Block positions: row clustering, column alignment, relative line height</td><td>Native <strong>and</strong> browser</td><td>Heuristic</td></tr><tr><td><strong>3: ML layout</strong></td><td>A vision model over the rendered page</td><td>Native plugin + host</td><td>Heuristic, highest recall</td></tr></tbody></table>
 <p><strong>Tier 1</strong> (<code>internal/pdfreader/structtree.go</code>) reads a tagged PDF&#x27;s structure
 tree directly: it builds a marked-content-ID → text and bounds map from the
 page&#x27;s text objects, walks the struct tree, and maps elements onto the content
-model — <code>Table</code> becomes a table group of rows and cells (TH → header, TD → cell),
+model: <code>Table</code> becomes a table group of rows and cells (TH → header, TD → cell),
 <code>H1</code>–<code>H6</code> become headings, <code>P</code> and its relatives become paragraphs. The
 marked-content accessors are PDFium <em>experimental</em> APIs that the Go binding wires
 only under the <code>pdfium_experimental</code> build tag, and the bundled library exports
@@ -141,41 +141,56 @@ writers render real tables with no PDF-specific code. Both backends run tier 2 a
 their fallback, and because it operates on geometry rather than on PDF, any
 format that can produce positioned blocks gets it.</p>
 <p><strong>Tier 3</strong> runs a layout model over the rendered page for the cases geometry
-cannot reach — borderless tables, multi-column reading order, scanned pages,
-figure and caption association. It is deliberately <em>not</em> part of the PDF format:
+cannot reach: borderless tables, multi-column reading order, scanned pages,
+figure and caption association. It is not part of the PDF format:
 it operates on a page raster plus blocks, and so applies to any format that can
 produce them (<a class="" href="/contribute/architecture/multilingual/m-03-multimodal-content">M-03</a>). Enabled with
-the <code>tier3</code> option, the plugin renders each page to a PNG at 72 DPI — so PDF
-points map 1:1 to raster pixels and the text geometry aligns — and emits it as a
+the <code>tier3</code> option, the plugin renders each page to a PNG at 72 DPI (so PDF
+points map 1:1 to raster pixels and the text geometry aligns) and emits it as a
 Media part marked <code>vision.PageRasterProperty</code> alongside the page&#x27;s raw positioned
 blocks, applying <em>no</em> structure of its own. A host-side reader decorator
 (<code>host/pluginhost/tier3_reader.go</code>, wrapping every plugin reader as a pass-through
 until <code>tier3</code> is requested) runs the vision layout model over the raster via
 <code>vision.StructureFromLayout</code>: the model&#x27;s regions and reading order are
 authoritative, the blocks&#x27; own text fills them
-(<code>vision.OCRResultFromBlocks</code> — more accurate than re-running OCR over a vector
+(<code>vision.OCRResultFromBlocks</code>, more accurate than re-running OCR over a vector
 PDF), and <code>table</code> regions are reconstructed into row and column cells. The
 decorator deletes the rendered raster afterwards and, when the vision plugin is
 not installed, strips the request so the plugin falls back to the geometric tier
-2 — so tier 3 degrades cleanly to tier 2, never worse. Browser builds have no
+2, so tier 3 degrades cleanly to tier 2, never worse. Browser builds have no
 native vision engine, so tier 3 is native-only.</p>
 <p>A consequence of this design is a <strong>native/browser asymmetry</strong>: the browser
 extraction contract exposes only rects, not the struct tree, so the in-browser Lab
 always uses tier 2 even for a tagged PDF, while a native <code>kapi</code> run uses tier 1.
 The structure of a tagged PDF can therefore differ between the Lab and the CLI;
 this is documented at the call site.</p>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="structure-from-an-external-converter">Structure from an external converter<a href="#structure-from-an-external-converter" class="hash-link" aria-label="Direct link to Structure from an external converter" title="Direct link to Structure from an external converter" translate="no">​</a></h3>
+<p>A document converter that has already recovered layout can hand its result to
+the framework instead of the raw file. Two readers take that route: <code>docling</code>
+reads DoclingDocument JSON, the lossless serialization Docling emits, and
+<code>doclang</code> reads DocLang XML. Each walks the converter&#x27;s reading order and maps
+its items onto the same content model the tiers above produce: a normalized
+role on the <code>structure</code> annotation, the provenance box on a
+<code>GeometryAnnotation</code>, page headers and footers on the furniture layout layer,
+tables as a group of row groups of cell blocks, captions as caption-role blocks.
+Both readers are read-only; the converter owns its file, and the framework
+re-emits structure through the DocLang writer or projects it to Markdown or
+HTML. This is the file-based way to consume a converter: run it, save its
+output, read the output.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="distribution">Distribution<a href="#distribution" class="hash-link" aria-label="Direct link to Distribution" title="Direct link to Distribution" translate="no">​</a></h3>
 <p><code>kapi-pdfium</code> bundles the PDFium <strong>shared</strong> library at <code>lib/&lt;name&gt;</code> beside the
 binary in the release tarball, found via an rpath baked into the binary
-(<code>@loader_path/lib</code> on macOS, <code>$ORIGIN/lib</code> on Linux, same directory on Windows)
-— the same bundling shape as the ML segmenter plugin&#x27;s ONNX runtime
-(<a class="" href="/contribute/architecture/multilingual/m-02-segmentation">M-02</a>), not a static link. Tarballs are
+(<code>@loader_path/lib</code> on macOS, <code>$ORIGIN/lib</code> on Linux, same directory on Windows):
+the same bundling shape as the ML segmenter plugin&#x27;s ONNX runtime
+(<a class="" href="/contribute/architecture/multilingual/m-02-segmentation">M-02</a>) rather than a static link. Tarballs are
 built per platform on native runners (cgo, <code>-tags pdfium_experimental</code>, PDFium
 pinned to a release build), cosign-signed, and indexed in the registry, so
 <code>kapi plugin install pdfium</code> verifies the download like any other plugin
-(<a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05</a>). The plugin is bundled with the kapi CLI, and the
-desktop app installs it on demand the first time a PDF is opened; the browser
-self-hosts PDFium&#x27;s WASM next to the kapi WASM.</p>
+(<a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05</a>). The CLI&#x27;s Homebrew formula depends on the
+plugin&#x27;s, so a <code>brew install</code> brings it along; any other install adds it with
+<code>kapi plugin install pdfium</code>; the desktop app installs it on demand the first
+time a PDF is opened; and the browser self-hosts PDFium&#x27;s WASM next to the kapi
+WASM.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direct link to Consequences" title="Direct link to Consequences" translate="no">​</a></h2>
 <ul>
 <li class="">The portable <code>kapi</code> binary stays pure-Go, small, and cross-compilable; the
@@ -185,7 +200,7 @@ plugin, and a malformed PDF can crash only the daemon.</li>
 share <code>GroupRuns</code> and <code>structure.Analyze</code>/<code>ToParts</code>; the only intended
 divergence is tier-1 structure, which the browser cannot see.</li>
 <li class="">Geometry is available for the visual editor and the Lab without changing the
-content model — it rides on the stand-off <code>GeometryAnnotation</code>, off by default
+content model: it rides on the stand-off <code>GeometryAnnotation</code>, off by default
 so batch text work pays nothing for it.</li>
 <li class="">Tagged documents get author-fidelity structure for free; untagged ones get a
 best-effort geometric reconstruction; the ML tier sits above both without
@@ -195,13 +210,13 @@ same structure recovery is available to any format that can produce them.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direct link to Related" title="Direct link to Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — Blocks, stand-off annotations, table groups, and the structure stream <code>ToParts</code> emits</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-02-format-system">E-02: The format system</a> — how the <code>pdf</code> format registers and detects</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a> — Mode-C daemon discovery, native-stack isolation, signed registry distribution</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-02-segmentation">M-02: Segmentation</a> — the precedent for isolating a native stack in a bundled-shared-library plugin</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-03-multimodal-content">M-03: Multimodal content</a> — the vision layout model tier 3 calls, and the raster contract it runs on</li>
-<li class=""><a class="" href="/contribute/architecture/surfaces/s-06-visual-editor">S-06: The visual editor</a> — how the editor consumes geometry and structure</li>
-<li class=""><a href="https://github.com/neokapi/neokapi/tree/main/plugins/pdfium" target="_blank" rel="noopener noreferrer" class=""><code>plugins/pdfium/</code></a> — plugin module, readers, and README</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-08-document-structure-tiers.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-07-model-providers"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-07: Model and translation providers</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/context/c-01-project-model"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">C-01: The project model</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#two-backends-one-content-contract" class="table-of-contents__link toc-highlight">Two backends, one content contract</a></li><li><a href="#two-extraction-modes" class="table-of-contents__link toc-highlight">Two extraction modes</a></li><li><a href="#geometry-model-and-coordinate-flip" class="table-of-contents__link toc-highlight">Geometry model and coordinate flip</a></li><li><a href="#structure-tiers" class="table-of-contents__link toc-highlight">Structure tiers</a></li><li><a href="#distribution" class="table-of-contents__link toc-highlight">Distribution</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:09 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: Blocks, stand-off annotations, table groups, and the structure stream <code>ToParts</code> emits</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-02-format-system">E-02: The format system</a>: how the <code>pdf</code> format registers and detects</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a>: Mode-C daemon discovery, native-stack isolation, signed registry distribution</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-02-segmentation">M-02: Segmentation</a>: the precedent for isolating a native stack in a bundled-shared-library plugin</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-03-multimodal-content">M-03: Multimodal content</a>: the vision layout model tier 3 calls, and the raster contract it runs on</li>
+<li class=""><a class="" href="/contribute/architecture/surfaces/s-06-visual-editor">S-06: The visual editor</a>: how the editor consumes geometry and structure</li>
+<li class=""><a href="https://github.com/neokapi/neokapi/tree/main/plugins/pdfium" target="_blank" rel="noopener noreferrer" class=""><code>plugins/pdfium/</code></a>: plugin module, readers, and README</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-08-document-structure-tiers.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-07-model-providers"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-07: Model and translation providers</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/context/c-01-project-model"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">C-01: The project model</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#two-backends-one-content-contract" class="table-of-contents__link toc-highlight">Two backends, one content contract</a></li><li><a href="#two-extraction-modes" class="table-of-contents__link toc-highlight">Two extraction modes</a></li><li><a href="#geometry-model-and-coordinate-flip" class="table-of-contents__link toc-highlight">Geometry model and coordinate flip</a></li><li><a href="#structure-tiers" class="table-of-contents__link toc-highlight">Structure tiers</a></li><li><a href="#structure-from-an-external-converter" class="table-of-contents__link toc-highlight">Structure from an external converter</a></li><li><a href="#distribution" class="table-of-contents__link toc-highlight">Distribution</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:14 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

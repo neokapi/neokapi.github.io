@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">E-07: Model and translation providers | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-07: Model and translation providers | neokapi"><meta data-rh="true" name="description" content="Language-model capabilities plug in through an LLMProvider interface in providers/ai and machine-translation engines through a deliberately narrower MTProvider interface in providers/mt; both are reached from ordinary tools and share one credential resolver."><meta data-rh="true" property="og:description" content="Language-model capabilities plug in through an LLMProvider interface in providers/ai and machine-translation engines through a deliberately narrower MTProvider interface in providers/mt; both are reached from ordinary tools and share one credential resolver."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,LLMProvider,MTProvider,model catalog,multimodal,streaming,credentials,batching,providers"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-07-model-providers" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-07-model-providers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-07: Model and translation providers","item":"https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
-<script src="/assets/js/runtime~main.6a77e6ad.js" defer="defer"></script>
-<script src="/assets/js/main.217225e7.js" defer="defer"></script>
+<title data-rh="true">E-07: Model and translation providers | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-07: Model and translation providers | neokapi"><meta data-rh="true" name="description" content="Language-model capabilities plug in through an LLMProvider interface in providers/ai and machine-translation engines through a narrower MTProvider interface in providers/mt; both are reached from ordinary tools and share one credential resolver."><meta data-rh="true" property="og:description" content="Language-model capabilities plug in through an LLMProvider interface in providers/ai and machine-translation engines through a narrower MTProvider interface in providers/mt; both are reached from ordinary tools and share one credential resolver."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,LLMProvider,MTProvider,model catalog,multimodal,streaming,credentials,batching,providers"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-07-model-providers" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-07-model-providers" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-07: Model and translation providers","item":"https://neokapi.github.io/contribute/architecture/engine/e-07-model-providers"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
+<script src="/assets/js/runtime~main.2318bff8.js" defer="defer"></script>
+<script src="/assets/js/main.2c3341f6.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -19,10 +19,10 @@
 call them, the credential resolver, and the registration pattern; they differ in
 surface area, because an LLM and an MT engine are asked for different things.</p>
 <p><code>LLMProvider</code> carries translation, chat, and schema-constrained structured
-output, with <strong>multimodal</strong> messages — content is an ordered list of text, image,
-audio, or video parts — and an optional streaming extension for live thinking
+output, with <strong>multimodal</strong> messages (content is an ordered list of text, image,
+audio, or video parts) and an optional streaming extension for live thinking
 progress. <code>MTProvider</code> is one method: plain text in, plain text out. The
-framework ships built-in LLM backends and, deliberately, <strong>no</strong> classic MT
+framework ships built-in LLM backends and <strong>no</strong> classic MT
 engines: the translation core is LLM-first, and MT engines arrive as plugins that
 register a config factory. On the CLI surface there is one <code>translate</code> command
 and one <code>qa</code> command across every backend; <code>--provider</code> selects.</p>
@@ -35,15 +35,15 @@ enforcement, and checks in the same flow.</p>
 transient failures, and variable latency. The framework&#x27;s answer is to keep the
 provider interface thin and let the calling tool decide how much work to batch
 into a single request and how many requests to run in parallel. Workspace-scale
-orchestration — asynchronous job queues, multi-tenant quotas — belongs to a
-platform layer, not to the framework primitives.</p>
+orchestration (asynchronous job queues, multi-tenant quotas) belongs to a
+platform layer rather than to the framework primitives.</p>
 <p>Providers also differ in their structured-output mechanism: some use a
 <code>response_format</code> JSON schema, some use tool-use with an input schema, some a
 <code>format: json</code> switch, some a response-schema hint. A single interface must paper
 over these details while giving tools a predictable contract.</p>
 <p>Machine translation is a different shape. An MT engine is a deterministic
-translation service with a minimal surface — source text, source locale, target
-locale, translated text — and no notion of terminology context, format hints, or
+translation service with a minimal surface (source text, source locale, target
+locale, translated text) and no notion of terminology context, format hints, or
 surrounding blocks. Forcing both through <code>LLMProvider</code> would waste parameters on
 MT and obscure the difference.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direct link to Decision" title="Direct link to Decision" translate="no">​</a></h2>
@@ -59,18 +59,18 @@ registration is needed (<a class="" href="/contribute/architecture/engine/e-03-t
 <h4 class="anchor anchorTargetStickyNavbar_NsHk" id="multimodal-content">Multimodal content<a href="#multimodal-content" class="hash-link" aria-label="Direct link to Multimodal content" title="Direct link to Multimodal content" translate="no">​</a></h4>
 <p>A <code>Message</code>&#x27;s content is an ordered list of typed parts, so one interface carries
 text, images, audio, and video:</p>
-<div class="language-go codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-go codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> Message </span><span class="token keyword" style="color:#00009f">struct</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Role  </span><span class="token builtin">string</span><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic">// &quot;system&quot; | &quot;user&quot; | &quot;assistant&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Parts </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain">ContentPart</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> ContentPart </span><span class="token keyword" style="color:#00009f">struct</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Kind  ContentKind  </span><span class="token comment" style="color:#999988;font-style:italic">// closed set, named type</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Text  </span><span class="token builtin">string</span><span class="token plain">       </span><span class="token comment" style="color:#999988;font-style:italic">// Kind == ContentText</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Media </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">model</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Media </span><span class="token comment" style="color:#999988;font-style:italic">// otherwise — a bounded slice, carried by reference</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> ContentKind </span><span class="token builtin">string</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentText  ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;text&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentImage ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;image&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentAudio ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;audio&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentVideo ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;video&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
-<p>A media part carries its payload as a <strong><code>model.Media</code></strong> — the framework&#x27;s
-binary-reference type (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>), with
-precedence <code>BlobKey &gt; URI &gt; Data</code> — not a bare <code>[]byte</code>. A small slice rides
+<div class="language-go codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-go codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> Message </span><span class="token keyword" style="color:#00009f">struct</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Role  </span><span class="token builtin">string</span><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic">// &quot;system&quot; | &quot;user&quot; | &quot;assistant&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Parts </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain">ContentPart</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> ContentPart </span><span class="token keyword" style="color:#00009f">struct</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Kind  ContentKind  </span><span class="token comment" style="color:#999988;font-style:italic">// closed set, named type</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Text  </span><span class="token builtin">string</span><span class="token plain">       </span><span class="token comment" style="color:#999988;font-style:italic">// Kind == ContentText</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Media </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">model</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Media </span><span class="token comment" style="color:#999988;font-style:italic">// otherwise: a bounded slice, carried by reference</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> ContentKind </span><span class="token builtin">string</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentText  ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;text&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentImage ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;image&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentAudio ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;audio&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ContentVideo ContentKind </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;video&quot;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
+<p>A media part carries its payload as a <strong><code>model.Media</code></strong> (the framework&#x27;s
+binary-reference type, <a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>) with
+precedence <code>BlobKey &gt; URI &gt; Data</code>, rather than a bare <code>[]byte</code>. A small slice rides
 inline; a larger one, such as a video clip, is a blob key or URI and is never
 forced into memory. A single helper at the provider&#x27;s HTTP boundary resolves the
 <code>Media</code> to the backend&#x27;s wire form (base64 inline, or a fetchable URL where the
-provider supports one), so provider implementations stay <strong>storage-agnostic</strong> —
+provider supports one), so provider implementations stay <strong>storage-agnostic</strong>:
 they never read a file or the blob store. This keeps one binary idiom across
 <code>Media</code>, plugin I/O, and provider content.</p>
 <p>A text-only message is a single <code>text</code> part, so translation, check, and term
-tools use the interface with no media parts — the common path carries no media
+tools use the interface with no media parts; the common path carries no media
 ceremony. Image, audio, and video parts carry a Block&#x27;s media anchor into the
 prompt, which is what the multimodal refinement tier sends
 (<a class="" href="/contribute/architecture/multilingual/m-03-multimodal-content">M-03</a>).</p>
@@ -85,8 +85,8 @@ and Ollama, plus two non-network providers: a mock provider for deterministic
 tests, and a <code>demo</code> provider that returns illustrative output so the browser
 playground can run model-backed commands with no API keys. A <code>claude-code</code>
 provider runs prompts through a locally installed Claude Code CLI, billing the
-user&#x27;s subscription instead of an API key — keyless, but not local: content still
-travels to the vendor.</p>
+user&#x27;s subscription instead of an API key: keyless, though not local, since
+content still travels to the vendor.</p>
 <p>Ollama is the on-device backend, driving a local runtime over HTTP with no key
 and managed through <code>kapi models ollama</code>. <code>aiprovider.IsLocalProvider</code> is a
 <em>registration</em> property, not a hardcoded list: a provider sets it when it
@@ -96,8 +96,8 @@ the built-ins do, and the transformer placement pass
 <p>Plugins register further providers at runtime, so the live provider set is
 whatever <code>aiprovider.Providers()</code> returns, not a fixed list; it surfaces as the
 <code>provider</code> option in the <a class="" href="/reference/tools/translate"><code>translate</code> reference</a>.
-Default models are deliberately not listed in prose — they change with every
-model generation. They live in the model catalog, below.</p>
+Default models are not listed in prose, because they change with every model
+generation. They live in the model catalog, below.</p>
 <p>Each provider takes a <code>Config</code> struct with API key, base URL, model name, and
 generation parameters. Azure additionally accepts a <code>TokenProvider</code> function,
 enabling passwordless access via Managed Identity.</p>
@@ -107,25 +107,25 @@ a curated catalog embedded into the framework and read as <code>aiprovider.Model
 It is the single source of truth, and the rest derives from it.</p>
 <p><strong>Why data, and why curated.</strong> One catalog rather than model knowledge spread
 over a default-model constant per provider, a prefix-to-ceilings map, and a
-separate price table — none of which answers the question a user actually asks:
+separate price table; none of which answers the question a user actually asks:
 <em>is this model current, superseded, or retired, and since when?</em> The catalog
 carries the defaults and the ceilings (<code>LimitsForModel</code> resolves through it; a
 test asserts every provider default is catalogued and marked as that provider&#x27;s
 default) as well as the lifecycle. It is <strong>data</strong> because a model list hardcoded
 in Go goes stale silently; it is <strong>curated</strong> because vendor APIs return only what
-is live today as a flat list of ids — they do not say when a model entered
+is live today as a flat list of ids; they do not say when a model entered
 neokapi, what replaced it, or when it retires. Those are facts about <em>our</em>
 support, and only a human, or an agent reading a model card, can supply them.</p>
 <p><strong>Each entry</strong> carries the model&#x27;s provider, label, aliases, output and context
 ceilings, and its lifecycle: <code>status</code> (<code>active</code> | <code>superseded</code>), <code>introduced</code>,
 <code>superseded_by</code>, and <code>retirement_date</code>. There is no <code>retired</code> status: a model the
-provider stops serving is <strong>removed</strong> from the catalog, not kept as a tombstone —
-the catalog is the list of models kapi supports, and a dead model supports
+provider stops serving is <strong>removed</strong> from the catalog rather than kept as a
+tombstone: the catalog is the list of models kapi supports, and a dead model supports
 nothing. An announced <em>future</em> retirement is a date on a still-live entry, shown
 as a warning. A model can be one provider&#x27;s current default while superseded
 elsewhere, and the catalog records that rather than papering over it; <code>kapi models list</code> and the <code>/models</code> page both surface it.</p>
 <p><strong>Recommended vs known.</strong> The catalog is <em>descriptive</em>, not an allowlist: naming
-a model it does not list is never rejected — the string goes to the provider API
+a model it does not list is never rejected: the string goes to the provider API
 as-is, and <code>LimitsForModel</code> falls back to a conservative batch size until an entry
 exists. So the catalog serves two audiences at once, and a <code>recommended</code> flag
 (absent = yes) separates them. It stays true for the models most projects should
@@ -134,14 +134,14 @@ default: capable-but-premium, overkill for faithful content work, or tuned for a
 different task. A non-recommended model keeps its ceilings and is callable by
 name; it just sits under &quot;Advanced&quot; on the <code>/models</code> page rather than in the
 primary list, which is sorted Recommended → Advanced → Legacy (superseded). An
-<em>active default</em> can never be non-recommended — a test enforces it.</p>
+<em>active default</em> can never be non-recommended; a test enforces it.</p>
 <p><strong>Staying honest.</strong> Curation rots, so <code>make check-models</code> (<code>scripts/modelcheck</code>)
 is the alarm: it lists what each provider serves today and reports any catalogued
 model that is gone, or, with <code>-candidates</code>, any live model the catalog omits. The
-live half needs provider credentials and stays a manual or scheduled tool — a
+live half needs provider credentials and stays a manual or scheduled tool: a
 rate-limited provider must never be mistaken for a retired one, the same
-false-cliff trap the <a class="" href="/batch-eval">batch eval</a> guards against. The keyless half —
-every published price must be for a catalogued model — is an ordinary unit test,
+false-cliff trap the <a class="" href="/batch-eval">batch eval</a> guards against. The keyless half
+(every published price must be for a catalogued model) is an ordinary unit test,
 so it runs in <code>make test</code>. The <code>/models</code> page is generated from the catalog and
 gated by <code>make check-reference-docs</code>, so it cannot describe a model the catalog
 no longer lists.</p>
@@ -153,7 +153,7 @@ support them:</p>
 return the final aggregated <code>*ChatResponse</code>, rather than exposing a channel
 directly. UIs and CLI tools display live thinking progress from providers that
 support it. A provider that does not implement <code>StreamingLLMProvider</code> can still
-be used — callers that need streaming check for the extension with a type
+be used; callers that need streaming check for the extension with a type
 assertion.</p>
 <h4 class="anchor anchorTargetStickyNavbar_NsHk" id="concurrency-model">Concurrency model<a href="#concurrency-model" class="hash-link" aria-label="Direct link to Concurrency model" title="Direct link to Concurrency model" translate="no">​</a></h4>
 <p>Model-backed tools call the provider directly: <code>Translate()</code> for a single block,
@@ -161,7 +161,7 @@ assertion.</p>
 limiter, or circuit breaker in the framework. Throughput is a property of the
 tool&#x27;s own configuration, illustrated by <code>translate</code> (<code>core/ai/tools/translate.go</code>):</p>
 <ul>
-<li class=""><strong>Batching intent, not a magic number.</strong> The user-facing knob is <code>--batching</code>
+<li class=""><strong>Batching intent rather than a magic number.</strong> The user-facing knob is <code>--batching</code>
 with two values: <code>auto</code>, the default, hands sizing to a packer that fits blocks
 to the model&#x27;s context and output ceilings from the catalog; <code>single</code> pins one
 block per call. An explicit <code>batchSize</code> in a flow step&#x27;s config overrides both.</li>
@@ -190,6 +190,12 @@ through the streaming methods to surface live thinking summaries.
 Transient-failure handling (retry, backoff) is left to the individual provider
 implementations and the underlying SDK; the framework imposes no uniform retry
 policy.</p>
+<p>What the framework does add is observation. <code>aiprovider.Traced</code> wraps a
+provider so that each call opens one span on the observation seam
+(<a class="" href="/contribute/architecture/engine/e-01-processing-engine#observation-seam">E-01</a>) with GenAI attribute names,
+recording the model, token usage, cost and truncation, and never prompt content.
+A host that wants a circuit breaker or a budget wraps the provider outside the
+framework, with tracing outside the breaker so a refused call is still measured.</p>
 <p>This in-tool batching is distinct from the <code>ParallelBlockTool</code> concurrency in
 <a class="" href="/contribute/architecture/engine/e-01-processing-engine">E-01</a>, which parallelizes Part dispatch across the
 pipeline rather than grouping Blocks into a single API call. Prompt construction
@@ -197,7 +203,7 @@ and the structured batch contract are
 <a class="" href="/contribute/architecture/multilingual/m-05-prompts-and-batching">M-05</a>.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-mt-provider-interface">The MT provider interface<a href="#the-mt-provider-interface" class="hash-link" aria-label="Direct link to The MT provider interface" title="Direct link to The MT provider interface" translate="no">​</a></h3>
 <div class="language-go codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-go codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> MTProvider </span><span class="token keyword" style="color:#00009f">interface</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Name</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> ProviderID</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Translate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> req TranslateRequest</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">TranslateResponse</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Close</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> TranslateRequest </span><span class="token keyword" style="color:#00009f">struct</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Source       </span><span class="token builtin">string</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    SourceLocale model</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">LocaleID</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    TargetLocale model</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">LocaleID</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> TranslateResponse </span><span class="token keyword" style="color:#00009f">struct</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Translation </span><span class="token builtin">string</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
-<p>The interface is deliberately minimal. One method, plain text in and out, against
+<p>The interface is minimal. One method, plain text in and out, against
 <code>LLMProvider</code>&#x27;s translate, chat, structured chat, and modality declaration.</p>
 <p><strong>The framework ships no classic MT engines.</strong> The translation core is LLM-first,
 and the only built-in <code>MTProvider</code> is the offline <code>demo</code> provider. A real MT
@@ -235,7 +241,7 @@ construction, exactly like the LLM translate path.</p>
 <ol>
 <li class="">A tool that does not declare <code>credentials</code> in <code>Requires</code> is returned
 unchanged.</li>
-<li class="">An inline <code>apiKey</code> — the <code>--api-key</code> flag, or a step&#x27;s own config.</li>
+<li class="">An inline <code>apiKey</code>: the <code>--api-key</code> flag, or a step&#x27;s own config.</li>
 <li class="">A saved credential named with <code>--credential</code>.</li>
 <li class="">Nothing at all, for a <strong>keyless local provider</strong> (Ollama, demo): a local run
 is never failed for want of a saved credential.</li>
@@ -248,21 +254,21 @@ the secret sent to it, so it is stored alongside the credential (<code>kapi cred
 step&#x27;s <code>config:</code> cannot set it: <code>ResolveCredentials</code> clears the key on the way in,
 unconditionally and before every return, and re-sets it only from a resolved
 credential.</p>
-<p><strong>So a custom endpoint arrives by exactly one route — the saved credential.</strong> The
+<p><strong>So a custom endpoint arrives by exactly one route: the saved credential.</strong> The
 other ways to supply a key resolve before an endpoint could be injected: an
 inline key returns immediately, and the environment fallback builds a provider
 config that has no endpoint to give. A self-hosted endpoint combined with
 <code>--api-key</code>, or with a provider environment variable set, therefore calls the
 <em>public</em> host, saved credential or not. This is the intended shape rather than a
-gap — the endpoint and the secret are one decision, and only a saved credential
-holds both — but it is the shape a user is most likely to be surprised by, so
+gap (the endpoint and the secret are one decision, and only a saved credential
+holds both), but it is the shape a user is most likely to be surprised by, so
 <code>kapi credentials add --base-url</code> names it and
 <a class="" href="/kapi/recipes/choose-a-translation-provider">Choose a translation provider</a>
 states it where a user is choosing.</p>
 <p>This is enforced in the resolver rather than by the tool&#x27;s struct tags, because
 the two kinds of tag mean different things. <code>schema:&quot;-&quot;</code> keeps a field off the
 CLI and out of the generated form, but <code>core/schema.ApplyConfig</code> is a plain JSON
-round-trip — a step&#x27;s config map reaches every field with a <code>json</code> tag, whatever
+round-trip: a step&#x27;s config map reaches every field with a <code>json</code> tag, whatever
 its <code>schema</code> tag says. Hiding a field from the form is a presentation choice;
 keeping a recipe out of it is a separate act.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="default-provider-resolution">Default provider resolution<a href="#default-provider-resolution" class="hash-link" aria-label="Direct link to Default provider resolution" title="Direct link to Default provider resolution" translate="no">​</a></h3>
@@ -275,12 +281,12 @@ value came from</strong> (<code>env</code> | <code>config</code> | <code>none</c
 flag or an inline recipe value first, then <code>KAPI_AI_PROVIDER</code> / <code>KAPI_AI_MODEL</code>,
 then the stored <code>ai.provider</code> / <code>ai.model</code>.</p>
 <p>One resolver rather than six read sites, because six read sites had no shared
-answer to &quot;what is configured, and where did it come from&quot; — so a scope bug in
+answer to &quot;what is configured, and where did it come from&quot;, so a scope bug in
 the reader was invisible in all of them at once. Reporting the <em>source</em> alongside
 the value is what lets a diagnostic name the file or the environment variable to
 change, instead of asserting that nothing is configured.</p>
-<p>The app config file is pinned to <code>config.GlobalConfigFilePath()</code> — the same
-function the writers use — never resolved through a search path. A recipe is
+<p>The app config file is pinned to <code>config.GlobalConfigFilePath()</code> (the same
+function the writers use), and never resolved through a search path. A recipe is
 project configuration and app config is per-machine, so the working directory is
 not a config location: a search path reaching it would load the <em>recipe</em> as the
 app config inside any project, since a kapi project&#x27;s recipe is also named
@@ -293,7 +299,7 @@ why the two differ at all.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-tools-that-call-them">The tools that call them<a href="#the-tools-that-call-them" class="hash-link" aria-label="Direct link to The tools that call them" title="Direct link to The tools that call them" translate="no">​</a></h3>
 <p>Both families reach the pipeline as ordinary tools
 (<a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03</a>). On the CLI surface, translation is a single
-<code>translate</code> command across every backend and quality a single <code>qa</code> command — the
+<code>translate</code> command across every backend and quality a single <code>qa</code> command; the
 backend is selected with <code>--provider</code>, while the two provider interfaces stay
 distinct underneath. <code>review</code>, <code>term-extract</code>, <code>entity-extract</code>, <code>voice-check</code>,
 <code>voice-infer</code>, and <code>media-refine</code> are the other model-backed tools; the
@@ -309,8 +315,8 @@ named.</li>
 memory context; it does not rewrite the target.</li>
 <li class=""><code>qa</code> validates the result before it is written.</li>
 </ul>
-<p>Switching backends is a configuration change — one <code>--provider</code> value for
-another — and the rest of the flow is unchanged.</p>
+<p>Switching backends is a configuration change (one <code>--provider</code> value for
+another), and the rest of the flow is unchanged.</p>
 <p>Model-backed tools receive terminology context from upstream stages: matched
 terms and their preferred translations, identified entities with their
 do-not-translate flags and locale formatting hints, and a dedicated term-constraint
@@ -332,7 +338,7 @@ re-translating exact matches, reducing cost.</li>
 model-backed tools produce terminology-consistent output from the start.</li>
 <li class="">Throughput tuning lives on the tool, not in a hidden subsystem: a caller
 chooses a batching intent and a batch concurrency, with no worker pool to
-configure — and the two automatic downgrades keep correctness ahead of the
+configure, and the two automatic downgrades keep correctness ahead of the
 batch win where they conflict.</li>
 <li class=""><code>ChatStructured</code> gives tools a reliable JSON contract across providers with
 very different structured-output mechanisms.</li>
@@ -349,15 +355,15 @@ decision rather than a framework change.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direct link to Related" title="Direct link to Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — overlays on Blocks; the media anchor a multimodal message carries</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-01-processing-engine">E-01: The processing engine</a> — flow execution and <code>ParallelBlockTool</code></li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a> — the tool pattern, provider injection, and the remote-egress side effect</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a> — how a plugin registers a provider</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-03-multimodal-content">M-03: Multimodal content</a> — the refinement tier that sends image, audio, and video parts</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-05-prompts-and-batching">M-05: Prompts and batching</a> — prompt templates and the structured batch contract</li>
-<li class=""><a class="" href="/contribute/architecture/context/c-09-content-memory">C-09: Content memory</a> — <code>recycle</code> runs before generation and feeds it context</li>
-<li class=""><a class="" href="/contribute/architecture/context/c-08-terms">C-08: Terms</a> — term context feeds the prompt and the post-check</li>
-<li class=""><a class="" href="/contribute/architecture/surfaces/s-01-kapi-cli">S-01: The kapi CLI</a> — the credential store</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-07-model-providers.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-06-execution-trust"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-06: Execution trust</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/engine/e-08-document-structure-tiers"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">E-08: Document structure tiers</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-llm-provider-interface" class="table-of-contents__link toc-highlight">The LLM provider interface</a></li><li><a href="#the-mt-provider-interface" class="table-of-contents__link toc-highlight">The MT provider interface</a></li><li><a href="#credential-resolution" class="table-of-contents__link toc-highlight">Credential resolution</a></li><li><a href="#default-provider-resolution" class="table-of-contents__link toc-highlight">Default provider resolution</a></li><li><a href="#the-tools-that-call-them" class="table-of-contents__link toc-highlight">The tools that call them</a></li><li><a href="#scope-boundary" class="table-of-contents__link toc-highlight">Scope boundary</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:09 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: overlays on Blocks; the media anchor a multimodal message carries</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-01-processing-engine">E-01: The processing engine</a>: flow execution and <code>ParallelBlockTool</code></li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a>: the tool pattern, provider injection, and the remote-egress side effect</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a>: how a plugin registers a provider</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-03-multimodal-content">M-03: Multimodal content</a>: the refinement tier that sends image, audio, and video parts</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-05-prompts-and-batching">M-05: Prompts and batching</a>: prompt templates and the structured batch contract</li>
+<li class=""><a class="" href="/contribute/architecture/context/c-09-content-memory">C-09: Content memory</a>: <code>recycle</code> runs before generation and feeds it context</li>
+<li class=""><a class="" href="/contribute/architecture/context/c-08-terms">C-08: Terms</a>: term context feeds the prompt and the post-check</li>
+<li class=""><a class="" href="/contribute/architecture/surfaces/s-01-kapi-cli">S-01: The kapi CLI</a>: the credential store</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-07-model-providers.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-06-execution-trust"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-06: Execution trust</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/engine/e-08-document-structure-tiers"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">E-08: Document structure tiers</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-llm-provider-interface" class="table-of-contents__link toc-highlight">The LLM provider interface</a></li><li><a href="#the-mt-provider-interface" class="table-of-contents__link toc-highlight">The MT provider interface</a></li><li><a href="#credential-resolution" class="table-of-contents__link toc-highlight">Credential resolution</a></li><li><a href="#default-provider-resolution" class="table-of-contents__link toc-highlight">Default provider resolution</a></li><li><a href="#the-tools-that-call-them" class="table-of-contents__link toc-highlight">The tools that call them</a></li><li><a href="#scope-boundary" class="table-of-contents__link toc-highlight">Scope boundary</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:14 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

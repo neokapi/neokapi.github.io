@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Çöñţéñţ-Ḿöđéļ Þàŕîţý Àçŕöšš Ŵîŕé Þŕöĵéçţîöñš | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/qps/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/qps/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/qps/contribute/implementation/foundations/content-parity"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="qps"><meta data-rh="true" name="docsearch:language" content="qps"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Çöñţéñţ-Ḿöđéļ Þàŕîţý Àçŕöšš Ŵîŕé Þŕöĵéçţîöñš | neokapi"><meta data-rh="true" name="description" content="Ţĥé ļöššļéšš ŕöüñđ-ţŕîþ îñṽàŕîàñţ ƒöŕ à Ƃļöçķ àçŕöšš ţĥé çàñöñîçàļ çöñţéñţ šçĥéḿà àñđ éṽéŕý þŕöĵéçţîöñ öƒ îţ, ŵĥàţ ḿüšţ ŕöüñđ-ţŕîþ, àñđ ţĥé éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ çĥéçķļîšţ ĝàţéđ ƃý çöñƒöŕḿàñçé ţéšţš."><meta data-rh="true" property="og:description" content="Ţĥé ļöššļéšš ŕöüñđ-ţŕîþ îñṽàŕîàñţ ƒöŕ à Ƃļöçķ àçŕöšš ţĥé çàñöñîçàļ çöñţéñţ šçĥéḿà àñđ éṽéŕý þŕöĵéçţîöñ öƒ îţ, ŵĥàţ ḿüšţ ŕöüñđ-ţŕîþ, àñđ ţĥé éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ çĥéçķļîšţ ĝàţéđ ƃý çöñƒöŕḿàñçé ţéšţš."><meta data-rh="true" name="keywords" content="content parity,wire schema,projection,round-trip,overlays,protoconvert,kitchen sink,conformance test,drift guard,neokapi"><link data-rh="true" rel="icon" href="/qps/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/qps/contribute/implementation/foundations/content-parity"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/implementation/foundations/content-parity" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/implementation/foundations/content-parity" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/implementation/foundations/content-parity" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/implementation/foundations/content-parity" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Çöñţéñţ-Ḿöđéļ Þàŕîţý Àçŕöšš Ŵîŕé Þŕöĵéçţîöñš","item":"https://neokapi.github.io/qps/contribute/implementation/foundations/content-parity"}]}</script><link rel="stylesheet" href="/qps/assets/css/styles.3152a640.css">
-<script src="/qps/assets/js/runtime~main.4dd86b33.js" defer="defer"></script>
-<script src="/qps/assets/js/main.e84af3e2.js" defer="defer"></script>
+<script src="/qps/assets/js/runtime~main.c8decb6f.js" defer="defer"></script>
+<script src="/qps/assets/js/main.f4f19e51.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -20,16 +20,16 @@
 (ţĥé ḿöđéļ îţšéļƒ).</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="ţĥé-îñṽàŕîàñţ">Ţĥé îñṽàŕîàñţ<a href="#ţĥé-îñṽàŕîàñţ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé îñṽàŕîàñţ" title="Đîŕéçţ ļîñķ ţö Ţĥé îñṽàŕîàñţ" translate="no">​</a></h2>
 <blockquote>
-<p>À <code>model.Block</code> ŕöüñđ-ţŕîþš ļöššļéššļý ţĥŕöüĝĥ ţĥé çàñöñîçàļ šçĥéḿà —
-<strong>ḿöđéļ → þŕöţö → ḿöđéļ</strong> àñđ <strong>ḿöđéļ → çàñöñîçàļ ĴŠÖÑ → ḿöđéļ</strong> — àñđ
+<p>À <code>model.Block</code> ŕöüñđ-ţŕîþš ļöššļéššļý ţĥŕöüĝĥ ţĥé çàñöñîçàļ šçĥéḿà
+(<strong>ḿöđéļ → þŕöţö → ḿöđéļ</strong> àñđ <strong>ḿöđéļ → çàñöñîçàļ ĴŠÖÑ → ḿöđéļ</strong>) àñđ
 ţĥŕöüĝĥ éṽéŕý þŕöĵéçţîöñ öƒ îţ ƒöŕ ţĥé ƒîéļđš ţĥàţ þŕöĵéçţîöñ çàŕŕîéš,
 îñçļüđîñĝ ţĥé ƒüļļ <strong>ḿöđéļ → ŵîŕé → šţöŕé → ŕéàđ-ƃàçķ → ḿöđéļ</strong> çĥàîñ öƒ à
 þŕöĵéçţîöñ ţĥàţ þéŕšîšţš.</p>
 </blockquote>
 <p>Ƒ-04 àđḿîţš éẋàçţļý öñé çàñöñîçàļ šéŕîàļîžàţîöñ: ţĥé <code>neokapi.content.v1</code>
 þŕöţöƃüƒ îñ <code>core/proto/content/v1</code>, çöñṽéŕţéđ ƃý <code>core/plugin/protoconvert</code>.
-Éṽéŕý öţĥéŕ šéŕîàļîžéđ šĥàþé — à ţŕàñšþöŕţ éñṽéļöþé, à ŔÉŠŢ þàýļöàđ, à šéţ öƒ
-šţöŕé çöļüḿñš — îš àñ éẋþļîçîţļý-ļàƃéļéđ <strong>þŕöĵéçţîöñ</strong>. À þŕöĵéçţîöñ ḿàý çàŕŕý
+Éṽéŕý öţĥéŕ šéŕîàļîžéđ šĥàþé (à ţŕàñšþöŕţ éñṽéļöþé, à ŔÉŠŢ þàýļöàđ, à šéţ öƒ
+šţöŕé çöļüḿñš) îš àñ éẋþļîçîţļý-ļàƃéļéđ <strong>þŕöĵéçţîöñ</strong>. À þŕöĵéçţîöñ ḿàý çàŕŕý
 <em>ƒéŵéŕ</em> ƒîéļđš ţĥàñ ţĥé çàñöñîçàļ šçĥéḿà, àñđ îţ ḿàý àđđ éñṽéļöþé þŕöþéŕţîéš öƒ
 îţš öŵñ ƒöŕ ţĥé ţŵö đîḿéñšîöñš Ƒ-04 ķééþš öüţ öƒ ţĥé çàñöñîçàļ ḿéššàĝéš (ţàŕĝéţ
 ţöñé/çĥàññéļ, àñđ þéŕ-ţàŕĝéţ šţàţüš, öŕîĝîñ àñđ šçöŕé). Ŵĥàţ îţ ḿàý ñöţ đö îš
@@ -41,12 +41,12 @@
 þŕöṽéš ţĥéḿ ţĥé šàḿé ŵàý: à ƒüļļý þöþüļàţéđ ƒîẋţüŕé, đééþ-éǫüàļ àƒţéŕ ţĥé ţŕîþ,
 ŵîţĥ ŕéƒļéçţ-đŕîṽéñ ĝüàŕđš ţĥàţ ƒàîļ ŵĥéñ à ñéŵ ḿöđéļ ƒîéļđ îš ļéƒţ üñþöþüļàţéđ.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="à-ŵöŕķéđ-þŕöĵéçţîöñ-ţĥé-šýñç-ŵîŕé">À ŵöŕķéđ þŕöĵéçţîöñ: ţĥé šýñç ŵîŕé<a href="#à-ŵöŕķéđ-þŕöĵéçţîöñ-ţĥé-šýñç-ŵîŕé" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö À ŵöŕķéđ þŕöĵéçţîöñ: ţĥé šýñç ŵîŕé" title="Đîŕéçţ ļîñķ ţö À ŵöŕķéđ þŕöĵéçţîöñ: ţĥé šýñç ŵîŕé" translate="no">​</a></h2>
-<p>Ţĥé kapi↔bowrain šýñç ŵîŕé éẋéŕçîšéš ḿöŕé öƒ ţĥé çöñţŕàçţ ţĥàñ àñý öţĥéŕ
-þŕöĵéçţîöñ — ţŵö ƃļöçķ šĥàþéš ŵîţĥ à çöñţéñţ šţöŕé ƃéţŵééñ ţĥéḿ — šö îţ šéŕṽéš
-àš ţĥé ŵöŕķéđ éẋàḿþļé. À çöññéçţöŕ, àñ àŕçĥîṽé ƒöŕḿàţ, öŕ àñý öţĥéŕ þŕöĵéçţîöñ
+<p>Ţĥé ṽéñüé šýñç ŵîŕé éẋéŕçîšéš ḿöŕé öƒ ţĥé çöñţŕàçţ ţĥàñ àñý öţĥéŕ þŕöĵéçţîöñ
+(ţŵö ƃļöçķ šĥàþéš ŵîţĥ à çöñţéñţ šţöŕé ƃéţŵééñ ţĥéḿ), šö îţ šéŕṽéš àš ţĥé ŵöŕķéđ
+éẋàḿþļé. À çöññéçţöŕ, àñ àŕçĥîṽé ƒöŕḿàţ, öŕ àñý öţĥéŕ þŕöĵéçţîöñ
 îš ĥéļđ ţö ţĥé šàḿé ţĥŕéé öƃļîĝàţîöñš: đéçļàŕé ŵĥàţ îţ çàŕŕîéš, çöñṽéŕţ îţ îñ
 ƃöţĥ đîŕéçţîöñš, àñđ ĝàţé ƃöţĥ đîŕéçţîöñš ŵîţĥ à þöþüļàţéđ ƒîẋţüŕé.</p>
-<table><thead><tr><th>Þàţĥ</th><th>Đîŕéçţîöñ</th><th>Ŵĥéŕé</th><th>Öṽéŕļàý çàŕŕîàĝé</th></tr></thead><tbody><tr><td><strong>Þŕöţö þüšĥ</strong></td><td>kapi → šéŕṽéŕ</td><td><code>core/venue</code> (<code>BlockToProto</code>/<code>ProtoToBlock</code>), ḿéššàĝé <code>SyncBlock</code> îñ <code>core/proto/sync/v1</code></td><td>ţýþéđ <code>neokapi.content.v1.OverlayMessage</code> (ŕéüšéš <code>protoconvert.OverlayToProto</code>)</td></tr><tr><td><strong>ĴŠÖÑ þüļļ</strong></td><td>šéŕṽéŕ → kapi</td><td><code>host/venue/client</code> (<code>StoredBlockToSyncBlock</code>/<code>SyncBlockToBlock</code>), ĴŠÖÑ <code>SyncBlock</code></td><td>đîšçŕîḿîñàţéđ ĴŠÖÑ ƃļöƃ ṽîà <code>core/venue.MarshalOverlays</code> (ḿàţçĥéš ţĥé àññöţàţîöñš ƃļöƃ îđîöḿ)</td></tr><tr><td><strong>Šţöŕé</strong></td><td>šéŕṽéŕ þéŕšîšţéñçé</td><td><code>bowrain/store</code> (<code>StoreBlocks</code>/<code>GetBlock</code>)</td><td><code>overlays</code> çöļüḿñ, <code>bowrain/store.MarshalOverlays</code> → đéļéĝàţéš ţö <code>core/venue</code></td></tr></tbody></table>
+<table><thead><tr><th>Þàţĥ</th><th>Đîŕéçţîöñ</th><th>Ŵĥéŕé</th><th>Öṽéŕļàý çàŕŕîàĝé</th></tr></thead><tbody><tr><td><strong>Þŕöţö þüšĥ</strong></td><td>kapi → šéŕṽéŕ</td><td><code>core/venue</code> (<code>BlockToProto</code>/<code>ProtoToBlock</code>), ḿéššàĝé <code>SyncBlock</code> îñ <code>core/proto/sync/v1</code></td><td>ţýþéđ <code>neokapi.content.v1.OverlayMessage</code> (ŕéüšéš <code>protoconvert.OverlayToProto</code>)</td></tr><tr><td><strong>ĴŠÖÑ þüļļ</strong></td><td>šéŕṽéŕ → kapi</td><td><code>host/venue/client</code> (<code>StoredBlockToSyncBlock</code>/<code>SyncBlockToBlock</code>), ĴŠÖÑ <code>SyncBlock</code></td><td>đîšçŕîḿîñàţéđ ĴŠÖÑ ƃļöƃ ṽîà <code>core/venue.MarshalOverlays</code> (ḿàţçĥéš ţĥé àññöţàţîöñš ƃļöƃ îđîöḿ)</td></tr><tr><td><strong>Šţöŕé</strong></td><td>ṽéñüé þéŕšîšţéñçé</td><td>à ṽéñüé îḿþļéḿéñţàţîöñ&#x27;š šţöŕé (<code>StoreBlocks</code>/<code>GetBlock</code>)</td><td>àñ <code>overlays</code> çöļüḿñ ŵĥöšé çöđéç đéļéĝàţéš ţö <code>core/venue</code></td></tr></tbody></table>
 <p>Ţĥé öṽéŕļàý ĴŠÖÑ çöđéç ļîṽéš öñçé îñ <code>core/venue</code> (<code>overlays_json.go</code>)
 àñđ îš šĥàŕéđ ƃý ţĥé ĴŠÖÑ þüļļ þàţĥ àñđ ţĥé šţöŕé, šö ţĥé ŵîŕé šĥàþé îš đéƒîñéđ
 îñ öñé þļàçé ŕàţĥéŕ ţĥàñ ḿîŕŕöŕéđ þéŕ çöñšüḿéŕ.</p>
@@ -54,27 +54,27 @@
 <p>Ţĥé çàñöñîçàļ <code>BlockMessage</code> ŕéçöñšţŕüçţš šéĝḿéñţàţîöñ ƒŕöḿ îţš ḿüļţî-šéĝḿéñţ
 šöüŕçé/ţàŕĝéţ ƃöüñđàŕîéš àñđ ţĥéŕéƒöŕé <strong>éẋçļüđéš</strong> šéĝḿéñţàţîöñ ƒŕöḿ îţš
 <code>overlays</code> ƒîéļđ. À <code>SyncBlock</code> îñšţéàđ çàŕŕîéš šöüŕçé/ţàŕĝéţ àš à <strong>šîñĝļé ŵîŕé
-šéĝḿéñţ</strong>, šö šéĝḿéñţàţîöñ îš ñöţ ŕéçöñšţŕüçţàƃļé ƒŕöḿ šéĝḿéñţ ƃöüñđàŕîéš — îţ
+šéĝḿéñţ</strong>, šö šéĝḿéñţàţîöñ îš ñöţ ŕéçöñšţŕüçţàƃļé ƒŕöḿ šéĝḿéñţ ƃöüñđàŕîéš; îţ
 ŕîđéš îñ ţĥé <code>SyncBlock.overlays</code> ļîšţ éẋþļîçîţļý, àļöñĝšîđé ţéŕḿ/éñţîţý/ǫà/…
 Ţĥîš îš ţĥé öñé îñţéñţîöñàļ đîṽéŕĝéñçé ƒŕöḿ ţĥé <code>BlockMessage</code> öṽéŕļàý ŕüļé.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="ŵĥàţ-ḿüšţ-ŕöüñđ-ţŕîþ">Ŵĥàţ ḿüšţ ŕöüñđ-ţŕîþ<a href="#ŵĥàţ-ḿüšţ-ŕöüñđ-ţŕîþ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ŵĥàţ ḿüšţ ŕöüñđ-ţŕîþ" title="Đîŕéçţ ļîñķ ţö Ŵĥàţ ḿüšţ ŕöüñđ-ţŕîþ" translate="no">​</a></h2>
-<p>Ţĥé ļîšţ ƃéļöŵ îš ţĥé ḿöđéļ&#x27;š þàŕîţý šüŕƒàçé — ŵĥàţ àñý þŕöĵéçţîöñ&#x27;š ƒîẋţüŕé
+<p>Ţĥé ļîšţ ƃéļöŵ îš ţĥé ḿöđéļ&#x27;š þàŕîţý šüŕƒàçé: ŵĥàţ àñý þŕöĵéçţîöñ&#x27;š ƒîẋţüŕé
 ĥàš ţö þöþüļàţé ƃéƒöŕé îţš ŕöüñđ-ţŕîþ ţéšţ ḿéàñš àñýţĥîñĝ. Ţĥé šýñç ŵîŕé&#x27;š
 ƒîẋţüŕé îš <code>core/venue/venuetest.KitchenSinkBlock</code>; à ñéŵ þŕöĵéçţîöñ ŵŕîţéš
 îţš öŵñ àĝàîñšţ ţĥé šàḿé ļîšţ.</p>
 <ul>
-<li class=""><strong>Šçàļàŕš</strong>: <code>ID</code>, <code>Name</code>, <code>Type</code>, <code>MimeType</code>, <code>Translatable</code>,
+<li class=""><strong>Šçàļàŕš</strong>: <code>ID</code>, <code>Name</code>, <code>Unit</code>, <code>Type</code>, <code>MimeType</code>, <code>Translatable</code>,
 <code>PreserveWhitespace</code>, <code>IsReferent</code>, <code>SourceLocale</code>, <code>SourceStatus</code>.</li>
-<li class=""><strong>Šöüŕçé</strong>: à <code>[]Run</code> ŵîţĥ <strong>éṽéŕý Ŕüñ ķîñđ</strong> — Ţéẋţ, Þĥ, ÞçÖþéñ, ÞçÇļöšé,
-Šüƃ, Þļüŕàļ, Šéļéçţ — îñçļüđîñĝ <code>Run.Attrs</code> (ĥŕéƒ/šŕç/àļţ/ţîţļé) öñ Þĥ/ÞçÖþéñ.</li>
+<li class=""><strong>Šöüŕçé</strong>: à <code>[]Run</code> ŵîţĥ <strong>éṽéŕý Ŕüñ ķîñđ</strong> (Ţéẋţ, Þĥ, ÞçÖþéñ, ÞçÇļöšé,
+Šüƃ, Þļüŕàļ, Šéļéçţ), îñçļüđîñĝ <code>Run.Attrs</code> (ĥŕéƒ/šŕç/àļţ/ţîţļé) öñ Þĥ/ÞçÖþéñ.</li>
 <li class=""><strong>Ţàŕĝéţš</strong>: ḿüļţîþļé <code>VariantKey</code>š (ļöçàļé-öñļý àñđ ļöçàļé+ţöñé), éàçĥ ŵîţĥ
-<code>Status</code>, <code>Score</code>, àñđ à ƒüļļ <code>Origin</code> — ƃöţĥ ĥàļṽéš öƒ îţ: ĥöŵ ţĥé ţàŕĝéţ ŵàš
+<code>Status</code>, <code>Score</code>, àñđ à ƒüļļ <code>Origin</code>, ƃöţĥ ĥàļṽéš öƒ îţ: ĥöŵ ţĥé ţàŕĝéţ ŵàš
 ḿàđé (ķîñđ, éñĝîñé, ţööļ, ŕéƒéŕéñçé, ţîḿéšţàḿþ, <strong>çöñƒîđéñçé</strong>) àñđ ŵĥàţ
 ĝöṽéŕñéđ îţ (<strong>þŕöƒîļé</strong>, <strong>þŕöƒîļé ṽéŕšîöñ</strong>, <strong>çöñţéẋţ ƒîñĝéŕþŕîñţ</strong>).
 Ţöñé/çĥàññéļ ŕîđé ţĥé ţàŕĝéţ ḿàþ ķéý&#x27;š ţéẋţ ƒöŕḿ; šţàţüš/öŕîĝîñ/šçöŕé ŕîđé ţĥé
 ŵîŕé šéĝḿéñţ&#x27;š þŕöþéŕţîéš.</li>
-<li class=""><strong>Öṽéŕļàýš</strong>: <strong>éṽéŕý ÖṽéŕļàýŢýþé</strong> — šéĝḿéñţàţîöñ (îñçļ. àñ îĝñöŕàƃļé šþàñ),
-ţéŕḿ, éñţîţý, ǫà, àļîĝñḿéñţ (ṽàŕîàñţ-šçöþéđ), ţéŕḿ-çàñđîđàţé — ŵîţĥ àñçĥöŕš,
+<li class=""><strong>Öṽéŕļàýš</strong>: <strong>éṽéŕý ÖṽéŕļàýŢýþé</strong>: šéĝḿéñţàţîöñ (îñçļ. àñ îĝñöŕàƃļé šþàñ),
+ţéŕḿ, éñţîţý, ǫà, àļîĝñḿéñţ (ṽàŕîàñţ-šçöþéđ) àñđ ţéŕḿ-çàñđîđàţé, éàçĥ ŵîţĥ àñçĥöŕš,
 þŕöþš, ṽàŕîàñţ, àñđ ţýþéđ šþàñ <code>Value</code>. Ţýþéđ ṽàļüéš (<code>*EntityAnnotation</code>,
 <code>*TermAnnotation</code>, …) ḿüšţ ŕéĥýđŕàţé ţö ţĥéîŕ çöñçŕéţé ţýþé ṽîà ţĥé þàýļöàđ
 ŕéĝîšţŕý, ñöţ à ĝéñéŕîç ḿàþ.</li>
@@ -90,7 +90,7 @@
 þŕöĵéçţîöñ ţĥàţ ŵàñţš ţĥé ĥàšĥ àṽàîļàƃļé ŵîţĥöüţ ŕéçöḿþüţîñĝ îţ çàŕŕîéš îţ îñ
 îţš öŵñ éñṽéļöþé, àš ţĥé šýñç ŵîŕé đöéš îñ <code>SyncBlock.content_hash</code>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="ţĥé-çöñƒöŕḿàñçé-ĝàţé">Ţĥé çöñƒöŕḿàñçé ĝàţé<a href="#ţĥé-çöñƒöŕḿàñçé-ĝàţé" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé çöñƒöŕḿàñçé ĝàţé" title="Đîŕéçţ ļîñķ ţö Ţĥé çöñƒöŕḿàñçé ĝàţé" translate="no">​</a></h2>
-<p>Ţĥé þàŕîţý çöñţŕàçţ îš éñƒöŕçéđ ƃý ţéšţš, ñöţ ƃý ŕéṽîéŵ ṽîĝîļàñçé.</p>
+<p>Ţĥé þàŕîţý çöñţŕàçţ îš éñƒöŕçéđ ƃý ţéšţš.</p>
 <p>Ţĥé çàñöñîçàļ ļéĝ îš ĝàţéđ îñ ţĥé ƒŕàḿéŵöŕķ, öñçé ƒöŕ éṽéŕýöñé:</p>
 <ul>
 <li class=""><strong>Šçĥéḿà üñîǫüéñéšš</strong> (<code>core/proto/content/guard_test.go</code>,
@@ -110,45 +110,45 @@
 <code>TestKitchenSinkRoundTrip</code>): ḿöđéļ → þŕöţö → ḿöđéļ îš đééþ-éǫüàļ ƒöŕ ţĥé ƒüļļý
 þöþüļàţéđ ƒîẋţüŕé. Ţĥé ĴŠÖÑ þüļļ éǫüîṽàļéñţ ļîṽéš îñ
 <code>host/venue/client/sync_conformance_test.go</code>.</li>
-<li class=""><strong>Ƒüļļ çĥàîñ</strong> (<code>bowrain/store/sync_roundtrip_test.go</code>,
-<code>TestSyncOverlayFullChainRoundTrip</code>): ḿöđéļ → þŕöţö → <code>StoreBlocks</code> →
-<code>GetBlock</code> → þŕöţö → ḿöđéļ àĝàîñšţ à ŕéàļ Þöšţĝŕéš ţéšţçöñţàîñéŕ, þŕöṽîñĝ ţĥé
-ŵĥöļé kapi→ŵîŕé→šţöŕé→þüļļ çĥàîñ þŕéšéŕṽéš öṽéŕļàýš àñđ çöŕé çöñţéñţ.</li>
+<li class=""><strong>Ƒüļļ çĥàîñ</strong>: à ṽéñüé îḿþļéḿéñţàţîöñ&#x27;š šţöŕé ĝàţéš îţš öŵñ ļéĝ ţĥé šàḿé
+ŵàý, ḿöđéļ → þŕöţö → <code>StoreBlocks</code> → <code>GetBlock</code> → þŕöţö → ḿöđéļ àĝàîñšţ à
+ŕéàļ đàţàƃàšé, þŕöṽîñĝ ţĥé ŵĥöļé ŵîŕé→šţöŕé→þüļļ çĥàîñ þŕéšéŕṽéš öṽéŕļàýš àñđ
+çöŕé çöñţéñţ.</li>
 <li class=""><strong>Ŕéƒļéçţ çöḿþļéţéñéšš ĝüàŕđ</strong> (<code>TestBlockFixtureIsComplete</code>): ŵàļķš
-<code>model.Block</code>&#x27;š éẋþöŕţéđ ƒîéļđš àñđ ƒàîļš îƒ àñý îš ļéƒţ žéŕö îñ ţĥé ƒîẋţüŕé —
+<code>model.Block</code>&#x27;š éẋþöŕţéđ ƒîéļđš àñđ ƒàîļš îƒ àñý îš ļéƒţ žéŕö îñ ţĥé ƒîẋţüŕé,
 šö à <strong>ñéŵ Ƃļöçķ ƒîéļđ</strong> ţŕîþš ţĥé ţéšţ üñţîļ îţ îš þöþüļàţéđ (öŕ àļļöŵ-ļîšţéđ
 àš đéŕîṽéđ).</li>
 <li class=""><strong>Þŕöṽéñàñçé çöḿþļéţéñéšš ĝüàŕđ</strong> (<code>TestOriginFixtureIsComplete</code>): ţĥé šàḿé
 ŵàļķ öñé ļéṽéļ đöŵñ, öṽéŕ <code>model.Origin</code>. Ţĥé Ƃļöçķ-ļéṽéļ ĝüàŕđ öñļý šééš
 Ƃļöçķ&#x27;š öŵñ ƒîéļđš, šö à ñéŵ <code>Origin</code> ƒîéļđ šîţš žéŕö îñšîđé à ñöñ-žéŕö
-<code>Targets</code> ḿàþ àñđ šļîþš þàšţ îţ — àñđ ţĥé ŕöüñđ-ţŕîþ ţĥéñ þàššéš ŵĥîļé
+<code>Targets</code> ḿàþ àñđ šļîþš þàšţ îţ, àñđ ţĥé ŕöüñđ-ţŕîþ ţĥéñ þàššéš ŵĥîļé
 šîļéñţļý đŕöþþîñĝ îţ. Þŕöṽéñàñçé îš ţĥé öñé ŕéçöŕđ ţĥàţ çàññöţ ƃé
 ŕéçöñšţŕüçţéđ ļàţéŕ, šö îţ ĝéţš îţš öŵñ ĝüàŕđ.</li>
-<li class=""><strong>Ķîñđ ţàƃļéš</strong> (<code>synctest.AllRunKinds</code>, <code>synctest.AllOverlayKinds</code>): îţéŕàţéđ
+<li class=""><strong>Ķîñđ ţàƃļéš</strong> (<code>venuetest.AllRunKinds</code>, <code>venuetest.AllOverlayKinds</code>): îţéŕàţéđ
 ƃý ţĥé ŕöüñđ-ţŕîþ ţéšţš; à <strong>ñéŵ Ŕüñ/Öṽéŕļàý ķîñđ</strong> ţŕîþš ţĥéḿ üñţîļ îţ îš
 àđđéđ ţö ţĥé ţàƃļé, ţĥé ƒîẋţüŕé, àñđ ţĥé çöñṽéŕţéŕ.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ-çĥéçķļîšţ">Éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ çĥéçķļîšţ<a href="#éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ-çĥéçķļîšţ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ çĥéçķļîšţ" title="Đîŕéçţ ļîñķ ţö Éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ çĥéçķļîšţ" translate="no">​</a></h2>
 <p>Àđđîñĝ à Ƃļöçķ/Ŕüñ/Öṽéŕļàý ƒîéļđ, öŕ à ñéŵ Ŕüñ/Öṽéŕļàý ķîñđ:</p>
 <ol>
-<li class=""><strong>Çàñöñîçàļ šçĥéḿà</strong> — àđđ ţĥé ƒîéļđ ţö ţĥé <code>content.proto</code> ḿéššàĝé àñđ ŕüñ
+<li class=""><strong>Çàñöñîçàļ šçĥéḿà</strong>: àđđ ţĥé ƒîéļđ ţö ţĥé <code>content.proto</code> ḿéššàĝé àñđ ŕüñ
 <code>make proto</code> (ñéṽéŕ ĥàñđ-éđîţ ţĥé ĝéñéŕàţéđ <code>*.pb.go</code>), ţĥéñ ŵîŕé îţ îñţö
 <code>core/plugin/protoconvert</code> îñ ƃöţĥ đîŕéçţîöñš àñđ éẋţéñđ ţĥé çöḿþàţ çöŕþüš.
 Éṽéŕýţĥîñĝ đöŵñšţŕéàḿ ŕéàđš ţĥé ḿöđéļ ţĥŕöüĝĥ ţĥîš šçĥéḿà, šö îţ çöḿéš ƒîŕšţ.</li>
-<li class=""><strong>Éàçĥ þŕöĵéçţîöñ&#x27;š çöñṽéŕţéŕš, ƃöţĥ đîŕéçţîöñš</strong> — à þŕöĵéçţîöñ ţĥàţ ḿüšţ
+<li class=""><strong>Éàçĥ þŕöĵéçţîöñ&#x27;š çöñṽéŕţéŕš, ƃöţĥ đîŕéçţîöñš</strong>: à þŕöĵéçţîöñ ţĥàţ ḿüšţ
 çàŕŕý ţĥé ƒîéļđ çöñṽéŕţš îţ öñ ţĥé ŵàý öüţ àñđ öñ ţĥé ŵàý ƃàçķ. Öñ ţĥé šýñç
 ŵîŕé ţĥàţ îš <code>core/venue</code> (<code>BlockToProto</code>/<code>ProtoToBlock</code>) <strong>àñđ</strong> ţĥé
 ĴŠÖÑ þüļļ þàţĥ (<code>host/venue/client/sync_convert.go</code>); à þŕöĵéçţîöñ ŵîţĥ îţš
 öŵñ éñṽéļöþé ḿéššàĝé àđđš ţĥé ƒîéļđ ţĥéŕé ţöö.</li>
-<li class=""><strong>Þéŕšîšţéñçé</strong> — îƒ à þŕöĵéçţîöñ šţöŕéš ţĥé ƒîéļđ, àđđ ţĥé çöļüḿñ àñđ îţš
-(đé)šéŕîàļîžàţîöñ. Öñ ţĥé šýñç ŵîŕé ţĥàţ îš <code>bowrain/store</code> (àñđ
-<code>sqlitestore</code>).</li>
-<li class=""><strong>Ƒîẋţüŕéš</strong> — þöþüļàţé ţĥé ñéŵ ƒîéļđ öŕ ķîñđ îñ éṽéŕý þŕöĵéçţîöñ&#x27;š ƒîẋţüŕé,
+<li class=""><strong>Þéŕšîšţéñçé</strong>: îƒ à þŕöĵéçţîöñ šţöŕéš ţĥé ƒîéļđ, àđđ ţĥé çöļüḿñ àñđ îţš
+(đé)šéŕîàļîžàţîöñ. Öñ ţĥé šýñç ŵîŕé ţĥàţ îš ţĥé ṽéñüé îḿþļéḿéñţàţîöñ&#x27;š šţöŕé,
+àñđ <code>core/blockstore/sqlitestore</code> ļöçàļļý.</li>
+<li class=""><strong>Ƒîẋţüŕéš</strong>: þöþüļàţé ţĥé ñéŵ ƒîéļđ öŕ ķîñđ îñ éṽéŕý þŕöĵéçţîöñ&#x27;š ƒîẋţüŕé,
 àñđ àđđ à ñéŵ ķîñđ ţö ţĥé ķîñđ ţàƃļéš ţĥé ŕöüñđ-ţŕîþ ţéšţš îţéŕàţé
-(<code>synctest.AllRunKinds</code> / <code>synctest.AllOverlayKinds</code> ƒöŕ ţĥé šýñç ŵîŕé).</li>
-<li class=""><strong>Ŕüñ ţĥé çöñƒöŕḿàñçé ţéšţš</strong> — ţĥéý àŕé ţĥé ĝàţé. Ĝŕééñ ḿéàñš þàŕîţý ĥöļđš.</li>
+(<code>venuetest.AllRunKinds</code> / <code>venuetest.AllOverlayKinds</code> ƒöŕ ţĥé šýñç ŵîŕé).</li>
+<li class=""><strong>Ŕüñ ţĥé çöñƒöŕḿàñçé ţéšţš</strong>: ţĥéý àŕé ţĥé ĝàţé. Ĝŕééñ ḿéàñš þàŕîţý ĥöļđš.</li>
 </ol>
-<h2 class="anchor anchorTargetStickyNavbar_NsHk" id="ķñöŵñ-đéļîƃéŕàţé-ļîḿîţàţîöñš-öƒ-ţĥé-šýñç-ŵîŕé-þŕöĵéçţîöñ">Ķñöŵñ, đéļîƃéŕàţé ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ<a href="#ķñöŵñ-đéļîƃéŕàţé-ļîḿîţàţîöñš-öƒ-ţĥé-šýñç-ŵîŕé-þŕöĵéçţîöñ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ķñöŵñ, đéļîƃéŕàţé ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ" title="Đîŕéçţ ļîñķ ţö Ķñöŵñ, đéļîƃéŕàţé ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_NsHk" id="ķñöŵñ-ļîḿîţàţîöñš-öƒ-ţĥé-šýñç-ŵîŕé-þŕöĵéçţîöñ">Ķñöŵñ ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ<a href="#ķñöŵñ-ļîḿîţàţîöñš-öƒ-ţĥé-šýñç-ŵîŕé-þŕöĵéçţîöñ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ķñöŵñ ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ" title="Đîŕéçţ ļîñķ ţö Ķñöŵñ ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ" translate="no">​</a></h2>
 <p>Ţĥéšé àŕé þŕöþéŕţîéš öƒ ţĥàţ öñé þŕöĵéçţîöñ, ñöţ öƒ ţĥé çöñţŕàçţ. Ţĥéý àŕé
 ŕéçöŕđéđ ĥéŕé ƃéçàüšé à þŕöĵéçţîöñ îš ŕéǫüîŕéđ ţö šàý ŵĥàţ îţ đöéš ñöţ çàŕŕý.</p>
 <ul>
@@ -156,30 +156,25 @@
 ţŕàñšļàţàƃļé, šöüŕçé ŕüñš, þŕöþéŕţîéš, öṽéŕļàýš, þļüš ţàŕĝéţš/àññöţàţîöñš îñ
 šîđé ţàƃļéš). Šķéļéţöñ, ĐîšþļàýĤîñţ, ÇöñţéñţŔéƒ, ŠöüŕçéĻöçàļé, ŠöüŕçéŠţàţüš,
 ÎšŔéƒéŕéñţ, àñđ ÞŕéšéŕṽéŴĥîţéšþàçé àŕé <strong>ñöţ</strong> šţöŕé çöļüḿñš ţöđàý, šö ţĥéý đö
-ñöţ šüŕṽîṽé ţĥé šţöŕé ļéĝ — ţĥéý <em>đö</em> šüŕṽîṽé ţĥé ḿöđéļ↔þŕöţö àñđ ḿöđéļ↔ĴŠÖÑ
+ñöţ šüŕṽîṽé ţĥé šţöŕé ļéĝ; ţĥéý <em>đö</em> šüŕṽîṽé ţĥé ḿöđéļ↔þŕöţö àñđ ḿöđéļ↔ĴŠÖÑ
 ļéĝš. Ţĥé ƒüļļ-çĥàîñ ţéšţ ţĥéŕéƒöŕé àššéŕţš öṽéŕļàýš + çöŕé çöñţéñţ, ñöţ ƒüļļ
 đééþ-éǫüàļ.</li>
-<li class=""><strong><code>Block.Skeleton</code> îš đéļîƃéŕàţéļý ñöţ šţöŕéđ — îţ îš à đéļîṽéŕý-éđĝé
-çöñçéŕñ, ñöţ þļàţƒöŕḿ šţàţé.</strong> Ţĥé šķéļéţöñ (à ƒöŕḿàţ&#x27;š ñöñ-ţŕàñšļàţàƃļé
+<li class=""><strong><code>Block.Skeleton</code> îš ñöţ šţöŕéđ: îţ îš à đéļîṽéŕý-éđĝé çöñçéŕñ.</strong> Ţĥé šķéļéţöñ (à ƒöŕḿàţ&#x27;š ñöñ-ţŕàñšļàţàƃļé
 đöçüḿéñţ ƒŕàḿé: çöḿḿéñţš, àţţŕîƃüţé öŕđéŕ, ñöñ-ţŕàñšļàţàƃļé éñţŕîéš, éļéḿéñţ
 öŕđéŕîñĝ) îš <em>ţýþéđ šçàƒƒöļđîñĝ öƒ öñé ƒöŕḿàţ</em> àñđ ŵöüļđ çöüþļé ţĥé
-ƒöŕḿàţ-àĝñöšţîç çöñţéñţ šţöŕé ţö þéŕ-ƒöŕḿàţ šţŕüçţüŕé. Îñšţéàđ, ƒàîţĥƒüļ
-šéŕṽéŕ-šîđé đéļîṽéŕý ŕéçöñšţŕüçţš îţ <strong>àţ ţĥé éđĝé</strong>: ţĥé ƒîļé/ĝîţ/ƒöŕĝé
-çöññéçţöŕ&#x27;š ŵŕîţé þàţĥ (<code>bowrain/connector/file.go</code>, <code>publishFile</code>) ŕé-ŕéàđš
-ţĥé çö-ļöçàţéđ <strong>šöüŕçé</strong> đöçüḿéñţ, çàþţüŕéš îţš šķéļéţöñ ŵîţĥ ţĥé ƒöŕḿàţ
-ŕéàđéŕ, àñđ šþļîçéš ţĥé ŕéṽîéŵéđ ţàŕĝéţš ƃàçķ îñ — éẋàçţļý ţĥé ļöçàļ
-<code>kapi merge</code> ŕöüñđţŕîþ (<code>host/merge.go</code> <code>writeMergedSourceWithSkeleton</code>). Ţĥîš
-îš àļŵàýš àṽàîļàƃļé îñ ţĥé kapi-àš-çöññéçţöŕ ţöþöļöĝý: þüšĥ àñđ đéļîṽéŕý šĥàŕé
-ţĥé šàḿé ŕéþöšîţöŕý çĥéçķöüţ, šö ţĥé šöüŕçé šîţš öñ đîšķ ñéẋţ ţö ţĥé đéļîṽéŕý
-ţàŕĝéţ. Þüŕé-šţŕüçţüŕé ƒöŕḿàţš (ĵšöñ/ýàḿļ/àŕƃ/þö/…) ŵĥöšé ƃļöçķ šéţ ƒüļļý
+ƒöŕḿàţ-àĝñöšţîç çöñţéñţ šţöŕé ţö þéŕ-ƒöŕḿàţ šţŕüçţüŕé. Îñšţéàđ, à ṽéñüé&#x27;š
+đéļîṽéŕý çöññéçţöŕ ŕéçöñšţŕüçţš îţ <strong>àţ ţĥé éđĝé</strong>: îţš ŵŕîţé þàţĥ ŕé-ŕéàđš ţĥé
+çö-ļöçàţéđ <strong>šöüŕçé</strong> đöçüḿéñţ, çàþţüŕéš îţš šķéļéţöñ ŵîţĥ ţĥé ƒöŕḿàţ ŕéàđéŕ,
+àñđ šþļîçéš ţĥé ŕéṽîéŵéđ ţàŕĝéţš ƃàçķ îñ, éẋàçţļý ţĥé ļöçàļ <code>kapi merge</code>
+ŕöüñđ ţŕîþ (<code>host/merge.go</code> <code>writeMergedSourceWithSkeleton</code>). Ţĥîš îš àļŵàýš
+àṽàîļàƃļé ŵĥéñ ţĥé šàḿé çĥéçķöüţ þüšĥéš àñđ đéļîṽéŕš, šö ţĥé šöüŕçé šîţš öñ
+đîšķ ñéẋţ ţö ţĥé đéļîṽéŕý ţàŕĝéţ. Þüŕé-šţŕüçţüŕé ƒöŕḿàţš (ĵšöñ/ýàḿļ/àŕƃ/þö/…) ŵĥöšé ƃļöçķ šéţ ƒüļļý
 đéţéŕḿîñéš ţĥé ƒîļé đéļîṽéŕ ƃýţé-îđéñţîçàļļý éîţĥéŕ ŵàý, šö ţĥé ŕé-þàŕšé þàţĥ
 îš ţŕàñšþàŕéñţ ƒöŕ ţĥéḿ.<!-- -->
 <ul>
-<li class=""><strong>Öüţ öƒ šçöþé (đöçüḿéñţéđ, ñöţ ƒîẋéđ):</strong> çöñţéñţ þüšĥéđ ţö Bowrain ŵîţĥ
-<strong>ñö</strong> çö-ļöçàţéđ šöüŕçé àţ đéļîṽéŕý ţîḿé. Ţĥàţ ţöþöļöĝý đöéš ñöţ àŕîšé îñ
-ţĥé kapi-àš-çöññéçţöŕ ḿöđéļ; đéļîṽéŕý đéĝŕàđéš ţö ţĥé ƒŕöḿ-ƃļöçķš
-ŕéçöñšţŕüçţîöñ (ţöđàý&#x27;š ƃéĥàṽîöüŕ) ŕàţĥéŕ ţĥàñ ŕéîñţŕöđüçîñĝ šķéļéţöñ
-šţöŕàĝé îñţö ţĥé þļàţƒöŕḿ.</li>
+<li class="">Çöñţéñţ ĥéļđ ƃý à ṽéñüé ŵîţĥ <strong>ñö</strong> çö-ļöçàţéđ šöüŕçé àţ đéļîṽéŕý ţîḿé
+đéĝŕàđéš ţö ţĥé ƒŕöḿ-ƃļöçķš ŕéçöñšţŕüçţîöñ ŕàţĥéŕ ţĥàñ ŕéîñţŕöđüçîñĝ
+šķéļéţöñ šţöŕàĝé îñţö ţĥé ṽéñüé.</li>
 </ul>
 </li>
 <li class="">Öñ ţĥé <strong>þŕöţö þüšĥ</strong> þàţĥ àñ <em>üñŕéĝîšţéŕéđ</em> öṽéŕļàý þàýļöàđ đéĝŕàđéš ţö à
@@ -187,6 +182,6 @@
 <code>protoconvert</code>), ŵĥéŕéàš ţĥé ĴŠÖÑ þüļļ / šţöŕé çöđéçš ŕéçöñšţŕüçţ îţ éẋàçţļý.
 Ñö đàţà îš ļöšţ éîţĥéŕ ŵàý; ŕéĝîšţéŕéđ (ƃüîļţ-îñ) öṽéŕļàý ķîñđš ŕöüñđ-ţŕîþ
 éẋàçţļý öñ àļļ þàţĥš.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/implementation/foundations/content-parity.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/qps/contribute/implementation/index"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">Îḿþļéḿéñţàţîöñ Ñöţéš Öṽéŕṽîéŵ</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/qps/contribute/implementation/engine/implementing-formats"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">Îḿþļéḿéñţîñĝ Ƒöŕḿàţš</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#ţĥé-îñṽàŕîàñţ" class="table-of-contents__link toc-highlight">Ţĥé îñṽàŕîàñţ</a></li><li><a href="#à-ŵöŕķéđ-þŕöĵéçţîöñ-ţĥé-šýñç-ŵîŕé" class="table-of-contents__link toc-highlight">À ŵöŕķéđ þŕöĵéçţîöñ: ţĥé šýñç ŵîŕé</a><ul><li><a href="#ŵĥý-ţĥé-þŕöţö-þüšĥ-çàŕŕîéš-šéĝḿéñţàţîöñ-éẋþļîçîţļý" class="table-of-contents__link toc-highlight">Ŵĥý ţĥé þŕöţö þüšĥ çàŕŕîéš šéĝḿéñţàţîöñ éẋþļîçîţļý</a></li></ul></li><li><a href="#ŵĥàţ-ḿüšţ-ŕöüñđ-ţŕîþ" class="table-of-contents__link toc-highlight">Ŵĥàţ ḿüšţ ŕöüñđ-ţŕîþ</a></li><li><a href="#ţĥé-çöñƒöŕḿàñçé-ĝàţé" class="table-of-contents__link toc-highlight">Ţĥé çöñƒöŕḿàñçé ĝàţé</a></li><li><a href="#éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ-çĥéçķļîšţ" class="table-of-contents__link toc-highlight">Éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ çĥéçķļîšţ</a></li><li><a href="#ķñöŵñ-đéļîƃéŕàţé-ļîḿîţàţîöñš-öƒ-ţĥé-šýñç-ŵîŕé-þŕöĵéçţîöñ" class="table-of-contents__link toc-highlight">Ķñöŵñ, đéļîƃéŕàţé ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/cli">Kapi ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/react/introduction">neokapi-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/evals">Ţéšţš &amp; Éṽàļš</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 neokapi çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-08-30 20:09 ÜŢÇ · đ7đé57ƒ</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/implementation/foundations/content-parity.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/qps/contribute/implementation/index"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">Îḿþļéḿéñţàţîöñ Ñöţéš Öṽéŕṽîéŵ</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/qps/contribute/implementation/engine/implementing-formats"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">Îḿþļéḿéñţîñĝ Ƒöŕḿàţš</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#ţĥé-îñṽàŕîàñţ" class="table-of-contents__link toc-highlight">Ţĥé îñṽàŕîàñţ</a></li><li><a href="#à-ŵöŕķéđ-þŕöĵéçţîöñ-ţĥé-šýñç-ŵîŕé" class="table-of-contents__link toc-highlight">À ŵöŕķéđ þŕöĵéçţîöñ: ţĥé šýñç ŵîŕé</a><ul><li><a href="#ŵĥý-ţĥé-þŕöţö-þüšĥ-çàŕŕîéš-šéĝḿéñţàţîöñ-éẋþļîçîţļý" class="table-of-contents__link toc-highlight">Ŵĥý ţĥé þŕöţö þüšĥ çàŕŕîéš šéĝḿéñţàţîöñ éẋþļîçîţļý</a></li></ul></li><li><a href="#ŵĥàţ-ḿüšţ-ŕöüñđ-ţŕîþ" class="table-of-contents__link toc-highlight">Ŵĥàţ ḿüšţ ŕöüñđ-ţŕîþ</a></li><li><a href="#ţĥé-çöñƒöŕḿàñçé-ĝàţé" class="table-of-contents__link toc-highlight">Ţĥé çöñƒöŕḿàñçé ĝàţé</a></li><li><a href="#éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ-çĥéçķļîšţ" class="table-of-contents__link toc-highlight">Éẋţéñđ-ŵîţĥöüţ-ƃŕéàķîñĝ çĥéçķļîšţ</a></li><li><a href="#ķñöŵñ-ļîḿîţàţîöñš-öƒ-ţĥé-šýñç-ŵîŕé-þŕöĵéçţîöñ" class="table-of-contents__link toc-highlight">Ķñöŵñ ļîḿîţàţîöñš öƒ ţĥé šýñç-ŵîŕé þŕöĵéçţîöñ</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/cli">Kapi ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/react/introduction">neokapi-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/evals">Ţéšţš &amp; Éṽàļš</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 neokapi çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-08-31 17:14 ÜŢÇ · ƃ29ƃ48é</div></div></div></footer></div>
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">C-07: Voice profiles | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-07: Voice profiles | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a voice-profile subsystem with portable YAML profiles, built-in starter packs, a deterministic vocabulary check and an LLM-based voice check, one resolution chain, and a kapi voice command tree that works fully offline."><meta data-rh="true" property="og:description" content="Architecture decision: a voice-profile subsystem with portable YAML profiles, built-in starter packs, a deterministic vocabulary check and an LLM-based voice check, one resolution chain, and a kapi voice command tree that works fully offline."><meta data-rh="true" name="keywords" content="voice profile,voice check,voice rewrite,vocabulary,tone,starter packs,MCP,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-07-voice-profiles" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/context/c-07-voice-profiles" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-07-voice-profiles" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-07: Voice profiles","item":"https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
-<script src="/nb/assets/js/runtime~main.af4a68cc.js" defer="defer"></script>
-<script src="/nb/assets/js/main.c0874a87.js" defer="defer"></script>
+<title data-rh="true">C-07: Voice profiles | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-07: Voice profiles | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a voice-profile subsystem with portable YAML profiles, built-in starter packs, a deterministic vocabulary check and an LLM-based voice check, one resolution chain, and a kapi voice command tree that works fully offline."><meta data-rh="true" property="og:description" content="Architecture decision: a voice-profile subsystem with portable YAML profiles, built-in starter packs, a deterministic vocabulary check and an LLM-based voice check, one resolution chain, and a kapi voice command tree that works fully offline."><meta data-rh="true" name="keywords" content="voice profile,voice check,voice rewrite,vocabulary,term rules,tone,starter packs,MCP,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-07-voice-profiles" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/context/c-07-voice-profiles" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-07-voice-profiles" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-07: Voice profiles","item":"https://neokapi.github.io/nb/contribute/architecture/context/c-07-voice-profiles"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
+<script src="/nb/assets/js/runtime~main.b68a598c.js" defer="defer"></script>
+<script src="/nb/assets/js/main.10933aa8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -21,18 +21,18 @@ registered tools evaluate text against a profile: a deterministic, offline
 a run-anchored position and roll up into an MQM-inspired 0–100 compliance score.</p>
 <p>The <code>kapi voice</code> command tree exposes this as a text-first, JSON-first surface
 that works fully offline against a starter pack, a standalone YAML file, the
-local voice store, or a profile bound by a project recipe. A small MCP surface
-mirrors the deterministic path for agents.</p>
+project&#x27;s voice store, or a profile bound by a project recipe. A small MCP
+surface mirrors the deterministic path for agents.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="context">Context<a href="#context" class="hash-link" aria-label="Direkte lenke til Context" title="Direkte lenke til Context" translate="no">​</a></h2>
 <p>A voice profile is the natural unit of a guardrail on generated text: a reusable
 description of how a product wants to sound, against which a draft can be scored
 and rewritten. The subsystem has to satisfy several constraints at once:</p>
 <ul>
 <li class=""><strong>Portable and reviewable.</strong> A profile is a YAML document a team commits and
-reviews, with no backing store required — the same way a recipe is portable
+reviews, with no backing store required, the same way a recipe is portable
 (<a class="" href="/nb/contribute/architecture/context/c-01-project-model">C-01</a>).</li>
-<li class=""><strong>Offline by default, AI-optional.</strong> A vocabulary check — forbidden,
-competitor and preferred terms, plus regular-expression patterns — is
+<li class=""><strong>Offline by default, AI-optional.</strong> A vocabulary check (forbidden,
+competitor and preferred terms, plus regular-expression patterns) is
 deterministic and needs no network. A model-backed check for the subjective
 dimensions is opt-in and credential-gated.</li>
 <li class=""><strong>Composable with the rest of the engine.</strong> Voice evaluation runs as registered
@@ -49,26 +49,50 @@ rules, which the vocabulary check can cross-reference against a terms store.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direkte lenke til Decision" title="Direkte lenke til Decision" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-data-model">The data model<a href="#the-data-model" class="hash-link" aria-label="Direkte lenke til The data model" title="Direkte lenke til The data model" translate="no">​</a></h3>
 <p><code>VoiceProfile</code> (<code>core/profile</code>) is the canonical type, loaded from YAML by
-<code>profile.LoadProfileYAML</code> — the single loader used by standalone files, the
-embedded starter packs and the local store:</p>
+<code>profile.LoadProfileYAML</code>, the single loader used by standalone files, the
+embedded starter packs and the voice store:</p>
 <ul>
-<li class=""><strong><code>ToneProfile</code></strong> — personality adjectives, formality, emotion, humor, and
-free-text guidelines.</li>
-<li class=""><strong><code>StyleRules</code></strong> — active voice, sentence length, point of view, contractions,
-and prohibited/required regular-expression patterns, each with a severity.</li>
-<li class=""><strong><code>VocabularyRules</code></strong> — preferred, forbidden and competitor term rules, each
-with an optional replacement, note and severity, plus abbreviations.</li>
-<li class=""><strong><code>VoiceExample</code>s</strong> — before/after rewrites with explanations.</li>
-<li class=""><strong><code>LocaleOverride</code>, <code>ChannelOverride</code> and persona maps</strong> — adjustments resolved
+<li class=""><strong><code>ToneProfile</code></strong>: personality adjectives, formality, emotion, humor, and
+free-text guidelines. Tone values are described rather than enumerated: a
+register outside the conventional set loads, and validation reports it as an
+advisory note.</li>
+<li class=""><strong><code>StyleRules</code></strong>: active voice, sentence length, point of view, contractions,
+and prohibited/required regular-expression patterns. A <code>Pattern</code> carries a
+severity, an optional <code>rate</code> (<code>max</code> matches per <code>per_words</code> words, which turns
+a prohibition into a ceiling; under the ceiling nothing is reported, over it
+every match is), and an optional <code>scope</code> (<code>prose</code>, <code>code</code> or <code>heading</code>; empty
+means everywhere). The style enums stay closed, because code reads them.</li>
+<li class=""><strong><code>VocabularyRules</code></strong>: preferred, forbidden and competitor term rules, plus
+abbreviations. A <code>TermRule</code> carries the term, an optional replacement, note
+and severity, <code>forms</code> (the other surface shapes the term takes, declared
+rather than derived, which <code>kapi voice expand</code> fills in by asking a model once
+in the profile&#x27;s own language), <code>case_sensitive</code> (off by default), <code>scope</code>
+(the same values a pattern takes), <code>do_not_translate</code> (what gives a bare term
+with no replacement its meaning), and <code>concept_id</code>, which ties the rule to a
+concept in the terms store and the graph and stays empty for a standalone
+profile.</li>
+<li class=""><strong><code>VoiceExample</code>s</strong>: before/after rewrites with explanations.</li>
+<li class=""><strong><code>LocaleOverride</code>, <code>ChannelOverride</code> and persona maps</strong>: adjustments resolved
 on top of the base profile.</li>
 </ul>
-<p>The profile also carries versioning fields — a version snapshot per update, and
-named tag references — for stores that track history.</p>
+<p>The profile also carries versioning fields (a version snapshot per update, and
+named tag references) for stores that track history.</p>
+<p><code>profile.TermRule</code> is also the one shape every governed step takes its
+terminology in. <code>term-check</code>, <code>translate</code>, <code>recycle</code> and <code>dnt-check</code> all read
+<code>term_rules:</code> as <code>[]profile.TermRule</code>, whether the rules come from the profile&#x27;s
+own vocabulary, from the terms store, or from a recipe, and
+<code>profile.TermRuleMap</code> is the single projection of that list into the map a
+prompt renders and the context fingerprint hashes, so the staleness gate and the
+producers cannot disagree about what governed a target. A rule&#x27;s severity
+decides whether a violation fails or only reports (<code>minor</code> and <code>neutral</code> warn),
+and a rule with an empty replacement is skipped by the tools unless it is marked
+do-not-translate, because &quot;say this instead&quot; needs a this. How the store and the
+rules are located in a text is <a class="" href="/nb/contribute/architecture/context/c-08-terms">C-08</a>&#x27;s subject.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="findings-and-scoring">Findings and scoring<a href="#findings-and-scoring" class="hash-link" aria-label="Direkte lenke til Findings and scoring" title="Direkte lenke til Findings and scoring" translate="no">​</a></h3>
 <p>A finding is <code>profile.VoiceFinding</code>, a type alias to <code>check.Finding</code> from the
 framework&#x27;s content-verification core (<code>core/check</code>). It carries a free-form
-<code>Category</code> — a voice finding sets it to one of the fixed dimensions (tone, style,
-vocabulary, clarity, brand compliance) — a severity, a human message, an optional
+<code>Category</code> (a voice finding sets it to one of the fixed dimensions: tone, style,
+vocabulary, clarity, compliance), a severity, a human message, an optional
 suggestion, the original text, optional metadata, and a <strong><code>Position model.Anchor</code></strong>, so a finding is anchored to the runs it concerns, the same
 run-range model overlays and redaction use
 (<a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02</a>).</p>
@@ -76,38 +100,42 @@ run-range model overlays and redaction use
 <code>voice</code>), which also carries the profile id, the overall score and its own
 position.</p>
 <p><code>profile.CalculateScore</code> rolls findings up using the MQM-inspired penalty weights
-in <code>core/check.SeverityWeight</code> — neutral 0, minor 1, major 5, critical 25 — per
+in <code>core/check.SeverityWeight</code> (neutral 0, minor 1, major 5, critical 25) per
 dimension. Each dimension starts at 100 and is reduced by its penalty, clamped at
 0; the overall score is 100 minus the total penalty. The dimensions are fixed, so
 a compliance score always has a consistent shape.</p>
-<p>This finding, severity and scoring path is shared across every checker —
-terminology, do-not-translate, placeholder, register, voice — rather than being
+<p>This finding, severity and scoring path is shared across every checker
+(terminology, do-not-translate, placeholder, register, voice) rather than being
 bespoke to voice. Voice is one checkset over the generic core.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-tools">The tools<a href="#the-tools" class="hash-link" aria-label="Direkte lenke til The tools" title="Direkte lenke til The tools" translate="no">​</a></h3>
 <ul>
-<li class=""><strong><code>voice-vocab-check</code></strong> (<code>core/tools</code>) — deterministic and offline. It scans
+<li class=""><strong><code>voice-vocab-check</code></strong> (<code>core/tools</code>): deterministic and offline. It scans
 source text for forbidden, competitor and preferred-term violations and pattern
 hits, emitting findings with positions. It optionally takes a terms store to
 filter by voice vocabulary. It is an annotate-class tool: it writes the
 annotation, never the content. This is the fast first pass.</li>
-<li class=""><strong><code>voice-check</code></strong> (<code>core/ai/tools</code>) — model-backed. It asks a provider
+<li class=""><strong><code>voice-check</code></strong> (<code>core/ai/tools</code>): model-backed. It asks a provider
 (<a class="" href="/nb/contribute/architecture/engine/e-07-model-providers">E-07</a>) to score the subjective dimensions
 against the rendered voice guide. It declares that it requires credentials and
 has an API-call side effect, produces the <code>voice</code> annotation, and runs with
 bounded per-block parallelism.</li>
-<li class=""><strong><code>voice-infer</code></strong> (<code>core/ai/tools</code>) — model-backed inference of a profile from
+<li class=""><strong><code>voice-infer</code></strong> (<code>core/ai/tools</code>): model-backed inference of a profile from
 existing content, for a team that has a body of writing and no written-down
 voice.</li>
 </ul>
 <p>Both checks resolve their profile eagerly, when it is supplied programmatically,
 or lazily through a resolver against a context hierarchy, so a host can defer
 profile selection to runtime.</p>
+<p>Both renderers of a profile (the full guide and the compact form the translation
+path sends) carry a pattern&#x27;s rate and scope, and both carry the profile&#x27;s
+examples. A rate the model never hears is a stricter rule in the prompt than the
+check enforces, and a scope it never hears is a wider one.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="pattern-scope">Pattern scope<a href="#pattern-scope" class="hash-link" aria-label="Direkte lenke til Pattern scope" title="Direkte lenke til Pattern scope" translate="no">​</a></h3>
 <p>A style pattern&#x27;s scope follows what it asserts. A prohibited pattern says &quot;this
 text must not contain X&quot;, which every block answers on its own, so
 <code>profile.Findings</code> matches it per block beside the vocabulary rules. A required
-pattern says &quot;this text must contain X&quot; — the call to action, the trademark line,
-the safety notice — and that is a claim about the document: no paragraph of a
+pattern says &quot;this text must contain X&quot; (the call to action, the trademark line,
+the safety notice), and that is a claim about the document: no paragraph of a
 page carries it, the page does. <code>profile.DocumentFindings</code> therefore evaluates
 the required patterns once over a file&#x27;s content and reports one finding per
 unsatisfied rule against the file, with no block, because an absence sits nowhere
@@ -119,8 +147,8 @@ pattern-rule total, so what a profile card counts is what the gates apply.</p>
 <p><code>profile.ResolveProfileFromContext</code> is the only place a profile&#x27;s precedence is
 decided, most specific first:</p>
 <ol>
-<li class=""><strong>Explicit</strong> — an id from tool config or a call parameter.</li>
-<li class=""><strong>Collection</strong> — a profile the caller already loaded, else the collection&#x27;s
+<li class=""><strong>Explicit</strong>: an id from tool config or a call parameter.</li>
+<li class=""><strong>Collection</strong>: a profile the caller already loaded, else the collection&#x27;s
 own <code>profile.PropertyProfileID</code> property.</li>
 <li class=""><strong>Stream</strong> → 4. <strong>Project</strong> → 5. <strong>Root</strong>.</li>
 </ol>
@@ -128,8 +156,8 @@ own <code>profile.PropertyProfileID</code> property.</li>
 how a project created by a connector or an editor, with no recipe, is governed. A
 recipe-governed project fills the <em>same</em> collection tier: a collection&#x27;s
 <code>channel:</code> selects the profile (<a class="" href="/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02</a>), the
-host loads it — a recipe binds a profile file or a starter pack, which a store id
-cannot name — and hands it over as the already-loaded collection profile. So the
+host loads it (a recipe binds a profile file or a starter pack, which a store id
+cannot name) and hands it over as the already-loaded collection profile. So the
 two kinds of project differ in which tiers they populate, never in how the tiers
 are ranked, and an explicit per-call profile outranks a recipe exactly as it
 outranks a stored row.</p>
@@ -138,42 +166,46 @@ by <code>ResolveProfile</code>. A channel bound to a scope describes where the c
 published; the resolve context&#x27;s own channel is the caller overriding it for one
 call, which is the tier a <code>--channel</code> flag occupies.</p>
 <p>An id that has nowhere to resolve from is a configuration error rather than a
-silent miss — a silent miss would leave the content ungoverned and read as if
+silent miss. A silent miss would leave the content ungoverned and read as if
 nothing were bound.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-recipe-authors-one-venue-applies">The recipe authors; one venue applies<a href="#the-recipe-authors-one-venue-applies" class="hash-link" aria-label="Direkte lenke til The recipe authors; one venue applies" title="Direkte lenke til The recipe authors; one venue applies" translate="no">​</a></h3>
 <p>A recipe is an <strong>authoring surface</strong>, not a second runtime source. It is
 version-controlled and authoritative over what the governance <em>is</em>; at any moment
-exactly one venue <em>applies</em> it — the recipe when the project runs on its own, a
+exactly one venue <em>applies</em> it: the recipe when the project runs on its own, a
 service&#x27;s stored rows when it runs connected. Two live sources would mean a voice
 that depends on where the loop happened to run, and someone quietly editing over
 a committed profile.</p>
 <p>What crosses a push is every declared collection, the point it sits at and the
 voice governing it, so both venues resolve the same voice for the same content.
-What does not cross is a profile&#x27;s <code>terms:</code> — a path into the local project, and
-a path means nothing to a service that governs terminology from a shared
+What does not cross is a profile&#x27;s <code>termstore:</code>, a path into the local project,
+and a path means nothing to a service that governs terminology from a shared
 vocabulary. That divergence is real and is reported rather than hidden: a run
-over a project that binds terms per profile <em>and</em> binds a venue prints a warning
-to stderr and proceeds. A recipe field that is not readable at the other venue is
-not a reason to refuse the run.</p>
+over a project that binds a terms store per profile <em>and</em> binds a venue prints a
+warning to stderr and proceeds. A recipe field that is not readable at the other
+venue is not a reason to refuse the run.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="profile-sources-and-the-command-tree">Profile sources and the command tree<a href="#profile-sources-and-the-command-tree" class="hash-link" aria-label="Direkte lenke til Profile sources and the command tree" title="Direkte lenke til Profile sources and the command tree" translate="no">​</a></h3>
 <p><code>kapi voice</code> resolves a profile from one of three mutually exclusive sources:</p>
 <ul>
-<li class=""><code>--profile &lt;name&gt;</code> — a profile in the local voice store, opened with the
-standard <code>--name</code>/<code>--local</code>/<code>--file</code> resource flags, mirroring the terms store
-and the content memory;</li>
-<li class=""><code>--profile-file &lt;path&gt;</code> — a standalone, reviewable profile YAML;</li>
-<li class=""><code>--pack &lt;name&gt;</code> — a built-in starter pack.</li>
+<li class=""><code>--profile &lt;name&gt;</code>: a profile in the voice store. Inside a project that store
+is the <code>voice_profiles</code> table of the project pool, <code>.kapi/work/store.db</code>
+(<a class="" href="/nb/contribute/architecture/context/c-03-context-store-and-graph">C-03</a>), so the same recipe resolves the
+same profile from any directory in the tree; an explicit <code>--name</code>, <code>--local</code>
+or <code>--file</code> selects a standalone store file instead, mirroring the terms
+store and the content memory, and outside a project the standalone <code>voice.db</code>
+is the default.</li>
+<li class=""><code>--profile-file &lt;path&gt;</code>: a standalone, reviewable profile YAML.</li>
+<li class=""><code>--pack &lt;name&gt;</code>: a built-in starter pack.</li>
 </ul>
 <p>With no source flag, resolution falls back to the project in scope: the voice
 governing the content collection that claims the file, else the recipe&#x27;s
-<code>defaults.voice</code> — a binding selecting a profile file, a store profile or a pack,
-resolved relative to the project root — then the convention file at
+<code>defaults.voice</code> (a binding selecting a profile file, a store profile or a pack,
+resolved relative to the project root), then the convention file at
 <code>.kapi/voice.yaml</code>, or <code>voice.yaml</code> at the project root for a project that keeps
 it there. This lets <code>kapi voice check DRAFT.md</code> work flag-free inside a project.
 Locale and channel overrides apply on top via <code>--locale</code>/<code>--channel</code>; an explicit
 <code>--channel</code> wins over the channel the recipe declares.</p>
-<table><thead><tr><th>Command</th><th>Purpose</th></tr></thead><tbody><tr><td><code>new</code></td><td>Scaffold a commented, schema-valid profile YAML, optionally seeded from a pack.</td></tr><tr><td><code>guide</code> / <code>show</code></td><td>Render the profile as a markdown voice guide to inject into an assistant&#x27;s context.</td></tr><tr><td><code>check</code></td><td>Score text against the profile — vocabulary always, <code>--ai</code> adds the model check. <code>--min-score</code> turns it into a gate.</td></tr><tr><td><code>rewrite</code></td><td>Substitute forbidden and competitor terms for their approved replacements — deterministic, offline, no model.</td></tr><tr><td><code>validate</code></td><td>Check a profile document against the schema.</td></tr><tr><td><code>profiles</code></td><td>List profiles: the local store plus the built-in packs.</td></tr><tr><td><code>import</code></td><td>Import a profile YAML into the local store.</td></tr><tr><td><code>pack</code></td><td>Install a built-in starter pack into the local store.</td></tr></tbody></table>
-<p><code>check</code> reads its subject from <code>--text</code>, a positional file, or stdin.
+<table><thead><tr><th>Command</th><th>Purpose</th></tr></thead><tbody><tr><td><code>new</code></td><td>Scaffold a commented, schema-valid profile YAML, optionally seeded from a pack.</td></tr><tr><td><code>guide</code> / <code>show</code></td><td>Render the profile as a markdown voice guide to inject into an assistant&#x27;s context.</td></tr><tr><td><code>check</code></td><td>Score text against the profile: vocabulary always, <code>--ai</code> adds the model check. <code>--min-score</code> turns it into a gate.</td></tr><tr><td><code>rewrite</code></td><td>Substitute forbidden and competitor terms for their approved replacements: deterministic, offline, no model.</td></tr><tr><td><code>expand</code></td><td>Ask a model for the surface forms each vocabulary term takes and write them into the profile as <code>forms:</code>, for review in a diff.</td></tr><tr><td><code>validate</code></td><td>Check a profile document against the schema; blocking problems fail, advisory notes print after the verdict.</td></tr><tr><td><code>profiles</code></td><td>List profiles: the voice store plus the built-in packs.</td></tr><tr><td><code>import</code></td><td>Import a profile YAML into the voice store.</td></tr><tr><td><code>pack</code></td><td>Install a built-in starter pack into the voice store.</td></tr></tbody></table>
+<p><code>check</code> reads its subject from <code>--input-text</code>, a positional file, or stdin.
 <code>check --min-score</code> returns the quality-gate sentinel when the score is below the
 threshold, which the CLI maps to a distinct exit code
 (<a class="" href="/nb/contribute/architecture/surfaces/s-01-kapi-cli">S-01</a>) so skills and CI can tell a failed gate
@@ -189,32 +221,32 @@ codes are preserved, each block is drift-guarded by its content hash, and an edi
 that would corrupt markup is rejected.</p>
 <p><code>kapi voice rewrite</code> is a separate, deterministic helper: it substitutes
 forbidden and competitor terms for their approved replacements by rule, offline.
-It does not call a model and does not touch tone, style or phrasing — those are
+It does not call a model and does not touch tone, style or phrasing; those are
 the caller&#x27;s to rewrite.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="a-vocabulary-rule-is-a-change-set-entry">A vocabulary rule is a change-set entry<a href="#a-vocabulary-rule-is-a-change-set-entry" class="hash-link" aria-label="Direkte lenke til A vocabulary rule is a change-set entry" title="Direkte lenke til A vocabulary rule is a change-set entry" translate="no">​</a></h3>
-<p>Fixing a recurring off-voice term at the <em>source</em> — adding a vocabulary rule so
-every future draft is checked against it — is a <code>voice</code> entry in the same <code>kapi apply</code> change-set, alongside the content fix that justifies it:</p>
+<p>Fixing a recurring off-voice term at the <em>source</em> (adding a vocabulary rule so
+every future draft is checked against it) is a <code>voice</code> entry in the same <code>kapi apply</code> change-set, alongside the content fix that justifies it:</p>
 <div class="language-json codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-json codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;kind&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;voice&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;op&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;add-rule&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;list&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;forbidden&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;term&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;utilize&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;replacement&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;use&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token property" style="color:#36acaa">&quot;severity&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;minor&quot;</span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
-<p>The entry adds a term rule to the named vocabulary list of the <strong>committed</strong>
-profile YAML the recipe binds, creating and binding one if none exists, then
-re-imports that profile into the local store through the same
-<code>profile.LoadProfileYAML</code> path. The committed YAML is the single source of truth
-and the diff is the review surface; the store is a compiled cache written by the
-one importer. The operation is idempotent. A binding that points at a starter
-pack or a store profile rather than a file is rejected: <code>apply</code> edits a committed
-file, not a pack or a stored row.</p>
+<p>The entry adds a term rule to the named vocabulary list (<code>forbidden</code>,
+<code>competitor</code> or <code>preferred</code>) of the <strong>committed</strong> profile YAML the recipe binds,
+creating and binding one if none exists, then re-imports that profile into the
+voice store through the same <code>profile.LoadProfileYAML</code> path. The committed YAML
+is the single source of truth and the diff is the review surface; the store is a
+compiled cache written by the one importer. The operation is idempotent. A
+binding that points at a starter pack or a store profile rather than a file is
+rejected: <code>apply</code> edits a committed file, not a pack or a stored row.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="built-in-starter-packs">Built-in starter packs<a href="#built-in-starter-packs" class="hash-link" aria-label="Direkte lenke til Built-in starter packs" title="Direkte lenke til Built-in starter packs" translate="no">​</a></h3>
 <p>The framework embeds a small set of starter packs (<code>core/profile/packs</code>, embedded
 with <code>//go:embed</code>), each a complete profile YAML loaded through the same path as
-any other profile. Packs are an on-ramp, not a special case — <code>kapi voice new --pack &lt;name&gt;</code> emits one as an editable base. <code>kapi voice profiles</code> lists what is
+any other profile. Packs are an on-ramp, not a special case: <code>kapi voice new --pack &lt;name&gt;</code> emits one as an editable base. <code>kapi voice profiles</code> lists what is
 installed.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="mcp-surface">MCP surface<a href="#mcp-surface" class="hash-link" aria-label="Direkte lenke til MCP surface" title="Direkte lenke til MCP surface" translate="no">​</a></h3>
 <p><code>host/mcp_voice.go</code> registers two offline voice tools on the shared <code>kapi mcp</code>
 stdio server (<a class="" href="/nb/contribute/architecture/surfaces/s-01-kapi-cli">S-01</a>) so non-CLI agents get parity:
 <code>voice_check</code> scores text using the deterministic vocabulary rules, and
 <code>voice_rewrite</code> substitutes forbidden and competitor terms.</p>
-<p>These are hand-authored because each wraps a <em>resource</em> — a voice profile, a
-terms store, a content memory — rather than a single processing tool. The
+<p>These are hand-authored because each wraps a <em>resource</em> (a voice profile, a
+terms store, a content memory) rather than a single processing tool. The
 rendered guide is <strong>not</strong> a tool: it is reached by reading <code>context://&lt;path&gt;</code> or
 <code>context://profile/&lt;name&gt;</code> (<a class="" href="/nb/contribute/architecture/context/c-06-retrieval">C-06</a>), because the guide is part
 of what applies at a point rather than a thing to ask for separately.</p>
@@ -229,19 +261,21 @@ subjective dimensions.</li>
 content model and surface uniformly rather than through a bespoke side channel.</li>
 <li class="">The MQM-style scoring is a single function over findings, so every surface
 computes the same score the same way.</li>
+<li class="">One term-rule shape serves the profile, the terms store and every governed
+step, so a rule declared anywhere is enforced and fingerprinted the same way.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="see-also">See also<a href="#see-also" class="hash-link" aria-label="Direkte lenke til See also" title="Direkte lenke til See also" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02: Coordinates and governance</a> — which
+<li class=""><a class="" href="/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02: Coordinates and governance</a>: which
 profile governs which content.</li>
-<li class=""><a class="" href="/nb/contribute/architecture/context/c-08-terms">C-08: Terms</a> — concept-level consistency the vocabulary rules
-intersect.</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03: Tool System</a> — the checks as
+<li class=""><a class="" href="/nb/contribute/architecture/context/c-08-terms">C-08: Terms</a>: concept-level consistency the vocabulary rules
+intersect, and the one pass that locates declared terms.</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03: Tool System</a>: the checks as
 registered tools.</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-07-model-providers">E-07: AI Providers</a> —
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-07-model-providers">E-07: AI Providers</a>:
 the provider behind the model-backed check.</li>
-<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: Content Model</a> — run ranges
+<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: Content Model</a>: run ranges
 and block annotations.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-07-voice-profiles.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/context/c-06-retrieval"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-06: Context retrieval</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/context/c-08-terms"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-08: Terms</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-data-model" class="table-of-contents__link toc-highlight">The data model</a></li><li><a href="#findings-and-scoring" class="table-of-contents__link toc-highlight">Findings and scoring</a></li><li><a href="#the-tools" class="table-of-contents__link toc-highlight">The tools</a></li><li><a href="#pattern-scope" class="table-of-contents__link toc-highlight">Pattern scope</a></li><li><a href="#one-resolution-chain" class="table-of-contents__link toc-highlight">One resolution chain</a></li><li><a href="#the-recipe-authors-one-venue-applies" class="table-of-contents__link toc-highlight">The recipe authors; one venue applies</a></li><li><a href="#profile-sources-and-the-command-tree" class="table-of-contents__link toc-highlight">Profile sources and the command tree</a></li><li><a href="#fixing-off-voice-content" class="table-of-contents__link toc-highlight">Fixing off-voice content</a></li><li><a href="#a-vocabulary-rule-is-a-change-set-entry" class="table-of-contents__link toc-highlight">A vocabulary rule is a change-set entry</a></li><li><a href="#built-in-starter-packs" class="table-of-contents__link toc-highlight">Built-in starter packs</a></li><li><a href="#mcp-surface" class="table-of-contents__link toc-highlight">MCP surface</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:12 UTC · d7de57f</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-07-voice-profiles.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/context/c-06-retrieval"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-06: Context retrieval</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/context/c-08-terms"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-08: Terms</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-data-model" class="table-of-contents__link toc-highlight">The data model</a></li><li><a href="#findings-and-scoring" class="table-of-contents__link toc-highlight">Findings and scoring</a></li><li><a href="#the-tools" class="table-of-contents__link toc-highlight">The tools</a></li><li><a href="#pattern-scope" class="table-of-contents__link toc-highlight">Pattern scope</a></li><li><a href="#one-resolution-chain" class="table-of-contents__link toc-highlight">One resolution chain</a></li><li><a href="#the-recipe-authors-one-venue-applies" class="table-of-contents__link toc-highlight">The recipe authors; one venue applies</a></li><li><a href="#profile-sources-and-the-command-tree" class="table-of-contents__link toc-highlight">Profile sources and the command tree</a></li><li><a href="#fixing-off-voice-content" class="table-of-contents__link toc-highlight">Fixing off-voice content</a></li><li><a href="#a-vocabulary-rule-is-a-change-set-entry" class="table-of-contents__link toc-highlight">A vocabulary rule is a change-set entry</a></li><li><a href="#built-in-starter-packs" class="table-of-contents__link toc-highlight">Built-in starter packs</a></li><li><a href="#mcp-surface" class="table-of-contents__link toc-highlight">MCP surface</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:17 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

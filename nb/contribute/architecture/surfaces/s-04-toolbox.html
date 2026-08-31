@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">S-04: Toolbox utilities | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/surfaces/s-04-toolbox"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="S-04: Toolbox utilities | neokapi"><meta data-rh="true" name="description" content="kcat, kgrep, ksed and kdiff are format-aware reimaginings of cat, grep, sed and diff, and kconv converts between formats. They ship as busybox-style names on the kapi binary, operate over one block-text projection, and follow the grep-style exit-code convention."><meta data-rh="true" property="og:description" content="kcat, kgrep, ksed and kdiff are format-aware reimaginings of cat, grep, sed and diff, and kconv converts between formats. They ship as busybox-style names on the kapi binary, operate over one block-text projection, and follow the grep-style exit-code convention."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,toolbox,kcat,kgrep,ksed,kdiff,kconv,busybox,multi-call,block projection,exit codes"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/surfaces/s-04-toolbox"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/surfaces/s-04-toolbox" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/surfaces/s-04-toolbox" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/surfaces/s-04-toolbox" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/surfaces/s-04-toolbox" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"S-04: Toolbox utilities","item":"https://neokapi.github.io/nb/contribute/architecture/surfaces/s-04-toolbox"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
-<script src="/nb/assets/js/runtime~main.af4a68cc.js" defer="defer"></script>
-<script src="/nb/assets/js/main.c0874a87.js" defer="defer"></script>
+<script src="/nb/assets/js/runtime~main.b68a598c.js" defer="defer"></script>
+<script src="/nb/assets/js/main.10933aa8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -15,7 +15,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direkte lenke til Summary" title="Direkte lenke til Summary" translate="no">​</a></h2>
 <p><code>kcat</code>, <code>kgrep</code>, <code>ksed</code>, and <code>kdiff</code> are format-aware reimaginings of <code>cat</code>,
 <code>grep</code>, <code>sed</code>, and <code>diff</code> that operate on the <strong>text inside</strong> any format kapi
-understands — a Word document, a JSON catalog, XLIFF, Markdown — rather than on
+understands (a Word document, a JSON catalog, XLIFF, Markdown) rather than on
 raw bytes. <code>kconv</code> has no classic analogue: it converts a document into another
 format by handing the blocks, and the role each carries, to a different format&#x27;s
 writer. All five are the <strong>same <code>kapi</code> binary under different names</strong>, dispatched
@@ -28,7 +28,7 @@ Word document is a zipped XML container. An XLIFF file interleaves source and
 target inside markup. A JSON catalog buries strings among keys and structure.
 Running <code>grep</code> on those byte streams matches markup and misses content split
 across runs; running <code>sed</code> on them corrupts structure.</p>
-<p>kapi already has the machinery to do this correctly — format detection, readers
+<p>kapi already has the machinery to do this correctly: format detection, readers
 that yield blocks, writers that reconstruct structure faithfully through the
 skeleton store (<a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02</a>). The toolbox exposes
 that machinery behind an interface engineers already have in muscle memory.</p>
@@ -42,8 +42,8 @@ including the shorthand letters that a CLI&#x27;s global flags would otherwise s
 <code>kapi</code>. They are reachable two ways.</p>
 <p><strong>As multi-call names.</strong> The build and the Homebrew formula create <code>kgrep</code>,
 <code>ksed</code>, <code>kcat</code>, <code>kconv</code>, and <code>kdiff</code> as symlinks to <code>kapi</code>. At startup
-<code>cli.BusyboxRoot(app, os.Args[0])</code> normalises the program name — stripping any
-<code>.exe</code> — and, on a match, returns a standalone root for that utility instead of
+<code>cli.BusyboxRoot(app, os.Args[0])</code> normalises the program name, stripping any
+<code>.exe</code>, and on a match returns a standalone root for that utility instead of
 the full kapi command tree. The standalone root owns the application lifecycle
 (config load, init, shutdown) so the utility behaves identically however it was
 launched.</p>
@@ -51,7 +51,7 @@ launched.</p>
 <code>kapi kconv</code>, and <code>kapi kdiff</code> are thin proxies with <code>DisableFlagParsing</code> set, so
 kapi&#x27;s persistent flags are <em>not</em> merged into them. Each proxy hands its raw
 argument list to the very same standalone command the symlink runs. They carry
-the k-names verbatim — one spelling everywhere — which also keeps every bare verb
+the k-names verbatim, one spelling everywhere, which also keeps every bare verb
 free for something else.</p>
 <p><code>DisableFlagParsing</code> is what lets the utilities keep the classic option surface.
 Without it, kapi&#x27;s global <code>-v</code> / <code>-c</code> / <code>-q</code> would shadow the toolbox
@@ -64,15 +64,15 @@ format reader, take each block part in document order, act on its text. This is
 the single place the toolbox decides what &quot;the text&quot; of a file is.</p>
 <div class="kdx"><div class="kdx-scroll"><div class="kdx-canvas" style="min-width:460px;max-width:1191px"><svg viewBox="0 0 1191 74" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline: Input then Resolve format then Reader then Block text then Utility"><defs><marker id="kdx-arrow" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="kdx-arrow"></path></marker></defs><g><rect x="14" y="10" width="120" height="58" rx="9" class="kdx-box kdx-box--io"></rect><text x="74" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">Input</text><text x="74" y="52" text-anchor="middle" font-size="9" class="kdx-sub kdx-sub--io">file or stdin</text><line x1="134" y1="39" x2="172" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="176" y="10" width="228" height="58" rx="9" class="kdx-box"></rect><text x="290" y="33" text-anchor="middle" font-size="12.5" class="kdx-label">Resolve format</text><text x="290" y="47" text-anchor="middle" font-size="9" class="kdx-sub">-f, else detection</text><text x="290" y="59" text-anchor="middle" font-size="8" class="kdx-chan">binary guard on the fallback</text><line x1="404" y1="39" x2="442" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="446" y="10" width="141" height="58" rx="9" class="kdx-box"></rect><text x="516.5" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">Reader</text><text x="516.5" y="52" text-anchor="middle" font-size="9" class="kdx-sub">DataFormatReader</text><line x1="587" y1="39" x2="625" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="629" y="10" width="192" height="58" rx="9" class="kdx-box kdx-box--annotate"></rect><text x="725" y="33" text-anchor="middle" font-size="12.5" class="kdx-label">Block text</text><text x="725" y="47" text-anchor="middle" font-size="9" class="kdx-sub kdx-sub--annotate">in document order</text><text x="725" y="59" text-anchor="middle" font-size="8" class="kdx-chan">markup never reaches it</text><line x1="821" y1="39" x2="859" y2="39" class="kdx-channel" marker-end="url(#kdx-arrow)"></line></g><g><rect x="863" y="10" width="314" height="58" rx="9" class="kdx-box"></rect><text x="1020" y="38" text-anchor="middle" font-size="12.5" class="kdx-label">Utility</text><text x="1020" y="52" text-anchor="middle" font-size="9" class="kdx-sub">print · match · edit · convert · compare</text></g></svg></div></div><p class="kdx-caption">The projection is defined once and shared, so what counts as the text of a file is the same for every utility and matches the rest of the pipeline.</p></div>
 <p><strong>Format resolution.</strong> An explicit <code>--format</code> / <code>-f</code> wins; otherwise the
-framework&#x27;s canonical detection cascade runs — extension, then container-aware
-content sniffing — falling back to plaintext. Standard input carries no usable
+framework&#x27;s canonical detection cascade runs (extension, then container-aware
+content sniffing), falling back to plaintext. Standard input carries no usable
 path, so its detection is purely content-based through the same detector: a piped
 Word document or JSON catalog is still recognised.</p>
 <p><strong>The binary guard.</strong> The plaintext fallback is what makes extensionless prose
 work, and it is also what would make <code>kcat ~/Downloads/*</code> print a disk image. So
 the fallback is gated: input that no format claimed <em>and</em> whose bytes are binary
 fails with a dedicated error, which each utility reports per file and then
-carries on from. The rule is git&#x27;s — a NUL byte in the first 8000 bytes —
+carries on from. The rule is git&#x27;s (a NUL byte in the first 8000 bytes),
 exempting the Unicode byte-order marks, since UTF-16 and UTF-32 text is full of
 NUL bytes and announces itself. The guard sits in the one format-resolution
 helper, so every utility inherits it. It cannot fire for a format kapi
@@ -80,7 +80,7 @@ understands, because detection already claimed those, and <code>-f</code> is the
 hatch because it short-circuits detection entirely.</p>
 <p><strong>Read path</strong> (<code>kcat</code>, <code>kgrep</code>). The stream helper opens the input, detects the
 format, and calls back for each block in order. <code>kcat</code> prints each block&#x27;s source
-text — or a <code>--target LOCALE</code> translation — one block per line; <code>kgrep</code> matches
+text, or a <code>--target LOCALE</code> translation, one block per line; <code>kgrep</code> matches
 each block&#x27;s text against the pattern. Markup and non-translatable structure
 never reach the projection.</p>
 <p><strong>Edit path</strong> (<code>ksed</code>). The document is read, the substitution tool is applied to
@@ -88,8 +88,8 @@ every part, and the reconstructed document is written back in the same format.
 The skeleton store is wired between reader and writer when both support it, so a
 faithful format round-trips its structure while only the edited text changes.
 Edits target the source unless <code>--target LOCALE</code> selects a translation. In-place
-editing requires a file argument and refuses stdin. A read-only format — one with
-no writer — returns an actionable error pointing at <code>kcat</code>.</p>
+editing requires a file argument and refuses stdin. A read-only format, one with
+no writer, returns an actionable error pointing at <code>kcat</code>.</p>
 <p><strong>Convert path</strong> (<code>kconv</code>). The input is read and written through a <em>different</em>
 format&#x27;s writer, chosen from <code>--to</code> (a format id or an extension) or inferred
 from the <code>-o</code> extension. The skeleton store and the source bytes are wired to the
@@ -99,8 +99,8 @@ reconstructs from the content model and the block roles, so the source&#x27;s fo
 byte skeleton is never emitted. This is the same format-match guard the file
 runner applies.</p>
 <p><strong>Compare path</strong> (<code>kdiff</code>). Two inputs are projected to block text and the
-<strong>blocks are aligned</strong>, not the lines, so structural noise — a re-zipped
-document, a reflowed container, a reordered catalog — never registers as a diff.
+<strong>blocks are aligned</strong>, not the lines, so structural noise (a re-zipped
+document, a reflowed container, a reordered catalog) never registers as a diff.
 Alignment is chosen per pair. <strong>Keyed</strong> sides, whose blocks carry stable semantic
 keys such as a JSON key path or an XLIFF unit id, align by key, so added,
 removed, changed, and reordered keys fall out directly (a reorder is reported as
@@ -109,7 +109,7 @@ removed, changed, and reordered keys fall out directly (a reorder is reported as
 over the block text, so an inserted paragraph is one added block rather than a
 cascade of changes. <code>--by id|content</code> overrides the heuristic; the LCS table is
 capped, with a positional fallback that is logged rather than silent. A single
-input plus <code>--target LOCALE</code> switches to <strong>coverage mode</strong> — source against
+input plus <code>--target LOCALE</code> switches to <strong>coverage mode</strong>, source against
 translation within one file, reporting untranslated and source-identical blocks.
 <code>kdiff</code> reads only; it never writes a document back.</p>
 <p>Because the projection is the translatable blocks, the utilities inherit the
@@ -118,7 +118,7 @@ content model&#x27;s notion of what is translatable
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="which-valid-conversion-targets-exist">Which valid conversion targets exist<a href="#which-valid-conversion-targets-exist" class="hash-link" aria-label="Direkte lenke til Which valid conversion targets exist" title="Direkte lenke til Which valid conversion targets exist" translate="no">​</a></h3>
 <p>A cross-format conversion reconstructs the target from the content model, never
 from a foreign skeleton. So the valid <code>--to</code> targets are exactly the
-<strong>generative, non-interchange</strong> writers — the declared writer capabilities in
+<strong>generative, non-interchange</strong> writers, the declared writer capabilities in
 <a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02</a>. Skeleton-bound formats (Word,
 PowerPoint, ODF, IDML, EPUB) can be converted <em>from</em> but not <em>to</em>. Bilingual
 interchange formats are reached through <code>kapi extract</code> and <code>kapi merge</code>
@@ -128,20 +128,20 @@ format, resolved declaratively without loading a plugin.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="flag-surface">Flag surface<a href="#flag-surface" class="hash-link" aria-label="Direkte lenke til Flag surface" title="Direkte lenke til Flag surface" translate="no">​</a></h3>
 <p>Each utility carries its classic option surface plus a few kapi-aware additions.
 Common to all: <code>--target LOCALE</code> (operate on a translation instead of the
-source), <code>--format</code> / <code>-f</code>, <code>--source-lang</code>, and <code>--encoding</code>.</p>
+source) and <code>--format</code> / <code>-f</code>.</p>
 <ul>
-<li class=""><strong><code>kgrep</code></strong> — <code>-i</code>, <code>-v</code>, <code>-c</code>, <code>-n</code>, <code>-o</code>, <code>-l</code> / <code>-L</code>, <code>-w</code>, <code>-F</code>, <code>-r</code>,
+<li class=""><strong><code>kgrep</code></strong>: <code>-i</code>, <code>-v</code>, <code>-c</code>, <code>-n</code>, <code>-o</code>, <code>-l</code> / <code>-L</code>, <code>-w</code>, <code>-F</code>, <code>-r</code>,
 <code>-H</code> / <code>--no-filename</code>, repeatable <code>-e</code>, <code>-q</code>, plus <code>--color</code> and <code>--json</code>.</li>
-<li class=""><strong><code>ksed</code></strong> — repeatable <code>-e</code> (<code>s/regexp/replacement/flags</code>), <code>-i</code> with an
+<li class=""><strong><code>ksed</code></strong>: repeatable <code>-e</code> (<code>s/regexp/replacement/flags</code>), <code>-i</code> with an
 optional attached backup suffix, and <code>-R</code> to recurse. The script supports
 backreferences, the <code>g</code> and <code>i</code> flags, and any single-byte delimiter. sed&#x27;s
 attached-suffix form (<code>-i.bak</code>) is normalised before dispatch.</li>
-<li class=""><strong><code>kcat</code></strong> — <code>-n</code>, <code>--id</code> (prefix each block with its source id), <code>-r</code>, and
+<li class=""><strong><code>kcat</code></strong>: <code>-n</code>, <code>--id</code> (prefix each block with its source id), <code>-r</code>, and
 <code>--json</code>.</li>
-<li class=""><strong><code>kdiff</code></strong> — <code>--by auto|id|content</code>, <code>-q</code> / <code>--brief</code>, <code>--stat</code>, <code>--color</code>,
+<li class=""><strong><code>kdiff</code></strong>: <code>--by auto|id|content</code>, <code>-q</code> / <code>--brief</code>, <code>--stat</code>, <code>--color</code>,
 and <code>--json</code>. It takes one or two <code>FILE</code> arguments rather than a glob, and
 never edits in place.</li>
-<li class=""><strong><code>kconv</code></strong> — <code>-t</code> / <code>--to FORMAT</code>, <code>-o</code> / <code>--output PATH</code>, <code>-r</code>, and
+<li class=""><strong><code>kconv</code></strong>: <code>-t</code> / <code>--to FORMAT</code>, <code>-o</code> / <code>--output PATH</code>, <code>-r</code>, and
 <code>--timing</code>.</li>
 </ul>
 <p>Recursion is <code>-R</code> on <code>ksed</code> and <code>-r</code> everywhere else. That is fidelity to the
@@ -149,34 +149,34 @@ classics winning over internal uniformity: sed&#x27;s <code>-r</code> is <code>-
 taking that letter would silently rewrite a whole tree for someone who asked for
 a regexp dialect. <code>-r</code> is left unbound on <code>ksed</code>, so typing it is an error rather
 than a surprise.</p>
-<p><code>kconv</code>&#x27;s <code>-o</code> becomes a <strong>batch</strong> when it names a directory — a trailing
+<p><code>kconv</code>&#x27;s <code>-o</code> becomes a <strong>batch</strong> when it names a directory: a trailing
 separator, or a path that already is one. Each input produces one output file
 named after its stem with the target extension, and the input sub-tree is
 mirrored relative to the deepest directory every input shares. That root is
 computed from the <em>resolved</em> inputs rather than the arguments, so a
 shell-expanded glob and a kapi-expanded one behave alike, and same-named files in
 sibling directories cannot collide. Two inputs resolving to one output, and an
-output that would land on its own input, are reported and skipped — never a
-silent overwrite.</p>
+output that would land on its own input, are reported and skipped, never
+silently overwritten.</p>
 <p>With no <code>FILE</code>, or when <code>FILE</code> is <code>-</code>, standard input is read. A terminal stdin
 read is raced against the command context, so an interrupt (which the CLI traps
 as cancellation rather than letting the signal kill the process) returns cleanly
 rather than hanging.</p>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="exit-codes-follow-grep-not-the-clis-default">Exit codes follow grep, not the CLI&#x27;s default<a href="#exit-codes-follow-grep-not-the-clis-default" class="hash-link" aria-label="Direkte lenke til Exit codes follow grep, not the CLI&#x27;s default" title="Direkte lenke til Exit codes follow grep, not the CLI&#x27;s default" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="exit-codes-follow-grep">Exit codes follow grep<a href="#exit-codes-follow-grep" class="hash-link" aria-label="Direkte lenke til Exit codes follow grep" title="Direkte lenke til Exit codes follow grep" translate="no">​</a></h3>
 <p>The utilities report a <em>result</em> as a status, not as an error. <code>kgrep</code> exits <code>0</code>
 when any block matched, <code>1</code> when none did, and <code>2</code> on operational trouble. To
 express &quot;no match&quot; as a status without printing an error line, a no-match returns
 the <code>ErrSilentExit</code> sentinel: the CLI runner maps it to a non-zero exit but
-suppresses the message, because the command has already written — or deliberately
-withheld — its own output.</p>
+suppresses the message, because the command has already written, or deliberately
+withheld, its own output.</p>
 <p><code>kdiff</code> reuses the same spine for the classic <code>diff</code> convention: <code>0</code> when the
 inputs are equivalent, <code>1</code> when they differ (or, in coverage mode, when
 translation work is pending), <code>2</code> on trouble. It prints the diff first, then
 returns the sentinel, so there is no spurious error line after a legitimate
 result.</p>
 <p>This is the same exit-code spine used across the CLI
-(<a class="" href="/nb/contribute/architecture/surfaces/s-01-kapi-cli">S-01</a>) — success, error, usage, gate, and cancellation
-mapped to the signal code — so scripts and agent skills can branch on toolbox
+(<a class="" href="/nb/contribute/architecture/surfaces/s-01-kapi-cli">S-01</a>): success, error, usage, gate, and cancellation
+mapped to the signal code, so scripts and agent skills can branch on toolbox
 results reliably.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direkte lenke til Consequences" title="Direkte lenke til Consequences" translate="no">​</a></h2>
 <ul>
@@ -189,22 +189,22 @@ conversion round-trips faithfully, while a cross-format one projects the
 document&#x27;s structure through block roles into the target, so a Word document
 becomes clean Markdown or HTML without its source packaging.</li>
 <li class=""><code>kdiff</code> compares content rather than bytes: re-saving a document or reordering
-a catalog produces no diff, only genuine prose changes do — and the
+a catalog produces no diff, only genuine prose changes do, and the
 block-shaped change set is exactly what a re-translation pass consumes.</li>
 <li class="">The projection is defined once, so what counts as &quot;the text&quot; is consistent
 across the utilities and matches the rest of the pipeline.</li>
 <li class="">The grep-style exit codes let scripts distinguish &quot;no match&quot; from &quot;error&quot;
-without parsing output — the same property an agent skill relies on
+without parsing output, the same property an agent skill relies on
 (<a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03</a>).</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direkte lenke til Related" title="Direkte lenke til Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — blocks, the unit the toolbox projects to</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a> — readers, writers, writer output modes, and the skeleton store</li>
-<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-01-kapi-cli">S-01: The kapi CLI</a> — the CLI base the utilities live in and the exit-code contract they extend</li>
-<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent surfaces</a> — the skill that drives the toolbox, and <code>kapi apply</code> as the reviewed-edit sibling of <code>ksed</code></li>
-<li class=""><a class="" href="/nb/contribute/architecture/multilingual/m-01-bilingual-interop">M-01: Bilingual interop</a> — where interchange formats are reached instead</li>
-<li class=""><a class="" href="/nb/toolbox/overview">CLI tools</a> — the user-facing guide to each utility</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/surfaces/s-04-toolbox.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">S-03: Agent surfaces: MCP and skills</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/surfaces/s-05-i18n-runtime"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">S-05: The i18n runtime for React</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#multi-call-dispatch" class="table-of-contents__link toc-highlight">Multi-call dispatch</a></li><li><a href="#one-block-text-projection" class="table-of-contents__link toc-highlight">One block-text projection</a></li><li><a href="#which-valid-conversion-targets-exist" class="table-of-contents__link toc-highlight">Which valid conversion targets exist</a></li><li><a href="#flag-surface" class="table-of-contents__link toc-highlight">Flag surface</a></li><li><a href="#exit-codes-follow-grep-not-the-clis-default" class="table-of-contents__link toc-highlight">Exit codes follow grep, not the CLI&#39;s default</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:12 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: blocks, the unit the toolbox projects to</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a>: readers, writers, writer output modes, and the skeleton store</li>
+<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-01-kapi-cli">S-01: The kapi CLI</a>: the CLI base the utilities live in and the exit-code contract they extend</li>
+<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent surfaces</a>: the skill that drives the toolbox, and <code>kapi apply</code> as the reviewed-edit sibling of <code>ksed</code></li>
+<li class=""><a class="" href="/nb/contribute/architecture/multilingual/m-01-bilingual-interop">M-01: Bilingual interop</a>: where interchange formats are reached instead</li>
+<li class=""><a class="" href="/nb/toolbox/overview">CLI tools</a>: the user-facing guide to each utility</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/surfaces/s-04-toolbox.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">S-03: Agent surfaces: MCP and skills</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/surfaces/s-05-i18n-runtime"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">S-05: The i18n runtime for React</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#multi-call-dispatch" class="table-of-contents__link toc-highlight">Multi-call dispatch</a></li><li><a href="#one-block-text-projection" class="table-of-contents__link toc-highlight">One block-text projection</a></li><li><a href="#which-valid-conversion-targets-exist" class="table-of-contents__link toc-highlight">Which valid conversion targets exist</a></li><li><a href="#flag-surface" class="table-of-contents__link toc-highlight">Flag surface</a></li><li><a href="#exit-codes-follow-grep" class="table-of-contents__link toc-highlight">Exit codes follow grep</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:17 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

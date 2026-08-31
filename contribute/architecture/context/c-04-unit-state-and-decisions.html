@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">C-04: Unit state and the decision record | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-04: Unit state and the decision record | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project&#x27;s authored unit state — the review ladder, approvals, sign-off, parking — lives in a first-class core/state store. The committed, diff-friendly serialization under .kapi/state/ is the source of truth; a working set inside the project&#x27;s one database stages changes until kapi commit publishes them."><meta data-rh="true" property="og:description" content="Architecture decision: a project&#x27;s authored unit state — the review ladder, approvals, sign-off, parking — lives in a first-class core/state store. The committed, diff-friendly serialization under .kapi/state/ is the source of truth; a working set inside the project&#x27;s one database stages changes until kapi commit publishes them."><meta data-rh="true" name="keywords" content="project state,decision record,core/state,review,approval,convergence,working set,staged,commit,targetHash,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-04: Unit state and the decision record","item":"https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
-<script src="/assets/js/runtime~main.6a77e6ad.js" defer="defer"></script>
-<script src="/assets/js/main.217225e7.js" defer="defer"></script>
+<title data-rh="true">C-04: Unit state and the decision record | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-04: Unit state and the decision record | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project&#x27;s authored unit state (the review ladder, approvals, sign-off, parking) lives in a first-class core/state store. The committed, diff-friendly serialization under .kapi/state/ is the source of truth; a working set inside the project&#x27;s one database stages changes until kapi commit publishes them."><meta data-rh="true" property="og:description" content="Architecture decision: a project&#x27;s authored unit state (the review ladder, approvals, sign-off, parking) lives in a first-class core/state store. The committed, diff-friendly serialization under .kapi/state/ is the source of truth; a working set inside the project&#x27;s one database stages changes until kapi commit publishes them."><meta data-rh="true" name="keywords" content="project state,decision record,core/state,review,approval,convergence,working set,staged,commit,targetHash,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-04: Unit state and the decision record","item":"https://neokapi.github.io/contribute/architecture/context/c-04-unit-state-and-decisions"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
+<script src="/assets/js/runtime~main.2318bff8.js" defer="defer"></script>
+<script src="/assets/js/main.2c3341f6.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -17,40 +17,39 @@
 <strong>recipe</strong> is config. The <strong>files</strong> are the deliverable. Between them sits the
 project&#x27;s <strong>work</strong>, and that work is itself two kinds of thing:</p>
 <ul>
-<li class=""><strong>Derived state</strong> — parsed content, coverage percentages, the rungs of the
+<li class=""><strong>Derived state</strong>: parsed content, coverage percentages, the rungs of the
 ladder reachable from content. Rebuildable; it lives in the cache under
 <code>.kapi/work/cache/</code> and is ignored. Delete it and a re-run reconstructs
 identical results.</li>
-<li class=""><strong>Authored unit state</strong> — a person approving a translation, signing it off,
+<li class=""><strong>Authored unit state</strong>: a person approving a translation, signing it off,
 parking a unit, or recording who reviewed what. This is <em>not</em> derivable from
 anything; it must be <strong>kept</strong>.</li>
 </ul>
 <p>Authored state needs a carrier a plain target file cannot provide: such a file
 records that a target <em>exists</em>, not that anyone <em>blessed</em> it. <code>core/state</code> is
-that carrier — a first-class, format-independent, committed record of where each
+that carrier, a first-class, format-independent, committed record of where each
 unit stands, distinct from both the derived cache and the recycle content memory
 (<a class="" href="/contribute/architecture/context/c-09-content-memory">C-09</a>).</p>
-<p>The end-user view of what this state <em>means</em> — the ladders, the gates, and the
-review queue derived from it — is <a class="" href="/kapi/convergence">Convergence</a> and
+<p>The end-user view of what this state <em>means</em> (the ladders, the gates, and the
+review queue derived from it) is <a class="" href="/kapi/convergence">Convergence</a> and
 <a class="" href="/kapi/project-store">the project store</a>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="context">Context<a href="#context" class="hash-link" aria-label="Direct link to Context" title="Direct link to Context" translate="no">​</a></h2>
 <p>The convergence model derives a project&#x27;s per-locale standing: per <code>(unit, locale)</code>, a monotone ladder (<code>draft → translated → reviewed → signed-off</code>) and a
 symmetric source ladder (<code>authored → checked → approved</code>). The lower rungs are
-derivable from content — an absent target is below the ladder, a present
+derivable from content: an absent target is below the ladder, a present
 non-empty target is at least <em>translated</em>. The <strong>higher</strong> rungs are not: whether
 a person reviewed <em>this exact translation</em> is something someone did, and it has
 to be stored somewhere.</p>
 <p>The source ladder is not merely reported: it gates the loop symmetrically with
 the target ladder. Just as a target below its ship gate cannot ship, source below
 the project&#x27;s source gate (<code>model.DefaultSourceGate</code>, <em>checked</em>) is not
-translated — the <code>source-gate</code> leading stage settles and gates the source before
+translated. The <code>source-gate</code> leading stage settles and gates the source before
 the fan-out, and holds under-ready source rather than translating it
-(<a class="" href="/kapi/convergence#source-first">Convergence — source first</a>). The source rungs
-recorded here are load-bearing.</p>
+(<a class="" href="/kapi/convergence#source-first">Convergence, source first</a>).</p>
 <p>The model already expresses these facts (<code>model.TargetStatus</code>,
-<code>model.SourceStatus</code>, <code>model.Origin</code>). What was missing was a <em>persistence</em> for
-them independent of the deliverable format. The danger is overloading an existing
-store — in particular the content memory, which is content-keyed leverage, not
+<code>model.SourceStatus</code>, <code>model.Origin</code>). What they need is a <em>persistence</em>
+independent of the deliverable format. The danger is overloading an existing
+store, in particular the content memory, which is content-keyed leverage, not
 project state. Conflating <em>have we ever translated this string?</em> (recycle,
 content-keyed) with <em>is this unit signed off, by whom?</em> (state, unit-keyed) is a
 category error: the two have different keys and different lifecycles.</p>
@@ -58,12 +57,12 @@ category error: the two have different keys and different lifecycles.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="two-kinds-of-state-two-homes">Two kinds of state, two homes<a href="#two-kinds-of-state-two-homes" class="hash-link" aria-label="Direct link to Two kinds of state, two homes" title="Direct link to Two kinds of state, two homes" translate="no">​</a></h3>
 <p>The invariant <em>&quot;delete the cache and lose nothing&quot;</em> holds precisely because the
 two are separated:</p>
-<table><thead><tr><th>Kind</th><th>Examples</th><th>Home</th><th>Authoritative?</th></tr></thead><tbody><tr><td>Derived</td><td>parsed blocks, coverage, rungs reachable from content</td><td><code>.kapi/work/cache/</code>, and the derived tables of <code>.kapi/work/store.db</code></td><td>no — rebuildable, ignored</td></tr><tr><td>Authored unit state</td><td>approvals, sign-off, parking, reviewer, notes</td><td><code>.kapi/state/</code> (<code>core/state</code>)</td><td>yes — committed</td></tr></tbody></table>
+<table><thead><tr><th>Kind</th><th>Examples</th><th>Home</th><th>Authoritative?</th></tr></thead><tbody><tr><td>Derived</td><td>parsed blocks, coverage, rungs reachable from content</td><td><code>.kapi/work/cache/</code>, and the derived tables of <code>.kapi/work/store.db</code></td><td>no: rebuildable, ignored</td></tr><tr><td>Authored unit state</td><td>approvals, sign-off, parking, reviewer, notes</td><td><code>.kapi/state/</code> (<code>core/state</code>)</td><td>yes: committed</td></tr></tbody></table>
 <p>The cache may <em>mirror</em> authored state in transit, but it never <em>owns</em> it. The
 durable home is the committed record under <code>.kapi/state/</code>, and the only window in
 which the record exists nowhere else is between writing it and <code>kapi commit</code>.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="content-memory-is-recycle-not-the-state-carrier">Content memory is recycle, not the state carrier<a href="#content-memory-is-recycle-not-the-state-carrier" class="hash-link" aria-label="Direct link to Content memory is recycle, not the state carrier" title="Direct link to Content memory is recycle, not the state carrier" translate="no">​</a></h3>
-<p>The content memory (<a class="" href="/contribute/architecture/context/c-09-content-memory">C-09</a>) is the <strong>recycle corpus</strong> — a
+<p>The content memory (<a class="" href="/contribute/architecture/context/c-09-content-memory">C-09</a>) is the <strong>recycle corpus</strong>: a
 content-keyed pool of source→target pairs reused to pre-fill and leverage future
 work. It does not record review outcomes. Adding a pair to the memory (<code>kapi apply</code> with <code>kind:&quot;memory&quot;</code>) is recycle leverage; approving a unit (<code>kapi apply</code>
 with <code>kind:&quot;review&quot;</code>) writes the state store. An approved pair may <em>also</em> land in
@@ -72,15 +71,17 @@ the memory as leverage, but that is a side effect, not where the record lives.</
 <p>State has two representations, and conflating them is the trap to avoid:</p>
 <ol>
 <li class="">
-<p><strong>Source of truth — a committed, diff-friendly serialization.</strong> JSON Lines
+<p><strong>Source of truth: a committed, diff-friendly serialization.</strong> JSON Lines
 under <code>.kapi/state/</code>, one shard per document, committed: mergeable, reviewable
-in a diff, exchangeable to XLIFF (<code>&lt;target state=…&gt;</code>, notes, phase and owner —
+in a diff, exchangeable to XLIFF (<code>&lt;target state=…&gt;</code>, notes, phase and owner,
 <a class="" href="/contribute/architecture/multilingual/m-01-bilingual-interop">M-01</a>), carried by a <code>.kpz</code>
-parcel&#x27;s bilingual profile. This is what a fresh checkout restores from. The
-on-disk form is schema-versioned (<code>SchemaVersion</code>, <code>Kind = &quot;kapi-project-state&quot;</code>).</p>
+parcel&#x27;s bilingual profile. This is what a fresh checkout restores from. Each
+line is one <code>UnitState</code> object; lines are sorted within a shard so a file&#x27;s
+bytes depend only on its contents, and there is no envelope, version field or
+header.</p>
 </li>
 <li class="">
-<p><strong>Working set — tables in the project&#x27;s one database.</strong> <code>core/state.WorkStore</code>
+<p><strong>Working set: tables in the project&#x27;s one database.</strong> <code>core/state.WorkStore</code>
 inside <code>.kapi/work/store.db</code> (<a class="" href="/contribute/architecture/context/c-03-context-store-and-graph">C-03</a>) is the
 fast random-access model with transactions and hash lookups. Derived from the
 record: seeded from it when empty, materialized back by <code>Commit</code>.</p>
@@ -96,7 +97,7 @@ sidecar, <code>.kapi/work/store.json</code>; the model is unchanged.</p>
 </li>
 </ol>
 <p>Committing a binary database as the authoritative store would be hostile to
-review — opaque, conflict-prone — and would defeat exchange, so the durable home
+review (opaque, conflict-prone) and would defeat exchange, so the durable home
 is the text serialization and the database is only a working index over it.
 Discard the working index, reopen from the committed record, lose nothing beyond
 what was staged.</p>
@@ -108,14 +109,14 @@ magnitude more bytes than it writes. A line per unit makes an approval a one-lin
 diff; a shard per document keeps a documentation edit from churning the shard
 holding the interface strings.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="recording-is-implicit-publishing-is-explicit">Recording is implicit; publishing is explicit<a href="#recording-is-implicit-publishing-is-explicit" class="hash-link" aria-label="Direct link to Recording is implicit; publishing is explicit" title="Direct link to Recording is implicit; publishing is explicit" translate="no">​</a></h3>
-<p>Mutations to the working set are <strong>not published until an explicit <code>Commit</code></strong> —
-deliberately the mental model of staged changes:</p>
+<p>Mutations to the working set are <strong>not published until an explicit <code>Commit</code></strong>,
+the mental model of staged changes:</p>
 <ul>
 <li class=""><code>Put</code> / <code>Delete</code> mutate the working set.</li>
 <li class=""><code>Pending()</code> reports how many unit-state changes are staged. <code>kapi status</code>
 surfaces the count and names the command that publishes them, staying silent
 when there are none, on the habit that a clean project should read clean.</li>
-<li class=""><code>Commit()</code> materializes the working set to the durable home in one deliberate,
+<li class=""><code>Commit()</code> materializes the working set to the durable home in one
 auditable step, rather than churning a write on every approval. <code>kapi commit</code>
 is the verb.</li>
 </ul>
@@ -126,151 +127,127 @@ commit is the moment at which someone can.</p>
 the process. The tiers are <em>staged</em> and <em>committed</em>, not <em>in transit</em> and
 <em>durable</em>.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="unit-state-is-unit-keyed-and-bound-to-the-pairing-it-blessed">Unit state is unit-keyed and bound to the pairing it blessed<a href="#unit-state-is-unit-keyed-and-bound-to-the-pairing-it-blessed" class="hash-link" aria-label="Direct link to Unit state is unit-keyed and bound to the pairing it blessed" title="Direct link to Unit state is unit-keyed and bound to the pairing it blessed" translate="no">​</a></h3>
-<p>State is keyed by the <strong>unit</strong> — <code>(document, unit identity, variant)</code>, where the
-variant is the locale plus any further qualification — not by content.</p>
+<p>State is keyed by the <strong>unit</strong>: <code>(document, unit identity, variant)</code>, where the
+variant is the locale plus any further qualification, not by content.</p>
 <p>The document is identity, not a label beside it. A unit id is unique inside its
 document and nowhere wider: a reader names blocks by what the format gives it,
 and for prose those names follow position, so every page of a documentation
 collection carries an <code>h</code>, a <code>p</code> and an <code>fm_title</code>. Keyed on less, one page&#x27;s
-decision is the collection&#x27;s decision — the reviewer&#x27;s approvals are accepted,
+decision is the collection&#x27;s decision: the reviewer&#x27;s approvals are accepted,
 reported applied, and all but the last document&#x27;s discarded, and the pages that
-lost theirs then read as stale against a source nobody edited. The document is
-the source file&#x27;s path relative to the project root (<code>host.DecisionScope</code>), which
-is the identity namespace the unit key lives in and the name the connector gives
-the item, so a decision travels the sync protocol scoped to the item it was made
-in.</p>
+lost theirs then read as stale against a source nobody edited.</p>
+<p>The document&#x27;s identity is a <strong>durable key</strong>, not its path. When extraction
+reads a document, the working set records what the document held as well as
+where it lives (<code>project.DocumentAdopter</code>, implemented by the project pool), and
+<code>WorkStore.AdoptDocuments</code> matches each read against the documents the project
+already knows, moving the decisions filed under an address onto the identity.
+A run resolves the scope of every decision it records or reads through one
+<code>host.DocumentIndex</code>, read once from the store. A file that moves keeps its
+approvals. The path is the document&#x27;s <em>address</em>: it is what a decision is scoped
+by where the project holds no key (a fresh checkout, a build with no store),
+and <code>host.DecisionScope</code> is that one fallback definition, so every party names
+an unresolved document the same way. It is also the name the connector gives the
+item, so a decision travels the sync protocol scoped to the item it was made in.</p>
 <p>A decision is not about a translation; it is about a <strong>pairing</strong>: this rendering,
 <em>of this source</em>. Each record therefore carries both halves, computed by the one
 definition every party uses:</p>
 <ul>
-<li class=""><code>targetHash</code> — the content hash of the specific translation it blesses
+<li class=""><code>targetHash</code>: the content hash of the specific translation it blesses
 (<code>state.TargetHash</code>).</li>
-<li class=""><code>contentHash</code> — the <strong>basis</strong>: the content hash of the source wording it
+<li class=""><code>contentHash</code>: the <strong>basis</strong>, the content hash of the source wording it
 blessed that translation <em>for</em> (<code>state.SourceHash</code>, which is
 <code>model.ComputeContentHash</code>, the same normalization <code>core/reconcile</code> matches
-identity on — a unit&#x27;s basis and its identity signal are one number).</li>
+identity on, so a unit&#x27;s basis and its identity signal are one number).</li>
 </ul>
 <p>A record is <strong>stale</strong> when either half no longer matches what the project holds.
 Editing an approved translation drops the unit back below <em>reviewed</em>; rewriting
 its source does the same. Binding only the target is the half-measure that lets a
-reviewer&#x27;s blessing outlive the sentence it blessed — the translation stays
+reviewer&#x27;s blessing outlive the sentence it blessed: the translation stays
 <code>translated</code>, stays approved, and ships wording for text the project no longer
 has, reporting nothing.</p>
 <p>Staleness is <strong>derived on every read, never stored</strong>. A decision is history and is
 never rewritten; what a source edit changes is not the record but whether it still
-describes the project. So the demotion happens where the state is read — coverage,
-the review queue, the ship gate, the convergence plan — and a restored source
+describes the project. So the demotion happens where the state is read (coverage,
+the review queue, the ship gate, the convergence plan), and a restored source
 converges back onto the decision already on record, with nobody re-reviewing
 anything.</p>
 <p>A stale unit tallies at <code>draft</code>: a committed target exists, so it is not below the
 ladder, but it is not a translation of the current source either. It withholds its
-scope from shipping <strong>whether or not a ship gate applies</strong> — a coverage bar is a
+scope from shipping <strong>whether or not a ship gate applies</strong>. A coverage bar is a
 threshold on quantity, and no threshold makes a translation of a rewritten
 sentence shippable. An ungated project is precisely the one with nothing else to
 catch it.</p>
 <p><strong>Stale is work, not only a report.</strong> The convergence fan-out treats a
 basis-stale unit exactly as it treats one with no translation at all: it is in
-the pending set on any scope (gated or not — the <code>draft</code> tally would otherwise
-read an ungated scope as complete), it is priced in <code>kapi up --plan</code> on the same
-recycle-versus-AI split, and the pass produces a translation of the source the
-project has now.</p>
+the pending set on any scope (gated or not, since the <code>draft</code> tally would
+otherwise read an ungated scope as complete), it is priced in <code>kapi up --plan</code> on
+the same recycle-versus-AI split, and the pass produces a translation of the
+source the project has now.</p>
 <p>Staleness is one reason a produced unit is work, and the plan carries the others
 on their own axis. What a pass spends a provider call on is decided by the
 content memory, not by a target file: the pipeline reads the source documents,
 <code>recycle</code> fills what the corpus answers, and <code>translate</code> drafts the remainder. So
-<code>kapi up --plan</code> asks the corpus about every unit it counts — including on a
+<code>kapi up --plan</code> asks the corpus about every unit it counts, including on a
 checkout whose store does not exist yet, where the committed content-memory
 bundles are compiled into a corpus that lives only for that call, so a dry run
 prices the recycling a run would do without creating the state a dry run must
-not. A produced unit the record
-does not pair with its source — a rewrite, an identical pair no
-approval stands behind, a pair refused for asymmetric inline codes — is reported
-as <strong>unanswered</strong> and priced. It is deliberately not folded into <code>stale</code>: stale
-means a decision&#x27;s basis moved, which also drives the review worklist and
+not. A produced unit the record does not pair with its source (a rewrite, an
+identical pair no approval stands behind, a pair refused for asymmetric inline
+codes) is reported as <strong>unanswered</strong> and priced. It is kept apart from <code>stale</code>:
+stale means a decision&#x27;s basis moved, which also drives the review worklist and
 shipping, and merging the two would make the plan and the run summary disagree.
 The plan judges a produced unit only once the record absorber has read its
 committed target at the bytes on disk (the digest stamps of
 <a class="" href="/contribute/architecture/context/c-03-context-store-and-graph">C-03</a>); before that the corpus is unfinished,
 its silence means &quot;not asked&quot;, and the plan says so rather than quoting either a
-free run or a provider call per translation the run will recycle. What the loop cannot do is decide, so the re-draft never
-restores the withdrawn approval: the unit returns at its presence baseline, in
-the review worklist, and the scope stays withheld until someone reviews the new
-pairing. A loop that refuses to ship drift it will not work on has no way to
-heal.</p>
-<p>Producing over the unit requires one thing of the record absorber
-(<code>host/recordabsorb.go</code>), which is where the halt actually was. It pairs each
-committed target with the source <em>beside</em> it, and a unit whose key survives a
-source rewrite keeps its old translation in that position — so the pair it
-learned was an exact content-memory answer for wording nobody had translated,
-and the next pass recycled the stale target back over itself. A pairing the
-project&#x27;s own record contradicts is therefore not absorbed against the source now
-beside it. It is absorbed against the source it <em>does</em> translate, recovered from
-the block store (the absorber runs before the pass re-extracts, so that wording
-is still there), and when it is unrecoverable the pair is not written at all.</p>
-<p>Two things say the pairing is contradicted, and a unit needs only one of them.
-The <strong>decision&#x27;s basis</strong> answers for the locale that holds a decision: the
-wording it blessed is recovered by the basis hash, which makes the recovered
-source verified by construction — a block whose hash <em>is</em> the basis is the
-pairing the reviewer approved, reconstructed rather than guessed. A <strong>source
-rewrite</strong> answers for all of them: the block store holds the wording the unit had
-when the pass last read the working tree, and every locale&#x27;s committed target was
-produced against that one. Only the first would be a per-locale reading of a
-fact about the source, which is what left the locales holding no decision
-learning the mispair and serving the translation of a deleted sentence with the
-loop reporting them caught up.</p>
-<p>Both are scoped by the same question, asked of the target rather than the source:
-has it moved too? A decision answers it with the target hash it recorded; a unit
-with no decision answers it with the corpus, which already holds the loop&#x27;s own
-last output for the wording that is gone. Once the target has moved as well the
-record describes neither half of what is on disk, so the pair is absorbed like
-any undecided one — which is also what lets a person who rewrites a sentence and
-its translation together keep the pairing they authored, and what keeps the next
-run from paying to draft the same unit again.</p>
+free run or a provider call per translation the run will recycle. What the loop
+cannot do is decide, so the re-draft never restores the withdrawn approval: the
+unit returns at its presence baseline, in the review worklist, and the scope
+stays withheld until someone reviews the new pairing.</p>
+<p>The record absorber (<code>host/recordabsorb.go</code>) follows one rule for a pairing the
+project&#x27;s own record contradicts. A committed target is absorbed against the
+source it <em>does</em> translate: the wording recovered by the decision&#x27;s basis hash
+for a locale that holds a decision, or the wording the block store held when the
+pass last read the working tree for a source rewrite that affects every locale.
+When that wording is unrecoverable the pair is not written at all, so the corpus
+never learns a translation of a sentence the project no longer has. Once the
+target has moved as well, the record describes neither half of what is on disk
+and the pair is absorbed like any undecided one, which is what lets a person who
+rewrites a sentence and its translation together keep the pairing they authored.</p>
 <p><strong>An identical translation is a decision or it is nothing.</strong> A target equal to
 its source is dropped: unapproved, the identity is far more often a catalog
 carrying its untranslated leaves verbatim than a translation that happens to
 coincide, and absorbing one would fill the unit from its own source and take it
 away from the AI step for good. Carrying an approval it is absorbed like any
-other pair — a person read the pairing and said this wording is right, which is
+other pair: a person read the pairing and said this wording is right, which is
 what proper nouns, product names and short labels look like when they are
-correct. Dropping those re-drafted them on every pass and overwrote the approval
-bound to each, which is the one thing the ledger exists to prevent.</p>
+correct.</p>
 <p><strong>A decision settles the check that guesses at it.</strong> The QA rule
 <code>target-same-as-source</code> is a heuristic for &quot;nobody translated this&quot;, and an
 approval is a person having read that exact pairing and answered the question it
-asks — so an approved identical target is not reported and does not fail the ship
+asks, so an approved identical target is not reported and does not fail the ship
 gate. The project&#x27;s terms settle it the same way, for an entry whose target is
 its source. Both are one rule (<code>host.identicalTargetRule</code>) because two surfaces
 consult it: the QA gate <code>kapi check</code> fails on, and the check exclusions that
 demote a unit below <code>translated</code> during <code>kapi up</code>. Only that one finding is
-settled — a dropped placeholder on an approved unit is still a defect, and an
+settled; a dropped placeholder on an approved unit is still a defect, and an
 approval licenses nothing about it.</p>
-<p><strong>A missing basis is unknown, not stale.</strong> A record written before the basis was
-tracked says nothing about the source it blessed, and reading that silence as
-drift would demote every decision every existing project holds. Such a unit keeps
-its rung, ships as it does today, and is <em>counted</em> — <code>kapi status</code> reports how
-many decisions rest on an unrecorded basis — so the assumption is visible rather
-than silent. It clears itself: the next decision on the unit records a basis.</p>
+<p><strong>A missing basis is unknown, not stale.</strong> A record with no basis says nothing
+about the source it blessed, and reading that silence as drift would demote
+every such decision a project holds. Such a unit keeps its rung, ships as it
+does, and is <em>counted</em>: <code>kapi status</code> reports how many decisions rest on an
+unrecorded basis, so the assumption is visible rather than silent. It clears
+itself: the next decision on the unit records a basis.</p>
 <p>A content-keyed index structurally cannot express any of this. Unit-keying plus
 the two hashes is what makes an approval unable to silently outlive the text it
-approved — and it is the same fact the graph&#x27;s <code>blesses</code> edge carries
+approved, and it is the same fact the graph&#x27;s <code>blesses</code> edge carries
 (<a class="" href="/contribute/architecture/context/c-03-context-store-and-graph">C-03</a>), which carries both hashes for that
 reason, so <em>which decision covers this unit, at which basis</em> is answerable by
-traversal as well as by lookup.</p>
-<p>The server ledger holds the same two fields and applies the same rule from the
-other side. A decision that arrives blessing content the store no longer holds —
-either half of the pairing — is recorded but moves nothing. A source edit
-re-derives the projected statuses of the unit&#x27;s targets against the ledger
-rather than only demoting them: a decision made for the old wording drops the
-projection to the presence baseline, and one that blessed exactly the wording
-the source now carries applies again, so a restored text finds its approval
-without a second review. Both directions file a history event
-(<code>decision.stale</code>, <code>decision.restored</code>), which is what makes the flip auditable
-rather than silent. The derived ship state reads the same basis: a scope holding
-a unit whose source moved is withheld, exactly as a failing check withholds it.</p>
+traversal as well as by lookup. A connected venue applies the same basis rule
+from its side.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="who-decided">Who decided<a href="#who-decided" class="hash-link" aria-label="Direct link to Who decided" title="Direct link to Who decided" translate="no">​</a></h3>
 <p>A <code>Decision</code> records the authored outcome and who reached it. Two distinctions in
-the identity string are load-bearing:</p>
+the identity string matter:</p>
 <ul>
 <li class="">An identity prefixed <code>ai/</code> (<code>state.AIIdentityPrefix</code>) marks a decision reached
 autonomously by a model. Such decisions count toward the reviewed and
@@ -280,11 +257,11 @@ configuration rather than by hope.</li>
 <li class="">An <code>agent/…</code> identity is <strong>not</strong> an AI decision: an agent acts on a person&#x27;s
 behalf, and <code>state.IsAIDecision</code> says so.</li>
 </ul>
-<p>An <code>AIReview</code> is a third thing again — an advisory annotation carrying a score
+<p>An <code>AIReview</code> is a third thing again: an advisory annotation carrying a score
 and findings, bound to the translation it judged so that an edit invalidates it
 (<code>AIReview.Fresh</code>). It never moves a unit on the ladder.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-committed-location-is-fixed">The committed location is fixed<a href="#the-committed-location-is-fixed" class="hash-link" aria-label="Direct link to The committed location is fixed" title="Direct link to The committed location is fixed" translate="no">​</a></h3>
-<p>The record lives at <code>.kapi/state/</code>, derived from the project layout — inside the
+<p>The record lives at <code>.kapi/state/</code>, derived from the project layout: inside the
 committed context, beside the terms and the content memory it makes claims about.
 <code>kapi status</code> and <code>kapi commit</code> take no path, and the recipe binds nothing: the
 record is a directory whose contents kapi owns and prunes, so pointing it at an
@@ -292,11 +269,11 @@ arbitrary location would invite a project to aim it somewhere kapi deletes from.
 That is the difference from <code>terms_source</code> and <code>memory_source</code>, which bind any
 path because a person authors those files.</p>
 <p>Getting the record <em>out</em> of kapi&#x27;s own layout is a job for exchange rather than
-relocation — <code>kapi merge</code>, XLIFF <code>&lt;target state=…&gt;</code>, the <code>.kpz</code> bilingual profile
-— which converts the record into a format a third party can read instead of
-moving it.</p>
+relocation (<code>kapi merge</code>, XLIFF <code>&lt;target state=…&gt;</code>, the <code>.kpz</code> bilingual
+profile), which converts the record into a format a third party can read instead
+of moving it.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="why-the-committed-record-stays-whatever-else-exists">Why the committed record stays, whatever else exists<a href="#why-the-committed-record-stays-whatever-else-exists" class="hash-link" aria-label="Direct link to Why the committed record stays, whatever else exists" title="Direct link to Why the committed record stays, whatever else exists" translate="no">​</a></h3>
-<p>A hosted layer can coordinate review — concurrent reviewers, assignment, queues,
+<p>A hosted layer can coordinate review: concurrent reviewers, assignment, queues,
 and a place for reviews done by people with no checkout. That is coordination
 <em>around</em> the record rather than a replacement for it, and the committed record
 keeps properties no live database can:</p>
@@ -309,23 +286,24 @@ sees that an edit invalidated twelve approvals. A live database is <em>now</em>,
 <em>at this commit</em>.</li>
 <li class=""><strong>A checkout at a past commit must converge identically.</strong> State versioned
 alongside the source gives that.</li>
-<li class=""><strong>Local-first is load-bearing elsewhere.</strong> Redaction
+<li class=""><strong>Local-first holds elsewhere too.</strong> Redaction
 (<a class="" href="/contribute/architecture/context/c-10-redaction">C-10</a>) exists so content can be withheld from a named
 destination. A design where unit state has to round-trip that destination
 contradicts it.</li>
 </ul>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="layering--the-model-in-core-the-io-with-its-surface">Layering — the model in <code>core/</code>, the IO with its surface<a href="#layering--the-model-in-core-the-io-with-its-surface" class="hash-link" aria-label="Direct link to layering--the-model-in-core-the-io-with-its-surface" title="Direct link to layering--the-model-in-core-the-io-with-its-surface" translate="no">​</a></h3>
-<p>The state record, its store interface, and the convergence <em>model</em> — the ladder
-types and the per-block rung helpers — live in <code>core/state</code> and
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="layering-the-model-in-core-the-io-with-its-surface">Layering: the model in <code>core/</code>, the IO with its surface<a href="#layering-the-model-in-core-the-io-with-its-surface" class="hash-link" aria-label="Direct link to layering-the-model-in-core-the-io-with-its-surface" title="Direct link to layering-the-model-in-core-the-io-with-its-surface" translate="no">​</a></h3>
+<p>The state record, its working set, and the convergence <em>model</em> (the ladder
+types and the per-block rung helpers) live in <code>core/state</code> and
 <code>core/convergence</code>, so every surface agrees on what the rungs mean. The
 <em>orchestration</em> that reads files and computes a report stays with its IO. The CLI
 re-exports the core types through aliases so downstream code sees one import.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direct link to Consequences" title="Direct link to Consequences" translate="no">​</a></h2>
 <ul>
 <li class=""><strong><code>core/state</code></strong> holds <code>UnitState</code> (status, source status, origin, target hash,
-decision, updated), a <code>Key</code>, the <code>Stale</code>/<code>Reviewed</code> ladder helpers, and a
-<code>Store</code> interface over the sharded committed record
-(<code>Open</code>/<code>Get</code>/<code>Put</code>/<code>Delete</code>/<code>All</code>/<code>Pending</code>/<code>Commit</code>).</li>
+basis, decision, updated), a <code>Key</code>, the <code>Stale</code>/<code>Fresh</code>/<code>Reviewed</code> ladder
+helpers, and <code>WorkStore</code>, the working set over the sharded committed record
+(<code>Get</code>/<code>Put</code>/<code>Delete</code>/<code>All</code>/<code>Pending</code>/<code>Commit</code>, plus <code>Documents</code> and
+<code>AdoptDocuments</code> for document identity).</li>
 <li class=""><strong>Approvals flow through one verb.</strong> <code>kapi apply</code> with <code>kind:&quot;review&quot;</code> records
 the unit state in the project store, addressed by <code>(file, id, locale)</code> exactly
 as <code>kapi status --review</code> lists it. The desktop&#x27;s approve action and the CLI
@@ -338,16 +316,16 @@ state record and the database that stages it are both fixed by the layout.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="see-also">See also<a href="#see-also" class="hash-link" aria-label="Direct link to See also" title="Direct link to See also" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/contribute/architecture/context/c-01-project-model">C-01: The project model</a> — where <code>.kapi/state/</code> sits
+<li class=""><a class="" href="/contribute/architecture/context/c-01-project-model">C-01: The project model</a>: where <code>.kapi/state/</code> sits
 among the ownership zones.</li>
-<li class=""><a class="" href="/contribute/architecture/context/c-03-context-store-and-graph">C-03: The context store and graph</a> — the
+<li class=""><a class="" href="/contribute/architecture/context/c-03-context-store-and-graph">C-03: The context store and graph</a>: the
 working set and the <code>blesses</code> edge.</li>
-<li class=""><a class="" href="/contribute/architecture/context/c-09-content-memory">C-09: Content memory</a> — the recycle corpus this store
-is deliberately not.</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-01-bilingual-interop">M-01: Bilingual Format Interop</a> —
+<li class=""><a class="" href="/contribute/architecture/context/c-09-content-memory">C-09: Content memory</a>: the recycle corpus this store
+is not.</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-01-bilingual-interop">M-01: Bilingual Format Interop</a>:
 the exchange that carries state across a hand-off.</li>
-<li class=""><a class="" href="/kapi/convergence">Convergence</a> and <a class="" href="/kapi/project-store">the project store</a> —
+<li class=""><a class="" href="/kapi/convergence">Convergence</a> and <a class="" href="/kapi/project-store">the project store</a>:
 the end-user model derived from this state.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-04-unit-state-and-decisions.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/context/c-03-context-store-and-graph"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">C-03: The context store and graph</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/context/c-05-freshness"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">C-05: Freshness and the composite ref</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#two-kinds-of-state-two-homes" class="table-of-contents__link toc-highlight">Two kinds of state, two homes</a></li><li><a href="#content-memory-is-recycle-not-the-state-carrier" class="table-of-contents__link toc-highlight">Content memory is recycle, not the state carrier</a></li><li><a href="#the-committed-serialization-is-the-truth-the-working-set-is-an-index" class="table-of-contents__link toc-highlight">The committed serialization is the truth; the working set is an index</a></li><li><a href="#recording-is-implicit-publishing-is-explicit" class="table-of-contents__link toc-highlight">Recording is implicit; publishing is explicit</a></li><li><a href="#unit-state-is-unit-keyed-and-bound-to-the-pairing-it-blessed" class="table-of-contents__link toc-highlight">Unit state is unit-keyed and bound to the pairing it blessed</a></li><li><a href="#who-decided" class="table-of-contents__link toc-highlight">Who decided</a></li><li><a href="#the-committed-location-is-fixed" class="table-of-contents__link toc-highlight">The committed location is fixed</a></li><li><a href="#why-the-committed-record-stays-whatever-else-exists" class="table-of-contents__link toc-highlight">Why the committed record stays, whatever else exists</a></li><li><a href="#layering--the-model-in-core-the-io-with-its-surface" class="table-of-contents__link toc-highlight">Layering — the model in <code>core/</code>, the IO with its surface</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:09 UTC · d7de57f</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-04-unit-state-and-decisions.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/context/c-03-context-store-and-graph"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">C-03: The context store and graph</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/context/c-05-freshness"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">C-05: Freshness and the composite ref</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#two-kinds-of-state-two-homes" class="table-of-contents__link toc-highlight">Two kinds of state, two homes</a></li><li><a href="#content-memory-is-recycle-not-the-state-carrier" class="table-of-contents__link toc-highlight">Content memory is recycle, not the state carrier</a></li><li><a href="#the-committed-serialization-is-the-truth-the-working-set-is-an-index" class="table-of-contents__link toc-highlight">The committed serialization is the truth; the working set is an index</a></li><li><a href="#recording-is-implicit-publishing-is-explicit" class="table-of-contents__link toc-highlight">Recording is implicit; publishing is explicit</a></li><li><a href="#unit-state-is-unit-keyed-and-bound-to-the-pairing-it-blessed" class="table-of-contents__link toc-highlight">Unit state is unit-keyed and bound to the pairing it blessed</a></li><li><a href="#who-decided" class="table-of-contents__link toc-highlight">Who decided</a></li><li><a href="#the-committed-location-is-fixed" class="table-of-contents__link toc-highlight">The committed location is fixed</a></li><li><a href="#why-the-committed-record-stays-whatever-else-exists" class="table-of-contents__link toc-highlight">Why the committed record stays, whatever else exists</a></li><li><a href="#layering-the-model-in-core-the-io-with-its-surface" class="table-of-contents__link toc-highlight">Layering: the model in <code>core/</code>, the IO with its surface</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:14 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

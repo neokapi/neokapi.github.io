@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">E-02: The format system | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-02: The format system | neokapi"><meta data-rh="true" name="description" content="Formats are pluggable reader/writer pairs that convert between on-disk files and the Part stream, with three skeleton strategies for byte-exact write-back and a three-way reader output policy that surfaces non-translatable context as content."><meta data-rh="true" property="og:description" content="Formats are pluggable reader/writer pairs that convert between on-disk files and the Part stream, with three skeleton strategies for byte-exact write-back and a three-way reader output policy that surfaces non-translatable context as content."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,format system,DataFormatReader,DataFormatWriter,skeleton,streaming,detection,content fidelity,non-translatable content"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-02-format-system" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-02-format-system" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-02: The format system","item":"https://neokapi.github.io/contribute/architecture/engine/e-02-format-system"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
-<script src="/assets/js/runtime~main.6a77e6ad.js" defer="defer"></script>
-<script src="/assets/js/main.217225e7.js" defer="defer"></script>
+<title data-rh="true">E-02: The format system | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-02: The format system | neokapi"><meta data-rh="true" name="description" content="Formats are pluggable reader/writer pairs that convert between on-disk files and the Part stream, with one skeleton store for byte-exact write-back and a three-way reader output policy that surfaces non-translatable context as content."><meta data-rh="true" property="og:description" content="Formats are pluggable reader/writer pairs that convert between on-disk files and the Part stream, with one skeleton store for byte-exact write-back and a three-way reader output policy that surfaces non-translatable context as content."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,format system,DataFormatReader,DataFormatWriter,skeleton,streaming,detection,content fidelity,non-translatable content"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-02-format-system" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-02-format-system" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-02-format-system" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-02: The format system","item":"https://neokapi.github.io/contribute/architecture/engine/e-02-format-system"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
+<script src="/assets/js/runtime~main.2318bff8.js" defer="defer"></script>
+<script src="/assets/js/main.2c3341f6.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -18,15 +18,14 @@ representations and the Part stream. The framework ships a broad set of built-in
 formats under <code>core/formats/</code>, each implementing <code>DataFormatReader</code> and
 <code>DataFormatWriter</code> on top of shared <code>BaseFormatReader</code> / <code>BaseFormatWriter</code>
 embeds. A single <code>FormatRegistry</code> exposes a factory-based lookup that serves
-native Go formats, plugin formats, and bridge formats uniformly. Detection
-cascades through extension, priority, and content sniffing. Byte-exact
-write-back is supported by three interchangeable skeleton strategies, and a
-reader classifies its input <strong>three</strong> ways — translatable content, pure
-structure, and non-translatable-but-meaningful context that is <em>surfaced</em> rather
-than buried.</p>
+built-in and plugin formats uniformly. Detection cascades through extension,
+priority, and content sniffing. Byte-exact write-back rides one skeleton store
+that every reader and writer pair wires the same way, and a reader classifies
+its input <strong>three</strong> ways: translatable content, pure structure, and
+non-translatable-but-meaningful context that is <em>surfaced</em> rather than buried.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="context">Context<a href="#context" class="hash-link" aria-label="Direct link to Context" title="Direct link to Context" translate="no">​</a></h2>
 <p>The framework must read a large variety of file formats and write them back with
-byte-exact fidelity — every newline, every entity reference, every attribute
+byte-exact fidelity: every newline, every entity reference, every attribute
 quote style. Formats vary widely in structure: linear text (plain text,
 Markdown), tree-structured markup (HTML, XML, OpenXML), line-oriented key-value
 (Java properties, Apple strings), grid-based (CSV, spreadsheets), and
@@ -35,7 +34,7 @@ exchange-specific (XLIFF, TMX, Gettext).</p>
 JSON, Markdown inside CSV), and the reader/writer contract must accommodate that
 recursion without special cases.</p>
 <p>A second consumer complicates the picture. The translation path wants only the
-prose a human would translate; model ingestion wants <em>all</em> textual context —
+prose a human would translate; model ingestion wants <em>all</em> textual context:
 code listings, captions, alt-text, formulas, do-not-translate strings,
 config-excluded values, and comments. A two-way classification, where a fragment
 becomes either a translatable Block or opaque skeleton bytes, makes everything
@@ -43,8 +42,8 @@ the first consumer skips invisible to the second.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direct link to Decision" title="Direct link to Decision" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="reader-and-writer-interfaces">Reader and writer interfaces<a href="#reader-and-writer-interfaces" class="hash-link" aria-label="Direct link to Reader and writer interfaces" title="Direct link to Reader and writer interfaces" translate="no">​</a></h3>
 <p>These interfaces implement the <code>file</code> <em>source</em> and <em>sink</em> binding in
-<a class="" href="/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>. Other bindings — the project store, a
-<code>.kpz</code> workspace, interchange import/export — feed and drain the same <code>Part</code>
+<a class="" href="/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>. Other bindings (the project store, a
+<code>.kpz</code> workspace, interchange import/export) feed and drain the same <code>Part</code>
 stream without a reader or writer, so a flow is agnostic to where its content
 enters and leaves.</p>
 <p>Each interface is a composition of narrow facets, so a consumer that only needs
@@ -54,12 +53,16 @@ alone:</p>
 <p>The reader lifecycle is <code>Open → Read → Close</code>. <code>Open</code> attaches the reader to a
 <code>model.RawDocument</code> (raw bytes or a streaming reader, plus metadata such as
 source locale and file path). <code>Read</code> returns a channel of
-<code>model.PartResult{Part, Error}</code> — the reader produces Parts until the document is
+<code>model.PartResult{Part, Error}</code>: the reader produces Parts until the document is
 exhausted or an error occurs, then closes the channel. <code>Close</code> releases held
 resources.</p>
 <p>The writer lifecycle is <code>SetOutput → Write → Close</code>. <code>Write</code> consumes a channel
 of <code>*model.Part</code> until the channel closes, producing output on the writer&#x27;s
 destination.</p>
+<p>Every read and write runs inside a span on the framework&#x27;s observation seam
+(<code>format.read</code>, <code>format.write</code>;
+<a class="" href="/contribute/architecture/engine/e-01-processing-engine#observation-seam">E-01</a>), which is a no-op unless a
+host registers a tracer.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="baseformatreader-and-baseformatwriter">BaseFormatReader and BaseFormatWriter<a href="#baseformatreader-and-baseformatwriter" class="hash-link" aria-label="Direct link to BaseFormatReader and BaseFormatWriter" title="Direct link to BaseFormatReader and BaseFormatWriter" translate="no">​</a></h3>
 <p><code>BaseFormatReader</code> and <code>BaseFormatWriter</code> provide shared behaviour that concrete
 formats embed:</p>
@@ -75,8 +78,8 @@ delegates lifecycle to the base embed.</p>
 (<code>format.OutputOptions</code>): <code>output.bom</code> (<code>add|remove|keep</code>), <code>output.newline</code>
 (<code>lf|crlf|keep</code>), and <code>output.encoding</code> (any charset in <code>core/encoding</code>; default
 UTF-8 passthrough). Readers already normalize BOM, charset, and newlines at parse
-time, so these exist only to control <em>output</em> style — writer configuration, not a
-pipeline stage. They are set under the reserved <code>output</code> key of the ordinary
+time, so these exist only to control <em>output</em> style; they are writer
+configuration rather than a pipeline stage. They are set under the reserved <code>output</code> key of the ordinary
 per-format config (<code>defaults.formats[&lt;id&gt;].config</code> in a <code>kapi.yaml</code> recipe);
 <code>format.SplitOutputConfig</code> strips that key before per-format reader/writer config
 is applied, and the base writer wraps its output stream with the post-encode chain
@@ -85,38 +88,45 @@ the base inherits the behaviour with no per-format code.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="built-in-formats">Built-in formats<a href="#built-in-formats" class="hash-link" aria-label="Direct link to Built-in formats" title="Direct link to Built-in formats" translate="no">​</a></h3>
 <p>The built-in formats under <code>core/formats/</code> span several families:</p>
 <ul>
-<li class=""><strong>Markup</strong> — HTML, XML, Markdown / MDX, AsciiDoc, and structured-document
+<li class=""><strong>Markup</strong>: HTML, XML, Markdown / MDX, AsciiDoc, and structured-document
 formats.</li>
-<li class=""><strong>Translation exchange</strong> — XLIFF 1.2 / 2.x, TMX, Gettext PO/MO.</li>
-<li class=""><strong>Structured data</strong> — JSON, YAML, CSV/TSV, and design-token and app
+<li class=""><strong>Translation exchange</strong>: XLIFF 1.2 / 2.x, TMX, Gettext PO/MO.</li>
+<li class=""><strong>Structured data</strong>: JSON, YAML, CSV/TSV, and design-token and app
 message-catalog variants (<code>xcstrings</code>, <code>arb</code>, <code>i18next</code>, <code>resx</code>, Android
 strings, Apple strings, …).</li>
-<li class=""><strong>Office and publishing</strong> — OpenXML (<code>.docx</code>, <code>.xlsx</code>, <code>.pptx</code>), ODF, EPUB, and
+<li class=""><strong>Office and publishing</strong>: OpenXML (<code>.docx</code>, <code>.xlsx</code>, <code>.pptx</code>), ODF, EPUB, and
 related packaged formats.</li>
-<li class=""><strong>Subtitle and media</strong> — SRT, VTT, plus audio, video, image, and PDF readers.</li>
+<li class=""><strong>Subtitle and media</strong>: SRT, VTT, plus audio, video and image readers. PDF
+and source code arrive as plugin formats (<code>kapi-pdfium</code>, <code>kapi-sourcecode</code>;
+<a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05</a>, <a class="" href="/contribute/architecture/engine/e-08-document-structure-tiers">E-08</a>),
+with their config definitions under <code>core/formats/</code> so each format has one
+schema wherever its reader runs.</li>
 </ul>
-<p>The full, authoritative list of registered formats — with extensions, MIME types,
-and per-format options — is the generated <a class="" href="/formats">Format Reference</a>. It is
+<p>The full, authoritative list of registered formats (with extensions, MIME types,
+and per-format options) is the generated <a class="" href="/formats">Format Reference</a>. It is
 derived from the live registry, so it never drifts from the code.</p>
-<p>Each format package under <code>core/formats/&lt;name&gt;/</code> contains <code>reader.go</code>,
-<code>writer.go</code>, and <code>config.go</code>. Formats register both factories in
-<code>core/formats/register.go</code> via <code>init()</code>.</p>
+<p>A format package under <code>core/formats/&lt;name&gt;/</code> typically contains <code>reader.go</code>,
+<code>writer.go</code>, and <code>config.go</code>; a read-only format has no writer.
+<code>formats.RegisterAll(reg, opts...)</code> in <code>core/formats/register.go</code> registers
+every built-in factory, and the host calls it when it builds its registry.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="formatregistry">FormatRegistry<a href="#formatregistry" class="hash-link" aria-label="Direct link to FormatRegistry" title="Direct link to FormatRegistry" translate="no">​</a></h3>
 <p>A single <code>*registry.FormatRegistry</code> exposes factory lookup. Names are the
 <code>FormatID</code> string type; registration takes a factory plus static metadata, so no
 reader instance is built at startup:</p>
 <div class="language-go codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-go codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">r </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">FormatRegistry</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">RegisterReader</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">name FormatID</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> factory FormatReaderFactory</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> sig format</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">FormatSignature</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> displayName </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">r </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">FormatRegistry</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">RegisterWriter</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">name FormatID</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> factory FormatWriterFactory</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">r </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">FormatRegistry</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">NewReader</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">name FormatID</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">format</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">DataFormatReader</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">r </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">FormatRegistry</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">NewWriter</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">name FormatID</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">format</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">DataFormatWriter</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">r </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">FormatRegistry</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">FormatInfos</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain">FormatInfo</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">r </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">FormatRegistry</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">Detect</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">path </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> opts DetectOptions</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">FormatID</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><br></div></code></pre></div></div>
-<p>Tiered registration makes native, plugin, and bridge formats indistinguishable to
+<p>Two tiers of registration make built-in and plugin formats indistinguishable to
 callers:</p>
 <ol>
-<li class=""><strong>Native built-ins</strong> — registered at program start via <code>init()</code> hooks in
-<code>core/formats/register.go</code>.</li>
-<li class=""><strong>Plugin formats</strong> — registered from the <code>formats</code> capability declared in each
-plugin&#x27;s <code>manifest.json</code>, read from disk during plugin discovery without
-launching a subprocess.</li>
-<li class=""><strong>Bridge formats</strong> — served by a Mode-C daemon plugin over a Unix-socket gRPC
-connection; the host registers proxy factories that dial the daemon on demand
-(see <a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05</a>).</li>
+<li class=""><strong>Built-ins</strong>: registered by <code>formats.RegisterAll</code> when the host starts.</li>
+<li class=""><strong>Plugin formats</strong>: registered by <code>pluginhost.RegisterModeCFormats</code> from the
+<code>formats</code> capability each plugin&#x27;s <code>manifest.json</code> declares, read from disk
+during discovery without launching a subprocess. The manifest seeds the
+format&#x27;s metadata (name, extensions, MIME types, the <code>generative</code> and
+<code>interchange</code> capabilities); the reader and writer factories dial the
+plugin&#x27;s Mode-C daemon on demand (<a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05</a>). A plugin
+format with the same name as a built-in overrides it, because installing a
+plugin for a format is an explicit signal to prefer it; two plugins claiming
+one name keep the first registered.</li>
 </ol>
 <p>A format reference in user-facing configuration uses the syntax
 <code>name[@version][:preset]</code>, e.g. <code>okf_html@1.46.0:wellFormed</code>. The registry
@@ -134,38 +144,47 @@ magic bytes, and optional sniff function it claims, so the cascade is data-drive
 rather than hardcoded. <code>FormatSignature.Binary</code> marks a format whose reader
 consumes binary content, so detection does not decline it for binary input the
 way it declines a text format matched only by extension.</p>
-<p>kapi&#x27;s own on-disk conventions use <strong>compound suffixes</strong> — <code>.kbf.json</code>,
-<code>.memory.json</code>, <code>.terms.json</code>, <code>.overlays.json</code>, <code>.overlays.jsonl</code> — so the
+<p>kapi&#x27;s own on-disk conventions use <strong>compound suffixes</strong> (<code>.kbf.json</code>,
+<code>.memory.json</code>, <code>.terms.json</code>, <code>.overlays.json</code>, <code>.overlays.jsonl</code>) so the
 marker survives while the file still reads as the JSON it is. <code>path/filepath.Ext</code>
 reports <code>.json</code> for all of them, so extension-driven code goes through
 <code>format.Ext</code> / <code>TrimExt</code> / <code>Stem</code> instead, which return the most specific
 registered suffix.</p>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="skeleton-strategies">Skeleton strategies<a href="#skeleton-strategies" class="hash-link" aria-label="Direct link to Skeleton strategies" title="Direct link to Skeleton strategies" translate="no">​</a></h3>
-<p>Three interchangeable strategies preserve non-translatable content for
-write-back. A format picks the one that fits its structure:</p>
-<ul>
-<li class="">
-<p><strong>SkeletonStore streaming</strong> (HTML, XML). A temp-file-backed binary store. The
-reader writes non-translatable bytes and block references during extraction;
-the writer reads entries sequentially to reconstruct the document with
-byte-exact fidelity. Peak memory is a small constant per document regardless of
-document size. Preferred for new formats. See
-<a class="" href="/contribute/implementation/engine/skeleton-store">Skeleton Store</a> for the binary
-format and wiring.</p>
-</li>
-<li class="">
-<p><strong>Re-parse</strong> (JSON, YAML, PO, plain text). The writer re-opens the source
-document and replaces translatable content in place. Simple, but holds the
-document in memory twice while writing.</p>
-</li>
-<li class="">
-<p><strong>Fragment-based</strong> (XLIFF, some XML dialects). An interleaved skeleton of
-non-translatable markup plus references to translatable blocks, carried inline
-on the <code>Data</code>/<code>Block</code> resources. Suits formats whose translatable content is
-sparse.</p>
-</li>
-</ul>
-<p>All three present the same <code>DataFormatWriter</code> interface to the pipeline.</p>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-skeleton-store">The skeleton store<a href="#the-skeleton-store" class="hash-link" aria-label="Direct link to The skeleton store" title="Direct link to The skeleton store" translate="no">​</a></h3>
+<p>Non-translatable content is preserved for write-back by one mechanism:
+<code>format.SkeletonStore</code>, an append-only sequence of typed entries the reader
+emits during extraction and the writer replays during reconstruction. The
+pipeline never sees it; tools carry only blocks. A reader that produces one
+implements <code>SkeletonStoreEmitter</code>, a writer that consumes one
+<code>SkeletonStoreConsumer</code>, and nearly every built-in format does both. A skeleton
+is the typed scaffolding of one format, so <code>format.WireSkeleton</code> connects a
+reader to a writer only when they are the same format (see &quot;Skeletons are typed
+per format&quot; below).</p>
+<p>The store has several backings behind one API: a temp file
+(<code>NewSkeletonStore</code>), memory (<code>NewMemorySkeletonStore</code>), a concurrent channel
+for streaming pairs (<code>NewStreamingSkeletonStore</code>), and a persisted file that
+outlives the process (<code>NewSkeletonStoreAt</code> / <code>OpenSkeletonStore</code>,
+<code>NewSkeletonStoreFromBytes</code>), which is how a <code>.kpz</code> workspace carries a skeleton
+between <code>extract</code> and <code>merge</code>. <code>format.NewWiredSkeleton(reader, writer)</code> is the
+one seam every runner uses to give a same-format round trip its store. It
+returns no store for a pair with no skeleton path, and it returns an error when
+a store is needed and cannot be created; that error is never swallowed, because
+silently reconstructing from the content model would drop structure the reader
+could not model while the command still reported success.</p>
+<p>Two entry types make an untouched document round-trip byte for byte even where
+extraction normalized its text. A reader that collapses whitespace on the way in
+writes the source bytes beside the reference (<code>SkeletonOriginal</code>); the writer
+replays those bytes while the block is unedited and renders the block only once
+it has changed. <code>SkeletonTrimmed</code> does the same for the bytes a reader trimmed
+after a block. Extraction still yields clean text, and a no-op round trip is the
+identity.</p>
+<p>A writer given no store falls back in a fixed order: re-parse the original
+document (<code>OriginalContentSetter</code> / <code>SourcePathSetter</code>) and patch translations
+into it, or, failing that, build the document from the blocks alone. The
+fallbacks trade fidelity for availability and exist for the cross-format and
+no-source cases; a same-format run always has the store. See
+<a class="" href="/contribute/implementation/engine/skeleton-store">Skeleton store and streaming</a>
+for the entry format, the sub-skeleton and the streaming protocol.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="streaming-readers-and-bounded-memory-io">Streaming readers and bounded-memory I/O<a href="#streaming-readers-and-bounded-memory-io" class="hash-link" aria-label="Direct link to Streaming readers and bounded-memory I/O" title="Direct link to Streaming readers and bounded-memory I/O" translate="no">​</a></h3>
 <p>The read → process → write path streams end-to-end so peak memory tracks a
 bounded window, not the document size. Three edges cooperate:</p>
@@ -184,50 +203,51 @@ never a daemon-backed plugin, which keeps the read-fully-then-write order its
 one-stream-at-a-time contract requires.</li>
 <li class=""><strong>Skeleton.</strong> A byte-exact round-trip needs the skeleton, but the buffered
 skeleton writer collects every block into a map and replays the skeleton only
-after it is fully written — O(blocks) memory. A reader and writer that both
+after it is fully written: O(blocks) memory. A reader and writer that both
 declare streaming (<strong><code>StreamingReader</code></strong> + <strong><code>format.StreamingWriter</code></strong>)
 instead share a <strong>concurrent, channel-backed skeleton store</strong>: the reader
 appends entries while the writer pops them, consuming each <code>SkeletonRef</code>&#x27;s
 block from the Part stream <em>on demand</em> (<code>format.StreamSkeletonWrite</code>). Because
 a streaming reader emits refs and their blocks in the same order, the
 pending-block window stays small. <strong>Output is byte-identical to the buffered
-skeleton path</strong> — the same entries in the same order, just consumed
+skeleton path</strong>: the same entries in the same order, just consumed
 interleaved instead of after a flush. Both capabilities are bare markers
 (<code>StreamingReader()</code> / <code>StreamingWriter()</code>), probed via <code>IsStreamingReader</code> /
 <code>IsStreamingWriter</code>; a writer signals it took the streaming path by checking
 <code>SkeletonStore.IsStreaming()</code> in <code>Write</code>.</li>
 </ol>
-<p>The adopters are the record- and entry-oriented formats whose readers emit each
-record as it is parsed, holding only the in-progress unit: the app
-message-catalog family (<code>androidxml</code>, <code>arb</code>, <code>i18next</code>, <code>messageformat</code>, <code>resx</code>,
-<code>ts</code>, <code>xcstrings</code>), the structured-data pair (<code>json</code>, <code>xml</code>), <code>properties</code>,
-<code>srt</code>, and <code>tmx</code>. Each declares the marker on both its reader and its writer, and
-its writer&#x27;s <code>SkeletonRef</code> rendering is factored into a shared helper so the
-buffered and streaming skeleton paths are byte-identical.</p>
-<p>A format that must materialise its whole input to parse it — a packaged
-zip-backed format, a DOM-building markup reader — does not declare the
+<p>A format streams when both its reader and its writer declare the markers. The
+record- and entry-oriented formats do, holding only the in-progress unit, and
+the generated <a class="" href="/formats">Format Reference</a> says which. The file runner decides
+once per run, in two steps (<code>streamingFeed</code>, then <code>wireSkeleton</code>): a streaming
+reader with no pre-read source is fed concurrently, and a streaming writer then
+receives the channel-backed store; any other pair receives the temp-file store.
+Each streaming writer&#x27;s <code>SkeletonRef</code> rendering is factored into a shared helper
+so the buffered and streaming skeleton paths are byte-identical.</p>
+<p>A format that must materialise its whole input to parse it (a packaged
+zip-backed format, a DOM-building markup reader) does not declare the
 capability, and a uniform fallback keeps its output byte-identical. The container
 path drives one archive entry through <code>FileRunner.RunStream</code> (bytes in, bytes
 out, no temp file); a streaming-capable inner format is not even buffered whole
 (<a class="" href="/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="writer-output-modes-generative-vs-skeleton-bound">Writer output modes: generative vs skeleton-bound<a href="#writer-output-modes-generative-vs-skeleton-bound" class="hash-link" aria-label="Direct link to Writer output modes: generative vs skeleton-bound" title="Direct link to Writer output modes: generative vs skeleton-bound" translate="no">​</a></h3>
-<p>A skeleton is <strong>format-specific</strong> — it is the non-translatable scaffolding of
+<p>A skeleton is <strong>format-specific</strong>: it is the non-translatable scaffolding of
 <em>one</em> file, captured by that format&#x27;s reader. So a writer&#x27;s ability to produce
 output depends on whether it can build a whole document from the content model
 alone, or only by injecting translated text back into a skeleton it was given.
-Two capabilities, deliberately <strong>orthogonal</strong>, capture this:</p>
+Two <strong>orthogonal</strong> capabilities capture this:</p>
 <ul>
-<li class=""><strong>Generative</strong> — the writer can serialize a complete, valid document from the
+<li class=""><strong>Generative</strong>: the writer can serialize a complete, valid document from the
 content model (roles, runs, structure) with no skeleton.</li>
-<li class=""><strong>Skeleton-consuming</strong> — the writer uses a skeleton <em>when given one</em>, for
-byte-exact fidelity, via the <code>SkeletonStoreConsumer</code> interface. This is about
-<em>using</em> a skeleton, not <em>requiring</em> one.</li>
+<li class=""><strong>Skeleton-consuming</strong>: the writer uses a skeleton <em>when given one</em>, for
+byte-exact fidelity, via the <code>SkeletonStoreConsumer</code> interface. It says the
+writer will use a skeleton, and says nothing about whether it needs one.</li>
 </ul>
 <p>These compose into three writer classes:</p>
 <ul>
 <li class=""><strong>Generative document and data writers</strong> (<code>generative</code>, not interchange). HTML
 is the archetype: with the source file&#x27;s skeleton it round-trips losslessly,
-and <strong>without</strong> one it still writes a clean document — so it is also a target
+and <strong>without</strong> one it still writes a clean document, so it is also a target
 for content that arrived from a different format. Markdown, DocLang, AsciiDoc,
 plain text, and the data and catalog formats behave the same. <strong>These are the
 <code>convert</code> targets.</strong></li>
@@ -236,27 +256,31 @@ PO, TMX, MO, and KBF are generative <em>files</em>, but they belong to the
 extract → translate → merge loop, not to document conversion: <code>kapi extract</code>
 captures the source skeleton so <code>kapi merge</code> can round-trip translations back
 into the <em>original</em> format. A <code>convert</code>-produced interchange file carries no
-skeleton and cannot be merged back — a dead end — so interchange formats are
+skeleton and cannot be merged back (a dead end), so interchange formats are
 <strong>excluded as <code>convert</code> targets</strong> and reached via <code>extract</code>/<code>merge</code>
 (<a class="" href="/contribute/architecture/multilingual/m-01-bilingual-interop">M-01</a>).</li>
-<li class=""><strong>Skeleton-bound writers</strong> (not generative). Packaged formats — OpenXML, ODF,
-EPUB, image — wrap content in a fixed package that cannot be regenerated from
+<li class=""><strong>Skeleton-bound writers</strong> (not generative). Packaged formats (OpenXML, ODF,
+EPUB, image) wrap content in a fixed package that cannot be regenerated from
 the model; they only ever write back into their <em>own</em> skeleton. Same-format and
 merge writers, never a cross-format target.</li>
 </ul>
 <p><strong>Cross-format conversion</strong> (<a class="" href="/contribute/architecture/surfaces/s-04-toolbox">S-04</a>) reconstructs the
 target from the content model and never carries a foreign skeleton into the
 writer. A writer is a valid conversion <em>target</em> iff it is <strong>generative and not
-interchange</strong>. Both are <strong>declared writer capabilities</strong> — the writer states what
+interchange</strong>. Both are <strong>declared writer capabilities</strong>: the writer states what
 it can write via <code>GenerativeWriter.Generative()</code> (the inverse of
 <code>BaseFormatWriter.RequiresSkeleton</code>) and <code>InterchangeWriter.IsInterchange()</code>. The
 registry records them on <code>FormatInfo.Generative</code> / <code>FormatInfo.Interchange</code>:
 probed once from the built-in writer at registration, and for plugin formats taken
-from the cached manifest&#x27;s <code>generative</code> / <code>interchange</code> capabilities — so
+from the cached manifest&#x27;s <code>generative</code> / <code>interchange</code> capabilities, so
 conversion, the <a class="" href="/lab/convert">Conversion Lab</a>, and <code>kapi formats</code> read one
 authoritative source <strong>without loading any plugin</strong>. Neither is derived from
 <code>SkeletonStoreConsumer</code> (nearly every writer consumes a skeleton if offered, so
 that bit does not distinguish a target) nor probed empirically.</p>
+<p>Two derived flags sit beside them. <code>FormatInfo.RoundTrip</code>, probed from
+<code>SkeletonStoreConsumer</code>, says the writer reconstructs from a skeleton, so an edit
+changes only the edited text. <code>FormatInfo.Editable</code> (a reader and a writer, and
+not interchange) is the set a caller-supplied content edit can target.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="marks-a-writer-can-draw">Marks a writer can draw<a href="#marks-a-writer-can-draw" class="hash-link" aria-label="Direct link to Marks a writer can draw" title="Direct link to Marks a writer can draw" translate="no">​</a></h3>
 <p>A block&#x27;s runs carry what the source document structurally contained. What a
 governance pass concluded about that content rides stand-off on a
@@ -268,8 +292,9 @@ plain text has nothing at all.</p>
 <code>Generative</code> and <code>Interchange</code> already are. <code>InlineAnnotationWriter</code> names the
 annotation types the writer knows how to draw, and the registry records them on
 <code>FormatInfo.InlineAnnotations</code>, probed once from the built-in writer at
-registration and for plugin formats taken from the cached manifest, so <code>kapi formats</code> and the writer selection read one authoritative source without loading
-any plugin. A writer that implements nothing carries no marks.</p>
+registration; a plugin format declares none. <code>kapi formats</code> and the writer
+selection therefore read one authoritative source without loading any plugin. A
+writer that implements nothing carries no marks.</p>
 <p>The declaration is a <strong>ceiling</strong>, and <code>defaults.annotations.write</code> in the recipe
 narrows it:</p>
 <div class="language-yaml codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-yaml codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">defaults</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">annotations</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">write</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">term</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain">      </span><span class="token comment" style="color:#999988;font-style:italic"># voice findings stay stand-off</span><br></div></code></pre></div></div>
@@ -287,26 +312,25 @@ was not told otherwise.</p>
 <p>XLIFF 2 is the first writer to declare the capability, and it draws a term as an
 <code>&lt;sm&gt;</code>/<code>&lt;em&gt;</code> pair rather than an <code>&lt;mrk&gt;</code>. Both are spec shapes and <code>&lt;mrk&gt;</code> reads
 better when a span nests cleanly inside one element, but only the pair can carry
-a span that does not — and a term running from before a <code>&lt;pc&gt;</code> to after it is
+a span that does not, and a term running from before a <code>&lt;pc&gt;</code> to after it is
 exactly what an <code>Anchor</code> is built to express. Because the two markers are
 independent nodes, each is placed wherever its own boundary lands, including
-inside an element whose partner sits outside. One shape for every span keeps the
-awkward case from being the least-tested one.</p>
-<p>A span a segmentation cannot carry — one straddling two <code>&lt;segment&gt;</code> elements —
-is recorded rather than half-drawn, and the writer reports it.</p>
+inside an element whose partner sits outside.</p>
+<p>A span a segmentation cannot carry, one straddling two <code>&lt;segment&gt;</code> elements,
+is recorded on the writer (<code>UnplacedTermMarks</code>) rather than half-drawn.</p>
 <p><strong>Skeletons are typed per format.</strong> A <code>SkeletonStore</code> carries an <code>OriginFormat</code>
 stamp, and <code>format.WireSkeleton(store, reader, writer)</code> connects a reader&#x27;s
-skeleton emission to a writer <strong>only when they are the same format</strong> — so the
+skeleton emission to a writer <strong>only when they are the same format</strong>, so the
 rule that a skeleton from format A is foreign to format B&#x27;s writer is enforced
 centrally, not left to each call site. A cross-format conversion therefore never
 feeds a foreign skeleton into the target writer; that writer takes the generative
 content-model route every writer shares.</p>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="reader-output-policy-three-destinations-not-two">Reader output policy: three destinations, not two<a href="#reader-output-policy-three-destinations-not-two" class="hash-link" aria-label="Direct link to Reader output policy: three destinations, not two" title="Direct link to Reader output policy: three destinations, not two" translate="no">​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="reader-output-policy-three-destinations">Reader output policy: three destinations<a href="#reader-output-policy-three-destinations" class="hash-link" aria-label="Direct link to Reader output policy: three destinations" title="Direct link to Reader output policy: three destinations" translate="no">​</a></h3>
 <p>The skeleton is not the only home for non-translatable content. A reader
 classifies each fragment three ways:</p>
-<table><thead><tr><th>Fragment</th><th>Destination</th></tr></thead><tbody><tr><td>Translatable prose</td><td><code>Block{Translatable: true}</code> — the pipeline processes it</td></tr><tr><td>Pure structure (delimiters, quoting, whitespace)</td><td>skeleton bytes</td></tr><tr><td>Non-translatable but meaningful context</td><td><strong>surfaced</strong> — see the two channels below</td></tr></tbody></table>
-<p>The third category — code, verbatim and literal text, captions, alt-text,
-formulas, do-not-translate strings, config-excluded values, comments — is
+<table><thead><tr><th>Fragment</th><th>Destination</th></tr></thead><tbody><tr><td>Translatable prose</td><td><code>Block{Translatable: true}</code>; the pipeline processes it</td></tr><tr><td>Pure structure (delimiters, quoting, whitespace)</td><td>skeleton bytes</td></tr><tr><td>Non-translatable but meaningful context</td><td><strong>surfaced</strong>; see the two channels below</td></tr></tbody></table>
+<p>The third category (code, verbatim and literal text, captions, alt-text,
+formulas, do-not-translate strings, config-excluded values, comments) is
 surfaced rather than collapsed into the second. It becomes content an ingestion
 consumer can read, while staying outside the translation payload.</p>
 <p>This introduces no new content-model type. The <code>Translatable</code> flag, the
@@ -314,48 +338,48 @@ consumer can read, while staying outside the translation payload.</p>
 (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>); the skeleton and sub-skeleton
 mechanisms are this AD&#x27;s.</p>
 <h4 class="anchor anchorTargetStickyNavbar_NsHk" id="two-surfacing-channels">Two surfacing channels<a href="#two-surfacing-channels" class="hash-link" aria-label="Direct link to Two surfacing channels" title="Direct link to Two surfacing channels" translate="no">​</a></h4>
-<p>What a fragment <em>is</em> determines which channel carries it. Renderable content —
-text that has a place in the rendered document — becomes a content block;
+<p>What a fragment <em>is</em> determines which channel carries it. Renderable content,
+text that has a place in the rendered document, becomes a content block;
 out-of-band annotation, text <em>about</em> the document, becomes data or a note.</p>
 <table><thead><tr><th>Channel</th><th>Carrier</th><th>Used for</th><th>Round-trip</th></tr></thead><tbody><tr><td>Renderable contextual content</td><td><code>Block{Translatable:false}</code> + <code>SemanticRole</code> + skeleton ref</td><td>code blocks, literal text, captions, alt-text, formulas, do-not-translate strings, config-excluded values</td><td>verbatim bytes stay in the skeleton; the surfaced body rides a skeleton ref, so the writer replays the original exactly</td></tr><tr><td>Comment / metadata context</td><td><code>Data</code> part or a note annotation</td><td>developer and translator comments, review annotations, editorial notes</td><td>the comment bytes round-trip verbatim through the skeleton; the surfaced copy is informational only</td></tr></tbody></table>
-<p>A block from the first channel carries the role that names its kind — alt-text as
+<p>A block from the first channel carries the role that names its kind (alt-text as
 <code>RoleCaption</code>, a code listing as <code>RoleCode</code>, an equation as <code>RoleFormula</code>, a
-non-translatable cell as <code>RoleTableCell</code> — and is flagged so translation skips it
+non-translatable cell as <code>RoleTableCell</code>), and is flagged so translation skips it
 (<a class="" href="/contribute/architecture/engine/e-07-model-providers">E-07</a>). The second channel keeps comment context as
-<em>data</em> deliberately: a comment is not part of the rendered text, so promoting it
+<em>data</em>: a comment is not part of the rendered text, so promoting it
 to a content block would misrepresent the document&#x27;s structure; it stays a <code>Data</code>
 part or a note that ingestion can read and the editor can show.</p>
 <h4 class="anchor anchorTargetStickyNavbar_NsHk" id="default-on-via-an-inverted-opt-out">Default on, via an inverted opt-out<a href="#default-on-via-an-inverted-opt-out" class="hash-link" aria-label="Direct link to Default on, via an inverted opt-out" title="Direct link to Default on, via an inverted opt-out" translate="no">​</a></h4>
 <p>Surfacing is the <strong>default</strong>, controlled per format by a single boolean,
 <code>extractNonTranslatableContent</code>, exposed as a schema property in the generated
 format reference and accepted in <code>ApplyMap</code> under that key. The implementation is
-deliberately an <strong>inverted private field</strong>:</p>
+an <strong>inverted private field</strong>:</p>
 <div class="language-go codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-go codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// zero value false ⇒ surfacing ON (the opt-out default)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">disableNonTranslatableContent </span><span class="token builtin">bool</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">c </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">Config</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">ExtractNonTranslatableContent</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">bool</span><span class="token plain">     </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">!</span><span class="token plain">c</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">disableNonTranslatableContent </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">c </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">Config</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">SetExtractNonTranslatableContent</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">v </span><span class="token builtin">bool</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> c</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">disableNonTranslatableContent </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">!</span><span class="token plain">v </span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
-<p>The inversion is the point: a freshly zero-valued config — a new format that has
-not yet learned about the flag, a caller that constructs a config without calling
-<code>Reset</code> — surfaces content automatically, because the <em>disable</em> bit must be set
-explicitly to turn it off. The safe-for-ingestion behaviour is what you get for
-free; opting out is the deliberate act. The off switch exists for two callers:
+<p>The inversion means a freshly zero-valued config (a new format that has not yet
+learned about the flag, a caller that constructs a config without calling
+<code>Reset</code>) surfaces content automatically, because the <em>disable</em> bit must be set
+explicitly to turn it off. The safe-for-ingestion behaviour needs no
+configuration; opting out is explicit. The off switch exists for two callers:
 the parity harness, which pins the bridge-matching configuration, and
 validation-only or pure-passthrough flows that want nothing but skeleton.</p>
 <p>A format may also <strong>scope</strong> what counts as meaningful context. The design-tokens
 reader composes the generic JSON reader but calls
 <code>SetExtractNonTranslatableContent(false)</code> on that inner config: a token&#x27;s
-<code>$value</code>, <code>$type</code>, and <code>$extensions</code> are structured machine data — colours,
-dimensions, font names — not contextual prose, so design tokens surface only
+<code>$value</code>, <code>$type</code>, and <code>$extensions</code> are structured machine data (colours,
+dimensions, font names) rather than contextual prose, so design tokens surface only
 <code>$description</code> as translatable prose and let everything else pass through as
 non-translatable structure. The convention is uniform; each reader decides which
 of its fragments are genuinely <em>context</em> rather than inert data.</p>
 <p>Which formats expose the flag, and exactly what each surfaces, is generated into
-the <a class="" href="/formats">Format Reference</a> rather than enumerated here. The per-format
-finding, carrier, and skeleton-strategy ledger lives in
-<a class="" href="/contribute/implementation/engine/content-fidelity">content-fidelity</a>.</p>
+the <a class="" href="/formats">Format Reference</a> rather than enumerated here;
+<a class="" href="/contribute/implementation/engine/content-fidelity">content-fidelity</a> is the
+recipe for adding surfacing to a format.</p>
 <h4 class="anchor anchorTargetStickyNavbar_NsHk" id="round-trip-translation-skip-and-parity-all-still-hold">Round-trip, translation-skip, and parity all still hold<a href="#round-trip-translation-skip-and-parity-all-still-hold" class="hash-link" aria-label="Direct link to Round-trip, translation-skip, and parity all still hold" title="Direct link to Round-trip, translation-skip, and parity all still hold" translate="no">​</a></h4>
-<p>Surfacing is additive over the existing guarantees, not a relaxation of them.</p>
+<p>Surfacing is additive over the existing guarantees.</p>
 <ul>
 <li class=""><strong>Byte-exact round-trip.</strong> The verbatim source bytes never leave the skeleton.
 A surfaced renderable block stands in for the rendered body via a skeleton ref,
-or a <strong>sub-skeleton</strong> — verbatim segments interleaved with refs to translatable
+or a <strong>sub-skeleton</strong>: verbatim segments interleaved with refs to translatable
 spans inside an otherwise-opaque payload. A surfaced comment&#x27;s bytes are copied
 verbatim. An untranslated round-trip is byte-identical whether the flag is on or
 off. Translation of a surfaced <em>translatable</em> span splices in place; the
@@ -367,29 +391,53 @@ translation tools skip it by the same rule they always have
 surfacing on would diverge by construction: the native stream would carry extra
 <code>Block</code>/<code>Data</code> parts the bridge never emits, and the canonical projection
 compares the <code>PartType</code> sequence and per-block <code>Translatable</code> flag. The parity
-contract is &quot;same semantic config → same results&quot;, not &quot;same defaults&quot; — the
-parity runner duck-types <code>interface{ SetExtractNonTranslatableContent(bool) }</code>
+contract is &quot;same semantic config → same results&quot; rather than &quot;same
+defaults&quot;: the parity runner duck-types <code>interface{ SetExtractNonTranslatableContent(bool) }</code>
 on the reader&#x27;s config and forces it <strong>false</strong> before reading, so the native
 stream matches the bridge. The roles and properties a surfaced block carries are
-additionally <strong>parity-safe carriers</strong> — the canonical projection excludes
-<code>SemanticRole</code>, <code>Properties</code>, <code>Annotations</code>, and the placeholder <code>Equiv</code>/<code>Disp</code>
-— but it is the flag, not the projection, that keeps the surfaced <em>parts
+additionally <strong>parity-safe carriers</strong> (the canonical projection excludes
+<code>SemanticRole</code>, <code>Properties</code>, <code>Annotations</code>, and the placeholder <code>Equiv</code>/<code>Disp</code>),
+but the flag rather than the projection is what keeps the surfaced <em>parts
 themselves</em> out of the head-to-head
 (<a class="" href="/contribute/architecture/assurance/a-02-parity">A-02</a>).</li>
 </ul>
 <p>The <code>SkeletonStore</code> also supports the <strong>sub-skeleton</strong> in its own right: verbatim
 segments of an otherwise-opaque payload interleaved with refs to translatable
-spans inside it. This is how translatable prose embedded in an opaque structure —
-the natural-language text inside a Word equation — is translated while the
+spans inside it. This is how translatable prose embedded in an opaque structure,
+the natural-language text inside a Word equation, is translated while the
 surrounding math is replayed byte-for-byte
 (<a class="" href="/contribute/architecture/multilingual/m-04-math-and-equations">M-04</a>; see
 <a class="" href="/contribute/implementation/engine/skeleton-store">Skeleton Store</a>).</p>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="reader-assigned-identity">Reader-assigned identity<a href="#reader-assigned-identity" class="hash-link" aria-label="Direct link to Reader-assigned identity" title="Direct link to Reader-assigned identity" translate="no">​</a></h3>
+<p>A reader mints each block&#x27;s <code>ID</code> from what the format offers (an XLIFF unit id,
+a key path, a positional name) and keeps it unique within the document through
+<code>model.IDBuilder</code>: the first block to claim an id keeps it, a repeat is
+separated with an ordinal (<code>id#2</code>), and the document&#x27;s own spelling is recorded
+under <code>PropDocumentID</code> so the writer can put it back. A container that delegates
+a member to another reader (an archive entry, an embedded HTML string, an ODF
+part) qualifies the member&#x27;s ids with the child layer&#x27;s id through
+<code>model.QualifyMemberID</code>, joined by <code>MemberIDSeparator</code> (<code>_</code>), so two members&#x27;
+<code>tu1</code> are two ids and the qualified id still satisfies an XLIFF <code>xs:NMTOKEN</code>.
+These ids are file-local; how they become durable identity across reads is
+<a class="" href="/contribute/architecture/foundations/f-03-identity">F-03</a>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="deciding-translatability">Deciding translatability<a href="#deciding-translatability" class="hash-link" aria-label="Direct link to Deciding translatability" title="Direct link to Deciding translatability" translate="no">​</a></h3>
+<p>Which text belongs to the translator is decided once per family rather than per
+reader. The markup readers (<code>markdown</code>, <code>mdx</code>) classify elements with the W3C
+HTML5 translatability table in <code>core/translatability</code>, generated from the same
+source the React i18n transform uses, so an element nobody has classified is a
+container whose direct text is promoted rather than dropped: prose inside an
+unfamiliar component is translated and reported, never lost in silence. XML
+readers apply ITS 2.0 rules and local attributes through <code>core/its</code>. Text a
+reader classifies as code (a code span, <code>&lt;kbd&gt;</code>, <code>&lt;samp&gt;</code>) stays a run marked
+<code>NoTranslate</code> (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>), which every
+translation path leaves untouched, and a span the model cannot take is skipped
+and reported rather than costing the page its translation.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="subfilters-and-nested-layers">Subfilters and nested layers<a href="#subfilters-and-nested-layers" class="hash-link" aria-label="Direct link to Subfilters and nested layers" title="Direct link to Subfilters and nested layers" translate="no">​</a></h3>
 <p>Format readers can emit child Layers when they encounter embedded content in a
 different format (HTML inside JSON, Markdown inside CSV). The child reader is
 resolved via a <code>SubfilterResolver</code> injected by the <code>FormatRegistry</code>. The
-mechanism is defined in <a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a> — format
-readers just implement <code>SubfilterAware</code> and declare patterns in their config.</p>
+mechanism is defined in <a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>; format
+readers implement <code>SubfilterAware</code> and declare patterns in their config.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="implementing-a-new-format">Implementing a new format<a href="#implementing-a-new-format" class="hash-link" aria-label="Direct link to Implementing a new format" title="Direct link to Implementing a new format" translate="no">​</a></h3>
 <ol>
 <li class="">Create <code>core/formats/&lt;name&gt;/</code> with <code>reader.go</code>, <code>writer.go</code>, and <code>config.go</code>.</li>
@@ -397,19 +445,21 @@ readers just implement <code>SubfilterAware</code> and declare patterns in their
 format-specific parse logic.</li>
 <li class="">Implement <code>DataFormatWriter</code> by embedding <code>BaseFormatWriter</code> and providing the
 format-specific serialize logic.</li>
-<li class="">Populate every field on each inline-code run for any inline markup — <code>ID</code>,
+<li class="">Populate every field on each inline-code run for any inline markup: <code>ID</code>,
 <code>Type</code>/<code>SubType</code>, <code>Data</code>, <code>Disp</code>, <code>Equiv</code>, <code>Constraints</code>
 (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>).</li>
-<li class="">Pick a skeleton strategy appropriate to the format&#x27;s structure, and declare
+<li class="">Emit and consume the skeleton store (<code>SkeletonStoreEmitter</code> /
+<code>SkeletonStoreConsumer</code>), assign ids through <code>model.IDBuilder</code>, and declare
 the streaming markers if the reader and writer can both honour them.</li>
-<li class="">Register the reader and writer factories in <code>core/formats/register.go</code> via an
-<code>init()</code> call.</li>
+<li class="">Register the reader and writer factories in <code>formats.RegisterAll</code>
+(<code>core/formats/register.go</code>).</li>
 <li class="">If the format can host embedded content, implement <code>SubfilterAware</code> and accept
 <code>Subfilters []SubfilterMapping</code> in the config.</li>
 </ol>
 <p>See <a class="" href="/contribute/implementation/engine/implementing-formats">Implementing Formats</a> for a
-walkthrough, and <a class="" href="/contribute/implementation/engine/skeleton-store">Skeleton Store</a> for
-the preferred strategy&#x27;s details.</p>
+walkthrough, and
+<a class="" href="/contribute/implementation/engine/skeleton-store">Skeleton store and streaming</a>
+for the store&#x27;s details.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direct link to Consequences" title="Direct link to Consequences" translate="no">​</a></h2>
 <ul>
 <li class="">Format readers emit the same streaming Part protocol regardless of source
@@ -417,31 +467,32 @@ format, so tools never need format-specific code.</li>
 <li class="">Format writers replay <code>Run.Data</code> verbatim
 (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>), so write-back fidelity is
 inherited from the content model.</li>
-<li class="">Native, plugin, and bridge formats coexist in one registry; the pipeline treats
-them identically.</li>
+<li class="">Built-in and plugin formats coexist in one registry; the pipeline treats them
+identically.</li>
 <li class="">The extension/priority/content cascade resolves most files without user
 configuration; ambiguous cases fall back to an explicit format flag.</li>
-<li class="">Three skeleton strategies cover the full span of file formats from streaming
-text to zip-packaged markup, and the streaming markers give record-oriented
-formats bounded memory without changing anyone&#x27;s output bytes.</li>
-<li class="">New formats plug in by adding a directory and registering in <code>init()</code>; no
-changes to the engine are needed.</li>
+<li class="">One skeleton store covers the full span of file formats from streaming text
+to zip-packaged markup, and the streaming markers give record-oriented formats
+bounded memory without changing anyone&#x27;s output bytes.</li>
+<li class="">New formats plug in by adding a directory and registering in <code>RegisterAll</code>;
+no changes to the engine are needed.</li>
 <li class="">The three-way reader output policy serves ingestion and translation from one
 parse, and the inverted opt-out means a format that has not thought about the
 question still surfaces context rather than hiding it.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direct link to Related" title="Direct link to Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — the Parts readers produce and writers consume; the Run model that drives write-back fidelity; the <code>SemanticRole</code> taxonomy</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-01-processing-engine">E-01: The processing engine</a> — how readers and writers plug into the pipeline</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a> — the tools that sit between reader and writer</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-04-flows-and-io-binding">E-04: Flows and I/O binding</a> — readers and writers as the <code>file</code> binding; other bindings feed the same stream</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a> — how plugin and bridge formats register</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-04-math-and-equations">M-04: Math and equations</a> — the sub-skeleton extension to the skeleton strategies</li>
-<li class=""><a class="" href="/contribute/architecture/assurance/a-02-parity">A-02: Parity</a> — the &quot;same semantic config → same results&quot; contract and the parity-safe carriers</li>
-<li class=""><a class="" href="/contribute/implementation/engine/implementing-formats">Implementing Formats</a> — implementation walkthrough</li>
-<li class=""><a class="" href="/contribute/implementation/engine/skeleton-store">Skeleton Store</a> — binary skeleton format and wiring</li>
-<li class=""><a class="" href="/contribute/implementation/engine/content-fidelity">content-fidelity</a> — the per-format surfacing ledger</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-02-format-system.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-01-processing-engine"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-01: The processing engine</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/engine/e-03-tool-system"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">E-03: The tool system</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#reader-and-writer-interfaces" class="table-of-contents__link toc-highlight">Reader and writer interfaces</a></li><li><a href="#baseformatreader-and-baseformatwriter" class="table-of-contents__link toc-highlight">BaseFormatReader and BaseFormatWriter</a></li><li><a href="#built-in-formats" class="table-of-contents__link toc-highlight">Built-in formats</a></li><li><a href="#formatregistry" class="table-of-contents__link toc-highlight">FormatRegistry</a></li><li><a href="#format-detection" class="table-of-contents__link toc-highlight">Format detection</a></li><li><a href="#skeleton-strategies" class="table-of-contents__link toc-highlight">Skeleton strategies</a></li><li><a href="#streaming-readers-and-bounded-memory-io" class="table-of-contents__link toc-highlight">Streaming readers and bounded-memory I/O</a></li><li><a href="#writer-output-modes-generative-vs-skeleton-bound" class="table-of-contents__link toc-highlight">Writer output modes: generative vs skeleton-bound</a></li><li><a href="#marks-a-writer-can-draw" class="table-of-contents__link toc-highlight">Marks a writer can draw</a></li><li><a href="#reader-output-policy-three-destinations-not-two" class="table-of-contents__link toc-highlight">Reader output policy: three destinations, not two</a></li><li><a href="#subfilters-and-nested-layers" class="table-of-contents__link toc-highlight">Subfilters and nested layers</a></li><li><a href="#implementing-a-new-format" class="table-of-contents__link toc-highlight">Implementing a new format</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:09 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: the Parts readers produce and writers consume; the Run model that drives write-back fidelity; the <code>SemanticRole</code> taxonomy</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-01-processing-engine">E-01: The processing engine</a>: how readers and writers plug into the pipeline</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a>: the tools that sit between reader and writer</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-04-flows-and-io-binding">E-04: Flows and I/O binding</a>: readers and writers as the <code>file</code> binding; other bindings feed the same stream</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a>: how plugin and bridge formats register</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-04-math-and-equations">M-04: Math and equations</a>: the sub-skeleton inside an opaque payload</li>
+<li class=""><a class="" href="/contribute/architecture/assurance/a-02-parity">A-02: Parity</a>: the &quot;same semantic config → same results&quot; contract and the parity-safe carriers</li>
+<li class=""><a class="" href="/contribute/implementation/engine/implementing-formats">Implementing Formats</a>: implementation walkthrough</li>
+<li class=""><a class="" href="/contribute/implementation/engine/skeleton-store">Skeleton store and streaming</a>: the entry format, the wiring seam, the streaming protocol</li>
+<li class=""><a class="" href="/contribute/implementation/engine/content-fidelity">content-fidelity</a>: the recipe for surfacing non-translatable context</li>
+<li class=""><a class="" href="/contribute/architecture/foundations/f-03-identity">F-03: Identity</a>: how reader-assigned ids become durable identity</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-02-format-system.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-01-processing-engine"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-01: The processing engine</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/engine/e-03-tool-system"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">E-03: The tool system</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#reader-and-writer-interfaces" class="table-of-contents__link toc-highlight">Reader and writer interfaces</a></li><li><a href="#baseformatreader-and-baseformatwriter" class="table-of-contents__link toc-highlight">BaseFormatReader and BaseFormatWriter</a></li><li><a href="#built-in-formats" class="table-of-contents__link toc-highlight">Built-in formats</a></li><li><a href="#formatregistry" class="table-of-contents__link toc-highlight">FormatRegistry</a></li><li><a href="#format-detection" class="table-of-contents__link toc-highlight">Format detection</a></li><li><a href="#the-skeleton-store" class="table-of-contents__link toc-highlight">The skeleton store</a></li><li><a href="#streaming-readers-and-bounded-memory-io" class="table-of-contents__link toc-highlight">Streaming readers and bounded-memory I/O</a></li><li><a href="#writer-output-modes-generative-vs-skeleton-bound" class="table-of-contents__link toc-highlight">Writer output modes: generative vs skeleton-bound</a></li><li><a href="#marks-a-writer-can-draw" class="table-of-contents__link toc-highlight">Marks a writer can draw</a></li><li><a href="#reader-output-policy-three-destinations" class="table-of-contents__link toc-highlight">Reader output policy: three destinations</a></li><li><a href="#reader-assigned-identity" class="table-of-contents__link toc-highlight">Reader-assigned identity</a></li><li><a href="#deciding-translatability" class="table-of-contents__link toc-highlight">Deciding translatability</a></li><li><a href="#subfilters-and-nested-layers" class="table-of-contents__link toc-highlight">Subfilters and nested layers</a></li><li><a href="#implementing-a-new-format" class="table-of-contents__link toc-highlight">Implementing a new format</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:14 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">A-02: Parity with the Okapi Framework | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="A-02: Parity with the Okapi Framework | neokapi"><meta data-rh="true" name="description" content="A build-tagged harness runs every Go port head-to-head against the Okapi Framework reference — through the bridge plugin and, where available, the tikal CLI — on a canonical projection that compares extracted text and code structure rather than byte-level markup."><meta data-rh="true" property="og:description" content="A build-tagged harness runs every Go port head-to-head against the Okapi Framework reference — through the bridge plugin and, where available, the tikal CLI — on a canonical projection that compares extracted text and code structure rather than byte-level markup."><meta data-rh="true" name="keywords" content="parity,Okapi Framework,format fidelity,test harness,canonical projection,tikal,conformance,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/assurance/a-02-parity" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/assurance/a-02-parity" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/assurance/a-02-parity" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"A-02: Parity with the Okapi Framework","item":"https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
-<script src="/nb/assets/js/runtime~main.af4a68cc.js" defer="defer"></script>
-<script src="/nb/assets/js/main.c0874a87.js" defer="defer"></script>
+<title data-rh="true">A-02: Parity with the Okapi Framework | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="A-02: Parity with the Okapi Framework | neokapi"><meta data-rh="true" name="description" content="A build-tagged harness runs every Go port head-to-head against the Okapi Framework reference, through the bridge plugin and, where available, the tikal CLI, on a canonical projection that compares extracted text and code structure rather than byte-level markup."><meta data-rh="true" property="og:description" content="A build-tagged harness runs every Go port head-to-head against the Okapi Framework reference, through the bridge plugin and, where available, the tikal CLI, on a canonical projection that compares extracted text and code structure rather than byte-level markup."><meta data-rh="true" name="keywords" content="parity,Okapi Framework,format fidelity,test harness,canonical projection,tikal,conformance,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/assurance/a-02-parity" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/assurance/a-02-parity" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/assurance/a-02-parity" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"A-02: Parity with the Okapi Framework","item":"https://neokapi.github.io/nb/contribute/architecture/assurance/a-02-parity"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
+<script src="/nb/assets/js/runtime~main.b68a598c.js" defer="defer"></script>
+<script src="/nb/assets/js/main.10933aa8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -22,23 +22,23 @@ third reference corner when one is available, runs every case, and writes a JSON
 report.</p>
 <p>Parity is a <strong>maintainer-facing fidelity check on Go ports</strong>, not a product
 surface and not a plugin contract. Its report is a local artifact inside a
-gitignored sandbox; nothing parity-related is published. The distinct, durable,
-cross-repository guarantee — that a plugin implements the plugin protocol at all —
-is <a href="#parity-is-not-conformance" class="">protocol conformance</a>, which lives in the
+gitignored sandbox. The distinct, durable, cross-repository guarantee, that a
+plugin implements the plugin protocol at all, is
+<a href="#parity-is-not-conformance" class="">protocol conformance</a>, which lives in the
 framework module and needs no bridge checkout.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="context">Context<a href="#context" class="hash-link" aria-label="Direkte lenke til Context" title="Direkte lenke til Context" translate="no">​</a></h2>
 <p>Two independent stacks must agree on output:</p>
 <ul>
-<li class=""><strong>The Go implementation</strong> — native readers, writers, and tools compiled into the
+<li class=""><strong>The Go implementation</strong>: native readers, writers, and tools compiled into the
 <code>kapi</code> binary.</li>
-<li class=""><strong>The bridge plugin</strong> — a Java plugin built from the Okapi Framework JARs,
+<li class=""><strong>The bridge plugin</strong>: a Java plugin built from the Okapi Framework JARs,
 developed in its own repository and spawned as a daemon on demand over a local
 socket. It is not part of the product surface; it is the reference
 implementation of a third-party plugin in a non-Go language, and, for parity, a
 convenient second opinion on what an Okapi filter produces.</li>
 </ul>
 <p>When a Go port and a bridge filter both claim to read the same format, kapi
-prefers the Go port — a daemon-backed reader is registered only where no native
+prefers the Go port: a daemon-backed reader is registered only where no native
 reader exists. That preference is right for users, because native is faster, but
 it means a regression in the Go port is invisible: the bridge would have caught
 it, and the bridge never runs. The harness exists to invert that, running both
@@ -47,12 +47,12 @@ implementations side by side on the same input and failing when they diverge.</p
 <p>Two guarantees are easy to conflate, because both involve running the bridge.
 Keeping them apart is what lets the bridge live in its own repository:</p>
 <table><thead><tr><th></th><th>Parity</th><th>Protocol conformance</th></tr></thead><tbody><tr><td>Question</td><td>Do two implementations of the same filter produce the same output?</td><td>Does this plugin implement the plugin protocol?</td></tr><tr><td>Subject</td><td>This project&#x27;s own Go readers, writers, and tools</td><td>Any plugin, in any language</td></tr><tr><td>Needs</td><td>a built bridge, an Okapi version pin, a JVM</td><td>only the plugin directory</td></tr><tr><td>Lives in</td><td><code>cli/parity/</code>, build tag <code>parity</code></td><td><code>core/plugin/conformance/</code>, framework module, no build tag</td></tr><tr><td>Audience</td><td>maintainers of this repository</td><td>plugin authors, in their own repositories</td></tr><tr><td>Runs where</td><td>here, on the main branch and on pull requests touching the code involved</td><td>wherever the plugin lives, against a released <code>kapi</code></td></tr><tr><td>Report</td><td>a local artifact under <code>.parity/</code></td><td>a text transcript plus a stable JSON artifact</td></tr></tbody></table>
-<p>Conformance is the load-bearing cross-repository contract: it is what lets a
-plugin repository answer &quot;do I still work with kapi?&quot; on its own, without a
-checkout of this repository and without this repository running its tests.</p>
+<p>Conformance is the cross-repository contract: it is what lets a plugin
+repository answer &quot;do I still work with kapi?&quot; on its own, without a checkout of
+this repository and without this repository running its tests.</p>
 <p>Parity is the narrower question, and it points the other way: it is about <em>this</em>
 implementation&#x27;s fidelity, using the bridge as a reference. That is why parity is
-not, and must not become, a gate on the bridge repository — and why the bridge&#x27;s
+not, and must not become, a gate on the bridge repository, and why the bridge&#x27;s
 own CI reports conformance, on a schedule, never gating this repository.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="design">Design<a href="#design" class="hash-link" aria-label="Direkte lenke til Design" title="Direkte lenke til Design" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="architecture">Architecture<a href="#architecture" class="hash-link" aria-label="Direkte lenke til Architecture" title="Direkte lenke til Architecture" translate="no">​</a></h3>
@@ -71,7 +71,7 @@ Okapi checkout, and reports that the third corner will skip when it is not;</li>
 <li class="">exports the sandbox path and runs <code>go test -tags &quot;fts5,parity&quot; ./parity/...</code>.</li>
 </ol>
 <p>Both build tags are spelled in one comma-separated flag on purpose. Go does not
-union repeated <code>-tags</code> — the last occurrence wins — so a second <code>-tags parity</code>
+union repeated <code>-tags</code> (the last occurrence wins), so a second <code>-tags parity</code>
 would silently drop the SQLite full-text capability and run the adjudicator for
 every round-trip change in a build configuration no other target uses. Nothing
 fails when that happens, because the dropped tag is a runtime capability rather
@@ -82,11 +82,15 @@ a system-installed binary. Tests go through <code>RequireSandbox</code>, which <
 test when no sandbox is found. Skip-by-default was abandoned deliberately: silent
 skips made local runs report parity green while CI failed. An explicit environment
 variable opts into skipping instead.</p>
+<p>The suite also keeps its hands off the machine it runs on. Several Okapi
+analysis steps default to opening the report they just wrote in the desktop&#x27;s
+browser; the tool specs pass <code>autoOpen=false</code> through their step parameters, so
+the steps still write their reports and a run never opens a window.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="comparison">Comparison<a href="#comparison" class="hash-link" aria-label="Direkte lenke til Comparison" title="Direkte lenke til Comparison" translate="no">​</a></h3>
 <p>Two part streams are compared on a <strong>canonical projection</strong>
 (<code>cli/parity/normalize.go</code>) that includes:</p>
 <ul>
-<li class="">the sequence of part types — block, layer, group, data, media;</li>
+<li class="">the sequence of part types: block, layer, group, data, media;</li>
 <li class="">block IDs and the translatable flag;</li>
 <li class="">source text rendered with <strong>structural placeholders</strong> for inline codes
 (<code>{&lt;id}</code>, <code>{&gt;id}</code>, <code>{ph:id}</code>), not the format-specific code data verbatim;</li>
@@ -100,7 +104,7 @@ placeholder <code>Equiv</code> and <code>Disp</code> fields (which carry portabl
 <a class="" href="/nb/contribute/architecture/multilingual/m-04-math-and-equations">M-04</a>), the block&#x27;s structure and
 geometry annotations, dynamic properties, and stand-off annotations
 (<a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02</a>). Anything a reader wants to add for
-downstream consumers — retrieval ingestion, the editor, cross-format export —
+downstream consumers (retrieval ingestion, the editor, cross-format export)
 rides one of these carriers precisely because the comparator does not look at it.</p>
 <p>Inline-code data is intentionally hidden from the default comparison. Different
 implementations represent paired codes differently: the reference serializes them
@@ -111,13 +115,13 @@ want byte-level fidelity, a byte comparator is available, typically used against
 writer&#x27;s round-trip output.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="three-passes-per-format">Three passes per format<a href="#three-passes-per-format" class="hash-link" aria-label="Direkte lenke til Three passes per format" title="Direkte lenke til Three passes per format" translate="no">​</a></h3>
 <p>A format spec drives up to three passes, each reporting its own row so the
-dashboard can show them side by side without one masking another:</p>
+per-filter summary can show them side by side without one masking another:</p>
 <ul>
-<li class=""><strong>Read</strong> — the native reader against the bridge reader on the same input,
+<li class=""><strong>Read</strong>: the native reader against the bridge reader on the same input,
 compared on the canonical projection.</li>
-<li class=""><strong>Round-trip</strong> — read then write, run only when both implementations declare a
+<li class=""><strong>Round-trip</strong>: read then write, run only when both implementations declare a
 writer, compared on bytes.</li>
-<li class=""><strong>Reference CLI</strong> — the native round-trip output against an extract-then-merge
+<li class=""><strong>Reference CLI</strong>: the native round-trip output against an extract-then-merge
 run of the Okapi CLI. A divergence here says the native side reads or writes the
 format differently from the canonical reference; agreement between the CLI and
 the bridge, where both are populated, says the bridge plumbing is faithful even
@@ -130,10 +134,10 @@ which would silently compare unlike things.</li>
 <p>Parity is faithfulness to the reference <strong>under the same semantic configuration</strong>,
 not faithfulness to the reference&#x27;s <em>defaults</em>. A native reader is free to pick a
 richer default when the matching configuration still reproduces the reference&#x27;s
-output — the contract is &quot;same semantic config → same results&quot;, not &quot;same
+output: the contract is &quot;same semantic config → same results&quot;, not &quot;same
 defaults&quot;.</p>
-<p>The load-bearing instance is content-fidelity surfacing. Native readers default to
-surfacing non-modifiable content — code, captions, formulas — as
+<p>The instance that matters most is content-fidelity surfacing. Native readers
+default to surfacing non-modifiable content (code, captions, formulas) as
 <code>Block{Translatable: false}</code> for model and retrieval ingestion, content the
 reference has no notion of and keeps in skeleton, so a head-to-head with surfacing
 on would diverge by construction. The spec runner therefore forces the matching
@@ -146,16 +150,20 @@ rather than <em>semantics</em> must offer the same off-switch so parity can pin 
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="reporting">Reporting<a href="#reporting" class="hash-link" aria-label="Direkte lenke til Reporting" title="Direkte lenke til Reporting" translate="no">​</a></h3>
 <p>Each pass reports one row: a <code>Kind</code> discriminating format, round-trip, reference
 CLI, fixture, feature, or step; an <code>ID</code> (the Okapi short id); a <code>Name</code>; a
-<code>Status</code>; a <code>Mode</code> describing what was actually verified — head-to-head,
-bridge-only, byte, or reference CLI; and a short detail on failure or skip.
+<code>Status</code>; a <code>Mode</code> describing what was actually verified (head-to-head,
+bridge-only, byte, or reference CLI); and a short detail on failure or skip.
 <code>FlushReport</code>, called from each package&#x27;s <code>TestMain</code>, writes the accumulated rows
 to the sandbox as JSON, and the parity workflow uploads that JSON as an artifact.</p>
-<p>A second tool reads those raw rows and emits a narrower per-row summary — one row
+<p>A second tool reads those raw rows and emits a narrower per-row summary: one row
 per filter or step with its current status, mode, and skip detail. <code>make parity-publish</code> refreshes both files locally.</p>
 <p>Both files are maintainer telemetry inside the gitignored sandbox: a per-filter
-status table for whoever is working on a port. Nothing parity-related is published
-to the documentation site, and no product claim is derived from it. The public
-quality story is the <a class="" href="/nb/format-maturity">format-maturity dashboard</a>.</p>
+status table for whoever is working on a port. The row results are not
+published. What the public <a class="" href="/nb/format-maturity">format-maturity dashboard</a> reads
+from parity is narrower: whether a format has a parity case at all is one
+signal on its engine axis, and the maturity ledger records the watermark of the
+last parity run (its report timestamp and the main-branch commit it ran on), so
+the dashboard can say how fresh that signal is. No product claim is derived
+from a parity row.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direkte lenke til Consequences" title="Direkte lenke til Consequences" translate="no">​</a></h2>
 <ul>
 <li class=""><strong>Regressions in Go ports surface immediately.</strong> A change to a reader that drops
@@ -166,11 +174,11 @@ fixture can be supplied, the test asserts that the bridge produces stable output
 against a fixed input, so a new Okapi release that breaks a filter becomes
 visible without anyone invoking that filter in production.</li>
 <li class=""><strong>Binary-container filters appear as gaps rather than false greens.</strong> Formats
-with no committed binary corpus carry an explicit skip — sourced from the
-format&#x27;s own spec where it has one, inline where it does not — so they show as
-gap rows on the dashboard instead of silently asserting nothing.</li>
-<li class=""><strong>Cross-repository schema sync becomes load-bearing.</strong> A schema change the bridge
-does not mirror trips parity immediately. That is the intent: the schema is the
+with no committed binary corpus carry an explicit skip, sourced from the
+format&#x27;s own spec where it has one and inline where it does not, so they show
+as gap rows in the summary instead of silently asserting nothing.</li>
+<li class=""><strong>Cross-repository schema sync is enforced.</strong> A schema change the bridge does
+not mirror trips parity immediately. That is the intent: the schema is the
 contract.</li>
 <li class=""><strong>A full run costs wall-clock time.</strong> It includes a Maven JAR build and an
 application-image step, several minutes in total. The sandbox is cached between
@@ -184,14 +192,14 @@ manifest in the sandbox.</li>
 then add a spec test under <code>cli/parity/formats/</code> that loads it and runs the
 spec runner. Wire the native reader for a head-to-head comparison, or leave it
 unset for a bridge-only stability snapshot. The same <code>spec.yaml</code> also drives the
-always-on native test in <code>core/formats/&lt;name&gt;/</code> — one source of truth, and the
+always-on native test in <code>core/formats/&lt;name&gt;/</code>: one source of truth, and the
 place where the bridge filter class, the reference-CLI corner, and the parity
 skips are declared.
 <strong>For a tool:</strong> add a row to the tool spec table in <code>cli/parity/tools/</code>; the
 single table-driven test picks it up automatically. There are no per-tool test
 files.</li>
-<li class=""><code>Mode</code> is derived by the runner — head-to-head when a native reader or tool is
-wired, bridge-only otherwise — and emitted with the report row. It is never
+<li class=""><code>Mode</code> is derived by the runner (head-to-head when a native reader or tool is
+wired, bridge-only otherwise) and emitted with the report row. It is never
 assigned by hand.</li>
 <li class="">Run <code>make parity-test</code> locally and iterate until green.</li>
 </ol>
@@ -201,36 +209,25 @@ refresh them with the dedicated make target and review the diff.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="release-gate">Release gate<a href="#release-gate" class="hash-link" aria-label="Direkte lenke til Release gate" title="Direkte lenke til Release gate" translate="no">​</a></h2>
 <p>The release workflow blocks tagging unless the parity workflow has concluded
 successfully for the tagged commit. The gate job queries the Actions API for every
-parity run against that commit and passes if any of them succeeded — robust to a
+parity run against that commit and passes if any of them succeeded, robust to a
 second, manually dispatched run being in flight while an earlier one already
 passed. It fails closed on absent, in-progress, or failed runs, and the
 independent release jobs depend on it, so the whole downstream pipeline inherits
 the gate.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="where-the-harness-ends-up">Where the harness ends up<a href="#where-the-harness-ends-up" class="hash-link" aria-label="Direkte lenke til Where the harness ends up" title="Direkte lenke til Where the harness ends up" translate="no">​</a></h2>
-<p><em>Not yet built.</em> The harness&#x27;s dependencies point the wrong way for a repository
-that no longer ships the bridge: running it here means this repository needs a
-bridge checkout, an Okapi version pin, a Maven build, and a JVM — for a check
-about <em>this</em> implementation&#x27;s fidelity, whose reference is maintained elsewhere.</p>
-<p>The end state inverts that. The harness and its specs move to the bridge
-repository, which already owns the Okapi version matrix and builds the JARs, and
-consumes released modules to obtain the native side. This repository would then
-keep no bridge build, no sandbox script, and no pull-request-blocking bridge job;
-what remains is a scheduled, non-blocking conformance smoke against the released
-bridge.</p>
-<p>What makes that inversion possible is exactly the split in
-<a href="#parity-is-not-conformance" class="">Parity is not conformance</a>: the durable contract
-between the two repositories is the protocol, and the protocol is verifiable from
-a released module. Parity then becomes an ordinary consumer of that module rather
-than a reason for the two repositories to share a build.</p>
+<p><em>Not yet built.</em> The harness and its specs are intended to move to the bridge
+repository, which owns the Okapi version matrix and builds the JARs, consuming
+released modules for the native side and leaving this repository a scheduled,
+non-blocking conformance smoke against the released bridge.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="see-also">See also<a href="#see-also" class="hash-link" aria-label="Direkte lenke til See also" title="Direkte lenke til See also" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/nb/contribute/architecture/assurance/a-01-testing-and-documentation">A-01: Testing and documentation</a> — the pyramid this harness sits above</li>
-<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — the fields the canonical projection excludes</li>
-<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-04-wire-schema">F-04: The content-model wire schema</a> — the schema the two repositories share</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a> — readers, defaults, and surfacing</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a> — the daemon dispatch the bridge uses</li>
-<li class=""><a class="" href="/nb/contribute/implementation/engine/plugin-protocol-v1">Plugin protocol v1</a> — the conformance contract</li>
-<li class=""><a class="" href="/nb/format-maturity">Format maturity</a> — the published quality story</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/assurance/a-02-parity.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/assurance/a-01-testing-and-documentation"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">A-01: Testing and documentation</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/implementation/index"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Implementation Notes Overview</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#parity-is-not-conformance" class="table-of-contents__link toc-highlight">Parity is not conformance</a></li><li><a href="#design" class="table-of-contents__link toc-highlight">Design</a><ul><li><a href="#architecture" class="table-of-contents__link toc-highlight">Architecture</a></li><li><a href="#the-sandbox" class="table-of-contents__link toc-highlight">The sandbox</a></li><li><a href="#comparison" class="table-of-contents__link toc-highlight">Comparison</a></li><li><a href="#three-passes-per-format" class="table-of-contents__link toc-highlight">Three passes per format</a></li><li><a href="#same-semantic-config-same-results" class="table-of-contents__link toc-highlight">Same semantic config, same results</a></li><li><a href="#reporting" class="table-of-contents__link toc-highlight">Reporting</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#adding-a-parity-case" class="table-of-contents__link toc-highlight">Adding a parity case</a></li><li><a href="#release-gate" class="table-of-contents__link toc-highlight">Release gate</a></li><li><a href="#where-the-harness-ends-up" class="table-of-contents__link toc-highlight">Where the harness ends up</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:12 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/nb/contribute/architecture/assurance/a-01-testing-and-documentation">A-01: Testing and documentation</a>: the pyramid this harness sits above</li>
+<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: the fields the canonical projection excludes</li>
+<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-04-wire-schema">F-04: The content-model wire schema</a>: the schema the two repositories share</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a>: readers, defaults, and surfacing</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a>: the daemon dispatch the bridge uses</li>
+<li class=""><a class="" href="/nb/contribute/implementation/engine/plugin-protocol-v1">Plugin protocol v1</a>: the conformance contract</li>
+<li class=""><a class="" href="/nb/format-maturity">Format maturity</a>: the published quality story</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/assurance/a-02-parity.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/assurance/a-01-testing-and-documentation"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">A-01: Testing and documentation</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/implementation/index"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Implementation Notes Overview</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#parity-is-not-conformance" class="table-of-contents__link toc-highlight">Parity is not conformance</a></li><li><a href="#design" class="table-of-contents__link toc-highlight">Design</a><ul><li><a href="#architecture" class="table-of-contents__link toc-highlight">Architecture</a></li><li><a href="#the-sandbox" class="table-of-contents__link toc-highlight">The sandbox</a></li><li><a href="#comparison" class="table-of-contents__link toc-highlight">Comparison</a></li><li><a href="#three-passes-per-format" class="table-of-contents__link toc-highlight">Three passes per format</a></li><li><a href="#same-semantic-config-same-results" class="table-of-contents__link toc-highlight">Same semantic config, same results</a></li><li><a href="#reporting" class="table-of-contents__link toc-highlight">Reporting</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#adding-a-parity-case" class="table-of-contents__link toc-highlight">Adding a parity case</a></li><li><a href="#release-gate" class="table-of-contents__link toc-highlight">Release gate</a></li><li><a href="#where-the-harness-ends-up" class="table-of-contents__link toc-highlight">Where the harness ends up</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:17 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

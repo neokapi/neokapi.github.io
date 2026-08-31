@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">E-01: The processing engine | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/engine/e-01-processing-engine"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-01: The processing engine | neokapi"><meta data-rh="true" name="description" content="Content is processed by a channel-based streaming pipeline: each tool runs in its own goroutine, connected by buffered channels, with errgroup for error propagation and context for cancellation."><meta data-rh="true" property="og:description" content="Content is processed by a channel-based streaming pipeline: each tool runs in its own goroutine, connected by buffered channels, with errgroup for error propagation and context for cancellation."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,processing engine,pipeline,goroutines,channels,errgroup,streaming,executor,flow definition"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-01-processing-engine"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-01-processing-engine" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-01-processing-engine" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-01-processing-engine" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-01-processing-engine" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-01: The processing engine","item":"https://neokapi.github.io/nb/contribute/architecture/engine/e-01-processing-engine"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
-<script src="/nb/assets/js/runtime~main.af4a68cc.js" defer="defer"></script>
-<script src="/nb/assets/js/main.c0874a87.js" defer="defer"></script>
+<script src="/nb/assets/js/runtime~main.b68a598c.js" defer="defer"></script>
+<script src="/nb/assets/js/main.10933aa8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -16,9 +16,9 @@
 <p>Content is processed by a channel-based streaming pipeline. Each tool runs in
 its own goroutine; tools are connected by buffered channels that provide
 automatic backpressure. An <code>errgroup.Group</code> coordinates errors and propagates
-context cancellation. Four independent concurrency layers — intra-tool block
+context cancellation. Four independent concurrency layers (intra-tool block
 parallelism, batch file concurrency, document-level concurrency, and streaming
-observation — compose without interference. Flows are declared as either a
+observation) compose without interference. Flows are declared as either a
 graph of nodes and edges or a sequential list of steps (with explicit
 <code>parallel:</code> blocks for fan-out), both compiled to the same executable
 representation.</p>
@@ -74,7 +74,7 @@ Parts are dispatched to a semaphore-bounded worker pool; non-Block Parts (Data,
 Media, Layer) pass through the inner tool sequentially. A min-heap reassembly
 buffer collects results and emits them in strict sequence order, so downstream
 tools see the same Part ordering regardless of which worker finished first.</p>
-<p>Auto-parallelism is a <strong>tool</strong> property, not a flow property. Each tool declares
+<p>Auto-parallelism is a <strong>tool</strong> property. Each tool declares
 <code>ToolMeta.DefaultParallelBlocks</code> (<a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03</a>); the runner takes
 the maximum across the flow&#x27;s tools and wraps every tool at that width. A
 project may pin its own value, and <code>--parallel-blocks N</code> overrides both
@@ -94,8 +94,8 @@ thread-safe aggregation across files.</p>
 <table><thead><tr><th>Layer</th><th>Scope</th><th>Control</th><th>Order</th></tr></thead><tbody><tr><td>ParallelBlockTool</td><td>Blocks within one tool</td><td>N goroutines per tool</td><td>Strict Part order</td></tr><tr><td>BatchExecutor</td><td>Multiple files</td><td>FileConcurrency semaphore</td><td>File order preserved</td></tr><tr><td>Executor</td><td>Multiple documents</td><td>MaxConcurrency semaphore</td><td>Document order preserved</td></tr><tr><td>TappingTool</td><td>Observation</td><td>Inline (no extra goroutine)</td><td>Sequential</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="collectors-and-streaming-collectors">Collectors and streaming collectors<a href="#collectors-and-streaming-collectors" class="hash-link" aria-label="Direkte lenke til Collectors and streaming collectors" title="Direkte lenke til Collectors and streaming collectors" translate="no">​</a></h3>
 <p>Collectors aggregate results across documents (word counts, check reports, term
-lists). They implement <code>Collect(ctx, item, parts)</code> — called after each document
-completes — and <code>Result()</code> for the final aggregate. Collectors must be
+lists). They implement <code>Collect(ctx, item, parts)</code>, called after each document
+completes, and <code>Result()</code> for the final aggregate. Collectors must be
 thread-safe since multiple documents may complete concurrently.</p>
 <p><code>StreamingCollector</code> extends <code>Collector</code> with <code>Observe(part)</code> for inline
 observation without adding a pipeline stage. <code>TappingTool</code> wraps a tool and its
@@ -108,15 +108,27 @@ without buffering the entire result set.</p>
 with Part snapshots. The <code>--trace path/to/trace.json</code> flag on <code>kapi run</code> enables
 tracing. The output is a <code>FlowTrace</code> JSON file containing:</p>
 <ul>
-<li class=""><strong>Nodes</strong> — the tool chain with concurrency metadata</li>
-<li class=""><strong>Events</strong> — timestamped enter/exit events per Part</li>
-<li class=""><strong>Part snapshots</strong> — Part state before and after each node</li>
-<li class=""><strong>Duration</strong> — total flow execution time in microseconds</li>
+<li class=""><strong>Nodes</strong>: the tool chain with concurrency metadata</li>
+<li class=""><strong>Events</strong>: timestamped enter/exit events per Part</li>
+<li class=""><strong>Part snapshots</strong>: Part state before and after each node</li>
+<li class=""><strong>Duration</strong>: total flow execution time in microseconds</li>
 </ul>
 <p>A browser-based visualization renders the trace as an animated flow diagram with
 particles moving through nodes, channel fill indicators, and worker lane
 separation for parallel tools. The playback engine supports variable-speed replay
 and seeking.</p>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="observation-seam">Observation seam<a href="#observation-seam" class="hash-link" aria-label="Direkte lenke til Observation seam" title="Direkte lenke til Observation seam" translate="no">​</a></h3>
+<p>Tracing to a file is one consumer of a more general seam. <code>core/observe</code>
+defines a <code>Tracer</code> / <code>Span</code> interface with a no-op default and no dependency on
+any telemetry library, so it costs nothing until a host registers a tracer at
+startup; <code>kapi</code> and the desktop register none. <code>flow.WrapWithSpans</code> wraps each
+tool in a chain so that one span opens per tool invocation (<code>flow.tool</code>), and
+the file runner opens one per format read and write (<code>format.read</code>,
+<code>format.write</code>). A <code>SessionTool</code> keeps its session path through the wrapper, so
+a resumable run still resumes. Model provider calls carry their own span through
+the same seam (<a class="" href="/nb/contribute/architecture/engine/e-07-model-providers">E-07</a>). One span per tool rather than
+per Part keeps the cost proportional to the handful of tools a flow has, not the
+thousands of Parts it moves.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="flow-definitions">Flow definitions<a href="#flow-definitions" class="hash-link" aria-label="Direkte lenke til Flow definitions" title="Direkte lenke til Flow definitions" translate="no">​</a></h3>
 <p><code>flow.FlowDefinition</code> is a JSON/YAML-serializable struct that captures a flow
 graph (nodes + edges) and the tool configurations needed to reconstruct a
@@ -124,17 +136,20 @@ runnable flow. This separates the declarative description of a flow from its
 runtime execution.</p>
 <p>Each <code>FlowNode</code> has:</p>
 <ul>
-<li class=""><strong>ID</strong> — unique identifier within the definition</li>
-<li class=""><strong>Type</strong> — <code>flow.NodeTool</code> for a processing step</li>
-<li class=""><strong>Name</strong> — the registered name of the tool (e.g. <code>&quot;pseudo-translate&quot;</code>)</li>
-<li class=""><strong>Label</strong> — optional display label for UI rendering</li>
-<li class=""><strong>Config</strong> — optional key-value configuration map</li>
-<li class=""><strong>Position</strong> — x/y coordinates for visual layout in the flow editor</li>
+<li class=""><strong>ID</strong>: unique identifier within the definition</li>
+<li class=""><strong>Type</strong>: <code>flow.NodeTool</code> for a processing step. <code>NodeReader</code> and
+<code>NodeWriter</code> remain in the <code>NodeType</code> vocabulary for the editor&#x27;s graph, but
+every built-in and steps-compiled flow carries tool nodes only, because the
+ends are bindings (<a class="" href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>)</li>
+<li class=""><strong>Name</strong>: the registered name of the tool (e.g. <code>&quot;pseudo-translate&quot;</code>)</li>
+<li class=""><strong>Label</strong>: optional display label for UI rendering</li>
+<li class=""><strong>Config</strong>: optional key-value configuration map</li>
+<li class=""><strong>Position</strong>: x/y coordinates for visual layout in the flow editor</li>
 </ul>
 <blockquote>
 <p><strong>Bindings (<a class="" href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>).</strong> A flow&#x27;s source and sink
-are bindings resolved from invocation context — file, the project store, a
-<code>.kpz</code>, interchange import/export, or none — so the same flow runs over any
+are bindings resolved from invocation context (file, the project store, a
+<code>.kpz</code>, interchange import/export, or none), so the same flow runs over any
 origin. Every built-in flow graph carries tool nodes only. The graph is
 composition; a single tool is invoked directly, not wrapped in a one-tool flow.</p>
 </blockquote>
@@ -152,10 +167,11 @@ single-tool definitions are surfaced as top-level tool commands rather than as
 flows. <code>host/flowdef.FlowStore</code> persists user-created flow definitions as JSON
 files on disk, distinguished by source:</p>
 <ul>
-<li class=""><code>built-in</code> — ships with neokapi, immutable</li>
-<li class=""><code>user</code> — created by the user, stored in the user&#x27;s config directory</li>
-<li class=""><code>project</code> — stored within a project directory</li>
+<li class=""><code>built-in</code>: ships with neokapi, immutable</li>
+<li class=""><code>user</code>: created by the user, stored in the user&#x27;s config directory</li>
 </ul>
+<p>A project&#x27;s own named flows are declared in its recipe&#x27;s <code>flows:</code> block rather
+than stored as files (<a class="" href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="steps-based-yaml-format">Steps-based YAML format<a href="#steps-based-yaml-format" class="hash-link" aria-label="Direkte lenke til Steps-based YAML format" title="Direkte lenke til Steps-based YAML format" translate="no">​</a></h3>
 <p>A human-friendly steps format is the primary authoring surface for flows in YAML
 (<a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03</a>):</p>
@@ -164,8 +180,8 @@ files on disk, distinguished by source:</p>
 auto-detects the shape (steps vs graph) and compiles steps to nodes and edges.
 Both produce the same runnable executor.</p>
 <p>The steps carry only the composition. A flow&#x27;s source and sink are bindings
-resolved at invocation — file, the project store, a <code>.kpz</code>, interchange, or none
-(<a class="" href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>) — not fields of the flow document.</p>
+resolved at invocation (file, the project store, a <code>.kpz</code>, interchange, or none;
+<a class="" href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>) rather than fields of the flow document.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="fan-out-and-batching">Fan-out and batching<a href="#fan-out-and-batching" class="hash-link" aria-label="Direkte lenke til Fan-out and batching" title="Direkte lenke til Fan-out and batching" translate="no">​</a></h3>
 <p><code>tool.Tee()</code> copies parts to N output channels, enabling fan-out topologies where
 one node feeds multiple parallel branches. The <code>batch</code> tool collects blocks into
@@ -176,7 +192,7 @@ LLM prompts that benefit from multiple inputs per request
 <p>The <code>script</code> tool runs user-provided JavaScript (ES5) via the goja runtime. Each
 tool instance owns its own <code>goja.Runtime</code>, which is safe because <code>ToolFactory</code>
 gives one instance per goroutine. The JS API exposes <code>part</code>, <code>emit()</code>, <code>skip()</code>,
-and <code>log()</code> for filtering and transforming parts — lightweight custom
+and <code>log()</code> for filtering and transforming parts: lightweight custom
 transformations without Go code. <code>script</code> is in the <strong>exec class</strong>: a recipe
 cannot arm it silently (<a class="" href="/nb/contribute/architecture/engine/e-06-execution-trust">E-06</a>).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="terminology-okapi--neokapi">Terminology: Okapi → neokapi<a href="#terminology-okapi--neokapi" class="hash-link" aria-label="Direkte lenke til Terminology: Okapi → neokapi" title="Direkte lenke til Terminology: Okapi → neokapi" translate="no">​</a></h3>
@@ -210,11 +226,11 @@ and the YAML stay in sync because both compile to the same graph.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direkte lenke til Related" title="Direkte lenke til Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — the Part types that stream</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a> — readers that emit Parts, writers that consume them</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a> — the tools that make up a flow</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding">E-04: Flows and I/O binding</a> — reader/writer become source/sink bindings; a flow is composition only</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a> — plugin tools use the same executor contract</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-01-processing-engine.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/foundations/f-04-wire-schema"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">F-04: The content-model wire schema</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/engine/e-02-format-system"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">E-02: The format system</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#channel-based-pipeline" class="table-of-contents__link toc-highlight">Channel-based pipeline</a></li><li><a href="#executor" class="table-of-contents__link toc-highlight">Executor</a></li><li><a href="#parallel-block-processing" class="table-of-contents__link toc-highlight">Parallel block processing</a></li><li><a href="#batch-executor" class="table-of-contents__link toc-highlight">Batch executor</a></li><li><a href="#concurrency-layering" class="table-of-contents__link toc-highlight">Concurrency layering</a></li><li><a href="#collectors-and-streaming-collectors" class="table-of-contents__link toc-highlight">Collectors and streaming collectors</a></li><li><a href="#flow-tracing-and-visualization" class="table-of-contents__link toc-highlight">Flow tracing and visualization</a></li><li><a href="#flow-definitions" class="table-of-contents__link toc-highlight">Flow definitions</a></li><li><a href="#steps-based-yaml-format" class="table-of-contents__link toc-highlight">Steps-based YAML format</a></li><li><a href="#fan-out-and-batching" class="table-of-contents__link toc-highlight">Fan-out and batching</a></li><li><a href="#script-step" class="table-of-contents__link toc-highlight">Script step</a></li><li><a href="#terminology-okapi--neokapi" class="table-of-contents__link toc-highlight">Terminology: Okapi → neokapi</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:12 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: the Part types that stream</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a>: readers that emit Parts, writers that consume them</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a>: the tools that make up a flow</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding">E-04: Flows and I/O binding</a>: reader/writer become source/sink bindings; a flow is composition only</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a>: plugin tools use the same executor contract</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-01-processing-engine.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/foundations/f-04-wire-schema"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">F-04: The content-model wire schema</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/engine/e-02-format-system"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">E-02: The format system</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#channel-based-pipeline" class="table-of-contents__link toc-highlight">Channel-based pipeline</a></li><li><a href="#executor" class="table-of-contents__link toc-highlight">Executor</a></li><li><a href="#parallel-block-processing" class="table-of-contents__link toc-highlight">Parallel block processing</a></li><li><a href="#batch-executor" class="table-of-contents__link toc-highlight">Batch executor</a></li><li><a href="#concurrency-layering" class="table-of-contents__link toc-highlight">Concurrency layering</a></li><li><a href="#collectors-and-streaming-collectors" class="table-of-contents__link toc-highlight">Collectors and streaming collectors</a></li><li><a href="#flow-tracing-and-visualization" class="table-of-contents__link toc-highlight">Flow tracing and visualization</a></li><li><a href="#observation-seam" class="table-of-contents__link toc-highlight">Observation seam</a></li><li><a href="#flow-definitions" class="table-of-contents__link toc-highlight">Flow definitions</a></li><li><a href="#steps-based-yaml-format" class="table-of-contents__link toc-highlight">Steps-based YAML format</a></li><li><a href="#fan-out-and-batching" class="table-of-contents__link toc-highlight">Fan-out and batching</a></li><li><a href="#script-step" class="table-of-contents__link toc-highlight">Script step</a></li><li><a href="#terminology-okapi--neokapi" class="table-of-contents__link toc-highlight">Terminology: Okapi → neokapi</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:17 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

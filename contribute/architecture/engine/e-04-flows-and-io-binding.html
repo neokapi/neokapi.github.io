@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">E-04: Flows and I/O binding | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/contribute/architecture/engine/e-04-flows-and-io-binding"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-04: Flows and I/O binding | neokapi"><meta data-rh="true" name="description" content="A flow is a pure transformation over a stream of Blocks backed by a block-store session; where content enters (the source binding) and where results go (the sink binding) are resolved from invocation context rather than baked into the flow graph."><meta data-rh="true" property="og:description" content="A flow is a pure transformation over a stream of Blocks backed by a block-store session; where content enters (the source binding) and where results go (the sink binding) are resolved from invocation context rather than baked into the flow graph."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,flow,source,sink,binding,block store,kpz,process-only,container,locator"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/contribute/architecture/engine/e-04-flows-and-io-binding"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-04-flows-and-io-binding" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-04-flows-and-io-binding" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-04-flows-and-io-binding" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-04-flows-and-io-binding" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-04: Flows and I/O binding","item":"https://neokapi.github.io/contribute/architecture/engine/e-04-flows-and-io-binding"}]}</script><link rel="stylesheet" href="/assets/css/styles.f4228ccd.css">
-<script src="/assets/js/runtime~main.6a77e6ad.js" defer="defer"></script>
-<script src="/assets/js/main.217225e7.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2318bff8.js" defer="defer"></script>
+<script src="/assets/js/main.2c3341f6.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -14,14 +14,14 @@
 <script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/img/logo.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_WmD6" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.png" alt="neokapi" class="themedComponent_wbKQ themedComponent--light_jlwr"><img src="/img/logo.png" alt="neokapi" class="themedComponent_wbKQ themedComponent--dark_D5UJ"></div><b class="navbar__title text--truncate">neokapi</b></a><a class="navbar__item navbar__link" href="/kapi/overview">Kapi</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Labs</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/labs">Labs overview</a></li><li><a class="dropdown__link" href="/lab">Content Model Workspace</a></li><li><a class="dropdown__link" href="/lab/segmentation">Segmentation</a></li><li><a class="dropdown__link" href="/lab/convert">File Conversion</a></li><li><a class="dropdown__link" href="/lab/structure">Structure &amp; Layout</a></li><li><a class="dropdown__link" href="/lab/vision">Vision</a></li><li><a class="dropdown__link" href="/lab/media">Audio &amp; Video</a></li><li><a class="dropdown__link" href="/playground-cli">CLI Playground</a></li><li><a class="dropdown__link" href="/kbf-lab">KBF Anatomy</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Reference</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/reference">Reference Overview</a></li><li><a class="dropdown__link" href="/commands">Kapi CLI Commands</a></li><li><a class="dropdown__link" href="/formats">Formats</a></li><li><a class="dropdown__link" href="/tools">Tools</a></li><li><a class="dropdown__link" href="/models">AI Models</a></li><li><a class="dropdown__link" href="/reference/project-file">Project file</a></li><li><a class="dropdown__link" href="/reference/serialization/overview">kapi serialization formats</a></li><li><a class="dropdown__link" href="/reference/mcp">MCP Server</a></li><li><a class="dropdown__link" href="/reference/cli-contract">Scripting &amp; JSON contract</a></li><li><a class="dropdown__link" href="/reference/engine-service">Engine service (gRPC)</a></li><li><a class="dropdown__link" href="/reference/telemetry">Telemetry</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Toolbox</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/toolbox/overview">CLI tools</a></li><li><a class="dropdown__link" href="/react/introduction">neokapi-i18n</a></li></ul></div><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/framework/architecture">Framework</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link navbar-locale-icon"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_Lw9k"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/contribute/architecture/engine/e-04-flows-and-io-binding" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/nb/contribute/architecture/engine/e-04-flows-and-io-binding" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="nb">Norsk (bokmål)</a></li><li><a href="/qps/contribute/architecture/engine/e-04-flows-and-io-binding" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">Þšéüđö Éñĝļîšĥ</a></li></ul></div><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub repository"></a><div class="toggle_IPLv colorModeToggle_KrYI"><button class="clean-btn toggleButton_hVnx toggleButtonDisabled_kmUe" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_FAva lightToggleIcon_frLN"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_FAva darkToggleIcon_fLy3"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_FAva systemToggleIcon_kwTI"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_R3Ot"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_Xz0H"><div class="docsWrapper_rho_"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_cFSH" type="button"></button><div class="docRoot_l1_3"><aside class="theme-doc-sidebar-container docSidebarContainer_A1VD"><div class="sidebarViewport_HBxt"><div class="sidebar_LPRw"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_ehTi"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-section-heading"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link"><span class="categoryLinkLabel_NDZ6">Concepts</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/architecture"><span class="linkLabel_Hz93">Architecture</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/concepts"><span class="linkLabel_Hz93">Concepts</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/content-model"><span class="linkLabel_Hz93">Content Model</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/inline-formatting"><span class="linkLabel_Hz93">Inline Formatting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/vocabularies"><span class="linkLabel_Hz93">Vocabularies</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/formats"><span class="linkLabel_Hz93">Formats</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist" tabindex="0" href="/framework/format-maturity"><span class="categoryLinkLabel_NDZ6">Format support &amp; maturity</span></a><button aria-label="Expand sidebar category &#x27;Format support &amp; maturity&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/tools"><span class="linkLabel_Hz93">Tools</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/flows"><span class="linkLabel_Hz93">Flows</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/pipeline"><span class="linkLabel_Hz93">Pipeline</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/content-memory"><span class="linkLabel_Hz93">Content memory</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/terminology"><span class="linkLabel_Hz93">Terminology</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/content-preparation"><span class="linkLabel_Hz93">Content preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/segmentation"><span class="linkLabel_Hz93">Segmentation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/translation"><span class="linkLabel_Hz93">Translation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/prompts"><span class="linkLabel_Hz93">Prompts</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist" tabindex="0" href="/framework/checks"><span class="categoryLinkLabel_NDZ6">Checks</span></a><button aria-label="Expand sidebar category &#x27;Checks&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/framework/redaction"><span class="linkLabel_Hz93">Redaction</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/framework/go-quickstart"><span class="categoryLinkLabel_NDZ6">Integration &amp; migration</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-section-heading"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link"><span class="categoryLinkLabel_NDZ6">Extending the Framework</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/tool-authoring"><span class="linkLabel_Hz93">Tool Authoring with Parameter Schemas</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/flow-authoring"><span class="linkLabel_Hz93">YAML Flow Authoring</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/script-step"><span class="linkLabel_Hz93">JavaScript Script Step</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/formats"><span class="linkLabel_Hz93">Implementing a Format</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/tools"><span class="linkLabel_Hz93">Implementing a Tool</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/plugins"><span class="linkLabel_Hz93">Plugin System</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/testing"><span class="linkLabel_Hz93">Testing Strategy</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/graph"><span class="linkLabel_Hz93">Graph Store Library</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/vocabularies"><span class="linkLabel_Hz93">Authoring Vocabularies</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/interfaces"><span class="linkLabel_Hz93">Interface Reference</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/contribute/architecture/index"><span class="categoryLinkLabel_NDZ6">Architecture Decisions</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/index"><span class="linkLabel_Hz93">Architecture Decisions Overview</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/contribute/architecture/foundations/f-01-framework-and-modules"><span class="categoryLinkLabel_NDZ6">F — Foundations</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/contribute/architecture/engine/e-01-processing-engine"><span class="categoryLinkLabel_NDZ6">E — Engine</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/engine/e-01-processing-engine"><span class="linkLabel_Hz93">E-01: The processing engine</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/engine/e-02-format-system"><span class="linkLabel_Hz93">E-02: The format system</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/engine/e-03-tool-system"><span class="linkLabel_Hz93">E-03: The tool system</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/contribute/architecture/engine/e-04-flows-and-io-binding"><span class="linkLabel_Hz93">E-04: Flows and I/O binding</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/engine/e-05-plugin-system"><span class="linkLabel_Hz93">E-05: The plugin system</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/engine/e-06-execution-trust"><span class="linkLabel_Hz93">E-06: Execution trust</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/engine/e-07-model-providers"><span class="linkLabel_Hz93">E-07: Model and translation providers</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/contribute/architecture/engine/e-08-document-structure-tiers"><span class="linkLabel_Hz93">E-08: Document structure tiers</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/contribute/architecture/context/c-01-project-model"><span class="categoryLinkLabel_NDZ6">C — Context</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/contribute/architecture/surfaces/s-01-kapi-cli"><span class="categoryLinkLabel_NDZ6">S — Surfaces</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/contribute/architecture/multilingual/m-01-bilingual-interop"><span class="categoryLinkLabel_NDZ6">M — Multilingual</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/contribute/architecture/assurance/a-01-testing-and-documentation"><span class="categoryLinkLabel_NDZ6">A — Assurance</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_f54u menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/contribute/implementation/index"><span class="categoryLinkLabel_NDZ6">Implementation Notes</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_CGzj"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_OuJA"><div class="docItemContainer_xRM2"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_aPOd" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_OA5_"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Architecture Decisions</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">E — Engine</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">E-04: Flows and I/O binding</span></li></ul></nav><div class="tocCollapsible_Okcg theme-doc-toc-mobile tocMobile_anMS"><button type="button" class="clean-btn tocCollapsibleButton_i5El">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>E-04: Flows and I/O binding</h1></header>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h2>
 <p>Three nouns divide the work cleanly: a <strong>tool</strong> is the unit of work, a <strong>flow</strong>
-is a named reusable <em>composition</em> of tools, and a <strong>binding</strong> is an end — where
+is a named reusable <em>composition</em> of tools, and a <strong>binding</strong> is an end: where
 content enters and leaves. A flow is a <strong>pure transformation over a stream of
 Blocks</strong> backed by a block-store session: it owns no I/O, and a single tool is
 not a flow. <em>Where content enters</em> (the <strong>source binding</strong>) and <em>where results
 go</em> (the <strong>sink binding</strong>) are resolved from invocation context, not encoded in
 the flow graph. The same flow definition runs whether its content comes from a
 file, a <code>.kpz</code> workspace, the project block store, or an imported interchange
-file — and whether its results are written to a file, committed as overlays to
+file, and whether its results are written to a file, committed as overlays to
 the store, or both.</p>
 <p>A sink is <strong>optional</strong>. A <em>process-only</em> run lands its work as overlays in the
 project or <code>.kpz</code> and emits no file; materialization is a separate, later sink
@@ -29,8 +29,8 @@ operation (<code>merge</code> / <code>export</code> / <code>pack</code>). This g
 first-class shape: <code>extract</code> (source → store), <code>run</code> / transform (store → store),
 <code>merge</code> (store → file).</p>
 <p>A source can also <strong>fan out</strong>: an archive path expands to one <code>file</code> run per
-inner entry — so a packaged format nested inside an archive round-trips
-faithfully — and the matching sink repacks, copying untouched members
+inner entry (so a packaged format nested inside an archive round-trips
+faithfully), and the matching sink repacks, copying untouched members
 byte-for-byte. The same enumerate → process → write-back shape generalizes from
 files to <strong>remote providers</strong>, which is the contract a source-connector plugin
 implements.</p>
@@ -39,9 +39,9 @@ model-settling transforms</em> that run <strong>once at ingest</strong> and pers
 and <em>round-trip-paired brackets</em> (redact … unredact) that are part of a <strong>run&#x27;s</strong>
 source/sink wiring.</p>
 <p>Bindings are named by one scheme vocabulary across the CLI, the flow document,
-and the existing resource URIs. A concrete binding resolves by precedence —
-explicit flag, then project or <code>.kpz</code> context, then the flow&#x27;s intent, then
-auto-detection — and <code>kapi run --explain</code> always shows the resolved
+and the existing resource URIs. A concrete binding resolves by precedence
+(explicit flag, then project or <code>.kpz</code> context, then the flow&#x27;s intent, then
+auto-detection), and <code>kapi run --explain</code> always shows the resolved
 <code>source → sink</code> so nothing is hidden. A flow declares only <em>intrinsic intent</em>
 (<code>sink: none</code> for an analysis flow), never a path.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="context">Context<a href="#context" class="hash-link" aria-label="Direct link to Context" title="Direct link to Context" translate="no">​</a></h2>
@@ -49,12 +49,12 @@ auto-detection — and <code>kapi run --explain</code> always shows the resolved
 processes a loose file on a laptop, the blocks already held in a project&#x27;s store,
 a <code>.kpz</code> workspace, or content imported from an interchange file; and its results
 land in a translated file, as overlays committed to the store, or in an
-interchange file bound for a translator. The work the flow does — leverage,
-translate, check — is the same in every case; only where the content enters and
+interchange file bound for a translator. The work the flow does (leverage,
+translate, check) is the same in every case; only where the content enters and
 leaves differs.</p>
 <p>The processing engine is built around that fact. <code>flow.DefaultExecutor</code>
 orchestrates tools over a <code>blockstore.Session</code> and has no notion of files,
-readers, or writers — I/O lives at the edges, outside the flow. This AD names
+readers, or writers; I/O lives at the edges, outside the flow. This AD names
 those edges and settles two questions:</p>
 <ol>
 <li class="">The flow&#x27;s shape is <code>source → {flow} → sink</code>: the ends are context-wired
@@ -66,13 +66,13 @@ the store.</li>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="three-nouns-tool-flow-binding">Three nouns: tool, flow, binding<a href="#three-nouns-tool-flow-binding" class="hash-link" aria-label="Direct link to Three nouns: tool, flow, binding" title="Direct link to Three nouns: tool, flow, binding" translate="no">​</a></h3>
 <p>I/O sits outside the flow, leaving three concepts, each with exactly one job:</p>
 <ul>
-<li class=""><strong>Tool</strong> — the unit of work. A single capability-typed transformation over the
-Part stream — <code>Annotate</code>, <code>Produce</code>, or <code>Transform</code>
+<li class=""><strong>Tool</strong>: the unit of work. A single capability-typed transformation over the
+Part stream: <code>Annotate</code>, <code>Produce</code>, or <code>Transform</code>
 (<a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03</a>). A tool runs on its own; it needs no flow.</li>
-<li class=""><strong>Flow</strong> — a named, reusable <strong>composition</strong> of tools. A flow carries the
+<li class=""><strong>Flow</strong>: a named, reusable <strong>composition</strong> of tools. A flow carries the
 ordering, the branching (<code>parallel:</code>, tee, batch), and the per-tool
-configuration — and nothing else. It is <em>the recipe</em>.</li>
-<li class=""><strong>Binding</strong> — the ends. Where content enters (source) and where results leave
+configuration, and nothing else. It is <em>the recipe</em>.</li>
+<li class=""><strong>Binding</strong>: the ends. Where content enters (source) and where results leave
 (sink). A binding belongs to neither the tool nor the flow; it is supplied by
 the invocation and the project.</li>
 </ul>
@@ -81,18 +81,18 @@ tool is not a flow: a lone tool is invoked directly as a tool command, and
 <code>kapi flows</code> lists only the compositions. The flow noun earns its place by
 carrying the four things a flat list of tool names cannot:</p>
 <ul>
-<li class=""><strong>Configuration</strong> — a flow pins each tool&#x27;s settings, so it is a <em>configured</em>
+<li class=""><strong>Configuration</strong>: a flow pins each tool&#x27;s settings, so it is a <em>configured</em>
 recipe (<code>recycle{fuzzy:75}</code> → <code>translate{provider:anthropic}</code> → <code>qa</code>), not
 merely an ordered set of tool names.</li>
-<li class=""><strong>Topology</strong> — a flow is a DAG. <code>parallel:</code> fan-out, tee, and batch are graph
+<li class=""><strong>Topology</strong>: a flow is a DAG. <code>parallel:</code> fan-out, tee, and batch are graph
 shapes a sequence cannot express.</li>
-<li class=""><strong>Identity and reuse</strong> — a flow has a name and a source (built-in, user,
+<li class=""><strong>Identity and reuse</strong>: a flow has a name and a source (built-in, user,
 project). A project&#x27;s <code>flows:</code> block is its vocabulary of named operations,
 versioned with the recipe and shared like any other artifact. A flow is
 portable, declarative intent and owns no I/O, so it travels in a project&#x27;s
 portable twin, the <code>.kpz</code> package
 (<a class="" href="/contribute/architecture/multilingual/m-06-content-packages">M-06</a>), like any other recipe field.</li>
-<li class=""><strong>Transformer roles</strong> — ingest-time settlers and the round-trip brackets (§4)
+<li class=""><strong>Transformer roles</strong>: ingest-time settlers and the round-trip brackets (§4)
 are distinct transformer roles, validated by the placement pass
 (<a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03</a>), not a flat run of tools.</li>
 </ul>
@@ -103,18 +103,18 @@ a runtime primitive beyond an ordered tool chain over a session
 <p>A flow operates only on a stream of Parts backed by a session. The endpoints are
 a small, separate <strong>binding</strong> vocabulary (<code>core/flow.BindingKind</code>), resolved from
 invocation context:</p>
-<table><thead><tr><th>Binding</th><th>Source role (in)</th><th>Sink role (out)</th></tr></thead><tbody><tr><td><code>file</code></td><td><code>DataFormatReader</code> over file bytes</td><td><code>DataFormatWriter</code> + skeleton round-trip (<a class="" href="/contribute/architecture/engine/e-02-format-system">E-02</a>)</td></tr><tr><td><code>store</code> (also spelled <code>kpz</code>)</td><td>existing blocks + overlays from a persistent store</td><td>commit overlays — no materialization</td></tr><tr><td><code>interchange</code> (<code>xliff</code>, <code>po</code>, <code>tmx</code>, <code>tbx</code>)</td><td>overlays landed from an interchange file (<a class="" href="/contribute/architecture/multilingual/m-01-bilingual-interop">M-01</a>)</td><td>emit interchange</td></tr><tr><td><code>none</code></td><td>—</td><td>discard (observation and metrics only)</td></tr></tbody></table>
+<table><thead><tr><th>Binding</th><th>Source role (in)</th><th>Sink role (out)</th></tr></thead><tbody><tr><td><code>file</code></td><td><code>DataFormatReader</code> over file bytes</td><td><code>DataFormatWriter</code> + skeleton round-trip (<a class="" href="/contribute/architecture/engine/e-02-format-system">E-02</a>)</td></tr><tr><td><code>store</code> (also spelled <code>kpz</code>)</td><td>existing blocks + overlays from a persistent store</td><td>commit overlays; no materialization</td></tr><tr><td><code>interchange</code> (<code>xliff</code>, <code>po</code>, <code>tmx</code>, <code>tbx</code>)</td><td>overlays landed from an interchange file (<a class="" href="/contribute/architecture/multilingual/m-01-bilingual-interop">M-01</a>)</td><td>emit interchange</td></tr><tr><td><code>none</code></td><td>none</td><td>discard (observation and metrics only)</td></tr></tbody></table>
 <p>An archive path is not a fifth kind: it <strong>fans out</strong> to one <code>file</code> binding per
 inner entry (§6).</p>
 <p>The defining property: <strong>a flow definition is identical across bindings.</strong> The
 same <code>translate-qa</code> flow runs in the file CLI, against a <code>.kpz</code> workspace, and
-against a project — only the binding differs.</p>
+against a project; only the binding differs.</p>
 <p>Each binding also advertises the <strong>ports</strong> it provides
 (<a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02</a>,
 <a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03</a>): a plain <code>file</code> source carries source content only;
 a bilingual interchange source adds a committed <code>target</code>, segmentation, and
 alignment; the content store adds every persisted stand-off layer. The flow
-loader uses this to validate the contract end to end — a flow whose first tool
+loader uses this to validate the contract end to end: a flow whose first tool
 needs a port the source cannot supply, with no upstream tool to produce it, is
 rejected at build (<code>FlowDefinition.ValidateDataFlow</code>). So <code>qa</code>, which requires a
 <code>target</code>, is valid against a bilingual source or after a translate step, but
@@ -129,10 +129,10 @@ all, so the engine never special-cases an origin.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="3-sink-is-optional--process-only-runs">3. Sink is optional → process-only runs<a href="#3-sink-is-optional--process-only-runs" class="hash-link" aria-label="Direct link to 3. Sink is optional → process-only runs" title="Direct link to 3. Sink is optional → process-only runs" translate="no">​</a></h3>
 <p>A run whose <code>sink</code> is <code>store</code>, or absent, commits its overlays to the project or
 <code>.kpz</code> block store and <strong>emits no file</strong>. Materialization is a distinct sink
-operation — <code>merge</code> (store → file via skeleton), <code>export</code> (store → interchange),
+operation: <code>merge</code> (store → file via skeleton), <code>export</code> (store → interchange),
 or <code>pack</code> (store → <code>.kpz</code>). This separates <em>doing the work</em> from <em>handing it
 out</em>, and gives the workspace lifecycle its natural grain:</p>
-<table><thead><tr><th>Command</th><th>Source</th><th>Sink</th><th></th></tr></thead><tbody><tr><td><code>extract</code></td><td>file</td><td>store</td><td>ingest sources into the store</td></tr><tr><td><code>run</code> / transform</td><td>store</td><td>store</td><td><strong>process-only</strong> — commit overlays, emit nothing</td></tr><tr><td><code>merge</code></td><td>store</td><td>file</td><td>materialize via the skeleton</td></tr></tbody></table>
+<table><thead><tr><th>Command</th><th>Source</th><th>Sink</th><th></th></tr></thead><tbody><tr><td><code>extract</code></td><td>file</td><td>store</td><td>ingest sources into the store</td></tr><tr><td><code>run</code> / transform</td><td>store</td><td>store</td><td><strong>process-only</strong>: commit overlays, emit nothing</td></tr><tr><td><code>merge</code></td><td>store</td><td>file</td><td>materialize via the skeleton</td></tr></tbody></table>
 <p>Because the block store is append-only and content-addressed, a process-only run
 is <strong>idempotent and resumable</strong>: re-running skips work whose overlay already
 exists, anchored to the current block hashes
@@ -143,25 +143,25 @@ framework applier rewrites the source inline, so each transformer settles the
 model before the steps that follow it, and the placement pass validates the
 ordering. At the binding level their two uses are distinct:</p>
 <ul>
-<li class=""><strong>Ingest-time settlers</strong> — <em>idempotent, model-settling</em> transforms
+<li class=""><strong>Ingest-time settlers</strong>: <em>idempotent, model-settling</em> transforms
 (segmentation, normalization) belong to <strong>bringing content into the store</strong>,
 not to each flow. They run <strong>once at ingest</strong> and persist as overlays; later
 flows see the settled model and never recompute it. This avoids redundant
 per-run work and the drift hazard of re-settling the canonical model on every
 run.</li>
-<li class=""><strong>Run brackets</strong> — <em>paired, policy-bearing</em> transforms (redact … unredact,
+<li class=""><strong>Run brackets</strong>: <em>paired, policy-bearing</em> transforms (redact … unredact,
 <a class="" href="/contribute/architecture/context/c-10-redaction">C-10</a>) bracket a single run and may vary per run
 or provider. They are part of the <strong>run&#x27;s</strong> source/sink wiring: the opening
 step redacts what the source binding produced, and the closing step restores
-before the sink binding writes. The built-in <code>secure-translate</code> flow — redact ·
-translate · unredact — is exactly this shape.</li>
+before the sink binding writes. The built-in <code>secure-translate</code> flow (redact ·
+translate · unredact) is exactly this shape.</li>
 </ul>
 <p>A transform that is genuinely both, idempotent <em>and</em> recoverable, may be declared
 at ingest; the run-bracket form is for transforms whose restore must happen
 inside the run.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="5-resolving-a-binding-across-the-cli-and-flow-surfaces">5. Resolving a binding across the CLI and flow surfaces<a href="#5-resolving-a-binding-across-the-cli-and-flow-surfaces" class="hash-link" aria-label="Direct link to 5. Resolving a binding across the CLI and flow surfaces" title="Direct link to 5. Resolving a binding across the CLI and flow surfaces" translate="no">​</a></h3>
-<p>A binding is named by the same small scheme vocabulary (§1) on every surface —
-the CLI, the flow document, and the resource URIs the tool resolver understands:
+<p>A binding is named by the same small scheme vocabulary (§1) on every surface
+(the CLI, the flow document, and the resource URIs the tool resolver understands):
 the content memory (<code>memory:</code>), the terms store (<code>terms:</code>), and segmentation
 rules (<code>srx:</code>), all resolved in <code>core/flow/resolve.go</code>. This follows two
 conventions a user already knows: <em>detect-by-extension with an explicit override</em>
@@ -173,7 +173,7 @@ declared intent, then auto-detection. <code>kapi run --explain</code> prints the
 <code>source → sink</code> and executes nothing, so the chosen binding is always visible.</p>
 <p><strong>The CLI carries the locator; bare paths are detected, schemes are explicit.</strong>
 <code>-i</code> / <code>-o</code> accept either a plain path or a <code>scheme:</code> locator. A plain path is
-bound by detection — its extension or kind decides it (<code>.kpz</code> → the workspace
+bound by detection: its extension or kind decides it (<code>.kpz</code> → the workspace
 store, <code>.xliff</code> / <code>.po</code> → interchange, a plain document → <code>file</code>). A <code>scheme:</code>
 locator forces the binding and removes any ambiguity: <code>-o store:</code> is the block
 store, while <code>-o locales/</code> is a directory of files. <code>file:</code> forces a path that
@@ -185,7 +185,7 @@ below shows the resolved <code>source → sink</code>:</p>
 imply; <code>run</code> is the general form. All resolve through the same precedence and
 report the same <code>--explain</code> line.</p>
 <p><strong>The flow declares intent, never a location.</strong> A flow document carries a binding
-only when it is <em>intrinsic to what the flow is</em>, and then only the <em>kind</em> — never
+only when it is <em>intrinsic to what the flow is</em>, and then only the <em>kind</em>, never
 a path or a concrete store. A translation flow materializes, so it leaves its
 sink unset and lets the invocation place the result; an analysis or check flow
 produces no document, so it declares <code>sink: none</code>; a flow that only makes sense
@@ -203,15 +203,15 @@ reuses the overlays already present and recomputes only what changed
 (<a class="" href="/contribute/architecture/multilingual/m-06-content-packages">M-06</a>).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="6-archives-a-source-that-fans-out-a-sink-that-repacks">6. Archives: a source that fans out, a sink that repacks<a href="#6-archives-a-source-that-fans-out-a-sink-that-repacks" class="hash-link" aria-label="Direct link to 6. Archives: a source that fans out, a sink that repacks" title="Direct link to 6. Archives: a source that fans out, a sink that repacks" translate="no">​</a></h3>
 <p>Some inputs are not one document but a <strong>namespace of documents</strong>: a ZIP, a TAR,
-a <code>.tar.gz</code>. These are <strong>not formats</strong> — a format is the implementation of the
+a <code>.tar.gz</code>. These are <strong>not formats</strong>: a format is the implementation of the
 <code>file</code> binding for a <em>single</em> document (<a class="" href="/contribute/architecture/engine/e-02-format-system">E-02</a>). An
 archive is a <em>binding shape</em>: it decides where content enters and leaves, and it
 expands to many <code>file</code> bindings.</p>
-<p>This is the same shape as <code>kapi extract src/*.json -o work.kpz</code> —
-<code>file(glob) → store</code>, a source that fans out to N documents. An archive source is
+<p>This is the same shape as <code>kapi extract src/*.json -o work.kpz</code>
+(<code>file(glob) → store</code>), a source that fans out to N documents. An archive source is
 that pattern with the namespace <em>inside</em> a container instead of on the
 filesystem. The decisive property follows for free: <strong>each inner entry is a real,
-standalone <code>file</code> run</strong>, so it inherits the whole file machinery — per-entry
+standalone <code>file</code> run</strong>, so it inherits the whole file machinery: per-entry
 format detection, per-entry configuration, and the <code>file</code> sink&#x27;s <strong>skeleton
 round-trip</strong>. A packaged, skeleton-bound format (OpenXML, EPUB, ODF) <em>inside</em> the
 archive therefore round-trips faithfully, because it is processed by its own
@@ -220,21 +220,21 @@ reader and writer, not flattened into a parent document.</p>
 <li class=""><strong>Source (fan-out).</strong> Enumerate the archive&#x27;s regular-file entries; each is
 resolved and run as its own <code>file</code> source. An entry whose format is binary
 (image, audio, video), a bilingual interchange file, a nested archive, or
-unrecognised is <strong>not</strong> processed — it is carried to the sink untouched.
+unrecognised is <strong>not</strong> processed; it is carried to the sink untouched.
 Enumeration is bounded by the shared zip-bomb, size, and entry-count guards.</li>
 <li class=""><strong>Sink (barrier repack).</strong> Unlike a folder sink, which writes N independent
 files, an archive sink must emit <strong>one valid container atomically</strong>. It is a
 <em>barrier</em>: it buffers the processed entries, then rebuilds the container from
 the <strong>original bytes</strong>, splicing in only the entries that were processed and
-copying every other member — structure, entry order, metadata, compression,
-binaries — byte-for-byte.</li>
+copying every other member (structure, entry order, metadata, compression,
+binaries) byte-for-byte.</li>
 </ul>
 <p>The fan-out and repack are a small, provider-agnostic substrate (<code>core/container</code>:
 <code>Walk</code> for an in-memory container, <code>Transform</code> for a streaming one, <code>OpenEntry</code>
 for a single entry) with no dependency on the format registry or the flow engine;
 the per-entry <em>processing</em> is injected by the caller. A read-only <code>archive</code>
-reader is kept as the <strong>inspection</strong> face only — it surfaces each entry&#x27;s content
-so <code>kapi inspect bundle.zip</code> shows what is inside — but it has no writer, because
+reader is kept as the <strong>inspection</strong> face only: it surfaces each entry&#x27;s content
+so <code>kapi inspect bundle.zip</code> shows what is inside; it has no writer, because
 processing an archive is the binding shape above, not a format round-trip.</p>
 <p><strong>Memory: the whole archive is never loaded.</strong> <code>Transform</code> opens a ZIP with
 random access (central directory plus seeks) and streams a TAR or TAR.GZ; it
@@ -242,28 +242,28 @@ visits one entry at a time, materialises an entry&#x27;s bytes only when the pro
 actually reads it (so untouched members are raw-copied for ZIP and piped through
 for TAR, never buffered), and writes the output container incrementally. Peak
 memory is a single entry, never the archive and never the full set of entries or
-results. Each entry runs through <code>FileRunner.RunStream</code> — bytes in, bytes out,
+results. Each entry runs through <code>FileRunner.RunStream</code> (bytes in, bytes out),
 with <strong>no per-entry temp file</strong> staged on disk. For a <strong>streaming-capable</strong> inner
 format (<a class="" href="/contribute/architecture/engine/e-02-format-system">E-02</a>) the entry is not even buffered whole: it
 is read and written as a stream. A whole-document inner format is still buffered
-for the duration of its own processing — that is the format engine&#x27;s
-whole-document contract — but only one entry is held at once. The inspection read
+for the duration of its own processing (that is the format engine&#x27;s
+whole-document contract), but only one entry is held at once. The inspection read
 path is the one exception: the engine hands a format reader the buffered
 document, so the read-only <code>archive</code> reader receives the archive bytes up front,
 though it still streams entries one at a time via <code>Walk</code>.</p>
 <p><strong>Addressing.</strong> An archive fits the locator vocabulary (§5): a bare <code>.zip</code> /
 <code>.tar</code> / <code>.tgz</code> / <code>.tar.gz</code> path detects as a container, and a single inner entry
-is addressed with the JAR-style bang separator — <code>release.zip!docs/x.md</code>. The
+is addressed with the JAR-style bang separator: <code>release.zip!docs/x.md</code>. The
 split is single-level and requires the left side to be an existing container
 file, so a real filename containing <code>!</code> is never mistaken for a locator, and
 nested-archive addressing is out of scope. No new URL scheme is introduced: kapi
 inputs stay paths, so a scheme prefix is reserved for genuine remote endpoints
 (§7).</p>
-<p>Reads honour the locator by opening just that entry (<code>container.OpenEntry</code> —
+<p>Reads honour the locator by opening just that entry (<code>container.OpenEntry</code>:
 random access for ZIP, scan for TAR; the archive is not loaded whole), so
 <code>kapi inspect release.zip!docs/x.md</code> and the toolbox utilities on one inner file
 work. Inner content is attributed back as <code>&lt;archive&gt;!&lt;entry&gt;</code> everywhere a source
-is shown — <code>kapi inspect</code> records, <code>kapi stats</code> rows, toolbox match prefixes —
+is shown (<code>kapi inspect</code> records, <code>kapi stats</code> rows, toolbox match prefixes),
 via a <code>container.entry</code> property the archive reader stamps on every block. Writes
 follow the binding: editing a single entry splices just that entry back through
 the barrier sink, leaving every other member byte-for-byte; editing a whole
@@ -275,8 +275,8 @@ recipe&#x27;s existing per-format config and presets apply to inner content the 
 way they apply to loose files; there is no parallel &quot;entries&quot; configuration
 language.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="7-beyond-files-provider-sources-and-sinks">7. Beyond files: provider sources and sinks<a href="#7-beyond-files-provider-sources-and-sinks" class="hash-link" aria-label="Direct link to 7. Beyond files: provider sources and sinks" title="Direct link to 7. Beyond files: provider sources and sinks" translate="no">​</a></h3>
-<p>The archive shape — <em>enumerate a collection into independent items, process each,
-write the results back as a batch</em> — is not specific to archives. It is the same
+<p>The archive shape (<em>enumerate a collection into independent items, process each,
+write the results back as a batch</em>) is not specific to archives. It is the same
 shape a <strong>remote provider</strong> has: a CMS, a headless API, or a SaaS service exposes
 a <em>collection</em> (a space, a project, a content type) whose <em>items</em> are individual
 documents. A plugin declares one with the <code>source_connectors</code> capability
@@ -291,12 +291,12 @@ binding contract:</p>
 rebuilt wholesale from original bytes; a remote sink writes each item back
 through the provider&#x27;s API, item by item, and &quot;everything else preserved&quot; is
 the provider&#x27;s responsibility, not a byte copy. So a provider sink is an
-<em>incremental</em> barrier — write each processed item, leave the rest — rather
+<em>incremental</em> barrier (write each processed item, leave the rest) rather
 than a <em>whole-artifact</em> one.</li>
 <li class=""><strong>Identity is provider-defined and must support resume.</strong> An archive entry is
 addressed by path; a remote item by a stable id plus a revision or etag. This
-is exactly what the <code>store</code> binding already wants — content-addressed,
-resumable, process-only overlays — so the natural pattern is <strong>provider source
+is exactly what the <code>store</code> binding already wants (content-addressed,
+resumable, process-only overlays), so the natural pattern is <strong>provider source
 → store</strong> (extract once, resumable) and a later <strong>store → provider</strong> publish,
 mirroring <code>extract</code> / <code>merge</code> for files.</li>
 </ol>
@@ -305,7 +305,7 @@ abstraction: it reuses the enumerate → process → write-back contract and the
 <code>store</code> binding for incremental state, and supplies enumeration, per-item format,
 item identity, and write-back. The <code>core/container</code> substrate is the file
 instance; a connector is the remote instance. What is <strong>not</strong> shared is the
-byte-exact whole-artifact repack — that is a property of a self-contained file,
+byte-exact whole-artifact repack: that is a property of a self-contained file,
 and a remote provider substitutes its own API write-back.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direct link to Consequences" title="Direct link to Consequences" translate="no">​</a></h2>
 <ul>
@@ -316,7 +316,7 @@ Blocks.</li>
 bindings, not special cases.</li>
 <li class="">Process-only runs make incremental, resumable workflows the default; a file is
 materialized only when a sink asks for it.</li>
-<li class=""><code>kapi run &lt;flow&gt; -i file.json -o out.json</code> is the <code>file</code> binding on both ends —
+<li class=""><code>kapi run &lt;flow&gt; -i file.json -o out.json</code> is the <code>file</code> binding on both ends:
 the zero-ceremony common case.</li>
 <li class="">Ingest-time settling avoids per-run segmentation and normalization
 recomputation and keeps the canonical model stable across a project&#x27;s lifetime.</li>
@@ -327,8 +327,8 @@ recomputation and keeps the canonical model stable across a project&#x27;s lifet
 <li class="">The executor binds nothing: it orchestrates tools over a session, and the
 bindings sit outside it.</li>
 <li class="">An archive is a fan-out over the <code>file</code> binding, not a format: per-entry
-detection, config, and skeleton round-trip come for free — a packaged format
-<em>inside</em> an archive round-trips faithfully — and a barrier sink repacks,
+detection, config, and skeleton round-trip come for free (a packaged format
+<em>inside</em> an archive round-trips faithfully), and a barrier sink repacks,
 preserving untouched members byte-for-byte. The fan-out and repack are a
 provider-agnostic substrate; a read-only <code>archive</code> reader remains only as the
 inspection face.</li>
@@ -336,26 +336,25 @@ inspection face.</li>
 (§7), which reuse the <code>store</code> binding for resumable state. The byte-exact
 whole-artifact repack is the file-only specialization.</li>
 <li class="">The flow noun means <em>composition</em>: with I/O at the edges, a flow carries
-configuration, topology, identity, and phase structure. A single tool is a
-tool, not a flow — the concept is load-bearing where it is used and absent
-where it would be overkill.</li>
+configuration, topology, identity, and phase structure. A single tool stays a
+tool.</li>
 <li class="">One scheme vocabulary spans the CLI locator, the flow document, and the tool
 resolver, so a binding reads the same wherever it appears. Bare paths keep the
 zero-ceremony common case; <code>scheme:</code> is the unambiguous escape hatch.</li>
 <li class="">A documented precedence plus <code>--explain</code> keeps the resolved binding visible, so
-layered defaults — flow intent under project context under an explicit flag —
+layered defaults (flow intent under project context under an explicit flag)
 are never hidden configuration.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direct link to Related" title="Direct link to Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/contribute/architecture/engine/e-01-processing-engine">E-01: The processing engine</a> — the executor is the pure middle; this AD names its endpoints</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-02-format-system">E-02: The format system</a> — readers and writers are the <code>file</code> binding&#x27;s implementation; skeleton round-trip is a sink concern</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a> — tools, the IO contract, and the transformer placement pass</li>
-<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a> — the <code>source_connectors</code> capability behind a provider binding</li>
-<li class=""><a class="" href="/contribute/architecture/context/c-01-project-model">C-01: The project model</a> — the project block store as a source and a sink</li>
-<li class=""><a class="" href="/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a> — the <code>.kpz</code> workspace; process-only = the <code>store</code> sink; content-derived cached resume</li>
-<li class=""><a class="" href="/contribute/architecture/context/c-10-redaction">C-10: Redaction and clearance</a> — redact/unredact as run brackets rather than ingest settlers</li>
-<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — overlays are the unit a sink commits and a source rehydrates</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-04-flows-and-io-binding.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-03-tool-system"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-03: The tool system</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/engine/e-05-plugin-system"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">E-05: The plugin system</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#three-nouns-tool-flow-binding" class="table-of-contents__link toc-highlight">Three nouns: tool, flow, binding</a></li><li><a href="#1-the-flow-is-the-middle-source-and-sink-are-bindings" class="table-of-contents__link toc-highlight">1. The flow is the middle; source and sink are bindings</a></li><li><a href="#2-reader-and-writer-are-bindings-not-graph-nodes" class="table-of-contents__link toc-highlight">2. Reader and writer are bindings, not graph nodes</a></li><li><a href="#3-sink-is-optional--process-only-runs" class="table-of-contents__link toc-highlight">3. Sink is optional → process-only runs</a></li><li><a href="#4-transformers-settlers-and-brackets" class="table-of-contents__link toc-highlight">4. Transformers: settlers and brackets</a></li><li><a href="#5-resolving-a-binding-across-the-cli-and-flow-surfaces" class="table-of-contents__link toc-highlight">5. Resolving a binding across the CLI and flow surfaces</a></li><li><a href="#6-archives-a-source-that-fans-out-a-sink-that-repacks" class="table-of-contents__link toc-highlight">6. Archives: a source that fans out, a sink that repacks</a></li><li><a href="#7-beyond-files-provider-sources-and-sinks" class="table-of-contents__link toc-highlight">7. Beyond files: provider sources and sinks</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:09 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/contribute/architecture/engine/e-01-processing-engine">E-01: The processing engine</a>: the executor is the pure middle; this AD names its endpoints</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-02-format-system">E-02: The format system</a>: readers and writers are the <code>file</code> binding&#x27;s implementation; skeleton round-trip is a sink concern</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a>: tools, the IO contract, and the transformer placement pass</li>
+<li class=""><a class="" href="/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a>: the <code>source_connectors</code> capability behind a provider binding</li>
+<li class=""><a class="" href="/contribute/architecture/context/c-01-project-model">C-01: The project model</a>: the project block store as a source and a sink</li>
+<li class=""><a class="" href="/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a>: the <code>.kpz</code> workspace; process-only = the <code>store</code> sink; content-derived cached resume</li>
+<li class=""><a class="" href="/contribute/architecture/context/c-10-redaction">C-10: Redaction and clearance</a>: redact/unredact as run brackets rather than ingest settlers</li>
+<li class=""><a class="" href="/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: overlays are the unit a sink commits and a source rehydrates</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-04-flows-and-io-binding.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/contribute/architecture/engine/e-03-tool-system"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">E-03: The tool system</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/contribute/architecture/engine/e-05-plugin-system"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">E-05: The plugin system</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#three-nouns-tool-flow-binding" class="table-of-contents__link toc-highlight">Three nouns: tool, flow, binding</a></li><li><a href="#1-the-flow-is-the-middle-source-and-sink-are-bindings" class="table-of-contents__link toc-highlight">1. The flow is the middle; source and sink are bindings</a></li><li><a href="#2-reader-and-writer-are-bindings-not-graph-nodes" class="table-of-contents__link toc-highlight">2. Reader and writer are bindings, not graph nodes</a></li><li><a href="#3-sink-is-optional--process-only-runs" class="table-of-contents__link toc-highlight">3. Sink is optional → process-only runs</a></li><li><a href="#4-transformers-settlers-and-brackets" class="table-of-contents__link toc-highlight">4. Transformers: settlers and brackets</a></li><li><a href="#5-resolving-a-binding-across-the-cli-and-flow-surfaces" class="table-of-contents__link toc-highlight">5. Resolving a binding across the CLI and flow surfaces</a></li><li><a href="#6-archives-a-source-that-fans-out-a-sink-that-repacks" class="table-of-contents__link toc-highlight">6. Archives: a source that fans out, a sink that repacks</a></li><li><a href="#7-beyond-files-provider-sources-and-sinks" class="table-of-contents__link toc-highlight">7. Beyond files: provider sources and sinks</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:14 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

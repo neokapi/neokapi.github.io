@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">F-04: The content-model wire schema | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/foundations/f-04-wire-schema"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="F-04: The content-model wire schema | neokapi"><meta data-rh="true" name="description" content="core/proto/content/v1 is the single canonical serialization of the content model; every other serialized shape is either an import of that schema or an explicitly-labeled projection, and a guard test enforces the boundary."><meta data-rh="true" property="og:description" content="core/proto/content/v1 is the single canonical serialization of the content model; every other serialized shape is either an import of that schema or an explicitly-labeled projection, and a guard test enforces the boundary."><meta data-rh="true" name="keywords" content="wire schema,protobuf,protojson,content model,canonical serialization,protoconvert,projection,compatibility policy,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/foundations/f-04-wire-schema"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/foundations/f-04-wire-schema" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/foundations/f-04-wire-schema" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/foundations/f-04-wire-schema" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/foundations/f-04-wire-schema" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"F-04: The content-model wire schema","item":"https://neokapi.github.io/nb/contribute/architecture/foundations/f-04-wire-schema"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
-<script src="/nb/assets/js/runtime~main.af4a68cc.js" defer="defer"></script>
-<script src="/nb/assets/js/main.c0874a87.js" defer="defer"></script>
+<script src="/nb/assets/js/runtime~main.b68a598c.js" defer="defer"></script>
+<script src="/nb/assets/js/main.10933aa8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -17,16 +17,15 @@
 messages in <code>core/proto/content/v1/content.proto</code> (proto package
 <code>neokapi.content.v1</code>), converted to and from <code>core/model</code> by
 <code>core/plugin/protoconvert</code>. Every surface that serializes Parts, Blocks, or Runs
-either imports this schema or is an explicitly-labeled <strong>projection</strong> — a lossy,
+either imports this schema or is an explicitly-labeled <strong>projection</strong>: a lossy,
 purpose-built shape that is never a model contract. A guard test rejects new
 Block, Run, or Segment message definitions outside the canonical package.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="context">Context<a href="#context" class="hash-link" aria-label="Direkte lenke til Context" title="Direkte lenke til Context" translate="no">​</a></h2>
-<p>A content model that crosses process boundaries — plugin subprocesses, generated
-frontend types, JSON on disk — invites a second definition of itself at every
+<p>A content model that crosses process boundaries (plugin subprocesses, generated
+frontend types, JSON on disk) invites a second definition of itself at every
 crossing. Two definitions drift, and the drift is silent: each side keeps
-compiling while the fields they disagree about quietly vanish. The remedy is not
-review discipline but a single definition plus a test that fails when a second one
-appears.</p>
+compiling while the fields they disagree about quietly vanish. The remedy is a
+single definition plus a test that fails when a second one appears.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direkte lenke til Decision" title="Direkte lenke til Decision" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-canonical-schema">The canonical schema<a href="#the-canonical-schema" class="hash-link" aria-label="Direkte lenke til The canonical schema" title="Direkte lenke til The canonical schema" translate="no">​</a></h3>
 <p><code>core/proto/content/v1/content.proto</code> defines the complete, symmetric message set
@@ -46,15 +45,16 @@ canonical package and keeps only the <code>BridgeService</code> definition and i
 request/response envelopes; the generated Go package re-exports the content types
 as aliases, so plugin hosts compile unchanged.</p>
 <p><code>core/plugin/protoconvert</code> is the canonical converter: every message kind has a
-symmetric <code>XToProto</code> / <code>ProtoToX</code> pair, and its test suite — in particular the
-compat corpus in <code>core/plugin/protoconvert/compat_test.go</code> — is the compatibility
+symmetric <code>XToProto</code> / <code>ProtoToX</code> pair, and its test suite (in particular the
+compat corpus in <code>core/plugin/protoconvert/compat_test.go</code>) is the compatibility
 oracle. Model to proto to model is identity for every Run kind, for overlays, for
 multi-locale targets, segmentation, skeleton refs, display hints, and registered
 annotations.</p>
-<p>Two model dimensions deliberately do not cross this schema: target variant tone
-and channel (targets are keyed by locale in <code>TargetEntry</code>), and per-target status,
-origin, and score. A protocol that needs them carries them in its own envelope
-properties rather than widening the canonical messages.</p>
+<p>Three things do not cross this schema: target variant tone and channel (targets
+are keyed by locale in <code>TargetEntry</code>), per-target status, origin, and score, and
+the block&#x27;s durable <code>Unit</code> key (<a class="" href="/nb/contribute/architecture/foundations/f-03-identity">F-03</a>). A protocol that needs
+them carries them in its own envelope rather than widening the canonical
+messages.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="canonical-json">Canonical JSON<a href="#canonical-json" class="hash-link" aria-label="Direkte lenke til Canonical JSON" title="Direkte lenke til Canonical JSON" translate="no">​</a></h3>
 <p>The canonical JSON for the content model is <strong>protojson of the canonical proto</strong>,
 with the fixed options in <code>core/proto/content/v1/json.go</code> (<code>MarshalJSON</code>,
@@ -63,7 +63,7 @@ with the fixed options in <code>core/proto/content/v1/json.go</code> (<code>Mars
 <li class="">lowerCamelCase protojson JSON names (<code>pc_open</code> becomes <code>&quot;pcOpen&quot;</code>); proto-name
 spellings are accepted on unmarshal but never emitted;</li>
 <li class="">unpopulated fields omitted; bytes as base64 strings; <code>int32</code> as JSON numbers;</li>
-<li class="">deterministic output — protojson deliberately randomizes its whitespace, so both
+<li class="">deterministic output: protojson randomizes its whitespace, so both
 marshal helpers re-serialize through <code>encoding/json</code>, which preserves
 protojson&#x27;s stable field order;</li>
 <li class="">unknown fields ignored on unmarshal, so an older consumer reads a newer
@@ -77,7 +77,7 @@ not a formatting nit.</p>
 <code>model.AltTranslation.UnmarshalJSON</code> additionally accepts the snake_case spelling
 that released bridge builds emit, with camelCase winning where a document carries
 both.</p>
-<p>The model&#x27;s in-process Run JSON (<code>model.Run.MarshalJSON</code> — flat
+<p>The model&#x27;s in-process Run JSON (<code>model.Run.MarshalJSON</code>, flat
 <code>{&quot;text&quot;:&quot;literal&quot;}</code> text runs) is a distinct, stable encoding used <em>inside</em>
 projections such as the content tree, KBF, and flow traces. The wire form nests
 the text payload as <code>{&quot;text&quot;:{&quot;text&quot;:&quot;literal&quot;}}</code>. The two are not
@@ -86,29 +86,33 @@ interchangeable, and neither is a bug in the other.</p>
 <p><code>scripts/gen-contract-types</code>, drift-gated by <code>make check-contract-types</code> in the
 reference-data-drift workflow, derives two artifacts from the canonical schema:</p>
 <ul>
-<li class=""><strong>TypeScript types</strong> — <code>packages/contract-types/src/content.gen.ts</code>: the wire
+<li class=""><strong>TypeScript types</strong>: <code>packages/contract-types/src/content.gen.ts</code>: the wire
 shapes as they appear in canonical protojson, rendered from the proto
 descriptors, with <code>RunMessage</code> and <code>ContentRef</code> as discriminated unions; plus
 the <code>model.Run</code> JSON and the content-tree projection shapes, reflected from the
 Go structs. Frontend packages import these rather than hand-mirroring the model.</li>
-<li class=""><strong>JSON Schema</strong> — <code>core/proto/content/v1/content.schema.json</code> (draft 2020-12),
+<li class=""><strong>JSON Schema</strong>: <code>core/proto/content/v1/content.schema.json</code> (draft 2020-12),
 generated from the proto descriptors for non-proto consumers. The protojson
 golden files are the binding contract; the schema is a generated convenience.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="projections">Projections<a href="#projections" class="hash-link" aria-label="Direkte lenke til Projections" title="Direkte lenke til Projections" translate="no">​</a></h3>
-<p>A projection is a deliberately lossy, purpose-built serialization. It must be
+<p>A projection is a lossy, purpose-built serialization. It must be
 labeled as such where it is defined, and it is never the model contract:</p>
 <ul>
-<li class=""><strong><code>core/editor.BlockIndex</code></strong> — runs flattened to plain and HTML strings for
+<li class=""><strong><code>core/editor.BlockIndex</code></strong>: runs flattened to plain and HTML strings for
 editor listings; versioned independently by its own version field.</li>
-<li class=""><strong><code>core/editor.ContentTree</code></strong> — the run-native anatomy tree behind the
+<li class=""><strong><code>core/editor.ContentTree</code></strong>: the run-native anatomy tree behind the
 in-browser explorers.</li>
-<li class=""><strong><code>core/structrec.Record</code></strong> — the flat anchor record behind inspection,
+<li class=""><strong><code>core/structrec.Record</code></strong>: the flat anchor record behind inspection,
 conversion, and retrieval export.</li>
 </ul>
-<p>Separately-licensed layers may define their own envelopes around canonical
-payloads. Those are envelopes, not redefinitions: they add scoping, hashes, and
-escapes, and delegate every run and segment conversion to <code>protoconvert</code>.</p>
+<p>The framework defines one envelope of its own: the sync wire,
+<code>core/proto/sync/v1/sync.proto</code>, whose <code>SyncBlock</code> and <code>SyncSegmentList</code> are
+allow-listed in the guard by message name. It adds item scoping, hashes, the
+block&#x27;s durable <code>unit</code> key and <code>*_json</code> escapes around canonical payloads, and
+<code>core/venue</code> (<code>BlockToProto</code> / <code>ProtoToBlock</code>) delegates every run and segment
+conversion to <code>protoconvert</code>. An envelope adds context around canonical
+payloads; it never redefines them.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="compatibility-policy">Compatibility policy<a href="#compatibility-policy" class="hash-link" aria-label="Direkte lenke til Compatibility policy" title="Direkte lenke til Compatibility policy" translate="no">​</a></h3>
 <ul>
 <li class="">Field numbers in <code>neokapi.content.v1</code> are frozen: never renumbered, never
@@ -119,14 +123,14 @@ them.</li>
 <li class="">Proto <em>package</em> moves do not affect the wire: encoding depends on field numbers
 and types only. Fully-qualified message names matter solely for
 <code>google.protobuf.Any</code> packing and descriptor-based reflection, neither of which
-is used on these messages — and the guard test keeps it that way by keeping the
+is used on these messages, and the guard test keeps it that way by keeping the
 definitions in one place.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="enforcement">Enforcement<a href="#enforcement" class="hash-link" aria-label="Direkte lenke til Enforcement" title="Direkte lenke til Enforcement" translate="no">​</a></h3>
 <p><code>core/proto/content/guard_test.go</code> walks every <code>.proto</code> in the repository and
 fails on any message whose name defines Block, Run, or Segment content outside the
-canonical file. The match is on message <em>names</em> — anything ending in <code>Run</code>,
-<code>Block</code>, or <code>Segment</code>, bare or with an <code>s</code>, <code>List</code>, or <code>Message</code> suffix — so a
+canonical file. The match is on message <em>names</em> (anything ending in <code>Run</code>,
+<code>Block</code>, or <code>Segment</code>, bare or with an <code>s</code>, <code>List</code>, or <code>Message</code> suffix), so a
 request/response envelope named <code>SegmentRequest</code> does not trip it while a
 <code>BlockMessage</code> in the wrong file does. Agent worktrees under <code>.claude</code> are skipped,
 since a whole checkout of this repository is the same file rather than a second
@@ -144,19 +148,19 @@ and drift-gated in CI.</li>
 <li class="">A wire-compatibility break announces itself as a golden-file failure at the
 moment of the change, rather than as a decode error in another process weeks
 later.</li>
-<li class="">Adding a field is cheap and safe — append a number, regenerate — while renaming
+<li class="">Adding a field is cheap and safe (append a number, regenerate), while renaming
 or renumbering one is a deliberate, visible break.</li>
 <li class="">Consumers that need a shape the canonical schema does not carry write a labeled
 projection instead of widening the contract, which keeps the contract small.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="see-also">See also<a href="#see-also" class="hash-link" aria-label="Direkte lenke til See also" title="Direkte lenke til See also" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a> — the types this schema serializes</li>
-<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-03-identity">F-03: Identity</a> — the hashes the wire carries</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a> — the bridge service that imports this schema</li>
-<li class=""><a class="" href="/nb/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a> — the KBF bundle and its use of the in-process Run JSON</li>
-<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-06-visual-editor">S-06: The visual editor data model</a> — the editor projections</li>
-<li class=""><a class="" href="/nb/contribute/implementation/engine/plugin-protocol-v1">Plugin protocol v1</a> — the contract plugin repositories verify against</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/foundations/f-04-wire-schema.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/foundations/f-03-identity"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">F-03: Identity</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/engine/e-01-processing-engine"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">E-01: The processing engine</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-canonical-schema" class="table-of-contents__link toc-highlight">The canonical schema</a></li><li><a href="#canonical-json" class="table-of-contents__link toc-highlight">Canonical JSON</a></li><li><a href="#generated-artifacts" class="table-of-contents__link toc-highlight">Generated artifacts</a></li><li><a href="#projections" class="table-of-contents__link toc-highlight">Projections</a></li><li><a href="#compatibility-policy" class="table-of-contents__link toc-highlight">Compatibility policy</a></li><li><a href="#enforcement" class="table-of-contents__link toc-highlight">Enforcement</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:12 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-02-content-model">F-02: The content model</a>: the types this schema serializes</li>
+<li class=""><a class="" href="/nb/contribute/architecture/foundations/f-03-identity">F-03: Identity</a>: the hashes the wire carries</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-05-plugin-system">E-05: The plugin system</a>: the bridge service that imports this schema</li>
+<li class=""><a class="" href="/nb/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a>: the KBF bundle and its use of the in-process Run JSON</li>
+<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-06-visual-editor">S-06: The visual editor data model</a>: the editor projections</li>
+<li class=""><a class="" href="/nb/contribute/implementation/engine/plugin-protocol-v1">Plugin protocol v1</a>: the contract plugin repositories verify against</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/foundations/f-04-wire-schema.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/foundations/f-03-identity"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">F-03: Identity</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/engine/e-01-processing-engine"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">E-01: The processing engine</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-canonical-schema" class="table-of-contents__link toc-highlight">The canonical schema</a></li><li><a href="#canonical-json" class="table-of-contents__link toc-highlight">Canonical JSON</a></li><li><a href="#generated-artifacts" class="table-of-contents__link toc-highlight">Generated artifacts</a></li><li><a href="#projections" class="table-of-contents__link toc-highlight">Projections</a></li><li><a href="#compatibility-policy" class="table-of-contents__link toc-highlight">Compatibility policy</a></li><li><a href="#enforcement" class="table-of-contents__link toc-highlight">Enforcement</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:17 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

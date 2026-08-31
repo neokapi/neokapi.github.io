@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">E-06: Execution trust | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/engine/e-06-execution-trust"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-06: Execution trust | neokapi"><meta data-rh="true" name="description" content="Two tools and one format run code the configuration names; every surface that can reach them answers whether a person chose it, and only the recipe surface asks."><meta data-rh="true" property="og:description" content="Two tools and one format run code the configuration names; every surface that can reach them answers whether a person chose it, and only the recipe surface asks."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,execution trust,exec class,external-command,script,consent,sandbox,supply chain"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-06-execution-trust"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-06-execution-trust" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/engine/e-06-execution-trust" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/engine/e-06-execution-trust" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/engine/e-06-execution-trust" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-06: Execution trust","item":"https://neokapi.github.io/nb/contribute/architecture/engine/e-06-execution-trust"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
-<script src="/nb/assets/js/runtime~main.af4a68cc.js" defer="defer"></script>
-<script src="/nb/assets/js/main.c0874a87.js" defer="defer"></script>
+<script src="/nb/assets/js/runtime~main.b68a598c.js" defer="defer"></script>
+<script src="/nb/assets/js/main.10933aa8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -17,9 +17,9 @@
 a subprocess from its own config, and <code>script</code> evaluates recipe-supplied
 JavaScript. So does one format: <code>exec</code> reads content by shelling out. Together
 they are the <strong>exec class</strong>.</p>
-<p>Every surface that can name an exec-class tool answers one question — <em>did a
-person choose this?</em> — and the answer is a property of the surface, not of the
-tool:</p>
+<p>Every surface that can name an exec-class tool answers one question, <em>did a
+person choose this?</em>, and the answer is a property of the surface rather than
+of the tool:</p>
 <table><thead><tr><th>Surface</th><th>Where the argv comes from</th><th>Answer</th></tr></thead><tbody><tr><td><code>kapi exec &lt;tool&gt;</code></td><td>the command line the user typed</td><td>runs; this <strong>is</strong> the choice</td></tr><tr><td>A <code>kapi.yaml</code> recipe</td><td>a file in the working directory</td><td>asks once, remembers, re-asks when the argv changes</td></tr><tr><td>A <code>.kpz</code> package</td><td>an archive from elsewhere</td><td>stripped on ingest</td></tr><tr><td>The engine gRPC API</td><td>the network</td><td>refused</td></tr><tr><td>The MCP agent surface</td><td>a model</td><td>refused, including under <code>--all-tools</code></td></tr></tbody></table>
 <p>Only the recipe row can ask, because it is the only one with a person present and
 a legitimate reason to say yes. The rest have a fixed answer, so they do not ask.</p>
@@ -28,20 +28,20 @@ a legitimate reason to say yes. The rest have a fixed answer, so they do not ask
 <p><code>core/project.ResolveLayout</code> finds a project by walking up from the working
 directory, the way <code>git</code> finds a repository. This is the right behaviour for a
 tool people run inside checkouts, and it means <strong>entering a directory is enough
-to bind its recipe</strong>. A recipe is therefore not something the user opened; it is
-something they stood next to.</p>
-<p>Most of what a recipe declares is inert — languages, content globs, gates,
+to bind its recipe</strong>. A recipe is therefore something the user stood next to rather
+than something they opened.</p>
+<p>Most of what a recipe declares is inert: languages, content globs, gates,
 per-tool settings. The exec class is not: a flow step names a program and the
 framework would run it, with the user&#x27;s privileges and the user&#x27;s whole
 environment. That environment includes provider API keys, which resolve from
 conventional variables by design.</p>
-<p>This is the <code>npm postinstall</code> threat model. The distinguishing feature of that
-model is not that code runs — build tooling runs code constantly — but that
-running it was never surfaced as a decision.</p>
+<p>This is the <code>npm postinstall</code> threat model. What distinguishes that model is
+that running the code was never surfaced as a decision; build tooling runs code
+constantly.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-same-classification-applied-on-every-surface">The same classification, applied on every surface<a href="#the-same-classification-applied-on-every-surface" class="hash-link" aria-label="Direkte lenke til The same classification, applied on every surface" title="Direkte lenke til The same classification, applied on every surface" translate="no">​</a></h3>
 <p>Two surfaces can refuse outright, because neither has a user to ask:</p>
 <ul>
-<li class=""><strong>MCP</strong> withholds both tools from the agent surface, and deliberately does not
+<li class=""><strong>MCP</strong> withholds both tools from the agent surface, and does not
 fold them into <code>--all-tools</code>, because <em>&quot;show me every tool&quot;</em> and <em>&quot;let a caller
 execute arbitrary commands&quot;</em> are different requests
 (<a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03</a>).</li>
@@ -59,7 +59,7 @@ one arm that asks.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="a-sticky-per-project-decision-keyed-to-what-was-approved">A sticky, per-project decision, keyed to what was approved<a href="#a-sticky-per-project-decision-keyed-to-what-was-approved" class="hash-link" aria-label="Direkte lenke til A sticky, per-project decision, keyed to what was approved" title="Direkte lenke til A sticky, per-project decision, keyed to what was approved" translate="no">​</a></h3>
 <p>The gate lives in <code>host.LoadProjectInteractive</code>, the wrapper every project-aware
 command already routes through, so every command inherits it at once.
-<code>core/project.ExecSurface</code> enumerates the exec-class sites in a loaded recipe —
+<code>core/project.ExecSurface</code> enumerates the exec-class sites in a loaded recipe:
 flow steps including nested <code>parallel:</code> branches, the <code>defaults.tools</code> and
 <code>defaults.locales.*.tools</code> presets, and format bindings on content collections
 and their items. An empty surface, which is every recipe in this repository and
@@ -73,35 +73,34 @@ terminal → show what would run and ask; otherwise → refuse.</p>
 <ul>
 <li class=""><strong>It is keyed by absolute recipe path</strong>, so a second checkout of the same
 project is a second decision. Approval does not travel with a copy.</li>
-<li class=""><strong>It carries a digest of the exec surface alone</strong> (<code>ExecSurfaceDigest</code>) — each
-site&#x27;s location, kind, name, and canonical config — not of the whole file.
-Adding a target language keeps the approval; adding an argument to the approved
+<li class=""><strong>It carries a digest of the exec surface alone</strong> (<code>ExecSurfaceDigest</code>), each
+site&#x27;s location, kind, name, and canonical config, rather than of the whole
+file. Adding a target language keeps the approval; adding an argument to the approved
 command does not. This is what makes a sticky decision safe: it attaches to the
 argv a person read, so a recipe cannot be approved once and rewritten
 afterwards.</li>
 <li class=""><strong>It lives under <code>ConfigDir()</code></strong>, not in the project&#x27;s <code>.kapi/</code>. The state
 directory is documented as safe to delete and regenerate, so a record there
-would evaporate on a routine clean — and, worse, could ship inside the project
+would evaporate on a routine clean, and could also ship inside the project
 for the next person to inherit. <code>ConfigDir()</code> honours <code>KAPI_CONFIG_DIR</code>, so a
 run isolated per the in-repo dogfood contract cannot read or write the
 developer&#x27;s real decisions.</li>
 </ul>
-<p>Declines are remembered too, and a declined recipe says how to answer again.
-Re-asking a question already answered no is how a person is trained to answer
-yes.</p>
+<p>Declines are remembered too, and a declined recipe says how to answer again,
+so a person is never asked repeatedly for an answer they have already given.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="--yes-does-not-grant-execution-trust"><code>--yes</code> does not grant execution trust<a href="#--yes-does-not-grant-execution-trust" class="hash-link" aria-label="Direkte lenke til --yes-does-not-grant-execution-trust" title="Direkte lenke til --yes-does-not-grant-execution-trust" translate="no">​</a></h3>
 <p><code>--yes</code> means <em>&quot;do not stop for prompts I would obviously accept&quot;</em>, and it is
 already passed by every unattended script that wants plugin auto-install. Reusing
 it as the key for this decision would mean every existing automation silently
-acquired the right to run whatever a checked-out recipe named — and automation
+acquired the right to run whatever a checked-out recipe named, and automation
 over untrusted checkouts is precisely the population the gate exists for. The
 flag would have granted the thing it was introduced to gate.</p>
 <p><code>KAPI_TRUST_EXEC=1</code> is the separate opt-in, named for what it grants. It is
 process-scoped and never written to the record: a container&#x27;s config directory is
 not a place to persist a decision. Unlike <code>KAPI_NO_PROJECT</code> and
 <code>KAPI_PLUGINS_DIR_ONLY</code>, which treat any non-empty value as set, it requires an
-affirmative value — reading <code>KAPI_TRUST_EXEC=0</code> as &quot;yes&quot; is the wrong way for a
-switch like this to be wrong.</p>
+affirmative value; reading <code>KAPI_TRUST_EXEC=0</code> as &quot;yes&quot; would be the wrong
+failure for a switch like this.</p>
 <p>With no terminal and no opt-in, kapi <strong>refuses</strong>, naming the recipe, the sites,
 and both ways to answer. Assuming yes when there is nobody to ask would make the
 gate a formality.</p>
@@ -110,8 +109,8 @@ gate a formality.</p>
 internal paths load a recipe directly rather than through
 <code>LoadProjectInteractive</code>, and whether a subprocess spawns should not depend on
 which of them got there first. <code>App.checkExecToolAllowed</code> therefore sits on
-<code>toolFromStep</code> and <code>buildToolByName</code> — the two chokepoints through which
-recipe-driven configuration becomes a tool — and refuses to build an exec-class
+<code>toolFromStep</code> and <code>buildToolByName</code> (the two chokepoints through which
+recipe-driven configuration becomes a tool) and refuses to build an exec-class
 tool with no decision behind it. It never prompts: by the time a flow is
 assembling steps there is no sensible place to stop and ask. It re-reads the
 record instead, so a project already approved keeps working on those paths.</p>
@@ -139,11 +138,11 @@ its entry.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="related">Related<a href="#related" class="hash-link" aria-label="Direkte lenke til Related" title="Direkte lenke til Related" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a> — <code>external-command</code> and <code>script</code> as ordinary tools</li>
-<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a> — the <code>exec</code> format that reads by shelling out</li>
-<li class=""><a class="" href="/nb/contribute/architecture/context/c-01-project-model">C-01: The project model</a> — recipe discovery by upward walk, and the <code>.kapi/</code> state directory</li>
-<li class=""><a class="" href="/nb/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a> — <code>.kpz</code> ingest sanitisation</li>
-<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent surfaces</a> — why the MCP surface refuses, and why <code>--all-tools</code> does not change that</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-06-execution-trust.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/engine/e-05-plugin-system"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">E-05: The plugin system</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/engine/e-07-model-providers"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">E-07: Model and translation providers</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a><ul><li><a href="#discovery-makes-a-recipe-an-ambient-input" class="table-of-contents__link toc-highlight">Discovery makes a recipe an ambient input</a></li><li><a href="#the-same-classification-applied-on-every-surface" class="table-of-contents__link toc-highlight">The same classification, applied on every surface</a></li></ul></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#a-sticky-per-project-decision-keyed-to-what-was-approved" class="table-of-contents__link toc-highlight">A sticky, per-project decision, keyed to what was approved</a></li><li><a href="#--yes-does-not-grant-execution-trust" class="table-of-contents__link toc-highlight"><code>--yes</code> does not grant execution trust</a></li><li><a href="#refusal-is-enforced-under-tool-construction-not-only-at-load" class="table-of-contents__link toc-highlight">Refusal is enforced under tool construction, not only at load</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:12 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-03-tool-system">E-03: The tool system</a>: <code>external-command</code> and <code>script</code> as ordinary tools</li>
+<li class=""><a class="" href="/nb/contribute/architecture/engine/e-02-format-system">E-02: The format system</a>: the <code>exec</code> format that reads by shelling out</li>
+<li class=""><a class="" href="/nb/contribute/architecture/context/c-01-project-model">C-01: The project model</a>: recipe discovery by upward walk, and the <code>.kapi/</code> state directory</li>
+<li class=""><a class="" href="/nb/contribute/architecture/multilingual/m-06-content-packages">M-06: Content packages</a>: <code>.kpz</code> ingest sanitisation</li>
+<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent surfaces</a>: why the MCP surface refuses, and why <code>--all-tools</code> does not change that</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-06-execution-trust.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/engine/e-05-plugin-system"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">E-05: The plugin system</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/engine/e-07-model-providers"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">E-07: Model and translation providers</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a><ul><li><a href="#discovery-makes-a-recipe-an-ambient-input" class="table-of-contents__link toc-highlight">Discovery makes a recipe an ambient input</a></li><li><a href="#the-same-classification-applied-on-every-surface" class="table-of-contents__link toc-highlight">The same classification, applied on every surface</a></li></ul></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#a-sticky-per-project-decision-keyed-to-what-was-approved" class="table-of-contents__link toc-highlight">A sticky, per-project decision, keyed to what was approved</a></li><li><a href="#--yes-does-not-grant-execution-trust" class="table-of-contents__link toc-highlight"><code>--yes</code> does not grant execution trust</a></li><li><a href="#refusal-is-enforced-under-tool-construction-not-only-at-load" class="table-of-contents__link toc-highlight">Refusal is enforced under tool construction, not only at load</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:17 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>

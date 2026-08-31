@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Ƒ-04: Ţĥé çöñţéñţ-ḿöđéļ ŵîŕé šçĥéḿà | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/qps/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/qps/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/qps/contribute/architecture/foundations/f-04-wire-schema"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="qps"><meta data-rh="true" name="docsearch:language" content="qps"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ƒ-04: Ţĥé çöñţéñţ-ḿöđéļ ŵîŕé šçĥéḿà | neokapi"><meta data-rh="true" name="description" content="çöŕé/þŕöţö/çöñţéñţ/ṽ1 îš ţĥé šîñĝļé çàñöñîçàļ šéŕîàļîžàţîöñ öƒ ţĥé çöñţéñţ ḿöđéļ; éṽéŕý öţĥéŕ šéŕîàļîžéđ šĥàþé îš éîţĥéŕ àñ îḿþöŕţ öƒ ţĥàţ šçĥéḿà öŕ àñ éẋþļîçîţļý-ļàƃéļéđ þŕöĵéçţîöñ, àñđ à ĝüàŕđ ţéšţ éñƒöŕçéš ţĥé ƃöüñđàŕý."><meta data-rh="true" property="og:description" content="çöŕé/þŕöţö/çöñţéñţ/ṽ1 îš ţĥé šîñĝļé çàñöñîçàļ šéŕîàļîžàţîöñ öƒ ţĥé çöñţéñţ ḿöđéļ; éṽéŕý öţĥéŕ šéŕîàļîžéđ šĥàþé îš éîţĥéŕ àñ îḿþöŕţ öƒ ţĥàţ šçĥéḿà öŕ àñ éẋþļîçîţļý-ļàƃéļéđ þŕöĵéçţîöñ, àñđ à ĝüàŕđ ţéšţ éñƒöŕçéš ţĥé ƃöüñđàŕý."><meta data-rh="true" name="keywords" content="wire schema,protobuf,protojson,content model,canonical serialization,protoconvert,projection,compatibility policy,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/qps/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/qps/contribute/architecture/foundations/f-04-wire-schema"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/foundations/f-04-wire-schema" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/foundations/f-04-wire-schema" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/foundations/f-04-wire-schema" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/foundations/f-04-wire-schema" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ƒ-04: Ţĥé çöñţéñţ-ḿöđéļ ŵîŕé šçĥéḿà","item":"https://neokapi.github.io/qps/contribute/architecture/foundations/f-04-wire-schema"}]}</script><link rel="stylesheet" href="/qps/assets/css/styles.3152a640.css">
-<script src="/qps/assets/js/runtime~main.4dd86b33.js" defer="defer"></script>
-<script src="/qps/assets/js/main.e84af3e2.js" defer="defer"></script>
+<script src="/qps/assets/js/runtime~main.c8decb6f.js" defer="defer"></script>
+<script src="/qps/assets/js/main.f4f19e51.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -17,16 +17,15 @@
 ḿéššàĝéš îñ <code>core/proto/content/v1/content.proto</code> (þŕöţö þàçķàĝé
 <code>neokapi.content.v1</code>), çöñṽéŕţéđ ţö àñđ ƒŕöḿ <code>core/model</code> ƃý
 <code>core/plugin/protoconvert</code>. Éṽéŕý šüŕƒàçé ţĥàţ šéŕîàļîžéš Þàŕţš, Ƃļöçķš, öŕ Ŕüñš
-éîţĥéŕ îḿþöŕţš ţĥîš šçĥéḿà öŕ îš àñ éẋþļîçîţļý-ļàƃéļéđ <strong>þŕöĵéçţîöñ</strong> — à ļöššý,
+éîţĥéŕ îḿþöŕţš ţĥîš šçĥéḿà öŕ îš àñ éẋþļîçîţļý-ļàƃéļéđ <strong>þŕöĵéçţîöñ</strong>: à ļöššý,
 þüŕþöšé-ƃüîļţ šĥàþé ţĥàţ îš ñéṽéŕ à ḿöđéļ çöñţŕàçţ. À ĝüàŕđ ţéšţ ŕéĵéçţš ñéŵ
 Ƃļöçķ, Ŕüñ, öŕ Šéĝḿéñţ ḿéššàĝé đéƒîñîţîöñš öüţšîđé ţĥé çàñöñîçàļ þàçķàĝé.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="çöñţéẋţ">Çöñţéẋţ<a href="#çöñţéẋţ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Çöñţéẋţ" title="Đîŕéçţ ļîñķ ţö Çöñţéẋţ" translate="no">​</a></h2>
-<p>À çöñţéñţ ḿöđéļ ţĥàţ çŕöššéš þŕöçéšš ƃöüñđàŕîéš — þļüĝîñ šüƃþŕöçéššéš, ĝéñéŕàţéđ
-ƒŕöñţéñđ ţýþéš, ĴŠÖÑ öñ đîšķ — îñṽîţéš à šéçöñđ đéƒîñîţîöñ öƒ îţšéļƒ àţ éṽéŕý
+<p>À çöñţéñţ ḿöđéļ ţĥàţ çŕöššéš þŕöçéšš ƃöüñđàŕîéš (þļüĝîñ šüƃþŕöçéššéš, ĝéñéŕàţéđ
+ƒŕöñţéñđ ţýþéš, ĴŠÖÑ öñ đîšķ) îñṽîţéš à šéçöñđ đéƒîñîţîöñ öƒ îţšéļƒ àţ éṽéŕý
 çŕöššîñĝ. Ţŵö đéƒîñîţîöñš đŕîƒţ, àñđ ţĥé đŕîƒţ îš šîļéñţ: éàçĥ šîđé ķééþš
-çöḿþîļîñĝ ŵĥîļé ţĥé ƒîéļđš ţĥéý đîšàĝŕéé àƃöüţ ǫüîéţļý ṽàñîšĥ. Ţĥé ŕéḿéđý îš ñöţ
-ŕéṽîéŵ đîšçîþļîñé ƃüţ à šîñĝļé đéƒîñîţîöñ þļüš à ţéšţ ţĥàţ ƒàîļš ŵĥéñ à šéçöñđ öñé
-àþþéàŕš.</p>
+çöḿþîļîñĝ ŵĥîļé ţĥé ƒîéļđš ţĥéý đîšàĝŕéé àƃöüţ ǫüîéţļý ṽàñîšĥ. Ţĥé ŕéḿéđý îš à
+šîñĝļé đéƒîñîţîöñ þļüš à ţéšţ ţĥàţ ƒàîļš ŵĥéñ à šéçöñđ öñé àþþéàŕš.</p>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="đéçîšîöñ">Đéçîšîöñ<a href="#đéçîšîöñ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Đéçîšîöñ" title="Đîŕéçţ ļîñķ ţö Đéçîšîöñ" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="ţĥé-çàñöñîçàļ-šçĥéḿà">Ţĥé çàñöñîçàļ šçĥéḿà<a href="#ţĥé-çàñöñîçàļ-šçĥéḿà" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé çàñöñîçàļ šçĥéḿà" title="Đîŕéçţ ļîñķ ţö Ţĥé çàñöñîçàļ šçĥéḿà" translate="no">​</a></h3>
 <p><code>core/proto/content/v1/content.proto</code> đéƒîñéš ţĥé çöḿþļéţé, šýḿḿéţŕîç ḿéššàĝé šéţ
@@ -46,15 +45,16 @@
 ŕéǫüéšţ/ŕéšþöñšé éñṽéļöþéš; ţĥé ĝéñéŕàţéđ Ĝö þàçķàĝé ŕé-éẋþöŕţš ţĥé çöñţéñţ ţýþéš
 àš àļîàšéš, šö þļüĝîñ ĥöšţš çöḿþîļé üñçĥàñĝéđ.</p>
 <p><code>core/plugin/protoconvert</code> îš ţĥé çàñöñîçàļ çöñṽéŕţéŕ: éṽéŕý ḿéššàĝé ķîñđ ĥàš à
-šýḿḿéţŕîç <code>XToProto</code> / <code>ProtoToX</code> þàîŕ, àñđ îţš ţéšţ šüîţé — îñ þàŕţîçüļàŕ ţĥé
-çöḿþàţ çöŕþüš îñ <code>core/plugin/protoconvert/compat_test.go</code> — îš ţĥé çöḿþàţîƃîļîţý
+šýḿḿéţŕîç <code>XToProto</code> / <code>ProtoToX</code> þàîŕ, àñđ îţš ţéšţ šüîţé (îñ þàŕţîçüļàŕ ţĥé
+çöḿþàţ çöŕþüš îñ <code>core/plugin/protoconvert/compat_test.go</code>) îš ţĥé çöḿþàţîƃîļîţý
 öŕàçļé. Ḿöđéļ ţö þŕöţö ţö ḿöđéļ îš îđéñţîţý ƒöŕ éṽéŕý Ŕüñ ķîñđ, ƒöŕ öṽéŕļàýš, ƒöŕ
 ḿüļţî-ļöçàļé ţàŕĝéţš, šéĝḿéñţàţîöñ, šķéļéţöñ ŕéƒš, đîšþļàý ĥîñţš, àñđ ŕéĝîšţéŕéđ
 àññöţàţîöñš.</p>
-<p>Ţŵö ḿöđéļ đîḿéñšîöñš đéļîƃéŕàţéļý đö ñöţ çŕöšš ţĥîš šçĥéḿà: ţàŕĝéţ ṽàŕîàñţ ţöñé
-àñđ çĥàññéļ (ţàŕĝéţš àŕé ķéýéđ ƃý ļöçàļé îñ <code>TargetEntry</code>), àñđ þéŕ-ţàŕĝéţ šţàţüš,
-öŕîĝîñ, àñđ šçöŕé. À þŕöţöçöļ ţĥàţ ñééđš ţĥéḿ çàŕŕîéš ţĥéḿ îñ îţš öŵñ éñṽéļöþé
-þŕöþéŕţîéš ŕàţĥéŕ ţĥàñ ŵîđéñîñĝ ţĥé çàñöñîçàļ ḿéššàĝéš.</p>
+<p>Ţĥŕéé ţĥîñĝš đö ñöţ çŕöšš ţĥîš šçĥéḿà: ţàŕĝéţ ṽàŕîàñţ ţöñé àñđ çĥàññéļ (ţàŕĝéţš
+àŕé ķéýéđ ƃý ļöçàļé îñ <code>TargetEntry</code>), þéŕ-ţàŕĝéţ šţàţüš, öŕîĝîñ, àñđ šçöŕé, àñđ
+ţĥé ƃļöçķ&#x27;š đüŕàƃļé <code>Unit</code> ķéý (<a class="" href="/qps/contribute/architecture/foundations/f-03-identity">Ƒ-03</a>). À þŕöţöçöļ ţĥàţ ñééđš
+ţĥéḿ çàŕŕîéš ţĥéḿ îñ îţš öŵñ éñṽéļöþé ŕàţĥéŕ ţĥàñ ŵîđéñîñĝ ţĥé çàñöñîçàļ
+ḿéššàĝéš.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="çàñöñîçàļ-ĵšöñ">Çàñöñîçàļ ĴŠÖÑ<a href="#çàñöñîçàļ-ĵšöñ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Çàñöñîçàļ ĴŠÖÑ" title="Đîŕéçţ ļîñķ ţö Çàñöñîçàļ ĴŠÖÑ" translate="no">​</a></h3>
 <p>Ţĥé çàñöñîçàļ ĴŠÖÑ ƒöŕ ţĥé çöñţéñţ ḿöđéļ îš <strong>þŕöţöĵšöñ öƒ ţĥé çàñöñîçàļ þŕöţö</strong>,
 ŵîţĥ ţĥé ƒîẋéđ öþţîöñš îñ <code>core/proto/content/v1/json.go</code> (<code>MarshalJSON</code>,
@@ -63,7 +63,7 @@
 <li class="">ļöŵéŕÇàḿéļÇàšé þŕöţöĵšöñ ĴŠÖÑ ñàḿéš (<code>pc_open</code> ƃéçöḿéš <code>&quot;pcOpen&quot;</code>); þŕöţö-ñàḿé
 šþéļļîñĝš àŕé àççéþţéđ öñ üñḿàŕšĥàļ ƃüţ ñéṽéŕ éḿîţţéđ;</li>
 <li class="">üñþöþüļàţéđ ƒîéļđš öḿîţţéđ; ƃýţéš àš ƃàšé64 šţŕîñĝš; <code>int32</code> àš ĴŠÖÑ ñüḿƃéŕš;</li>
-<li class="">đéţéŕḿîñîšţîç öüţþüţ — þŕöţöĵšöñ đéļîƃéŕàţéļý ŕàñđöḿîžéš îţš ŵĥîţéšþàçé, šö ƃöţĥ
+<li class="">đéţéŕḿîñîšţîç öüţþüţ: þŕöţöĵšöñ ŕàñđöḿîžéš îţš ŵĥîţéšþàçé, šö ƃöţĥ
 ḿàŕšĥàļ ĥéļþéŕš ŕé-šéŕîàļîžé ţĥŕöüĝĥ <code>encoding/json</code>, ŵĥîçĥ þŕéšéŕṽéš
 þŕöţöĵšöñ&#x27;š šţàƃļé ƒîéļđ öŕđéŕ;</li>
 <li class="">üñķñöŵñ ƒîéļđš îĝñöŕéđ öñ üñḿàŕšĥàļ, šö àñ öļđéŕ çöñšüḿéŕ ŕéàđš à ñéŵéŕ
@@ -77,7 +77,7 @@
 <code>model.AltTranslation.UnmarshalJSON</code> àđđîţîöñàļļý àççéþţš ţĥé šñàķé_çàšé šþéļļîñĝ
 ţĥàţ ŕéļéàšéđ ƃŕîđĝé ƃüîļđš éḿîţ, ŵîţĥ çàḿéļÇàšé ŵîññîñĝ ŵĥéŕé à đöçüḿéñţ çàŕŕîéš
 ƃöţĥ.</p>
-<p>Ţĥé ḿöđéļ&#x27;š îñ-þŕöçéšš Ŕüñ ĴŠÖÑ (<code>model.Run.MarshalJSON</code> — ƒļàţ
+<p>Ţĥé ḿöđéļ&#x27;š îñ-þŕöçéšš Ŕüñ ĴŠÖÑ (<code>model.Run.MarshalJSON</code>, ƒļàţ
 <code>{&quot;text&quot;:&quot;literal&quot;}</code> ţéẋţ ŕüñš) îš à đîšţîñçţ, šţàƃļé éñçöđîñĝ üšéđ <em>îñšîđé</em>
 þŕöĵéçţîöñš šüçĥ àš ţĥé çöñţéñţ ţŕéé, KBF, àñđ ƒļöŵ ţŕàçéš. Ţĥé ŵîŕé ƒöŕḿ ñéšţš
 ţĥé ţéẋţ þàýļöàđ àš <code>{&quot;text&quot;:{&quot;text&quot;:&quot;literal&quot;}}</code>. Ţĥé ţŵö àŕé ñöţ
@@ -86,29 +86,33 @@
 <p><code>scripts/gen-contract-types</code>, đŕîƒţ-ĝàţéđ ƃý <code>make check-contract-types</code> îñ ţĥé
 ŕéƒéŕéñçé-đàţà-đŕîƒţ ŵöŕķƒļöŵ, đéŕîṽéš ţŵö àŕţîƒàçţš ƒŕöḿ ţĥé çàñöñîçàļ šçĥéḿà:</p>
 <ul>
-<li class=""><strong>ŢýþéŠçŕîþţ ţýþéš</strong> — <code>packages/contract-types/src/content.gen.ts</code>: ţĥé ŵîŕé
+<li class=""><strong>ŢýþéŠçŕîþţ ţýþéš</strong>: <code>packages/contract-types/src/content.gen.ts</code>: ţĥé ŵîŕé
 šĥàþéš àš ţĥéý àþþéàŕ îñ çàñöñîçàļ þŕöţöĵšöñ, ŕéñđéŕéđ ƒŕöḿ ţĥé þŕöţö
 đéšçŕîþţöŕš, ŵîţĥ <code>RunMessage</code> àñđ <code>ContentRef</code> àš đîšçŕîḿîñàţéđ üñîöñš; þļüš
 ţĥé <code>model.Run</code> ĴŠÖÑ àñđ ţĥé çöñţéñţ-ţŕéé þŕöĵéçţîöñ šĥàþéš, ŕéƒļéçţéđ ƒŕöḿ ţĥé
 Ĝö šţŕüçţš. Ƒŕöñţéñđ þàçķàĝéš îḿþöŕţ ţĥéšé ŕàţĥéŕ ţĥàñ ĥàñđ-ḿîŕŕöŕîñĝ ţĥé ḿöđéļ.</li>
-<li class=""><strong>ĴŠÖÑ Šçĥéḿà</strong> — <code>core/proto/content/v1/content.schema.json</code> (đŕàƒţ 2020-12),
+<li class=""><strong>ĴŠÖÑ Šçĥéḿà</strong>: <code>core/proto/content/v1/content.schema.json</code> (đŕàƒţ 2020-12),
 ĝéñéŕàţéđ ƒŕöḿ ţĥé þŕöţö đéšçŕîþţöŕš ƒöŕ ñöñ-þŕöţö çöñšüḿéŕš. Ţĥé þŕöţöĵšöñ
 ĝöļđéñ ƒîļéš àŕé ţĥé ƃîñđîñĝ çöñţŕàçţ; ţĥé šçĥéḿà îš à ĝéñéŕàţéđ çöñṽéñîéñçé.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="þŕöĵéçţîöñš">Þŕöĵéçţîöñš<a href="#þŕöĵéçţîöñš" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Þŕöĵéçţîöñš" title="Đîŕéçţ ļîñķ ţö Þŕöĵéçţîöñš" translate="no">​</a></h3>
-<p>À þŕöĵéçţîöñ îš à đéļîƃéŕàţéļý ļöššý, þüŕþöšé-ƃüîļţ šéŕîàļîžàţîöñ. Îţ ḿüšţ ƃé
+<p>À þŕöĵéçţîöñ îš à ļöššý, þüŕþöšé-ƃüîļţ šéŕîàļîžàţîöñ. Îţ ḿüšţ ƃé
 ļàƃéļéđ àš šüçĥ ŵĥéŕé îţ îš đéƒîñéđ, àñđ îţ îš ñéṽéŕ ţĥé ḿöđéļ çöñţŕàçţ:</p>
 <ul>
-<li class=""><strong><code>core/editor.BlockIndex</code></strong> — ŕüñš ƒļàţţéñéđ ţö þļàîñ àñđ ĤŢḾĻ šţŕîñĝš ƒöŕ
+<li class=""><strong><code>core/editor.BlockIndex</code></strong>: ŕüñš ƒļàţţéñéđ ţö þļàîñ àñđ ĤŢḾĻ šţŕîñĝš ƒöŕ
 éđîţöŕ ļîšţîñĝš; ṽéŕšîöñéđ îñđéþéñđéñţļý ƃý îţš öŵñ ṽéŕšîöñ ƒîéļđ.</li>
-<li class=""><strong><code>core/editor.ContentTree</code></strong> — ţĥé ŕüñ-ñàţîṽé àñàţöḿý ţŕéé ƃéĥîñđ ţĥé
+<li class=""><strong><code>core/editor.ContentTree</code></strong>: ţĥé ŕüñ-ñàţîṽé àñàţöḿý ţŕéé ƃéĥîñđ ţĥé
 îñ-ƃŕöŵšéŕ éẋþļöŕéŕš.</li>
-<li class=""><strong><code>core/structrec.Record</code></strong> — ţĥé ƒļàţ àñçĥöŕ ŕéçöŕđ ƃéĥîñđ îñšþéçţîöñ,
+<li class=""><strong><code>core/structrec.Record</code></strong>: ţĥé ƒļàţ àñçĥöŕ ŕéçöŕđ ƃéĥîñđ îñšþéçţîöñ,
 çöñṽéŕšîöñ, àñđ ŕéţŕîéṽàļ éẋþöŕţ.</li>
 </ul>
-<p>Šéþàŕàţéļý-ļîçéñšéđ ļàýéŕš ḿàý đéƒîñé ţĥéîŕ öŵñ éñṽéļöþéš àŕöüñđ çàñöñîçàļ
-þàýļöàđš. Ţĥöšé àŕé éñṽéļöþéš, ñöţ ŕéđéƒîñîţîöñš: ţĥéý àđđ šçöþîñĝ, ĥàšĥéš, àñđ
-éšçàþéš, àñđ đéļéĝàţé éṽéŕý ŕüñ àñđ šéĝḿéñţ çöñṽéŕšîöñ ţö <code>protoconvert</code>.</p>
+<p>Ţĥé ƒŕàḿéŵöŕķ đéƒîñéš öñé éñṽéļöþé öƒ îţš öŵñ: ţĥé šýñç ŵîŕé,
+<code>core/proto/sync/v1/sync.proto</code>, ŵĥöšé <code>SyncBlock</code> àñđ <code>SyncSegmentList</code> àŕé
+àļļöŵ-ļîšţéđ îñ ţĥé ĝüàŕđ ƃý ḿéššàĝé ñàḿé. Îţ àđđš îţéḿ šçöþîñĝ, ĥàšĥéš, ţĥé
+ƃļöçķ&#x27;š đüŕàƃļé <code>unit</code> ķéý àñđ <code>*_json</code> éšçàþéš àŕöüñđ çàñöñîçàļ þàýļöàđš, àñđ
+<code>core/venue</code> (<code>BlockToProto</code> / <code>ProtoToBlock</code>) đéļéĝàţéš éṽéŕý ŕüñ àñđ šéĝḿéñţ
+çöñṽéŕšîöñ ţö <code>protoconvert</code>. Àñ éñṽéļöþé àđđš çöñţéẋţ àŕöüñđ çàñöñîçàļ
+þàýļöàđš; îţ ñéṽéŕ ŕéđéƒîñéš ţĥéḿ.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="çöḿþàţîƃîļîţý-þöļîçý">Çöḿþàţîƃîļîţý þöļîçý<a href="#çöḿþàţîƃîļîţý-þöļîçý" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Çöḿþàţîƃîļîţý þöļîçý" title="Đîŕéçţ ļîñķ ţö Çöḿþàţîƃîļîţý þöļîçý" translate="no">​</a></h3>
 <ul>
 <li class="">Ƒîéļđ ñüḿƃéŕš îñ <code>neokapi.content.v1</code> àŕé ƒŕöžéñ: ñéṽéŕ ŕéñüḿƃéŕéđ, ñéṽéŕ
@@ -119,14 +123,14 @@
 <li class="">Þŕöţö <em>þàçķàĝé</em> ḿöṽéš đö ñöţ àƒƒéçţ ţĥé ŵîŕé: éñçöđîñĝ đéþéñđš öñ ƒîéļđ ñüḿƃéŕš
 àñđ ţýþéš öñļý. Ƒüļļý-ǫüàļîƒîéđ ḿéššàĝé ñàḿéš ḿàţţéŕ šöļéļý ƒöŕ
 <code>google.protobuf.Any</code> þàçķîñĝ àñđ đéšçŕîþţöŕ-ƃàšéđ ŕéƒļéçţîöñ, ñéîţĥéŕ öƒ ŵĥîçĥ
-îš üšéđ öñ ţĥéšé ḿéššàĝéš — àñđ ţĥé ĝüàŕđ ţéšţ ķééþš îţ ţĥàţ ŵàý ƃý ķééþîñĝ ţĥé
+îš üšéđ öñ ţĥéšé ḿéššàĝéš, àñđ ţĥé ĝüàŕđ ţéšţ ķééþš îţ ţĥàţ ŵàý ƃý ķééþîñĝ ţĥé
 đéƒîñîţîöñš îñ öñé þļàçé.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="éñƒöŕçéḿéñţ">Éñƒöŕçéḿéñţ<a href="#éñƒöŕçéḿéñţ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Éñƒöŕçéḿéñţ" title="Đîŕéçţ ļîñķ ţö Éñƒöŕçéḿéñţ" translate="no">​</a></h3>
 <p><code>core/proto/content/guard_test.go</code> ŵàļķš éṽéŕý <code>.proto</code> îñ ţĥé ŕéþöšîţöŕý àñđ
 ƒàîļš öñ àñý ḿéššàĝé ŵĥöšé ñàḿé đéƒîñéš Ƃļöçķ, Ŕüñ, öŕ Šéĝḿéñţ çöñţéñţ öüţšîđé ţĥé
-çàñöñîçàļ ƒîļé. Ţĥé ḿàţçĥ îš öñ ḿéššàĝé <em>ñàḿéš</em> — àñýţĥîñĝ éñđîñĝ îñ <code>Run</code>,
-<code>Block</code>, öŕ <code>Segment</code>, ƃàŕé öŕ ŵîţĥ àñ <code>s</code>, <code>List</code>, öŕ <code>Message</code> šüƒƒîẋ — šö à
+çàñöñîçàļ ƒîļé. Ţĥé ḿàţçĥ îš öñ ḿéššàĝé <em>ñàḿéš</em> (àñýţĥîñĝ éñđîñĝ îñ <code>Run</code>,
+<code>Block</code>, öŕ <code>Segment</code>, ƃàŕé öŕ ŵîţĥ àñ <code>s</code>, <code>List</code>, öŕ <code>Message</code> šüƒƒîẋ), šö à
 ŕéǫüéšţ/ŕéšþöñšé éñṽéļöþé ñàḿéđ <code>SegmentRequest</code> đöéš ñöţ ţŕîþ îţ ŵĥîļé à
 <code>BlockMessage</code> îñ ţĥé ŵŕöñĝ ƒîļé đöéš. Àĝéñţ ŵöŕķţŕééš üñđéŕ <code>.claude</code> àŕé šķîþþéđ,
 šîñçé à ŵĥöļé çĥéçķöüţ öƒ ţĥîš ŕéþöšîţöŕý îš ţĥé šàḿé ƒîļé ŕàţĥéŕ ţĥàñ à šéçöñđ
@@ -144,19 +148,19 @@
 <li class="">À ŵîŕé-çöḿþàţîƃîļîţý ƃŕéàķ àññöüñçéš îţšéļƒ àš à ĝöļđéñ-ƒîļé ƒàîļüŕé àţ ţĥé
 ḿöḿéñţ öƒ ţĥé çĥàñĝé, ŕàţĥéŕ ţĥàñ àš à đéçöđé éŕŕöŕ îñ àñöţĥéŕ þŕöçéšš ŵééķš
 ļàţéŕ.</li>
-<li class="">Àđđîñĝ à ƒîéļđ îš çĥéàþ àñđ šàƒé — àþþéñđ à ñüḿƃéŕ, ŕéĝéñéŕàţé — ŵĥîļé ŕéñàḿîñĝ
+<li class="">Àđđîñĝ à ƒîéļđ îš çĥéàþ àñđ šàƒé (àþþéñđ à ñüḿƃéŕ, ŕéĝéñéŕàţé), ŵĥîļé ŕéñàḿîñĝ
 öŕ ŕéñüḿƃéŕîñĝ öñé îš à đéļîƃéŕàţé, ṽîšîƃļé ƃŕéàķ.</li>
 <li class="">Çöñšüḿéŕš ţĥàţ ñééđ à šĥàþé ţĥé çàñöñîçàļ šçĥéḿà đöéš ñöţ çàŕŕý ŵŕîţé à ļàƃéļéđ
 þŕöĵéçţîöñ îñšţéàđ öƒ ŵîđéñîñĝ ţĥé çöñţŕàçţ, ŵĥîçĥ ķééþš ţĥé çöñţŕàçţ šḿàļļ.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="šéé-àļšö">Šéé àļšö<a href="#šéé-àļšö" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Šéé àļšö" title="Đîŕéçţ ļîñķ ţö Šéé àļšö" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/qps/contribute/architecture/foundations/f-02-content-model">Ƒ-02: Ţĥé çöñţéñţ ḿöđéļ</a> — ţĥé ţýþéš ţĥîš šçĥéḿà šéŕîàļîžéš</li>
-<li class=""><a class="" href="/qps/contribute/architecture/foundations/f-03-identity">Ƒ-03: Îđéñţîţý</a> — ţĥé ĥàšĥéš ţĥé ŵîŕé çàŕŕîéš</li>
-<li class=""><a class="" href="/qps/contribute/architecture/engine/e-05-plugin-system">É-05: Ţĥé þļüĝîñ šýšţéḿ</a> — ţĥé ƃŕîđĝé šéŕṽîçé ţĥàţ îḿþöŕţš ţĥîš šçĥéḿà</li>
-<li class=""><a class="" href="/qps/contribute/architecture/multilingual/m-06-content-packages">Ḿ-06: Çöñţéñţ þàçķàĝéš</a> — ţĥé KBF ƃüñđļé àñđ îţš üšé öƒ ţĥé îñ-þŕöçéšš Ŕüñ ĴŠÖÑ</li>
-<li class=""><a class="" href="/qps/contribute/architecture/surfaces/s-06-visual-editor">Š-06: Ţĥé ṽîšüàļ éđîţöŕ đàţà ḿöđéļ</a> — ţĥé éđîţöŕ þŕöĵéçţîöñš</li>
-<li class=""><a class="" href="/qps/contribute/implementation/engine/plugin-protocol-v1">Þļüĝîñ þŕöţöçöļ ṽ1</a> — ţĥé çöñţŕàçţ þļüĝîñ ŕéþöšîţöŕîéš ṽéŕîƒý àĝàîñšţ</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/foundations/f-04-wire-schema.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/qps/contribute/architecture/foundations/f-03-identity"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">Ƒ-03: Îđéñţîţý</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/qps/contribute/architecture/engine/e-01-processing-engine"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">É-01: Ţĥé þŕöçéššîñĝ éñĝîñé</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#šüḿḿàŕý" class="table-of-contents__link toc-highlight">Šüḿḿàŕý</a></li><li><a href="#çöñţéẋţ" class="table-of-contents__link toc-highlight">Çöñţéẋţ</a></li><li><a href="#đéçîšîöñ" class="table-of-contents__link toc-highlight">Đéçîšîöñ</a><ul><li><a href="#ţĥé-çàñöñîçàļ-šçĥéḿà" class="table-of-contents__link toc-highlight">Ţĥé çàñöñîçàļ šçĥéḿà</a></li><li><a href="#çàñöñîçàļ-ĵšöñ" class="table-of-contents__link toc-highlight">Çàñöñîçàļ ĴŠÖÑ</a></li><li><a href="#ĝéñéŕàţéđ-àŕţîƒàçţš" class="table-of-contents__link toc-highlight">Ĝéñéŕàţéđ àŕţîƒàçţš</a></li><li><a href="#þŕöĵéçţîöñš" class="table-of-contents__link toc-highlight">Þŕöĵéçţîöñš</a></li><li><a href="#çöḿþàţîƃîļîţý-þöļîçý" class="table-of-contents__link toc-highlight">Çöḿþàţîƃîļîţý þöļîçý</a></li><li><a href="#éñƒöŕçéḿéñţ" class="table-of-contents__link toc-highlight">Éñƒöŕçéḿéñţ</a></li></ul></li><li><a href="#çöñšéǫüéñçéš" class="table-of-contents__link toc-highlight">Çöñšéǫüéñçéš</a></li><li><a href="#šéé-àļšö" class="table-of-contents__link toc-highlight">Šéé àļšö</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/cli">Kapi ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/react/introduction">neokapi-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/evals">Ţéšţš &amp; Éṽàļš</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 neokapi çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-08-30 20:09 ÜŢÇ · đ7đé57ƒ</div></div></div></footer></div>
+<li class=""><a class="" href="/qps/contribute/architecture/foundations/f-02-content-model">Ƒ-02: Ţĥé çöñţéñţ ḿöđéļ</a>: ţĥé ţýþéš ţĥîš šçĥéḿà šéŕîàļîžéš</li>
+<li class=""><a class="" href="/qps/contribute/architecture/foundations/f-03-identity">Ƒ-03: Îđéñţîţý</a>: ţĥé ĥàšĥéš ţĥé ŵîŕé çàŕŕîéš</li>
+<li class=""><a class="" href="/qps/contribute/architecture/engine/e-05-plugin-system">É-05: Ţĥé þļüĝîñ šýšţéḿ</a>: ţĥé ƃŕîđĝé šéŕṽîçé ţĥàţ îḿþöŕţš ţĥîš šçĥéḿà</li>
+<li class=""><a class="" href="/qps/contribute/architecture/multilingual/m-06-content-packages">Ḿ-06: Çöñţéñţ þàçķàĝéš</a>: ţĥé KBF ƃüñđļé àñđ îţš üšé öƒ ţĥé îñ-þŕöçéšš Ŕüñ ĴŠÖÑ</li>
+<li class=""><a class="" href="/qps/contribute/architecture/surfaces/s-06-visual-editor">Š-06: Ţĥé ṽîšüàļ éđîţöŕ đàţà ḿöđéļ</a>: ţĥé éđîţöŕ þŕöĵéçţîöñš</li>
+<li class=""><a class="" href="/qps/contribute/implementation/engine/plugin-protocol-v1">Þļüĝîñ þŕöţöçöļ ṽ1</a>: ţĥé çöñţŕàçţ þļüĝîñ ŕéþöšîţöŕîéš ṽéŕîƒý àĝàîñšţ</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/foundations/f-04-wire-schema.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/qps/contribute/architecture/foundations/f-03-identity"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">Ƒ-03: Îđéñţîţý</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/qps/contribute/architecture/engine/e-01-processing-engine"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">É-01: Ţĥé þŕöçéššîñĝ éñĝîñé</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#šüḿḿàŕý" class="table-of-contents__link toc-highlight">Šüḿḿàŕý</a></li><li><a href="#çöñţéẋţ" class="table-of-contents__link toc-highlight">Çöñţéẋţ</a></li><li><a href="#đéçîšîöñ" class="table-of-contents__link toc-highlight">Đéçîšîöñ</a><ul><li><a href="#ţĥé-çàñöñîçàļ-šçĥéḿà" class="table-of-contents__link toc-highlight">Ţĥé çàñöñîçàļ šçĥéḿà</a></li><li><a href="#çàñöñîçàļ-ĵšöñ" class="table-of-contents__link toc-highlight">Çàñöñîçàļ ĴŠÖÑ</a></li><li><a href="#ĝéñéŕàţéđ-àŕţîƒàçţš" class="table-of-contents__link toc-highlight">Ĝéñéŕàţéđ àŕţîƒàçţš</a></li><li><a href="#þŕöĵéçţîöñš" class="table-of-contents__link toc-highlight">Þŕöĵéçţîöñš</a></li><li><a href="#çöḿþàţîƃîļîţý-þöļîçý" class="table-of-contents__link toc-highlight">Çöḿþàţîƃîļîţý þöļîçý</a></li><li><a href="#éñƒöŕçéḿéñţ" class="table-of-contents__link toc-highlight">Éñƒöŕçéḿéñţ</a></li></ul></li><li><a href="#çöñšéǫüéñçéš" class="table-of-contents__link toc-highlight">Çöñšéǫüéñçéš</a></li><li><a href="#šéé-àļšö" class="table-of-contents__link toc-highlight">Šéé àļšö</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/kapi/cli">Kapi ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/react/introduction">neokapi-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/qps/evals">Ţéšţš &amp; Éṽàļš</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 neokapi çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-08-31 17:14 ÜŢÇ · ƃ29ƃ48é</div></div></div></footer></div>
 </body>
 </html>

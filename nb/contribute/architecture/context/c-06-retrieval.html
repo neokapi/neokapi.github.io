@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">C-06: Context retrieval | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-06: Context retrieval | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project&#x27;s context is retrieved through two primitives — by location and by content — offered identically on the CLI and over MCP, with the rendering a property of the address and the reach stated on every answer."><meta data-rh="true" property="og:description" content="Architecture decision: a project&#x27;s context is retrieved through two primitives — by location and by content — offered identically on the CLI and over MCP, with the rendering a property of the address and the reach stated on every answer."><meta data-rh="true" name="keywords" content="context retrieval,kapi context,context search,MCP,resources,staleness,reach,neokapi,architecture decision"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-06-retrieval" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/context/c-06-retrieval" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-06-retrieval" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-06: Context retrieval","item":"https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
-<script src="/nb/assets/js/runtime~main.af4a68cc.js" defer="defer"></script>
-<script src="/nb/assets/js/main.c0874a87.js" defer="defer"></script>
+<title data-rh="true">C-06: Context retrieval | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-06: Context retrieval | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project&#x27;s context is retrieved through two primitives, by location and by content, offered identically on the CLI and over MCP, with the rendering a property of the address and the scope stated on every answer."><meta data-rh="true" property="og:description" content="Architecture decision: a project&#x27;s context is retrieved through two primitives, by location and by content, offered identically on the CLI and over MCP, with the rendering a property of the address and the scope stated on every answer."><meta data-rh="true" name="keywords" content="context retrieval,kapi context,context search,MCP,resources,staleness,scope,neokapi,architecture decision"><link data-rh="true" rel="icon" href="/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-06-retrieval" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/contribute/architecture/context/c-06-retrieval" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/contribute/architecture/context/c-06-retrieval" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-06: Context retrieval","item":"https://neokapi.github.io/nb/contribute/architecture/context/c-06-retrieval"}]}</script><link rel="stylesheet" href="/nb/assets/css/styles.f4228ccd.css">
+<script src="/nb/assets/js/runtime~main.b68a598c.js" defer="defer"></script>
+<script src="/nb/assets/js/main.10933aa8.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -17,7 +17,7 @@
 identically on the CLI and over MCP</strong>:</p>
 <table><thead><tr><th>Shape</th><th>Question</th><th>CLI</th><th>MCP</th></tr></thead><tbody><tr><td><strong>By location</strong></td><td><em>what applies here?</em></td><td><code>kapi context &lt;path&gt;</code></td><td><code>context://&lt;path&gt;</code> resource</td></tr><tr><td><strong>By content</strong></td><td><em>what do we know about this?</em></td><td><code>kapi context search &lt;query&gt;</code></td><td><code>context_search</code> tool</td></tr></tbody></table>
 <p>Every asset-shaped lookup folds into one of the two. There is no retrieval
-command per store — not for voice, not for terms, not for content memory —
+command per store (none for voice, none for terms, none for content memory),
 because <em>which store holds the answer</em> is an implementation detail the caller
 should never have to know.</p>
 <p>The two surfaces are held in parity by construction: the MCP tools and resources
@@ -31,8 +31,8 @@ callers.</p>
 <p>Asset-shaped retrieval forces the caller to know the answer&#x27;s location before
 asking, which inverts that. Worse, it returns <strong>partial answers that read as
 whole ones</strong>: a command that renders a voice profile&#x27;s own preferred and
-forbidden terms visibly contains terminology, while the project&#x27;s terms store — a
-separate source reaching the engine by a separate path — goes unread. A caller
+forbidden terms visibly contains terminology, while the project&#x27;s terms store, a
+separate source reaching the engine by a separate path, goes unread. A caller
 writing against that output has terminology it did not get. Silence would have
 been safer.</p>
 <p>The same pressure applies across surfaces. The agent skill drives the CLI, so a
@@ -45,20 +45,22 @@ model that does not exist.</p>
 <p><strong>By location</strong> answers <em>what applies here</em>: the point the location resolves to,
 the profile in force, its rendered guidance, the terms bound at that point, and
 the governance windows around them. It resolves through
-<code>KapiProject.ResolveGovernanceFor</code> (<a class="" href="/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02</a>) —
-the seam a run, a check and a push resolve through — so the voice a writer reads
+<code>KapiProject.ResolveGovernanceFor</code> (<a class="" href="/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02</a>),
+the seam a run, a check and a push resolve through, so the voice a writer reads
 for a file is the voice a run applies to it, including a content item&#x27;s own
 <code>channel:</code> and a profile whose window has closed.</p>
 <p><strong>By content</strong> answers <em>what do we know about this</em>: one query, every store the
-scope holds — terms and concepts, content memory, profile examples.</p>
+scope holds (terms and concepts, content memory, profile examples).</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="two-address-forms-one-thing">Two address forms, one thing<a href="#two-address-forms-one-thing" class="hash-link" aria-label="Direkte lenke til Two address forms, one thing" title="Direkte lenke til Two address forms, one thing" translate="no">​</a></h3>
 <p>The by-location primitive is addressable two ways, because an ad-hoc caller has
 no path to resolve:</p>
 <div class="language-text codeBlockContainer_jk2p theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_VqVM"><pre tabindex="0" class="prism-code language-text codeBlock_Udag thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_zfJc"><div class="token-line" style="color:#393A34"><span class="token plain">context://{+path}{?format}          what applies at this location</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">context://profile/{name}{?format}   what a named profile holds</span><br></div></code></pre></div></div>
-<p>The CLI mirrors this as <code>kapi context &lt;path&gt;</code> and <code>kapi context --profile &lt;name&gt;</code>.</p>
+<p>The CLI mirrors this as <code>kapi context &lt;path&gt;</code> and <code>kapi context --profile &lt;name&gt;</code>.
+The MCP server publishes the two as the resource templates
+<code>context-at-location</code> and <code>context-for-profile</code>.</p>
 <p><code>profile/</code> is reserved under the scheme, which is what lets one address space
 carry both forms. A name no recipe declares falls back to a voice profile of that
-name — the local store, then a built-in pack — because otherwise the by-name
+name (the local store, then a built-in pack), because otherwise the by-name
 address would be unusable outside a project, which is the case it exists for.</p>
 <p><strong>Asking is a read, not a call.</strong> The by-content primitive takes a query and is a
 tool; the by-location primitive names something that already exists and is a
@@ -73,7 +75,7 @@ CLI expresses it as <code>--json</code>. On the wire the rendering rides on the 
 format nobody recognises is an error: a caller that asked for a shape it can
 parse must not be handed prose it cannot.</p>
 <p>That is what dissolves a <code>voice_guide</code>-shaped tool. Such a tool conflates three
-concerns — voice only, by name only, markdown only — into one narrow point. Once
+concerns (voice only, by name only, markdown only) into one narrow point. Once
 content is the whole context, addressing covers by-name, and rendering is a
 property, nothing is left over.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="what-folds-in-and-what-does-not">What folds in, and what does not<a href="#what-folds-in-and-what-does-not" class="hash-link" aria-label="Direkte lenke til What folds in, and what does not" title="Direkte lenke til What folds in, and what does not" translate="no">​</a></h3>
@@ -84,34 +86,33 @@ registry tool cannot re-shadow the primitives.</p>
 <p><strong>The CLI keeps its per-store verbs.</strong> <code>kapi voice guide</code> and <code>kapi voice show</code>
 render a resolved profile as a guide; <code>kapi terms lookup</code> / <code>terms search</code> and
 <code>kapi memory lookup</code> / <code>memory search</code> query one store directly. They answer a
-narrower question than <code>kapi context</code> — <em>what does this store hold</em> rather than
-<em>what applies here</em> — which is a reasonable thing to ask of a store you opened on
+narrower question than <code>kapi context</code> (<em>what does this store hold</em> rather than
+<em>what applies here</em>), which is a reasonable thing to ask of a store you opened on
 purpose. What changes is what an agent is taught: the skill drives <code>kapi context search</code>, so the narrow verbs stay available to a person without becoming the
 model an assistant learns.</p>
 <p><strong>Management verbs are not retrieval and do not fold.</strong> <code>terms import/export/stats</code>, <code>memory import/export/audit</code>, <code>voice new/validate/import/pack</code>
-operate on a store deliberately, which is a different act from asking a question.
-The same holds for the voice tools an agent does get: <code>voice_check</code> and
-<code>voice_rewrite</code> judge or change a piece of text, so neither is a retrieval
-question.</p>
+operate on a store, which is a different act from asking a question. The same
+holds for the voice tools an agent does get: <code>voice_check</code> and <code>voice_rewrite</code>
+judge or change a piece of text, so neither is a retrieval question.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="content-memory-is-recycled-not-searched">Content memory is recycled, not searched<a href="#content-memory-is-recycled-not-searched" class="hash-link" aria-label="Direkte lenke til Content memory is recycled, not searched" title="Direkte lenke til Content memory is recycled, not searched" translate="no">​</a></h3>
 <p>Recycling is the loop&#x27;s job and is invisible by design: <code>kapi up</code> pre-fills from
 content memory as the structural cost control. So the retrieval surface does not
-offer <em>search memory for prior translations</em> — that duplicates work already done,
+offer <em>search memory for prior translations</em>. That duplicates work already done,
 and inviting a caller to do it by hand is inviting it to hand-crank the loop.</p>
 <p>What <em>is</em> served is <strong>precedent</strong>: <em>how has this project said this before</em>, when
 authoring source content. That is a different question from recycling, it is not
 answered anywhere else, and it is what makes a caller&#x27;s own writing sound like
 the project. It reaches callers through <code>context search</code>, not through a
 memory-specific verb.</p>
-<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="reach-not-capability">Reach, not capability<a href="#reach-not-capability" class="hash-link" aria-label="Direkte lenke til Reach, not capability" title="Direkte lenke til Reach, not capability" translate="no">​</a></h3>
-<p>The same call returns less at a narrower reach, and says so. Three reaches are
-named, and every answer carries one:</p>
-<table><thead><tr><th>Reach</th><th>What stands behind the answer</th></tr></thead><tbody><tr><td><code>project</code></td><td>the local project&#x27;s stores</td></tr><tr><td><code>workspace</code></td><td>a connected concept graph, with relations, revisions and market scoping</td></tr><tr><td><code>profile</code></td><td>one voice profile and nothing else — the by-name answer, with no project behind it</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_NsHk" id="scope-not-capability">Scope, not capability<a href="#scope-not-capability" class="hash-link" aria-label="Direkte lenke til Scope, not capability" title="Direkte lenke til Scope, not capability" translate="no">​</a></h3>
+<p>The same call returns less at a narrower scope, and says so. Three scopes are
+named (<code>host.ContextScope</code>), and every answer carries one in its <code>scope</code> field:</p>
+<table><thead><tr><th>Scope</th><th>What stands behind the answer</th></tr></thead><tbody><tr><td><code>project</code></td><td>the local project&#x27;s stores</td></tr><tr><td><code>workspace</code></td><td>a connected concept graph, with relations, revisions and market scoping</td></tr><tr><td><code>profile</code></td><td>one voice profile and nothing else: the by-name answer, with no project behind it</td></tr></tbody></table>
 <p>A result set is <strong>explicitly scoped in its response</strong> rather than silently
 thinner: a caller must be able to tell <em>this project holds no answer</em> from <em>this
 scope cannot hold one</em>. Reporting the third case as an empty project scope would
 tell a caller the project holds no terminology when no project was consulted at
-all — so the by-name answer says in as many words that no recipe point stands
+all, so the by-name answer says in as many words that no recipe point stands
 behind it.</p>
 <p>Half an answer plus a statement of what was unreachable is more useful than an
 answer that quietly omits a store it could not open.</p>
@@ -123,7 +124,7 @@ order that means nothing.</p>
 <p>The first of an answer&#x27;s notes says whether the governing context, the
 terminology or the committed decisions moved since this process last read them.
 The comparison is against the freshness ref this project last observed, held on
-disk (<a class="" href="/nb/contribute/architecture/context/c-05-freshness">C-05</a>) — so a retrieval costs no round trip, and the
+disk (<a class="" href="/nb/contribute/architecture/context/c-05-freshness">C-05</a>), so a retrieval costs no round trip, and the
 baseline is per process and advances on every read.</p>
 <p>It reports and never resolves. What a moved context means for work already
 written is a judgement, and the retrieval surface is not in a position to make
@@ -131,13 +132,15 @@ it. <code>kapi status</code> carries the same fact for a person on its governanc
 <code>kapi check --ship</code> is the enforcing half, where a target produced under a
 superseded context fails the staleness gate.</p>
 <p>A governance window that closed is reported the same way: the by-location answer
-carries the transition — which profile stopped governing, when, and what governs
-in its place — as a note.</p>
+carries the transition (which profile stopped governing, when, and what governs
+in its place) as a note.</p>
 <h3 class="anchor anchorTargetStickyNavbar_NsHk" id="the-generated-surface-is-opt-in">The generated surface is opt-in<a href="#the-generated-surface-is-opt-in" class="hash-link" aria-label="Direkte lenke til The generated surface is opt-in" title="Direkte lenke til The generated surface is opt-in" translate="no">​</a></h3>
 <p>MCP exposes a <strong>curated</strong> set by default: the two retrieval primitives, the check
-and statistics tools, the convergence verbs, and the two offline voice tools.
-<code>KAPI_MCP_ALL_TOOLS=1</code> restores the full generated surface for debugging and
-power use.</p>
+tools (<code>check_text</code>, <code>check_file</code>), <code>stats</code>, the convergence verbs (<code>up</code>,
+<code>up_plan</code>), the write verb (<code>apply_edits</code>), the two offline voice tools, and
+three registry tools that have no porcelain equivalent (<code>translate</code>,
+<code>term-check</code>, <code>redact</code>). <code>kapi mcp --all-tools</code> restores the full generated
+surface for debugging and power use.</p>
 <p><strong>The tools that execute arbitrary commands and scripts are not part of that
 flag.</strong> <em>Show me every tool</em> and <em>let a caller run anything</em> are different classes
 of decision, and bundling them means enabling the first silently grants the
@@ -154,7 +157,7 @@ exist.</li>
 where the answer lives is ours to change.</li>
 <li class=""><strong>A stale answer is visible to the caller holding it</strong>, rather than being a
 read with no memory.</li>
-<li class=""><strong>Partial answers stop reading as whole ones</strong> — the failure that makes a
+<li class=""><strong>Partial answers stop reading as whole ones</strong>, the failure that makes a
 store-shaped retrieval tool actively misleading rather than merely narrow.</li>
 <li class=""><strong>A new registry tool does not become an agent tool by accident.</strong> Exposure is
 a decision with a name attached.</li>
@@ -172,15 +175,15 @@ to and never renamed or dropped without an explicit decision.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_NsHk" id="see-also">See also<a href="#see-also" class="hash-link" aria-label="Direkte lenke til See also" title="Direkte lenke til See also" translate="no">​</a></h2>
 <ul>
-<li class=""><a class="" href="/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02: Coordinates and governance</a> — the
+<li class=""><a class="" href="/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02: Coordinates and governance</a>: the
 resolution the by-location answer renders.</li>
-<li class=""><a class="" href="/nb/contribute/architecture/context/c-03-context-store-and-graph">C-03: The context store and graph</a> — the
+<li class=""><a class="" href="/nb/contribute/architecture/context/c-03-context-store-and-graph">C-03: The context store and graph</a>: the
 tables and traversals these primitives read.</li>
-<li class=""><a class="" href="/nb/contribute/architecture/context/c-05-freshness">C-05: Freshness and the composite ref</a> — the staleness note
+<li class=""><a class="" href="/nb/contribute/architecture/context/c-05-freshness">C-05: Freshness and the composite ref</a>: the staleness note
 and the enforcing gate.</li>
-<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent Skills</a> — the skill that
+<li class=""><a class="" href="/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent Skills</a>: the skill that
 drives these verbs.</li>
-<li class=""><a class="" href="/nb/reference/mcp">MCP reference</a> — the served tool and resource list.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-06-retrieval.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/context/c-05-freshness"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-05: Freshness and the composite ref</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/context/c-07-voice-profiles"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-07: Voice profiles</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#one-question-two-shapes" class="table-of-contents__link toc-highlight">One question, two shapes</a></li><li><a href="#two-address-forms-one-thing" class="table-of-contents__link toc-highlight">Two address forms, one thing</a></li><li><a href="#rendering-is-a-property-not-a-command" class="table-of-contents__link toc-highlight">Rendering is a property, not a command</a></li><li><a href="#what-folds-in-and-what-does-not" class="table-of-contents__link toc-highlight">What folds in, and what does not</a></li><li><a href="#content-memory-is-recycled-not-searched" class="table-of-contents__link toc-highlight">Content memory is recycled, not searched</a></li><li><a href="#reach-not-capability" class="table-of-contents__link toc-highlight">Reach, not capability</a></li><li><a href="#results-are-grouped-never-merged-into-one-ranking" class="table-of-contents__link toc-highlight">Results are grouped, never merged into one ranking</a></li><li><a href="#every-answer-reports-its-own-freshness" class="table-of-contents__link toc-highlight">Every answer reports its own freshness</a></li><li><a href="#the-generated-surface-is-opt-in" class="table-of-contents__link toc-highlight">The generated surface is opt-in</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-30 20:12 UTC · d7de57f</div></div></div></footer></div>
+<li class=""><a class="" href="/nb/reference/mcp">MCP reference</a>: the served tool and resource list.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_O20e"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-06-retrieval.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_JE1C" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_t1B7"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/nb/contribute/architecture/context/c-05-freshness"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-05: Freshness and the composite ref</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/nb/contribute/architecture/context/c-07-voice-profiles"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-07: Voice profiles</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_yRV2 thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#one-question-two-shapes" class="table-of-contents__link toc-highlight">One question, two shapes</a></li><li><a href="#two-address-forms-one-thing" class="table-of-contents__link toc-highlight">Two address forms, one thing</a></li><li><a href="#rendering-is-a-property-not-a-command" class="table-of-contents__link toc-highlight">Rendering is a property, not a command</a></li><li><a href="#what-folds-in-and-what-does-not" class="table-of-contents__link toc-highlight">What folds in, and what does not</a></li><li><a href="#content-memory-is-recycled-not-searched" class="table-of-contents__link toc-highlight">Content memory is recycled, not searched</a></li><li><a href="#scope-not-capability" class="table-of-contents__link toc-highlight">Scope, not capability</a></li><li><a href="#results-are-grouped-never-merged-into-one-ranking" class="table-of-contents__link toc-highlight">Results are grouped, never merged into one ranking</a></li><li><a href="#every-answer-reports-its-own-freshness" class="table-of-contents__link toc-highlight">Every answer reports its own freshness</a></li><li><a href="#the-generated-surface-is-opt-in" class="table-of-contents__link toc-highlight">The generated surface is opt-in</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-08-31 17:17 UTC · b29b48e</div></div></div></footer></div>
 </body>
 </html>
