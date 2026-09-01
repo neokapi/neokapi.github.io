@@ -1,0 +1,11 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./jsx-runtime-CadfrxEJ.js";function n(e){if(!e)return e;try{return i||=new Intl.DisplayNames(`en`,{type:`language`}),i.of(e)??e}catch{return e}}function r(e){let t=n(e);return t===e?e:`${t} (${e})`}var i;function a(){return(a=e((()=>{i=null})))()}function o(e){let t=0;for(let n=0;n<e.length;n++)t=e.charCodeAt(n)+((t<<5)-t);return Math.abs(t)%360}function s({locale:e,className:t,muted:i,showName:a}){let s=o(e),l=n(e),u=(0,c.jsx)(`span`,{title:a?void 0:r(e),className:`inline-flex shrink-0 items-center px-1.5 py-px rounded font-mono text-[10px] font-medium ${a?``:t??``}`,style:i?{backgroundColor:`oklch(var(--pill-bg-l, 0.92) 0 0)`,color:`var(--muted-foreground)`}:{backgroundColor:`oklch(var(--pill-bg-l, 0.92) 0.03 ${s})`,color:`oklch(var(--pill-fg-l, 0.4) 0.08 ${s})`},children:e});return a?(0,c.jsxs)(`span`,{className:`inline-flex min-w-0 items-center gap-1.5 ${t??``}`,children:[u,(0,c.jsx)(`span`,{className:`truncate`,children:l})]}):u}var c;function l(){return(l=e((()=>{a(),c=t(),s.__docgenInfo={description:`Compact locale badge with subtle color-coded background.
+Color is deterministic based on the locale code.
+Adjusts lightness for dark mode via CSS custom properties.
+
+The pill always carries the language name in its title, so a reader who does
+not know the tag can reach it; \`showName\` puts the name on the page beside it.`,methods:[],displayName:`LocalePill`,props:{locale:{required:!0,tsType:{name:`string`},description:``},className:{required:!1,tsType:{name:`string`},description:``},muted:{required:!1,tsType:{name:`boolean`},description:`Render the pill in a neutral grey instead of its color-coded hue — used to
+de-emphasise locales outside the active language filter, so only the
+filtered-in locales keep their colour.`},showName:{required:!1,tsType:{name:`boolean`},description:`Render the language name beside the pill. Use it wherever there is room:
+a dropdown item, a list row, a heading. The bare pill is for dense grids
+(a coverage matrix, a table cell) where a name does not fit; there the
+title carries it.`}}}})))()}export{n as i,l as n,a as r,s as t};
