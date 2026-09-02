@@ -1,0 +1,27 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./react-DnzSF4pd.js";import{t as n}from"./jsx-runtime-CadfrxEJ.js";import{n as r,r as i,t as a}from"./runtime-Bvanz_ea.js";import{A as o,C as s,D as c,E as l,F as u,I as d,L as f,M as p,N as m,O as h,P as g,S as _,T as v,_ as y,a as b,b as x,c as S,d as ee,f as te,g as C,h as w,i as T,j as E,k as D,l as O,m as k,n as A,o as j,p as M,r as N,s as P,t as F,u as I,v as L,w as ne,x as R,y as z}from"./storybook-decorator-DO4WJZES.js";import{n as B,t as V}from"./dist-Dybg9H6R.js";var H,U,W,G,K;function q(){return(q=e((()=>{i(),f(),u(),m(),E(),D(),c(),v(),B(),s(),R(),z(),t(),te(),H=n(),U=({workspaceName:e,changeSetName:t,authorName:n,changeCount:i,reviewURL:s})=>(0,H.jsxs)(ne,{lang:`en`,dir:`ltr`,children:[(0,H.jsx)(o,{}),(0,H.jsx)(_,{children:a(`8aqP20sDBUY`,`A change to your workspace terms is waiting for review`)}),(0,H.jsx)(d,{style:w,children:(0,H.jsxs)(p,{style:j,children:[(0,H.jsxs)(x,{style:I,children:[(0,H.jsx)(L,{style:k,children:a(`iNTJXFZObfa`,`Bowrain`)}),(0,H.jsx)(L,{style:y,children:a(`clVnq5E37Ir`,`The context graph for your content`)})]}),(0,H.jsxs)(x,{style:b,children:[(0,H.jsx)(x,{style:G,children:(0,H.jsx)(L,{style:K,children:a(`8zl5GOeM9Ek`,`Review`)})}),(0,H.jsx)(h,{as:`h1`,style:W,children:a(`fCBoZS5wD9`,`A change is waiting for your review`)}),(0,H.jsx)(L,{style:C,children:r(`i6JvLOHBEVI`,`{=m0}{authorName}{/=m0} proposed {=m2}{changeSetName}{/=m2} in{value} {=m5}{workspaceName}{/=m5}.`,{"=m0":(0,H.jsx)(`strong`,{children:n}),"=m2":(0,H.jsx)(`strong`,{children:t}),"=m5":(0,H.jsx)(`strong`,{children:e})},{authorName:n,changeSetName:t,value:` `,workspaceName:e})}),(0,H.jsx)(L,{style:C,children:r(`biHCigDZro9`,`It carries {=m0}{changeCount}{/=m0} to the workspace terms. Governed changes take effect only once someone other than their author approves them, so this one is waiting on you.`,{"=m0":(0,H.jsx)(`strong`,{children:i})},{changeCount:i})}),(0,H.jsx)(x,{style:T,children:(0,H.jsx)(g,{href:s,style:N,children:a(`7R1ZUIy9ZpW`,`Review the change`)})}),(0,H.jsx)(l,{style:ee}),(0,H.jsx)(L,{style:P,children:a(`e3nbQxeay21`,`Button not working? Copy and paste this link into your browser:`)}),(0,H.jsx)(V,{href:s,style:M,children:s})]}),(0,H.jsxs)(x,{style:S,children:[(0,H.jsx)(L,{style:O,children:a(`8GcVKMXn3T`,`© Bowrain. All rights reserved.`)}),(0,H.jsx)(L,{style:O,children:a(`4Lc5pr8FWW6`,`You received this because you can approve changes in this workspace. Turn it off in notification preferences.`)})]})]})})]}),W={color:`#0f172a`,fontSize:`26px`,fontWeight:`700`,margin:`0 0 16px`,lineHeight:`1.2`},G={marginBottom:`16px`},K={display:`inline-block`,backgroundColor:`#f1f5f9`,color:`#475569`,fontSize:`11px`,fontWeight:`600`,textTransform:`uppercase`,letterSpacing:`0.05em`,padding:`4px 10px`,borderRadius:`4px`,margin:`0`},U.__docgenInfo={description:`Branded review-request email for Bowrain.
+
+Sent when a governed change-set is submitted for review, to every workspace
+member who may approve it. The change-set's author is never a recipient:
+separation of duties bars them from reviewing their own work, so a summons
+that reached only them would be a summons to nobody.
+
+Props are populated at build time with Go text/template tokens
+(e.g. workspaceName = "{{.WorkspaceName}}") so the rendered HTML doubles as a
+Go template. Every sentence stays static English JSX so the i18n pipeline can
+extract it; only names, counts, and URLs arrive as tokens.`,methods:[],displayName:`ReviewRequestEmail`,props:{workspaceName:{required:!0,tsType:{name:`string`},description:`Human-readable workspace name.`},changeSetName:{required:!0,tsType:{name:`string`},description:`The change-set's name, as its author titled it.`},authorName:{required:!0,tsType:{name:`string`},description:`Display name of the person who proposed the change-set.`},changeCount:{required:!0,tsType:{name:`string`},description:`How many changes the change-set carries, already formatted.`},reviewURL:{required:!0,tsType:{name:`string`},description:`Deep link to the change-set's review page.`}}}})))()}var J,Y,X,Z,Q;function $(){return($=e((()=>{q(),A(),J=n(),Y={title:`Emails/ReviewRequest`,component:U,tags:[`autodocs`],parameters:{layout:`padded`},decorators:[(e,{args:t})=>(0,J.jsx)(F,{children:(0,J.jsx)(U,{...t})})]},X={args:{workspaceName:`Acme Translations`,changeSetName:`kapi push — governed concepts`,authorName:`Asgeir`,changeCount:`57 changes`,reviewURL:`https://app.bowrain.cloud/acme/context/changes/FCfv5QTy`}},Z={args:{workspaceName:`Globex Corp`,changeSetName:`Ban “utilize” in product surfaces`,authorName:`Dana`,changeCount:`1 change`,reviewURL:`https://app.bowrain.cloud/globex/context/changes/aB3xQ9`}},X.parameters={...X.parameters,docs:{...X.parameters?.docs,source:{originalSource:`{
+  args: {
+    workspaceName: "Acme Translations",
+    changeSetName: "kapi push — governed concepts",
+    authorName: "Asgeir",
+    changeCount: "57 changes",
+    reviewURL: "https://app.bowrain.cloud/acme/context/changes/FCfv5QTy"
+  }
+}`,...X.parameters?.docs?.source}}},Z.parameters={...Z.parameters,docs:{...Z.parameters?.docs,source:{originalSource:`{
+  args: {
+    workspaceName: "Globex Corp",
+    changeSetName: "Ban “utilize” in product surfaces",
+    authorName: "Dana",
+    changeCount: "1 change",
+    reviewURL: "https://app.bowrain.cloud/globex/context/changes/aB3xQ9"
+  }
+}`,...Z.parameters?.docs?.source}}},Q=[`Default`,`SingleChange`]})))()}$();export{X as Default,Z as SingleChange,Q as __namedExportsOrder,Y as default};
