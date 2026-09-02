@@ -1,0 +1,13 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./jsx-runtime-CadfrxEJ.js";import{n,t as r}from"./VoiceDimensionBreakdown-wf5cVt1W.js";import{a as i,i as a,n as o,s}from"./fixtures-C-6JuHAW.js";var c,l,u,d,f,p;function m(){return(m=e((()=>{n(),a(),c=t(),l={title:`Brand/VoiceDimensionBreakdown`,component:r,tags:[`autodocs`],decorators:[e=>(0,c.jsx)(`div`,{style:{maxWidth:400,padding:24},children:(0,c.jsx)(e,{})})]},u={args:{dimensions:s}},d={args:{dimensions:o}},f={args:{dimensions:i}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    dimensions: sampleDimensions
+  }
+}`,...u.parameters?.docs?.source},description:{story:`Mixed scores across dimensions.`,...u.parameters?.docs?.description}}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    dimensions: excellentDimensions
+  }
+}`,...d.parameters?.docs?.source},description:{story:`All dimensions scoring well.`,...d.parameters?.docs?.description}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    dimensions: poorDimensions
+  }
+}`,...f.parameters?.docs?.source},description:{story:`Poor scores across the board.`,...f.parameters?.docs?.description}}},p=[`Mixed`,`Excellent`,`Poor`]})))()}m();export{d as Excellent,u as Mixed,f as Poor,p as __namedExportsOrder,l as default};
