@@ -371,6 +371,12 @@
       "kbj7ggTGa9T",
       "lx7uCSqTdeH"
     ],
+    "CoordinateChip.stories": [
+      "4u4wvv5k4Vq",
+      "6L88D6fN535",
+      "6NyGkve5nna",
+      "eY42hWzDOQN"
+    ],
     "CredentialPicker.stories": [
       "1X52QQQOkdP",
       "ibnlvuTUBbm"
@@ -1966,6 +1972,16 @@
       "jf6y27VfiAO",
       "kiLtqnJyCoX"
     ],
+    "SemanticButtons.stories": [
+      "4UihJ8rVlPW",
+      "9jdCdOP272o",
+      "a6ZjTyP76S8",
+      "aYjscxqJ8bK",
+      "biHbpDDAEBp",
+      "h0V4lJFWpKO",
+      "hVp3F6mmOo9",
+      "i1BYhSgDdnW"
+    ],
     "SettingsPage.stories": [
       "1LmmdZbt7n0",
       "1g4pP42bx07",
@@ -2016,6 +2032,11 @@
       "clSOFEsXmiX",
       "dGxiRbPZxXh",
       "fexSKsEPAPT"
+    ],
+    "StatusBadge.stories": [
+      "7EzXsrJEN",
+      "bO6hIKxrBf3",
+      "dW8kGSrw3LD"
     ],
     "StepUpToLocalization.stories": [
       "1DjMC3vKcK2",
@@ -2312,6 +2333,14 @@
       "VVSxrSeLvk",
       "hVp3F6mmOo9"
     ],
+    "coordinate-chip": [
+      "20zghZTqnEb",
+      "46wrqESgiii",
+      "7EMdDPPpeTZ",
+      "eXWyvS0oobq",
+      "f82cSY9onvj",
+      "kFJhYBhKHcs"
+    ],
     "demo-panels": [
       "21kH2N4YaB3",
       "25hTT1sZy9z",
@@ -2384,6 +2413,10 @@
     ],
     "list-cap-row": [
       "cDapI3zTOpK"
+    ],
+    "locale-label": [
+      "9attuake1Pe",
+      "bf6OvRwi8pA"
     ],
     "locale-select": [
       "1gncPob2nZB",
@@ -2582,6 +2615,18 @@
       "lj2fwwHeeVe",
       "luFq2z84Yy7",
       "zitUVG3041"
+    ],
+    "status-badge": [
+      "3tq9xRY1onw",
+      "7fEt6inrlCy",
+      "7wzDdrfpjG6",
+      "8H3ZrVbwpHb",
+      "a6JtIdTeiIO",
+      "bktve2o60Yl",
+      "cw3zb12DeNP",
+      "gD6Ox1vrWaN",
+      "h8Z8a637582",
+      "kGkNyhndxx8"
     ],
     "tag-input": [
       "i357fiwmhcp"
