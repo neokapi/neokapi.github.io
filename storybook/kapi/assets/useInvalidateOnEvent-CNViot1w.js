@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{c as t,s as n}from"./iframe-TmO4O9Mq.js";import{r,t as i}from"./useWailsEvent-BZu-lSdr.js";function a(e,n){let i=t();r(Array.isArray(e)?e:[e],()=>{for(let e of n)i.invalidateQueries({queryKey:e})})}function o(){return(o=e((()=>{n(),i()})))()}export{a as n,o as t};
