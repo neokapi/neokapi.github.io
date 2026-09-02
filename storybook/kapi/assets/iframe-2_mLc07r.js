@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-Ble0kijl.js";e();
