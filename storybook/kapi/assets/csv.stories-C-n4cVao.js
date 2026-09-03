@@ -1,0 +1,4 @@
+import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{t}from"./jsx-runtime-BdxMnOeJ.js";import{a as n,n as r}from"./schema-story-di-ttV3T.js";var i,a,o,s;function c(){return(c=e((()=>{n(),i=t(),a={title:`Formats & Tools/Formats/Data/CSV Format`,parameters:{layout:`padded`}},o={name:`Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`csv`,source:`builtIn`})},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  name: "Configuration",
+  render: () => <FormatConfig schemaName="csv" source="builtIn" />
+}`,...o.parameters?.docs?.source}}},s=[`NativeConfig`]})))()}c();export{o as NativeConfig,s as __namedExportsOrder,a as default};
