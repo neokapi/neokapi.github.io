@@ -1,0 +1,119 @@
+import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{t}from"./jsx-runtime-BdxMnOeJ.js";import{n,r,t as i}from"./runtime-CYuAyXGC.js";import{n as a,t as o}from"./createLucideIcon-CtyWoxkE.js";import{c as s,o as c,t as l,u}from"./src-4NHhGYfU.js";import{n as d,t as f}from"./database-C5TF_b7D.js";import{n as p,t as m}from"./folder-open-Bv0A6LJO.js";import{n as h,t as g}from"./plus-Ba6HQVf6.js";import{n as _,t as v}from"./x-i7QAllnh.js";import{t as y}from"./button-IRW24Fu4.js";import{r as b,t as x}from"./SectionHeading-DzOzG1cK.js";import{o as S}from"./flows-Bf901doS.js";var C,w;function T(){return(T=e((()=>{a(),C=[[`polyline`,{points:`22 12 16 12 14 15 10 15 8 12 2 12`,key:`o97t9d`}],[`path`,{d:`M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z`,key:`oot6mr`}]],w=o(`inbox`,C)})))()}var E,D,O,k,A,j,M,N,P,F,I,L,R,z,B,V,H,U,W,G;function K(){return(K=e((()=>{r(),h(),p(),_(),d(),T(),l(),E=t(),{fn:D}=__STORYBOOK_MODULE_TEST__,O={title:`Foundations/Layout Components`,tags:[`autodocs`]},k={name:`PageHeader / Basic`,render:()=>(0,E.jsx)(b,{title:i(`h2SEFhlozx8`,`Content Memories`)})},A={name:`PageHeader / With Actions`,render:()=>(0,E.jsx)(b,{title:i(`iXjykyhq7gU`,`Project Flows`),actions:(0,E.jsxs)(E.Fragment,{children:[(0,E.jsx)(y,{variant:`outline`,size:`sm`,children:n(`l74qHBNPw3J`,`{=m0} Open File...`,{"=m0":(0,E.jsx)(m,{size:12})})}),(0,E.jsx)(y,{size:`sm`,children:n(`h8pvGgXA4vX`,`{=m0} New Flow`,{"=m0":(0,E.jsx)(g,{size:12})})})]})})},j={name:`PageHeader / With Subtitle`,render:()=>(0,E.jsx)(b,{title:i(`77pE8GyQDAW`,`AI Credentials`),subtitle:i(`5qFsAT8uBwj`,`Manage API keys for translation providers`),actions:(0,E.jsx)(y,{size:`sm`,children:n(`1Yzt4RJlQZ1`,`{=m0} Add Provider`,{"=m0":(0,E.jsx)(g,{size:12})})})})},M={name:`PageHeader / With Back Button`,render:()=>(0,E.jsx)(b,{title:i(`cvzZu70ZRh4`,`my-terms`),backButton:(0,E.jsx)(y,{variant:`ghost`,size:`icon-xs`,onClick:D(),children:(0,E.jsx)(v,{size:16})}),actions:(0,E.jsx)(y,{variant:`outline`,size:`sm`,children:i(`ahAQoBTQJwR`,`Export`)})})},N={name:`SectionHeading / Basic`,render:()=>(0,E.jsx)(x,{icon:(0,E.jsx)(f,{size:14}),children:i(`2INqLDgslXz`,`Languages`)})},P={name:`SectionHeading / With Count`,render:()=>(0,E.jsx)(x,{icon:(0,E.jsx)(w,{size:14}),count:12,children:i(`exPRu7QUVDY`,`Plugins`)})},F={name:`EmptyState / Basic`,render:()=>(0,E.jsx)(`div`,{style:{maxWidth:500},children:(0,E.jsx)(S,{title:i(`gLmhL3v1liq`,`No flows yet`),description:i(`pWeSk0iEdY`,`Create a flow to start processing files.`)})})},I={name:`EmptyState / With Icon`,render:()=>(0,E.jsx)(`div`,{style:{maxWidth:500},children:(0,E.jsx)(S,{icon:(0,E.jsx)(f,{size:32}),title:i(`15NSp90k1Zf`,`No content memories`),description:i(`1k9ysOl7gdp`,`Create a content memory to get started.`),action:(0,E.jsx)(y,{size:`sm`,children:n(`dNeh03pDNpo`,`{=m0} New memory`,{"=m0":(0,E.jsx)(g,{size:12})})})})})},L={name:`EmptyState / With Action`,render:()=>(0,E.jsx)(`div`,{style:{maxWidth:500},children:(0,E.jsx)(S,{icon:(0,E.jsx)(w,{size:32}),title:i(`3say9JD3o4j`,`No projects open`),description:i(`2mg6pGyCpn5`,`Open an existing project or create a new one.`),action:(0,E.jsxs)(`div`,{className:`flex gap-2 justify-center`,children:[(0,E.jsx)(y,{variant:`outline`,size:`sm`,children:n(`9FClokwbb7d`,`{=m0} Open...`,{"=m0":(0,E.jsx)(m,{size:12})})}),(0,E.jsx)(y,{size:`sm`,children:n(`8f4cRuI2Or4`,`{=m0} New Project`,{"=m0":(0,E.jsx)(g,{size:12})})})]})})})},R={name:`SkeletonCard / Default`,render:()=>(0,E.jsxs)(`div`,{className:`grid grid-cols-2 gap-3`,style:{maxWidth:500},children:[(0,E.jsx)(c,{}),(0,E.jsx)(c,{}),(0,E.jsx)(c,{})]})},z={name:`SkeletonCard / Line Variants`,render:()=>(0,E.jsxs)(`div`,{className:`space-y-3`,style:{maxWidth:300},children:[(0,E.jsx)(c,{lines:2}),(0,E.jsx)(c,{lines:3}),(0,E.jsx)(c,{lines:5})]})},B={name:`PanelHeader / Basic`,render:()=>(0,E.jsxs)(`div`,{className:`w-80 border border-border rounded-lg overflow-hidden`,children:[(0,E.jsx)(u,{title:i(`2S3vlhhG18W`,`Configuration`)}),(0,E.jsx)(`div`,{className:`p-3 text-xs text-muted-foreground`,children:i(`5WwacDI7US1`,`Panel content here...`)})]})},V={name:`PanelHeader / With Actions`,render:()=>(0,E.jsxs)(`div`,{className:`w-80 border border-border rounded-lg overflow-hidden`,children:[(0,E.jsx)(u,{title:i(`iDhGwhCTenw`,`Part Inspector`),actions:(0,E.jsx)(y,{variant:`ghost`,size:`icon-xs`,onClick:D(),children:(0,E.jsx)(v,{size:12})})}),(0,E.jsx)(`div`,{className:`p-3 text-xs text-muted-foreground`,children:i(`deyMW4wy53K`,`Inspector content...`)})]})},H={name:`PanelHeader / With Custom Content`,render:()=>(0,E.jsxs)(`div`,{className:`w-96 border border-border rounded-lg overflow-hidden`,children:[(0,E.jsx)(u,{children:n(`agFnmwoXSZ5`,`{=m0}Preview{/=m0} {=m1}source.json{/=m1}`,{"=m0":(0,E.jsx)(`span`,{className:`text-xs font-semibold text-muted-foreground`,children:`Preview`}),"=m1":(0,E.jsx)(`span`,{className:`text-[10px] text-muted-foreground`,children:`source.json`})})}),(0,E.jsx)(`div`,{className:`p-3 text-xs text-muted-foreground`,children:i(`684TofziOUx`,`Preview content...`)})]})},U={name:`LoadingSpinner / Sizes`,render:()=>(0,E.jsxs)(`div`,{className:`space-y-4 p-4`,children:[(0,E.jsx)(s,{size:`sm`,text:`Loading...`}),(0,E.jsx)(s,{size:`md`,text:`Loading tools...`}),(0,E.jsx)(s,{size:`lg`,text:`Initializing...`})]})},W={name:`LoadingSpinner / No Text`,render:()=>(0,E.jsxs)(`div`,{className:`flex gap-6 p-4`,children:[(0,E.jsx)(s,{size:`sm`}),(0,E.jsx)(s,{size:`md`}),(0,E.jsx)(s,{size:`lg`})]})},k.parameters={...k.parameters,docs:{...k.parameters?.docs,source:{originalSource:`{
+  name: "PageHeader / Basic",
+  render: () => <PageHeader title="Content Memories" />
+}`,...k.parameters?.docs?.source}}},A.parameters={...A.parameters,docs:{...A.parameters?.docs,source:{originalSource:`{
+  name: "PageHeader / With Actions",
+  render: () => <PageHeader title="Project Flows" actions={<>
+          <Button variant="outline" size="sm">
+            <FolderOpen size={12} /> Open File...
+          </Button>
+          <Button size="sm">
+            <Plus size={12} /> New Flow
+          </Button>
+        </>} />
+}`,...A.parameters?.docs?.source}}},j.parameters={...j.parameters,docs:{...j.parameters?.docs,source:{originalSource:`{
+  name: "PageHeader / With Subtitle",
+  render: () => <PageHeader title="AI Credentials" subtitle="Manage API keys for translation providers" actions={<Button size="sm">
+          <Plus size={12} /> Add Provider
+        </Button>} />
+}`,...j.parameters?.docs?.source}}},M.parameters={...M.parameters,docs:{...M.parameters?.docs,source:{originalSource:`{
+  name: "PageHeader / With Back Button",
+  render: () => <PageHeader title="my-terms" backButton={<Button variant="ghost" size="icon-xs" onClick={fn()}>
+          <X size={16} />
+        </Button>} actions={<Button variant="outline" size="sm">
+          Export
+        </Button>} />
+}`,...M.parameters?.docs?.source}}},N.parameters={...N.parameters,docs:{...N.parameters?.docs,source:{originalSource:`{
+  name: "SectionHeading / Basic",
+  render: () => <SectionHeading icon={<Database size={14} />}>Languages</SectionHeading>
+}`,...N.parameters?.docs?.source}}},P.parameters={...P.parameters,docs:{...P.parameters?.docs,source:{originalSource:`{
+  name: "SectionHeading / With Count",
+  render: () => <SectionHeading icon={<Inbox size={14} />} count={12}>
+      Plugins
+    </SectionHeading>
+}`,...P.parameters?.docs?.source}}},F.parameters={...F.parameters,docs:{...F.parameters?.docs,source:{originalSource:`{
+  name: "EmptyState / Basic",
+  render: () => <div style={{
+    maxWidth: 500
+  }}>
+      <EmptyState title="No flows yet" description="Create a flow to start processing files." />
+    </div>
+}`,...F.parameters?.docs?.source}}},I.parameters={...I.parameters,docs:{...I.parameters?.docs,source:{originalSource:`{
+  name: "EmptyState / With Icon",
+  render: () => <div style={{
+    maxWidth: 500
+  }}>
+      <EmptyState icon={<Database size={32} />} title="No content memories" description="Create a content memory to get started." action={<Button size="sm">
+            <Plus size={12} /> New memory
+          </Button>} />
+    </div>
+}`,...I.parameters?.docs?.source}}},L.parameters={...L.parameters,docs:{...L.parameters?.docs,source:{originalSource:`{
+  name: "EmptyState / With Action",
+  render: () => <div style={{
+    maxWidth: 500
+  }}>
+      <EmptyState icon={<Inbox size={32} />} title="No projects open" description="Open an existing project or create a new one." action={<div className="flex gap-2 justify-center">
+            <Button variant="outline" size="sm">
+              <FolderOpen size={12} /> Open...
+            </Button>
+            <Button size="sm">
+              <Plus size={12} /> New Project
+            </Button>
+          </div>} />
+    </div>
+}`,...L.parameters?.docs?.source}}},R.parameters={...R.parameters,docs:{...R.parameters?.docs,source:{originalSource:`{
+  name: "SkeletonCard / Default",
+  render: () => <div className="grid grid-cols-2 gap-3" style={{
+    maxWidth: 500
+  }}>
+      <SkeletonCard />
+      <SkeletonCard />
+      <SkeletonCard />
+    </div>
+}`,...R.parameters?.docs?.source}}},z.parameters={...z.parameters,docs:{...z.parameters?.docs,source:{originalSource:`{
+  name: "SkeletonCard / Line Variants",
+  render: () => <div className="space-y-3" style={{
+    maxWidth: 300
+  }}>
+      <SkeletonCard lines={2} />
+      <SkeletonCard lines={3} />
+      <SkeletonCard lines={5} />
+    </div>
+}`,...z.parameters?.docs?.source}}},B.parameters={...B.parameters,docs:{...B.parameters?.docs,source:{originalSource:`{
+  name: "PanelHeader / Basic",
+  render: () => <div className="w-80 border border-border rounded-lg overflow-hidden">
+      <PanelHeader title="Configuration" />
+      <div className="p-3 text-xs text-muted-foreground">Panel content here...</div>
+    </div>
+}`,...B.parameters?.docs?.source}}},V.parameters={...V.parameters,docs:{...V.parameters?.docs,source:{originalSource:`{
+  name: "PanelHeader / With Actions",
+  render: () => <div className="w-80 border border-border rounded-lg overflow-hidden">
+      <PanelHeader title="Part Inspector" actions={<Button variant="ghost" size="icon-xs" onClick={fn()}>
+            <X size={12} />
+          </Button>} />
+      <div className="p-3 text-xs text-muted-foreground">Inspector content...</div>
+    </div>
+}`,...V.parameters?.docs?.source}}},H.parameters={...H.parameters,docs:{...H.parameters?.docs,source:{originalSource:`{
+  name: "PanelHeader / With Custom Content",
+  render: () => <div className="w-96 border border-border rounded-lg overflow-hidden">
+      <PanelHeader>
+        <span className="text-xs font-semibold text-muted-foreground">Preview</span>
+        <span className="text-[10px] text-muted-foreground">source.json</span>
+      </PanelHeader>
+      <div className="p-3 text-xs text-muted-foreground">Preview content...</div>
+    </div>
+}`,...H.parameters?.docs?.source}}},U.parameters={...U.parameters,docs:{...U.parameters?.docs,source:{originalSource:`{
+  name: "LoadingSpinner / Sizes",
+  render: () => <div className="space-y-4 p-4">
+      <LoadingSpinner size="sm" text="Loading..." />
+      <LoadingSpinner size="md" text="Loading tools..." />
+      <LoadingSpinner size="lg" text="Initializing..." />
+    </div>
+}`,...U.parameters?.docs?.source}}},W.parameters={...W.parameters,docs:{...W.parameters?.docs,source:{originalSource:`{
+  name: "LoadingSpinner / No Text",
+  render: () => <div className="flex gap-6 p-4">
+      <LoadingSpinner size="sm" />
+      <LoadingSpinner size="md" />
+      <LoadingSpinner size="lg" />
+    </div>
+}`,...W.parameters?.docs?.source}}},G=[`PageHeaderBasic`,`PageHeaderWithActions`,`PageHeaderWithSubtitle`,`PageHeaderWithBackButton`,`SectionHeadingBasic`,`SectionHeadingWithCount`,`EmptyStateBasic`,`EmptyStateWithIcon`,`EmptyStateWithAction`,`SkeletonCardDefault`,`SkeletonCardVariants`,`PanelHeaderBasic`,`PanelHeaderWithActions`,`PanelHeaderWithChildren`,`LoadingSpinnerSizes`,`LoadingSpinnerNoText`]})))()}K();export{F as EmptyStateBasic,L as EmptyStateWithAction,I as EmptyStateWithIcon,W as LoadingSpinnerNoText,U as LoadingSpinnerSizes,k as PageHeaderBasic,A as PageHeaderWithActions,M as PageHeaderWithBackButton,j as PageHeaderWithSubtitle,B as PanelHeaderBasic,V as PanelHeaderWithActions,H as PanelHeaderWithChildren,N as SectionHeadingBasic,P as SectionHeadingWithCount,R as SkeletonCardDefault,z as SkeletonCardVariants,G as __namedExportsOrder,O as default};
