@@ -1,9 +1,0 @@
-import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./jsx-runtime-CadfrxEJ.js";import{D as n,O as r}from"./attachment-D_zWzs94.js";import{n as i,t as a}from"./useExternalStoreRuntime-Ckl7d6T7.js";import{n as o,t as s}from"./thread-C5QJN7Eq.js";import{a as c,i as l,n as u,r as d,t as f}from"./fixtures-aui-C_xDMyHW.js";function p({messages:e=[],isRunning:t=!1}){let r=i({messages:e,isRunning:t,convertMessage:e=>e,onNew:async()=>{},onCancel:async()=>{}});return(0,m.jsx)(n,{runtime:r,children:(0,m.jsx)(`div`,{className:`h-[500px] w-[400px] border rounded-lg overflow-hidden flex flex-col bg-background text-foreground`,children:(0,m.jsx)(s,{})})})}var m,h,g,_,v,y,b;function x(){return(x=e((()=>{a(),r(),o(),f(),m=t(),h={title:`Bravo/Assistant UI/Thread`,tags:[`autodocs`],parameters:{layout:`centered`}},g={render:()=>(0,m.jsx)(p,{})},_={render:()=>(0,m.jsx)(p,{messages:d})},v={render:()=>(0,m.jsx)(p,{messages:l,isRunning:!0})},y={render:()=>(0,m.jsx)(p,{messages:[c,u]})},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime />
-}`,...g.parameters?.docs?.source}}},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime messages={sampleAuiMessages} />
-}`,..._.parameters?.docs?.source}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime messages={sampleAuiStreamingMessages} isRunning />
-}`,...v.parameters?.docs?.source}}},y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`{
-  render: () => <ThreadWithRuntime messages={[sampleAuiUserMessage, sampleAuiMarkdownMessage]} />
-}`,...y.parameters?.docs?.source}}},b=[`Empty`,`WithMessages`,`Streaming`,`RichMarkdown`]})))()}x();export{g as Empty,y as RichMarkdown,v as Streaming,_ as WithMessages,b as __namedExportsOrder,h as default};
