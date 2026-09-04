@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";function t(e){return(e??[]).map(e=>({value:e.id,label:e.name}))}var n;function r(){return(r=e((()=>{n=`voice_profile_id`})))()}export{r as n,t as r,n as t};
