@@ -1,0 +1,9 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{Mn as t,Nn as n}from"./iframe-1HUfCll6.js";import{n as r,t as i}from"./decorators-C1mqBWpt.js";var a,o,s,c,l,u,d;function f(){return(f=e((()=>{n(),r(),{fn:a}=__STORYBOOK_MODULE_TEST__,o=new Date(0).toISOString(),s=[{id:`sp-1`,workspace_id:`ws`,project_id:`proj-1`,stream:`main`,item_name:`ui.json`,block_id:`b1`,kind:`text-fix`,original_source:`Colour picker`,proposed_source:`Color picker`,rationale:`House style is US English.`,found_in_locale:`fr-FR`,finder_user:`reviewer-1`,status:`open`,created_at:o,updated_at:o},{id:`sp-2`,workspace_id:`ws`,project_id:`proj-1`,item_name:`marketing.json`,block_id:`b7`,kind:`mark-dnt`,original_source:`kubectl`,proposed_source:`kubectl`,found_in_locale:`de-DE`,status:`open`,created_at:o,updated_at:o}],c={title:`Review/SourceProposalsDialog`,component:t,args:{open:!0,onOpenChange:a(),projectId:`proj-1`,localeName:e=>e===`fr-FR`?`French`:e===`de-DE`?`German`:e,onDone:a()}},l={decorators:[i(void 0,{listSourceProposals:async()=>s})]},u={decorators:[i(void 0,{listSourceProposals:async()=>[]})]},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  decorators: [createProvidersDecorator(undefined, {
+    listSourceProposals: async () => sampleProposals
+  })]
+}`,...l.parameters?.docs?.source},description:{story:`A source owner reviewing two open proposals.`,...l.parameters?.docs?.description}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  decorators: [createProvidersDecorator(undefined, {
+    listSourceProposals: async () => []
+  })]
+}`,...u.parameters?.docs?.source},description:{story:`Nothing to review.`,...u.parameters?.docs?.description}}},d=[`WithProposals`,`Empty`]})))()}f();export{u as Empty,l as WithProposals,d as __namedExportsOrder,c as default};
