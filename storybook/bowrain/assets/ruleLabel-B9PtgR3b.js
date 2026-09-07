@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";function t(e,t,r){if(e){let r=t?.[e];if(r)return r;if(e.startsWith(n))return e.slice(8)}return r||e||``}var n;function r(){return(r=e((()=>{n=`builtin:`})))()}export{t as n,r as t};
