@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-pages plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Content context lab | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/content-lab"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" property="og:title" content="Content context lab | neokapi"><meta data-rh="true" name="description" content="Compare recorded audience checks, inspect shared constraints and see what still needs factual review."><meta data-rh="true" property="og:description" content="Compare recorded audience checks, inspect shared constraints and see what still needs factual review."><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/content-lab"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/content-lab" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/content-lab" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/content-lab" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/content-lab" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.464333f9.css">
+<script src="/assets/js/runtime~main.c16ed347.js" defer="defer"></script>
+<script src="/assets/js/main.e1203651.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/img/logo.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_WmD6" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.png" alt="neokapi" class="themedComponent_wbKQ themedComponent--light_jlwr"><img src="/img/logo.png" alt="neokapi" class="themedComponent_wbKQ themedComponent--dark_D5UJ"></div><b class="navbar__title text--truncate">neokapi</b></a><a class="navbar__item navbar__link" href="/kapi/overview">Kapi</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Labs</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/labs">Labs overview</a></li><li><a class="dropdown__link" href="/lab">Content Model Workspace</a></li><li><a class="dropdown__link" href="/lab/segmentation">Segmentation</a></li><li><a class="dropdown__link" href="/lab/convert">File Conversion</a></li><li><a class="dropdown__link" href="/lab/structure">Structure &amp; Layout</a></li><li><a class="dropdown__link" href="/lab/vision">Vision</a></li><li><a class="dropdown__link" href="/lab/media">Audio &amp; Video</a></li><li><a class="dropdown__link" href="/playground-cli">CLI Playground</a></li><li><a class="dropdown__link" href="/kbf-lab">KBF Anatomy</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Reference</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/reference">Reference Overview</a></li><li><a class="dropdown__link" href="/commands">Kapi CLI Commands</a></li><li><a class="dropdown__link" href="/formats">Formats</a></li><li><a class="dropdown__link" href="/tools">Tools</a></li><li><a class="dropdown__link" href="/models">AI Models</a></li><li><a class="dropdown__link" href="/reference/project-file">Project file</a></li><li><a class="dropdown__link" href="/reference/serialization/overview">kapi serialization formats</a></li><li><a class="dropdown__link" href="/reference/mcp">MCP Server</a></li><li><a class="dropdown__link" href="/reference/cli-contract">Scripting &amp; JSON contract</a></li><li><a class="dropdown__link" href="/reference/engine-service">Engine service (gRPC)</a></li><li><a class="dropdown__link" href="/reference/telemetry">Telemetry</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Toolbox</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/toolbox/overview">CLI tools</a></li><li><a class="dropdown__link" href="/react/introduction">neokapi-i18n</a></li></ul></div><a class="navbar__item navbar__link" href="/framework/architecture">Framework</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link navbar-locale-icon"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_Lw9k"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/content-lab" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/nb/content-lab" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="nb">Norsk (bokmål)</a></li><li><a href="/qps/content-lab" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">Þšéüđö Éñĝļîšĥ</a></li></ul></div><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub repository"></a><div class="toggle_IPLv colorModeToggle_KrYI"><button class="clean-btn toggleButton_hVnx toggleButtonDisabled_kmUe" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_FAva lightToggleIcon_frLN"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_FAva darkToggleIcon_fLy3"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_FAva systemToggleIcon_kwTI"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_R3Ot"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_Xz0H"><main class="lab_ktSl"><header class="hero_zFdU"><p class="kicker_TX1z">Content context lab</p><h1>Different readers.<br>The same service facts.</h1><p>Explore how shared constraints survive audience-specific presentation. Inspect the recorded checks, their provenance and the limits of what they establish.</p></header><nav class="viewNav_OY4F" aria-label="Content lab views"><button type="button" aria-pressed="true">Recorded checks</button><button type="button" aria-pressed="false">Decision and scope</button><button type="button" aria-pressed="false">Product relationships</button></nav><section aria-labelledby="recorded-heading"><div class="sectionHeading_Lxj0"><div><p class="kicker_TX1z">One profile · four reading situations</p><h2 id="recorded-heading">Change the audience. Keep the constraint.</h2></div><span class="badge_PUIq">Recorded playback</span></div><div class="controls_cBPu"><label>Audience<select aria-label="Audience"><option value="child" selected="">Child</option><option value="teen">Teen</option><option value="adult">Adult</option><option value="older-adult">Older adult</option></select></label><div><span class="controlLabel_HxuV">Paragraph</span><div class="switcher_zQWK" aria-label="Recorded paragraph cases"><button type="button" aria-pressed="false">Original</button><button type="button" aria-pressed="true">Violation</button><button type="button" aria-pressed="false">Repair</button><button type="button" aria-pressed="false">False facts</button></div></div></div><p class="reader_PvcE"><strong>Child<!-- -->:</strong> <!-- -->Reading with a trusted adult. Familiar words and one step at a time.</p><div aria-live="polite" aria-atomic="true" class="srOnly_I3ha">Child<!-- -->, <!-- -->Violation<!-- -->.<!-- --> <!-- -->1 constraint findings. Exit 3.</div><div class="comparison_zM0Z"><article class="panel_L1m8"><p class="kicker_TX1z">Recorded input</p><h3>Talk to us on a screen</h3><p class="caption_BKxf">A prohibited assurance is inserted into the same file.</p><blockquote class="paragraph_JfiE">A video appointment is risk-free.</blockquote><p class="file_mvmq">site/locales/en/child.json</p></article><article class="panel_L1m8"><p class="kicker_TX1z">Recorded result</p><h3 class="resultFail_zMi3">Configured gate failed</h3><div class="metrics_WG0p"><div><strong>1</strong><span>constraint findings</span></div><div><strong>1</strong><span>all findings</span></div><div><strong>3</strong><span>process exit</span></div></div><p>The exact wording rule detected the assurance, even with this audience’s presentation overrides.</p><div class="boundary_KelU"><strong>Factual guidance:<!-- --> <!-- -->unsupported</strong><p>Appointments, consent and device access still require human or semantic review. A passing wording check does not verify these facts.</p></div></article></div><div class="constraintGrid_VqRi"><article class="constraint_oCCF"><p class="kicker_TX1z">Deterministic constraint · <!-- -->applicable</p><h3>Do not describe the service as guaranteed, always safe or risk-free.</h3><code>(?i)\b(guarantee|always safe|risk-free)\b</code><p class="caption_BKxf">Literal RE2 pattern matching. No synonym search or factual inference.</p></article><article class="constraint_oCCF"><p class="kicker_TX1z">Shared factual guidance · <!-- -->applicable</p><p>Appointments are not recorded. Screen sharing requires consent and can be stopped. The adviser cannot control the device or open its files.</p><p class="caption_BKxf">Visible in the writer’s context. Semantic verification remains outside this deterministic run.</p></article></div><div class="details_lQl3"><details class="detail_SAJe"><summary>Source and resolved context</summary><pre>{
+  &quot;input&quot;: {
+    &quot;audience&quot;: &quot;Children&quot;,
+    &quot;eyebrow&quot;: &quot;Harbor Help&quot;,
+    &quot;title&quot;: &quot;Talk to us on a screen&quot;,
+    &quot;intro&quot;: &quot;A video appointment is a time when you can talk with a Harbor Help adviser on a screen.&quot;,
+    &quot;fact_title&quot;: &quot;What is the same for everyone&quot;,
+    &quot;fact_body&quot;: &quot;A video appointment is risk-free.&quot;,
+    &quot;privacy_title&quot;: &quot;Keep your information safe&quot;,
+    &quot;privacy_body&quot;: &quot;We will not ask for your password or bank details. Ask a trusted adult if you are unsure.&quot;,
+    &quot;action&quot;: &quot;Ask a trusted adult to book a video appointment with you.&quot;,
+    &quot;support&quot;: &quot;A grown-up can call the support line if you need help.&quot;
+  },
+  &quot;inputSha256&quot;: &quot;387fda81a4f4a9b8b8bc1624a1bfb50a17eef93b7064d024db4407ea3e517446&quot;,
+  &quot;context&quot;: {
+    &quot;constraints&quot;: [
+      {
+        &quot;constraint&quot;: {
+          &quot;id&quot;: &quot;harbor-help/no-unsupported-assurance&quot;,
+          &quot;version&quot;: 1,
+          &quot;source&quot;: &quot;service-facts.md#assurances&quot;,
+          &quot;statement&quot;: &quot;Do not describe the service as guaranteed, always safe or risk-free.&quot;,
+          &quot;kind&quot;: &quot;prohibited_pattern&quot;,
+          &quot;regex&quot;: &quot;(?i)\\b(guarantee|always safe|risk-free)\\b&quot;,
+          &quot;exceptions&quot;: [
+            {
+              &quot;scope&quot;: {
+                &quot;channel&quot;: &quot;policy-example&quot;
+              },
+              &quot;reason&quot;: &quot;A reviewed policy example quotes the prohibited wording.&quot;,
+              &quot;approved_by&quot;: &quot;fixture-author&quot;,
+              &quot;approval_ref&quot;: &quot;service-facts.md#fixture-exception&quot;
+            }
+          ]
+        },
+        &quot;status&quot;: &quot;applicable&quot;
+      },
+      {
+        &quot;constraint&quot;: {
+          &quot;id&quot;: &quot;harbor-help/recording-and-control&quot;,
+          &quot;version&quot;: 1,
+          &quot;source&quot;: &quot;service-facts.md#recording-and-control&quot;,
+          &quot;statement&quot;: &quot;Appointments are not recorded. Screen sharing requires consent and can be stopped. The adviser cannot control the device or open its files.&quot;,
+          &quot;kind&quot;: &quot;guidance&quot;
+        },
+        &quot;status&quot;: &quot;applicable&quot;
+      }
+    ],
+    &quot;point&quot;: {
+      &quot;path&quot;: &quot;site/locales/en/child.json&quot;,
+      &quot;profile&quot;: &quot;harbor-help&quot;,
+      &quot;channel&quot;: &quot;child&quot;,
+      &quot;collection&quot;: &quot;child-page&quot;,
+      &quot;ref&quot;: &quot;harbor-help/child&quot;,
+      &quot;coordinates&quot;: {
+        &quot;audience&quot;: &quot;child&quot;,
+        &quot;channel&quot;: &quot;child&quot;,
+        &quot;product&quot;: &quot;harbor-help&quot;,
+        &quot;service&quot;: &quot;harbor-help&quot;,
+        &quot;topic&quot;: &quot;video-appointments&quot;
+      },
+      &quot;default&quot;: false
+    },
+    &quot;scope&quot;: &quot;project&quot;,
+    &quot;voice&quot;: {
+      &quot;name&quot;: &quot;Harbor Help&quot;,
+      &quot;source&quot;: &quot;.kapi/voice.yaml&quot;,
+      &quot;field&quot;: &quot;profiles.harbor-help.voice&quot;,
+      &quot;guide&quot;: &quot;# Voice Guide: Harbor Help\n\nHarbor Help explains how to get practical support. The facts stay the same for every reader; the explanation changes only to meet the reader where they are.\n\n## Shared constraints\nharbor-help/no-unsupported-assurance v1 (service-facts.md#assurances): Do not describe the service as guaranteed, always safe or risk-free. [mandatory critical pattern: (?i)\\b(guarantee|always safe|risk-free)\\b]\nharbor-help/recording-and-control v1 (service-facts.md#recording-and-control): Appointments are not recorded. Screen sharing requires consent and can be stopped. The adviser cannot control the device or open its files. [guidance; semantic verification unsupported by deterministic checks]\n\n## Tone\n- Personality: kind, clear, calm\n- Formality: informal\n- Emotion: reassuring\n- Humor: none\n- Guidelines: Use familiar words and explain one idea at a time. Tell the reader to ask a trusted adult for help with an appointment. Do not ask the reader to make an adult decision.\n\n## Style Rules\n- Use active voice\n- Sentence length: short\n- Point of view: second\n- Contractions: never\n\n## Vocabulary\n### Preferred Terms\n- **video appointment**: The service name for a scheduled conversation with an adviser.\n- **support line**: The non-emergency phone route to a person.\n- **Harbor Help**: Product name. Keep its spelling in every language.\n\n### Forbidden Terms\n- ~~video call~~ → use **video appointment**: Use the service term consistently.\n\n&quot;
+    },
+    &quot;terms&quot;: [
+      {
+        &quot;concept_id&quot;: &quot;term:harbor-help&quot;,
+        &quot;term&quot;: &quot;Harbor Help&quot;,
+        &quot;locale&quot;: &quot;en&quot;,
+        &quot;status&quot;: &quot;preferred&quot;,
+        &quot;definition&quot;: &quot;The fictional public-information service in this sample. It is a name and is never translated.&quot;,
+        &quot;domain&quot;: &quot;product&quot;,
+        &quot;discouraged&quot;: false
+      },
+      {
+        &quot;concept_id&quot;: &quot;term:harbor-help&quot;,
+        &quot;term&quot;: &quot;Harbor Help&quot;,
+        &quot;locale&quot;: &quot;nb&quot;,
+        &quot;status&quot;: &quot;preferred&quot;,
+        &quot;definition&quot;: &quot;The fictional public-information service in this sample. It is a name and is never translated.&quot;,
+        &quot;domain&quot;: &quot;product&quot;,
+        &quot;discouraged&quot;: false
+      },
+      {
+        &quot;concept_id&quot;: &quot;term:support-line&quot;,
+        &quot;term&quot;: &quot;hjelpetelefon&quot;,
+        &quot;locale&quot;: &quot;nb&quot;,
+        &quot;status&quot;: &quot;preferred&quot;,
+        &quot;definition&quot;: &quot;The phone service that helps a person use Harbor Help. It is not an emergency number.&quot;,
+        &quot;domain&quot;: &quot;service&quot;,
+        &quot;discouraged&quot;: false
+      },
+      {
+        &quot;concept_id&quot;: &quot;term:support-line&quot;,
+        &quot;term&quot;: &quot;support line&quot;,
+        &quot;locale&quot;: &quot;en&quot;,
+        &quot;status&quot;: &quot;preferred&quot;,
+        &quot;definition&quot;: &quot;The phone service that helps a person use Harbor Help. It is not an emergency number.&quot;,
+        &quot;domain&quot;: &quot;service&quot;,
+        &quot;discouraged&quot;: false
+      },
+      {
+        &quot;concept_id&quot;: &quot;term:video-appointment&quot;,
+        &quot;term&quot;: &quot;video appointment&quot;,
+        &quot;locale&quot;: &quot;en&quot;,
+        &quot;status&quot;: &quot;preferred&quot;,
+        &quot;definition&quot;: &quot;A scheduled conversation with a Harbor Help adviser over video. It is not a recording and it does not give the service access to a person&#x27;s device.&quot;,
+        &quot;domain&quot;: &quot;service&quot;,
+        &quot;discouraged&quot;: false
+      },
+      {
+        &quot;concept_id&quot;: &quot;term:video-appointment&quot;,
+        &quot;term&quot;: &quot;videomøte&quot;,
+        &quot;locale&quot;: &quot;nb&quot;,
+        &quot;status&quot;: &quot;preferred&quot;,
+        &quot;definition&quot;: &quot;A scheduled conversation with a Harbor Help adviser over video. It is not a recording and it does not give the service access to a person&#x27;s device.&quot;,
+        &quot;domain&quot;: &quot;service&quot;,
+        &quot;discouraged&quot;: false
+      }
+    ],
+    &quot;terms_total&quot;: 6,
+    &quot;notes&quot;: [
+      &quot;project scope: concept relations, revisions and market scoping live in a connected workspace&quot;
+    ]
+  }
+}</pre></details><details class="detail_SAJe"><summary>Raw check report and command</summary><pre>{
+  &quot;command&quot;: [
+    &quot;check&quot;,
+    &quot;site/locales/en/child.json&quot;,
+    &quot;--json&quot;,
+    &quot;-p&quot;,
+    &quot;kapi.yaml&quot;
+  ],
+  &quot;exitCode&quot;: 3,
+  &quot;report&quot;: {
+    &quot;schema&quot;: &quot;kapi.check/v1&quot;,
+    &quot;pass&quot;: false,
+    &quot;target&quot;: {
+      &quot;kind&quot;: &quot;file&quot;,
+      &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+      &quot;blocks&quot;: 10
+    },
+    &quot;summary&quot;: {
+      &quot;findings&quot;: 1,
+      &quot;critical&quot;: 1,
+      &quot;major&quot;: 0,
+      &quot;minor&quot;: 0,
+      &quot;neutral&quot;: 0,
+      &quot;score&quot;: 75
+    },
+    &quot;gate&quot;: {
+      &quot;max_critical&quot;: 0,
+      &quot;max_major&quot;: -1,
+      &quot;max_minor&quot;: -1,
+      &quot;min_score&quot;: 0,
+      &quot;failed&quot;: [
+        &quot;critical findings 1 exceed limit 0&quot;
+      ]
+    },
+    &quot;findings&quot;: [
+      {
+        &quot;rule&quot;: &quot;voice.style&quot;,
+        &quot;check&quot;: &quot;voice&quot;,
+        &quot;severity&quot;: &quot;critical&quot;,
+        &quot;message&quot;: &quot;Prohibited pattern: Do not describe the service as guaranteed, always safe or risk-free.&quot;,
+        &quot;location&quot;: {
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;block&quot;: &quot;fact_body&quot;,
+          &quot;anchor&quot;: {
+            &quot;kind&quot;: &quot;range&quot;,
+            &quot;start&quot;: {
+              &quot;run&quot;: 0,
+              &quot;offset&quot;: 23
+            },
+            &quot;end&quot;: {
+              &quot;run&quot;: 0,
+              &quot;offset&quot;: 32
+            }
+          },
+          &quot;snippet&quot;: &quot;risk-free&quot;
+        },
+        &quot;metadata&quot;: {
+          &quot;constraint_id&quot;: &quot;harbor-help/no-unsupported-assurance&quot;,
+          &quot;constraint_source&quot;: &quot;service-facts.md#assurances&quot;,
+          &quot;constraint_version&quot;: &quot;1&quot;,
+          &quot;pattern&quot;: &quot;(?i)\\b(guarantee|always safe|risk-free)\\b&quot;
+        }
+      }
+    ],
+    &quot;execution&quot;: {
+      &quot;analyzers&quot;: [
+        {
+          &quot;id&quot;: &quot;reader.validation&quot;,
+          &quot;status&quot;: &quot;not_requested&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: false,
+          &quot;findings&quot;: 0,
+          &quot;reason&quot;: &quot;Reader validation was not requested.&quot;
+        },
+        {
+          &quot;id&quot;: &quot;hygiene&quot;,
+          &quot;status&quot;: &quot;passed&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: true,
+          &quot;findings&quot;: 0,
+          &quot;duration_ms&quot;: 0.083166
+        },
+        {
+          &quot;id&quot;: &quot;length&quot;,
+          &quot;status&quot;: &quot;not_requested&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: false,
+          &quot;findings&quot;: 0,
+          &quot;reason&quot;: &quot;No length limit was configured.&quot;
+        },
+        {
+          &quot;id&quot;: &quot;pattern&quot;,
+          &quot;status&quot;: &quot;not_requested&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: false,
+          &quot;findings&quot;: 0,
+          &quot;reason&quot;: &quot;No explicit patterns were configured.&quot;
+        },
+        {
+          &quot;id&quot;: &quot;voice.rules&quot;,
+          &quot;status&quot;: &quot;findings&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: true,
+          &quot;findings&quot;: 1,
+          &quot;duration_ms&quot;: 0.3035
+        },
+        {
+          &quot;id&quot;: &quot;voice.guidance&quot;,
+          &quot;status&quot;: &quot;unsupported&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: false,
+          &quot;findings&quot;: 0,
+          &quot;reason&quot;: &quot;Applicable guidance requires semantic analysis; deterministic rules do not assess it.&quot;
+        },
+        {
+          &quot;id&quot;: &quot;voice.similarity&quot;,
+          &quot;status&quot;: &quot;not_requested&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: false,
+          &quot;findings&quot;: 0,
+          &quot;reason&quot;: &quot;Similarity analysis was not requested.&quot;
+        },
+        {
+          &quot;id&quot;: &quot;voice.llm&quot;,
+          &quot;status&quot;: &quot;not_requested&quot;,
+          &quot;file&quot;: &quot;site/locales/en/child.json&quot;,
+          &quot;required&quot;: false,
+          &quot;findings&quot;: 0,
+          &quot;reason&quot;: &quot;This command does not run semantic review.&quot;
+        }
+      ],
+      &quot;timings&quot;: {
+        &quot;context_ms&quot;: 2.517125,
+        &quot;extraction_ms&quot;: 0.084959,
+        &quot;analyzers_ms&quot;: 0.386666,
+        &quot;report_ms&quot;: 0.002917,
+        &quot;total_ms&quot;: 3.304167
+      }
+    }
+  },
+  &quot;stdout&quot;: &quot;{\n  \&quot;schema\&quot;: \&quot;kapi.check/v1\&quot;,\n  \&quot;pass\&quot;: false,\n  \&quot;target\&quot;: {\n    \&quot;kind\&quot;: \&quot;file\&quot;,\n    \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n    \&quot;blocks\&quot;: 10\n  },\n  \&quot;summary\&quot;: {\n    \&quot;findings\&quot;: 1,\n    \&quot;critical\&quot;: 1,\n    \&quot;major\&quot;: 0,\n    \&quot;minor\&quot;: 0,\n    \&quot;neutral\&quot;: 0,\n    \&quot;score\&quot;: 75\n  },\n  \&quot;gate\&quot;: {\n    \&quot;max_critical\&quot;: 0,\n    \&quot;max_major\&quot;: -1,\n    \&quot;max_minor\&quot;: -1,\n    \&quot;min_score\&quot;: 0,\n    \&quot;failed\&quot;: [\n      \&quot;critical findings 1 exceed limit 0\&quot;\n    ]\n  },\n  \&quot;findings\&quot;: [\n    {\n      \&quot;rule\&quot;: \&quot;voice.style\&quot;,\n      \&quot;check\&quot;: \&quot;voice\&quot;,\n      \&quot;severity\&quot;: \&quot;critical\&quot;,\n      \&quot;message\&quot;: \&quot;Prohibited pattern: Do not describe the service as guaranteed, always safe or risk-free.\&quot;,\n      \&quot;location\&quot;: {\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;block\&quot;: \&quot;fact_body\&quot;,\n        \&quot;anchor\&quot;: {\n          \&quot;kind\&quot;: \&quot;range\&quot;,\n          \&quot;start\&quot;: {\n            \&quot;run\&quot;: 0,\n            \&quot;offset\&quot;: 23\n          },\n          \&quot;end\&quot;: {\n            \&quot;run\&quot;: 0,\n            \&quot;offset\&quot;: 32\n          }\n        },\n        \&quot;snippet\&quot;: \&quot;risk-free\&quot;\n      },\n      \&quot;metadata\&quot;: {\n        \&quot;constraint_id\&quot;: \&quot;harbor-help/no-unsupported-assurance\&quot;,\n        \&quot;constraint_source\&quot;: \&quot;service-facts.md#assurances\&quot;,\n        \&quot;constraint_version\&quot;: \&quot;1\&quot;,\n        \&quot;pattern\&quot;: \&quot;(?i)\\\\b(guarantee|always safe|risk-free)\\\\b\&quot;\n      }\n    }\n  ],\n  \&quot;execution\&quot;: {\n    \&quot;analyzers\&quot;: [\n      {\n        \&quot;id\&quot;: \&quot;reader.validation\&quot;,\n        \&quot;status\&quot;: \&quot;not_requested\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: false,\n        \&quot;findings\&quot;: 0,\n        \&quot;reason\&quot;: \&quot;Reader validation was not requested.\&quot;\n      },\n      {\n        \&quot;id\&quot;: \&quot;hygiene\&quot;,\n        \&quot;status\&quot;: \&quot;passed\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: true,\n        \&quot;findings\&quot;: 0,\n        \&quot;duration_ms\&quot;: 0.083166\n      },\n      {\n        \&quot;id\&quot;: \&quot;length\&quot;,\n        \&quot;status\&quot;: \&quot;not_requested\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: false,\n        \&quot;findings\&quot;: 0,\n        \&quot;reason\&quot;: \&quot;No length limit was configured.\&quot;\n      },\n      {\n        \&quot;id\&quot;: \&quot;pattern\&quot;,\n        \&quot;status\&quot;: \&quot;not_requested\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: false,\n        \&quot;findings\&quot;: 0,\n        \&quot;reason\&quot;: \&quot;No explicit patterns were configured.\&quot;\n      },\n      {\n        \&quot;id\&quot;: \&quot;voice.rules\&quot;,\n        \&quot;status\&quot;: \&quot;findings\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: true,\n        \&quot;findings\&quot;: 1,\n        \&quot;duration_ms\&quot;: 0.3035\n      },\n      {\n        \&quot;id\&quot;: \&quot;voice.guidance\&quot;,\n        \&quot;status\&quot;: \&quot;unsupported\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: false,\n        \&quot;findings\&quot;: 0,\n        \&quot;reason\&quot;: \&quot;Applicable guidance requires semantic analysis; deterministic rules do not assess it.\&quot;\n      },\n      {\n        \&quot;id\&quot;: \&quot;voice.similarity\&quot;,\n        \&quot;status\&quot;: \&quot;not_requested\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: false,\n        \&quot;findings\&quot;: 0,\n        \&quot;reason\&quot;: \&quot;Similarity analysis was not requested.\&quot;\n      },\n      {\n        \&quot;id\&quot;: \&quot;voice.llm\&quot;,\n        \&quot;status\&quot;: \&quot;not_requested\&quot;,\n        \&quot;file\&quot;: \&quot;site/locales/en/child.json\&quot;,\n        \&quot;required\&quot;: false,\n        \&quot;findings\&quot;: 0,\n        \&quot;reason\&quot;: \&quot;This command does not run semantic review.\&quot;\n      }\n    ],\n    \&quot;timings\&quot;: {\n      \&quot;context_ms\&quot;: 2.517125,\n      \&quot;extraction_ms\&quot;: 0.084959,\n      \&quot;analyzers_ms\&quot;: 0.386666,\n      \&quot;report_ms\&quot;: 0.002917,\n      \&quot;total_ms\&quot;: 3.304167\n    }\n  }\n}\n&quot;,
+  &quot;stderr&quot;: &quot;{\n  \&quot;error\&quot;: \&quot;quality gate failed\&quot;,\n  \&quot;code\&quot;: \&quot;gate\&quot;\n}\n&quot;
+}</pre></details></div><p class="caption_BKxf">Switching cases displays recorded input and output. It does not run the engine or a model in this browser. The repair is an authored fixture, not an automatic factual correction.</p></section><footer class="evidence_CDWv"><h2>Evidence and reproduction</h2><p>Recorded 2026-09-09. <!-- -->Offline fixture, with no paid provider or live semantic review.</p><p>Source commit<!-- --> <a href="https://github.com/neokapi/neokapi/commit/330e8bc8b714045f2b501446fa58826952cd8f63">330e8bc8b714</a>.</p><details class="detail_SAJe"><summary>Reproduce locally</summary><pre>make build
+node samples/audience-context/run.mjs --binary bin/kapi --output /tmp/audience-results.json</pre><p>The runner uses temporary project, configuration and plugin directories. Re-run it on the checked-out source to obtain new measurements.</p></details><details class="detail_SAJe"><summary>Artifact provenance and limitations</summary><pre>{
+  &quot;schema&quot;: &quot;neokapi-audience-coverage/v1&quot;,
+  &quot;recordedAt&quot;: &quot;2026-09-09T22:11:42.789Z&quot;,
+  &quot;sourceCommit&quot;: &quot;330e8bc8b714045f2b501446fa58826952cd8f63&quot;,
+  &quot;sourceDirty&quot;: false,
+  &quot;sourceDiffSha256&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+  &quot;binaryVersion&quot;: &quot;kapi version v1.2.0-rc29-249-ga7a9931e3&quot;,
+  &quot;binarySha256&quot;: &quot;65aff04c46e7020a248d84050e9b72cd8fd69a86ae66aae3cb2436b371847fc2&quot;,
+  &quot;profileSha256&quot;: &quot;7e17261e1c05bd240886332e88d189d9e8441aa8ff1c9c88f7eb991cf45ec262&quot;,
+  &quot;recipeSha256&quot;: &quot;3221c25b0097011c06a0e389ef96df7e1d6aca3b000c4f2f8664b0ea9c240787&quot;,
+  &quot;scope&quot;: &quot;Offline deterministic checks; no model, remote binding or authenticated review.&quot;,
+  &quot;limitations&quot;: [
+    &quot;Literal assurance matching does not establish factual truth.&quot;,
+    &quot;No latency benchmark or comparative productivity experiment was run.&quot;,
+    &quot;The caller must build the binary; version and hashes identify the supplied artifact.&quot;
+  ]
+}</pre></details></footer></main></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_RkRR"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-10 11:24 UTC · 6608e4a</div></div></div></footer></div>
+</body>
+</html>
