@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{n as t,t as n}from"./createLucideIcon-iQo98pAD.js";var r,i;function a(){return(a=e((()=>{t(),r={name:`git-merge`,size:24,node:[[`circle`,{cx:`18`,cy:`18`,r:`3`,key:`1xkwt0`}],[`circle`,{cx:`6`,cy:`6`,r:`3`,key:`1lh9wr`}],[`path`,{d:`M6 21V9a9 9 0 0 0 9 9`,key:`7kw0sc`}]]},r.node,i=n(r)})))()}export{a as n,i as t};
