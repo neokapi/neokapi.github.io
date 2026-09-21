@@ -50,24 +50,23 @@
     ],
     "AppHome.stories": [
       "26c3ANn8DhA",
+      "2X9JLQqx6og",
+      "2yAg0ACDBzE",
       "3b6DmR5oRh4",
+      "4P3QnTH2ev2",
       "52dSfjFIskp",
       "6HAjuBsNRkF",
-      "6p9q4D2qiob",
       "8y3Tq9MGpEk",
       "aoDGOlC4DL4",
-      "b0vjNBTQXfa",
       "bWSmauXzODn",
       "eSGjHMxhOBT",
       "fELpUeJyakp",
       "fJS5bNsdKcX",
-      "hg7XBKfK5Mo",
       "hojtwumwZb5",
+      "hz7MLfLziw0",
       "jMn7LoyxUBB",
       "kEm9k8WDmMA",
-      "kJEp3IHtyix",
       "kLsUHWUoMFl",
-      "lDrRBG5Ox8n",
       "lPWsyI4mFLZ",
       "liu9W8bhBEu"
     ],
@@ -2113,6 +2112,18 @@
       "lcNNnZoZOTZ",
       "lmGhwx5J6ip"
     ],
+    "RemoveProjectDialog": [
+      "6tmr8FgrUWA",
+      "7FIUNx2QlPF",
+      "7MXrWMe5sfL",
+      "amFKnZ9Wct3",
+      "fBJV6jcs2pp",
+      "gy5Ibkozzyc",
+      "hVp3F6mmOo9",
+      "hvoYYaDz9Kn",
+      "j1IU21fPtXx",
+      "lxMTE9eYS42"
+    ],
     "ResourceCard": [
       "grF91iGA5VF",
       "jtxPRcXCR4c"
@@ -2604,6 +2615,13 @@
     "WidgetsAndEditors.stories": [
       "1X52QQQOkdP",
       "ibnlvuTUBbm"
+    ],
+    "WorkspaceProjectRow": [
+      "7PavwA8MPVj",
+      "bb8IrjGNwX5",
+      "ckxbdsw2Hyg",
+      "iVFmSqAAfP1",
+      "lDrRBG5Ox8n"
     ],
     "_shared": [
       "3BQFXe8t7sd",
