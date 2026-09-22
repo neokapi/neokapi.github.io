@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-framework/checks/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Checks | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/framework/checks"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Checks | neokapi"><meta data-rh="true" name="description" content="Checks are tests for AI output: read-only verifiers that inspect content against rules and return one machine-readable Report (pass, score, gate, located findings) without modifying it. A content-first checkset (hygiene, length, patterns, voice) plus opt-in bilingual checks, all one family."><meta data-rh="true" property="og:description" content="Checks are tests for AI output: read-only verifiers that inspect content against rules and return one machine-readable Report (pass, score, gate, located findings) without modifying it. A content-first checkset (hygiene, length, patterns, voice) plus opt-in bilingual checks, all one family."><meta data-rh="true" name="keywords" content="checks,content verification,tests for AI,findings,voice profile,terminology,gate,CI"><link data-rh="true" rel="icon" href="/next/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/framework/checks"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/framework/checks" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/framework/checks" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/framework/checks" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/framework/checks" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Checks","item":"https://neokapi.github.io/next/framework/checks/"}]}</script><link rel="stylesheet" href="/next/assets/css/styles.571fe4f0.css">
+<script src="/next/assets/js/runtime~main.b685f1b4.js" defer="defer"></script>
+<script src="/next/assets/js/main.37b5335d.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/next/img/logo.png"><div class="banner_EhJA" role="note"><span>These pages describe kapi <!-- -->1.3.0-rc1<!-- -->, the release in progress.<!-- --> <a href="/next/kapi/get-started/installation#beta-channel">Install the beta</a> to follow them, or read the<!-- --> <a href="https://neokapi.github.io/">documentation for <!-- -->1.2.0</a>.</span></div><div role="region" aria-label="Skip to main content"><a class="skipToContent__UwO" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/next/"><div class="navbar__logo"><img src="/next/img/logo.png" alt="neokapi" class="themedComponent_TRLO themedComponent--light_gyvv"><img src="/next/img/logo.png" alt="neokapi" class="themedComponent_TRLO themedComponent--dark_Fq1h"></div><b class="navbar__title text--truncate">neokapi</b></a><a class="navbar__item navbar__link" href="/next/kapi/overview">Kapi</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Labs</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/next/labs">Labs overview</a></li><li><a class="dropdown__link" href="/next/lab">Content Model Workspace</a></li><li><a class="dropdown__link" href="/next/lab/segmentation">Segmentation</a></li><li><a class="dropdown__link" href="/next/lab/convert">File Conversion</a></li><li><a class="dropdown__link" href="/next/lab/structure">Structure &amp; Layout</a></li><li><a class="dropdown__link" href="/next/lab/vision">Vision</a></li><li><a class="dropdown__link" href="/next/lab/media">Audio &amp; Video</a></li><li><a class="dropdown__link" href="/next/playground-cli">CLI Playground</a></li><li><a class="dropdown__link" href="/next/kbf-lab">KBF Anatomy</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Reference</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/next/reference">Reference Overview</a></li><li><a class="dropdown__link" href="/next/commands">Kapi CLI Commands</a></li><li><a class="dropdown__link" href="/next/formats">Formats</a></li><li><a class="dropdown__link" href="/next/tools">Tools</a></li><li><a class="dropdown__link" href="/next/models">AI Models</a></li><li><a class="dropdown__link" href="/next/reference/project-file">Project file</a></li><li><a class="dropdown__link" href="/next/reference/serialization/overview">kapi serialization formats</a></li><li><a class="dropdown__link" href="/next/reference/mcp">MCP Server</a></li><li><a class="dropdown__link" href="/next/reference/cli-contract">Scripting &amp; JSON contract</a></li><li><a class="dropdown__link" href="/next/reference/engine-service">Engine service (gRPC)</a></li><li><a class="dropdown__link" href="/next/reference/telemetry">Telemetry</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Toolbox</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/next/toolbox/overview">CLI tools</a></li><li><a class="dropdown__link" href="/next/react/introduction">neokapi-i18n</a></li></ul></div><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/next/framework/architecture">Framework</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right switch_lcYA"><a href="https://neokapi.github.io/next/framework/checks" class="navbar__link" aria-haspopup="true" aria-label="Documentation channel">Next</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="https://neokapi.github.io/framework/checks">Stable <!-- -->1.2.0</a></li><li><a class="dropdown__link dropdown__link--active" href="https://neokapi.github.io/next/framework/checks">Next</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link navbar-locale-icon"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_tSGc"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/next/framework/checks" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/next/nb/framework/checks" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="nb">Norsk (bokmål)</a></li><li><a href="/next/qps/framework/checks" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">Þšéüđö Éñĝļîšĥ</a></li></ul></div><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub repository"></a><div class="toggle_KkSG colorModeToggle_Gbey"><button class="clean-btn toggleButton_djIP toggleButtonDisabled_yDB5" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_Y170 lightToggleIcon_BI8S"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_Y170 darkToggleIcon_Hu_p"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_Y170 systemToggleIcon_mSV3"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_APqj"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_B_5Y"><div class="docsWrapper_JIDu"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_nWwj" type="button"></button><div class="docRoot_Ubny"><aside class="theme-doc-sidebar-container docSidebarContainer_YY7O"><div class="sidebarViewport_f9I6"><div class="sidebar_rjAV"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_EM8d"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-section-heading"><div class="menu__list-item-collapsible"><a class="categoryLink_zwYm menu__link menu__link--active"><span class="categoryLinkLabel_Z4SI">Concepts</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/architecture"><span class="linkLabel_BKku">Architecture</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/concepts"><span class="linkLabel_BKku">Concepts</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/content-model"><span class="linkLabel_BKku">Content Model</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/inline-formatting"><span class="linkLabel_BKku">Inline Formatting</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/vocabularies"><span class="linkLabel_BKku">Vocabularies</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/formats"><span class="linkLabel_BKku">Formats</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_zwYm menu__link menu__link--sublist" tabindex="0" href="/next/framework/format-maturity"><span class="categoryLinkLabel_Z4SI">Format support &amp; maturity</span></a><button aria-label="Expand sidebar category &#x27;Format support &amp; maturity&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/tools"><span class="linkLabel_BKku">Tools</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/flows"><span class="linkLabel_BKku">Flows</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/pipeline"><span class="linkLabel_BKku">Pipeline</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/content-memory"><span class="linkLabel_BKku">Content memory</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/terminology"><span class="linkLabel_BKku">Terminology</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/content-preparation"><span class="linkLabel_BKku">Content preparation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/segmentation"><span class="linkLabel_BKku">Segmentation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/translation"><span class="linkLabel_BKku">Translation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/prompts"><span class="linkLabel_BKku">Prompts</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible menu__list-item-collapsible--active"><a class="categoryLink_zwYm menu__link menu__link--sublist menu__link--active" aria-current="page" tabindex="0" href="/next/framework/checks"><span class="categoryLinkLabel_Z4SI">Checks</span></a><button aria-label="Collapse sidebar category &#x27;Checks&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/checks/rule-checks"><span class="linkLabel_BKku">Rule-based checks</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/checks/voice"><span class="linkLabel_BKku">Voice profiles</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/framework/redaction"><span class="linkLabel_BKku">Redaction</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_zwYm menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/next/framework/go-quickstart"><span class="categoryLinkLabel_Z4SI">Integration &amp; migration</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-section-heading"><div class="menu__list-item-collapsible"><a class="categoryLink_zwYm menu__link"><span class="categoryLinkLabel_Z4SI">Extending the Framework</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/tool-authoring"><span class="linkLabel_BKku">Tool Authoring with Parameter Schemas</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/flow-authoring"><span class="linkLabel_BKku">YAML Flow Authoring</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/script-step"><span class="linkLabel_BKku">JavaScript Script Step</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/formats"><span class="linkLabel_BKku">Implementing a Format</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/tools"><span class="linkLabel_BKku">Implementing a Tool</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/plugins"><span class="linkLabel_BKku">Plugin System</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/testing"><span class="linkLabel_BKku">Testing Strategy</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/graph"><span class="linkLabel_BKku">Graph Store Library</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/vocabularies"><span class="linkLabel_BKku">Authoring Vocabularies</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/next/contribute/interfaces"><span class="linkLabel_BKku">Interface Reference</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_zwYm menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/next/contribute/architecture/index"><span class="categoryLinkLabel_Z4SI">Architecture Decisions</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_zwYm menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/next/contribute/implementation/index"><span class="categoryLinkLabel_Z4SI">Implementation Notes</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TihP"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xmmV"><div class="docItemContainer_ukly"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_ojpl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/next/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_Rrsp"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Concepts</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Checks</span></li></ul></nav><div class="tocCollapsible_UFqy theme-doc-toc-mobile tocMobile_hHr5"><button type="button" class="clean-btn tocCollapsibleButton_cWwQ">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Checks</h1></header>
+<p>A <strong>check</strong> reads content, inspects it against a set of rules, and <strong>reports
+findings without modifying it</strong>. neokapi runs every kind of verification through
+one engine: deterministic rule-based checks, terminology enforcement, placeholder and
+do-not-translate integrity, and <a class="" href="/next/framework/checks/voice">voice profile</a> are
+check families that share one model rather than separate systems.</p>
+<p>In the CLI, <code>kapi check &lt;path&gt;</code> checks authored content and <code>kapi check --ship</code>
+enforces project release gates. Checks also run inside <code>kapi up</code>&#x27;s loop: each pass runs the project&#x27;s bound
+checks over what was produced. <code>kapi exec</code> runs a single check tool (<code>qa</code>,
+<code>term-check</code>, <code>voice-check</code>) on its own. See
+<a class="" href="/next/kapi/direct-execution-layer">Understanding the CLI layers</a>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="checks-are-tests-for-ai-output">Checks are tests for AI output<a href="#checks-are-tests-for-ai-output" class="hash-link" aria-label="Direct link to Checks are tests for AI output" title="Direct link to Checks are tests for AI output" translate="no">​</a></h2>
+<p>Exact rule checks behave like tests: for fixed input and context they are
+repeatable, and report a specific violation: an over-long string, a forbidden phrase, an
+off-brand term, a doubled word. <code>kapi check</code> runs a <strong>content-first</strong> checkset
+over any file, with no translation needed, and returns one stable, machine-readable
+<a href="#the-report" class=""><code>kapi.check/v1</code> Report</a>: <code>pass</code>, a 0–100 score, a severity gate,
+and a finding per <strong>stable rule id</strong> (<code>length.max-chars-exceeded</code>,
+<code>hygiene.doubled-word</code>, …) anchored to the exact <strong>block</strong>.
+It <strong>exits non-zero when the gate fails</strong>, so a regression is caught in CI, or
+inside an AI assistant&#x27;s fix-loop, the same way a failing test is. The assistant
+drafts, the checks tell it which block and which rule broke, it fixes that block
+(through <code>kapi apply</code>, or the <code>apply_edits</code> MCP tool), and re-checks against the
+declared thresholds. Meaning and unsupported guidance remain for review.</p>
+<p>Bilingual checks (do-not-translate and placeholder integrity, which
+compare a translated target against its source) are an opt-in: pass
+<code>kapi check src.json --target src.de.json --target-lang de</code>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="the-report">The Report<a href="#the-report" class="hash-link" aria-label="Direct link to The Report" title="Direct link to The Report" translate="no">​</a></h2>
+<p>A completed <code>kapi check</code> run produces a <code>core/check.Report</code> (versioned
+<code>kapi.check/v1</code>): a summary
+(counts + score), the gate (the thresholds and which tripped), and a list of
+<strong>diagnostics</strong>. Each diagnostic carries a stable <code>rule</code> id, a <code>severity</code>, a
+human <code>message</code>, an optional <code>suggestion</code>, and a <code>location</code> (the block, plus a
+run-range when the checker pinpointed one). The stable rule id is the loop&#x27;s
+primary key: an assistant tracks it across iterations to confirm a fix and avoid
+regressions. <code>--json</code> emits the Report verbatim; over MCP, the <code>check_file</code> and
+<code>check_text</code> tools return the same Report, the verifier counterpart to the
+<code>extract_content</code>/<code>apply_edits</code> editing tools, so an assistant can
+<strong>author → check → revise → re-check</strong> without leaving the conversation.</p>
+<p>For a draft intended for a project file, pass that destination as <code>context_path</code>
+to <code>check_text</code>. kapi applies the destination&#x27;s voice channel and terms even
+before the file exists. For example:</p>
+<div class="language-json codeBlockContainer_M4jf theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_JkHG"><pre tabindex="0" class="prism-code language-json codeBlock_CzoH thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_CgN2"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token property" style="color:#36acaa">&quot;text&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Your draft wording&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token property" style="color:#36acaa">&quot;context_path&quot;</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;content/en/page.json&quot;</span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<p>The report describes the supplied text and records its intended destination in
+<code>target.context_path</code>. After saving, use <code>check_file</code> to check the file itself.
+An unscoped snippet can use <code>profile_file</code> or <code>profile_pack</code>; these explicit
+profile options cannot be combined with <code>context_path</code>.</p>
+<p>The optional <code>execution</code> object records which analyzers ran for each input,
+which were not requested, and why a capability was unsupported. Each entry has
+an analyzer ID, execution status, finding count and, when it ran, a duration.
+The host also reports context, extraction, analysis, report-construction and
+total time in milliseconds; serialization and process startup are excluded.
+Reports without <code>execution</code> have <strong>unreported coverage</strong>.</p>
+<p>The report&#x27;s <code>verdict</code> is <code>passed</code>, <code>failed</code> or <code>did_not_run</code>, and <code>pass</code> is
+true only for <code>passed</code>. Beside the content, each analyzer is given a known-bad
+sample, its <strong>canary</strong>, through the same configured checker, and records what it
+made of it in <code>execution.analyzers[].canary</code>: <code>caught</code>, <code>missed</code> or <code>impossible</code>.
+An analyzer that misses its canary has status <code>invalid</code>, and the run did not
+run, whatever else it reported. An analyzer whose configuration gives it nothing
+to catch, such as a voice profile with no deterministic rules, has status
+<code>did_not_run</code>; when the invocation asked for it by name, the run did not run
+either. A voice profile that holds comment limits and no term or pattern gives
+<code>voice.rules</code> no rule for a file&#x27;s comments, and the comment analyzers check
+them against those limits. <code>voice.rules</code> then has status <code>not_applicable</code>, with
+the reason, and never counts as a pass, so the comment analyzers decide the
+verdict. The same profile over content holding no comment did not run. A run
+that checked no blocks did not run. The top-level <code>did_not_run</code>
+field lists the reasons. <code>kapi check</code> exits <code>4</code> for this verdict, and neither
+<code>--no-fail</code> nor <code>--lenient</code> changes that.</p>
+<p>Every <code>did_not_run</code> verdict carries a <code>did_not_run_cause</code>, and the causes share
+exit code <code>4</code>, so read the cause before acting on it:</p>
+<ul>
+<li class=""><code>checker_invalid</code>: an analyzer reported nothing on its canary. A checker is
+broken, and nothing this run reported can be trusted, including its findings.</li>
+<li class=""><code>nothing_to_check</code>: no content was in scope, such as an empty file or a diff
+that touches no content block.</li>
+<li class=""><code>content_not_checked</code>: content in scope was not checked, such as a changed
+file whose blocks could not be located, an analyzer the invocation asked for
+with nothing to catch, or declared content in a format with no installed
+reader when the check read nothing else.</li>
+</ul>
+<p><code>execution.contexts</code> records the effective guidance for each checked input.
+Each entry identifies the file or draft destination, the voice selection
+(<code>project</code>, <code>override</code> or <code>none</code>), the loaded profile name and source, and the
+project profile and channel when they governed the check. <code>voice.applied</code>
+distinguishes a loaded profile from a project location with no voice binding.
+<code>terms_applied</code> states whether terminology was supplied to the checks; it does
+not imply that a term matched or produced a finding. Project terminology checks
+also run when no voice profile is bound. An omitted <code>contexts</code>
+field means the producer did not report context selection.</p>
+<p>When a project resolved the guidance, each entry carries the <code>point</code> it was
+resolved at: the <code>profile</code> and <code>channel</code>, and <code>comments</code> for the point a file&#x27;s
+comments sit at. A file whose comments sit apart from its other content has one
+entry for each point. Each finding carries the <code>point</code> its block was checked at,
+and an analyzer that ran once for each point carries its point too.</p>
+<p>The optional <code>warnings</code> array names problems in the configuration a check ran
+under, apart from the findings about content. Each entry has a stable <code>code</code>, a
+<code>message</code>, the <code>source</code> it came from (a profile file&#x27;s path, or <code>pack:&lt;name&gt;</code> or
+<code>store:&lt;name&gt;</code>) and, when the warning concerns one key, its dotted <code>key</code>. A run
+reports the warnings of each voice profile it loads once, however many files the
+profile governs:</p>
+<ul>
+<li class=""><code>voice.unknown_key</code>: a key the voice profile model does not define. The
+profile loads without it, so whatever the key was meant to state applies
+nowhere. <code>kapi voice validate</code> refuses the same key.</li>
+<li class=""><code>voice.unfamiliar_value</code>: a tone value outside the usual set, kept and
+rendered into the voice guide as written.</li>
+<li class=""><code>voice.preferred_term_dropped</code>: a channel or persona preferred term that
+resolution drops, because a profile rule already governs the term.</li>
+<li class=""><code>voice.override_drops_pattern</code>: a base style pattern that stops applying where
+a channel or persona supplies its own style.</li>
+<li class=""><code>format.no_reader</code>: a file the project declares as content, in a format no
+installed reader handles, usually one a plugin supplies. <code>source</code> is the file,
+and the message names the plugin to install. A check over the project&#x27;s
+content leaves the file out, checks the rest and prints the same warning on
+stderr. A file named on the command line in such a format fails the check
+instead.</li>
+</ul>
+<p>Warnings never change the summary, the score, the gate, the verdict or the exit
+code. Fix the configuration they name. <code>kapi check</code> prints them after the
+verdict, <code>kapi check --ship</code> carries the same array, and the MCP check tools
+return it in their report.</p>
+<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="what-the-run-was-evaluated-against">What the run was evaluated against<a href="#what-the-run-was-evaluated-against" class="hash-link" aria-label="Direct link to What the run was evaluated against" title="Direct link to What the run was evaluated against" translate="no">​</a></h3>
+<p>Much of what a check enforces lives outside the repository: the terms someone
+confirmed, the voice rules in force, the decisions recorded about a project. A
+verdict is read long after the run that produced it, from a CI log, an agent
+transcript or a bug report, so the Report carries an optional <code>evaluation</code>
+object naming the state it was reached from:</p>
+<ul>
+<li class=""><code>at</code>: when the run was evaluated, RFC 3339 in UTC, read once per run so every
+field of the record shares one instant.</li>
+<li class=""><code>context</code>: the project the run read its governance from. <code>project</code> is the
+project&#x27;s stable identity, <code>name</code> the label a person recognises, and
+<code>revision</code> the position the workspace&#x27;s operation log had reached. Two results
+carrying one revision were checked against one state of the context. <code>stale</code>
+and <code>stale_reason</code> report that the blocks kapi holds were read from files that
+have since changed. A check of files outside any project carries no <code>context</code>
+at all, and neither does a <code>check_text</code> draft with no <code>context_path</code>, which no
+project governed.</li>
+<li class=""><code>tool</code>: the <code>name</code>, <code>version</code> and <code>commit</code> of the build that ran the check.</li>
+<li class=""><code>plugins</code>: each plugin that served the run, with the <code>version</code> its manifest
+declares and a sorted <code>serves</code> list naming what it did, such as <code>format:pdf</code>,
+<code>comments:python</code> or <code>analyzer:voice.similarity</code>. A run every part of which
+kapi handled itself carries no <code>plugins</code>.</li>
+<li class=""><code>analyzers</code>: coverage, one entry per analyzer, sorted by <code>id</code>. <code>ran</code> counts
+the inputs the analyzer evaluated, and <code>not_run</code> groups the rest by the
+<code>status</code> and <code>reason</code> already recorded in <code>execution.analyzers</code>, with <code>inputs</code>
+counting each group. An analyzer that missed its canary is grouped under
+status <code>invalid</code>, because what it reported cannot be read as a result.</li>
+</ul>
+<p>The record reports and gates nothing: an absent workspace, a project whose
+context is still empty and a projection that has drifted all leave the verdict,
+the score and the gate as they would be without it, and none of them appears in
+the human output. Every producer of a <code>kapi.check/v1</code> Report carries the
+record. <code>kapi check --ship</code> reports gates rather than a Report, so it carries
+none.</p>
+<p>For a project file, omit MCP <code>profile_file</code> and <code>profile_pack</code> to retain its
+applicable profile and channel. An explicit profile replaces that voice
+selection, while project terms still apply. Check the reported scope before
+using a passing result to assess the task.</p>
+<p>A passing gate and a score of 100 mean no gate-breaking findings in the
+configured checks. They do not establish factual accuracy or compliance with
+rules that were never encoded. Exact voice rules, advisory example similarity
+(<code>--voice</code>), and optional LLM review are distinct analyses. <code>kapi check</code> does not
+run LLM review and records <code>voice.llm</code> as <code>not_requested</code>. Applicable profile
+guidance that exact rules cannot assess is recorded as <code>voice.guidance</code> with
+status <code>unsupported</code>; it does not fail the deterministic content gate.</p>
+<p>A requested analyzer that cannot run, or governing context that cannot resolve,
+returns an operational error instead of a successful report. <code>--no-fail</code> affects
+content-gate exits only. MCP uses its existing error response for these failures.
+Embedded applications share checker primitives but can retain their own response
+shapes and operation error views.</p>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="checking-a-change">Checking a change<a href="#checking-a-change" class="hash-link" aria-label="Direct link to Checking a change" title="Direct link to Checking a change" translate="no">​</a></h2>
+<p><code>kapi check --diff-against &lt;rev&gt;</code> checks only the content a change touched. kapi
+runs <code>git diff</code> against the revision, read-only, treats untracked files as
+wholly new, and reads each changed file once. <code>kapi check --staged</code> checks what
+a commit made now would record: the staged changes, with each file read from the
+index. An unstaged edit or an untracked file leaves the result unchanged, and a
+finding&#x27;s lines are the lines the index holds. Inside a project, a staged file
+is content when the recipe declares its path, whether or not the working tree
+still holds it. An index holding an unresolved merge conflict is refused.
+<code>--diff-file &lt;path&gt;</code> reads a unified diff you already hold, or standard input
+with <code>-</code>. Named files narrow the scope.</p>
+<p><code>kapi check --diff-range A..B</code> checks the change between two commits, and
+<code>A...B</code> the change B made since its merge base with A, which is the form a pull
+request check uses (<code>origin/main...HEAD</code>). An empty side names <code>HEAD</code>, as it
+does to git. Each file is read from B and nothing from the working tree, so
+untracked files and uncommitted edits never count, a finding&#x27;s lines are the
+lines B holds, and the range checks the same from any checkout, including one
+at another commit.</p>
+<p>Every diff check is governed by the recipe, voice profiles and terms on disk
+where kapi runs. For a range, those are the rules in force now, never the
+versions B holds, so each commit in a range is held to today&#x27;s rules. A pull
+request check needs exactly that, and so does a search of history for the
+commit where a file first broke a rule. Inside a project, a file B holds is
+content when that recipe declares its path.
+<a class="" href="/next/kapi/recipes/verify-content#check-changes-in-git">Check changes in git</a> has a
+pre-commit hook, a pull request check, a sweep for the commits that added
+findings and a <code>git bisect run</code> wrapper built on these flags.</p>
+<p>A diff names lines, and kapi widens each changed line to the content block it
+belongs to: a one-line edit inside a seven-line paragraph checks the whole
+paragraph. A finding&#x27;s <code>location.lines</code> gives the lines of its block, and a
+finding on a comment also gives <code>location.comment_sha256</code>, the SHA-256 of the
+comment&#x27;s bytes, which a comment edit carries back to <code>kapi apply</code>. Rules that
+hold over a whole document, such as a voice profile&#x27;s required patterns, read
+the whole changed file.</p>
+<p>In a source file read for its comments, such as a Go file, or a TypeScript,
+Python or CSS file the sourcecode plugin reads, the unit is the comment. A
+changed line inside a comment checks that comment whole, and a change to code or
+to directives alone leaves the file <code>untouched</code>. Where the language has a
+formatter, it compares only the comments the change touched, and it catches its
+canary as it does when kapi checks the whole file.
+When a recipe declares the comments of a file a reader parses, such as a YAML,
+Markdown or PO file with <code>comments: true</code>, each comment is a block beside the
+reader&#x27;s blocks, and a changed line takes whichever block it sits in.</p>
+<p>Removed lines leave nothing to point at, so a deletion first takes the blocks on
+both sides of where the lines were. A block that lost its first or last lines is
+then in scope, and so is one the deletion merged with its neighbour. For a
+block the deletion only borders, kapi rebuilds the file as it was before the
+change from the diff, and drops the block from the scope when the earlier file
+holds the same block on the same lines: removing one key of a JSON catalog
+checks neither the key before it nor the key after it.</p>
+<p>The report&#x27;s <code>scope</code> lists every file the diff names with a status:</p>
+<ul>
+<li class=""><code>checked</code>, with the blocks checked and their lines;</li>
+<li class=""><code>untouched</code>, when the change touched no content block, as with markup, a
+rename or a mode change;</li>
+<li class=""><code>no_content</code>, <code>no_reader</code> or <code>deleted</code>, where the reason of a <code>no_reader</code>
+file the project declares in a plugin&#x27;s format names the plugin to install;</li>
+<li class=""><code>out_of_scope</code>, for a file a project&#x27;s recipe does not declare as content, or
+one outside the files named;</li>
+<li class=""><code>did_not_run</code>, with the reason, for a changed file whose touched content
+cannot be located: a format that keeps no record of where its content sits, a
+binary change, or a change on lines where the file&#x27;s structure leaves a
+block&#x27;s position ambiguous. The reason names that block and the lines it could
+sit on. A change elsewhere in the same file is checked as usual, and the
+touched blocks kapi can place are checked and listed either way.</li>
+</ul>
+<p>A <code>did_not_run</code> file leaves the whole check <code>did_not_run</code>, and so does a diff
+that touches no content block. Over MCP, <code>check_file</code> takes <code>diff</code> (unified diff
+text), <code>diff_against</code> (a revision), <code>staged</code> or <code>diff_range</code> for the same scope,
+and <code>file</code> then narrows it.</p>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="one-model-findings">One model: findings<a href="#one-model-findings" class="hash-link" aria-label="Direct link to One model: findings" title="Direct link to One model: findings" translate="no">​</a></h2>
+<p>Every check emits the same structured <strong>finding</strong> (the <code>core/check.Finding</code>
+type): a kind, a severity, the run-index range it points at, and an optional
+suggested replacement. A check is a read-only <a class="" href="/next/framework/tools">tool</a>: it uses
+the annotate capability, so it may attach findings but never rewrite content
+(see the <a class="" href="/next/framework/tools">immutability model</a>). Findings are recorded as
+stand-off <a class="" href="/next/framework/content-model">overlays</a> anchored to the offending runs,
+so a check pass slots into any <a class="" href="/next/framework/flows">flow</a> as an ordinary stage and
+its results surface uniformly to the CLI, an editor, the MCP tools, or a
+downstream gate.</p>
+<p>The shared finding model lets the CLI, Kapi Desktop and downstream editors
+consume the checks each surface invokes. Matching findings does not imply that
+every surface requested the same analysis.</p>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="the-check-families">The check families<a href="#the-check-families" class="hash-link" aria-label="Direct link to The check families" title="Direct link to The check families" translate="no">​</a></h2>
+<p><strong>Generic content checks</strong> (source-side, no translation needed; the default
+checkset):</p>
+<ul>
+<li class="">
+<p><strong>Text hygiene</strong>: empty content, doubled spaces and words, stray leading/
+trailing whitespace, control characters. Always on.</p>
+<p>In a comment, <code>hygiene.double-spaces</code> reports a run of exactly two spaces
+between two characters on one line. A comment lays text out in columns and
+quotes literal text, so a run of three or more spaces, a run that ends where a
+word starts on the line above or below, and a run inside backticks or double
+quotes are layout and are not reported. A double space in a comment is a major
+finding, and in other content a minor one.</p>
+<p>Hygiene is judged against the block&#x27;s <strong>content boundaries</strong>, where an inline
+code counts as content. A leading or trailing placeholder is the edge of the
+content, so the space beside it is a separator, not stray whitespace:
+<code>{price} each</code> has no leading whitespace, <code>Hello {name} world</code> has no double
+space, and a block that is only a placeholder is not empty. Genuine
+whitespace (<code> {price} each</code>) still reports.</p>
+<p>An inline code is likewise a real <strong>boundary</strong> for the adjacency rules: it
+separates what sits either side of it, so <code>the {name} the cat</code> holds no doubled
+word. It is a token of its own rather than part of the word beside it, so it
+cannot hide one either: <code>{name}the the cat</code> reports. Nothing separates two
+<em>adjacent text runs</em>, so a defect spanning their join (<code>the </code> + <code>the cat</code>) is
+real and reports. The editor&#x27;s highlights come from these same rules, so a
+preview and a <code>kapi check</code> finding cannot disagree.</p>
+</li>
+<li class="">
+<p><strong>Length</strong>: flag content over a character or word budget (<code>--max-chars</code>/
+<code>--max-words</code>).</p>
+</li>
+<li class="">
+<p><strong>Patterns</strong>: regex that must not appear (<code>--forbid</code>) or must appear
+(<code>--require</code>) in the content.</p>
+</li>
+<li class="">
+<p><strong>Voice vocabulary</strong>: forbidden/competitor/preferred-term rules from a bound
+<a class="" href="/next/framework/checks/voice">voice profile</a>. Optional <code>--voice</code> adds an advisory
+similarity comparison with profile examples. LLM voice review is a separate
+tool or an explicit AI voice command.</p>
+</li>
+<li class="">
+<p><strong>Formatter agreement</strong>: for the comments in source code, a comment the
+language&#x27;s formatter would rewrite is a <code>formatter.&lt;formatter&gt;</code> finding, such
+as <code>formatter.gofmt</code>. It fails the gate whatever the severity limits allow;
+<code>--lenient</code> reports it without failing. The comment reader and the formatter
+each catch a canary on every run, as every other analyzer does. See
+<a class="" href="/next/kapi/recipes/verify-content#comments-in-source-code">Comments in source code</a>.</p>
+</li>
+<li class="">
+<p><strong>Comment limits</strong>: where the voice profile at a comment&#x27;s point sets
+<a class="" href="/next/reference/serialization/voice-profile#comment-limits">comment limits</a>, a
+sentence over the minor or major word limit is a <code>comment.sentence-length</code>
+finding of that severity, and a comment over the limit for what it documents
+is a major <code>comment.length</code> finding. Sentences are split with the UAX #29
+sentence break over the comment&#x27;s prose: the lines a comment wraps over are
+joined first, a blank line, a divider line, a list item, a heading or a
+documentation tag starts a new sentence, and code spans, references and links
+are not counted as words. A build without the sentence break reports the
+sentence check as not run. In a check scoped to a diff, a change that adds at
+least the minimum number of comment lines to a file, and more comment lines
+for each code line than the ratio allows, is a major <code>comment.density</code>
+finding. Lines are counted from where the comment reader places each comment,
+and the package doc comment is not counted. A check over whole files reports
+density as unsupported.</p>
+</li>
+</ul>
+<p><strong>Bilingual checks</strong> (opt-in, with <code>--target</code>: a translated target
+against its source):</p>
+<ul>
+<li class=""><strong>Placeholder integrity</strong>: catch a dropped <code>{count}</code> or a corrupted <code>&lt;b&gt;</code> in
+the translation.</li>
+<li class=""><strong>Do-not-translate</strong>: terms that must survive verbatim into the target.
+The separate <code>term-check</code> tool checks target terminology against rules from
+the project <a class="" href="/next/framework/terminology">terms store</a>.</li>
+</ul>
+<p>The full rule-based family (whitespace, inline-code integrity, cross-block
+consistency, optional LLM review) is documented under
+<a class="" href="/next/framework/checks/rule-checks">Rule-based checks</a>.</p>
+<blockquote>
+<p><strong>Document structure &amp; encoding validity</strong> is a format-reader concern rather
+than a content check: the readers extract leniently by default. Surface it on
+demand with <code>kapi check --validate report</code> (or <code>strict</code> to gate on it): the
+reader emits located <code>structure.*</code> / <code>encoding.*</code> findings (malformed
+XML/YAML, invalid UTF-8, charset mismatch, and the JSON faults the parser
+rejects) into the same Report. Coverage tracks each reader&#x27;s own strictness. Validate source and target files
+separately; reader validation cannot be combined with <code>--target</code>.</p>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="composing-and-gating">Composing and gating<a href="#composing-and-gating" class="hash-link" aria-label="Direct link to Composing and gating" title="Direct link to Composing and gating" translate="no">​</a></h2>
+<p>Checks are tools, so they compose in a <a class="" href="/next/framework/flows">flow</a> exactly like
+translation or transform stages, typically as the trailing stage after
+translation. In CI, gate on the exit code; in an editor or assistant, surface
+the findings for one-click fixes. A check never blocks the pipeline by mutating
+content; it annotates, and the gate decides.</p>
+<p>In a project, <code>kapi check --ship</code> (and each pass of <code>kapi up</code>) runs the bound
+gates over what was produced. The project-gate response groups findings by gate:
+<strong>voice</strong>
+(the compliance score against the bound profile, with <code>--min-score</code>),
+<strong>terminology</strong>, <strong>qa</strong>, <strong>ship</strong> (the ship gate on target status), <strong>source</strong>
+(the source-side checks), and <strong>staleness</strong> (content produced under a context
+that has since changed, such as a new voice profile version or new term rules,
+must be re-run before its locale ships).</p>
+<p>Source-only collections receive authored-content checks, including in a project
+that also has translated targets. Naming a source-only file checks that content
+directly; translation checks apply to target content with its source. Each gate
+carries the same three verdicts as a report: a gate with no content in scope,
+or whose checks did not catch their canaries, did not run, and the command
+exits <code>4</code>. See
+<a class="" href="/next/contribute/architecture/surfaces/s-03-agent-surfaces">the agent surface design</a>
+for the edit loop and its release checks.</p>
+<p>For a worked example of gating a pull request on a project&#x27;s bound checks with
+GitHub Actions, see <a class="" href="/next/kapi/recipes/ship-gates-and-ci">Ship gates &amp; CI</a>.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/framework/checks/index.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/framework/prompts"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Prompts</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/framework/checks/rule-checks"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Rule-based checks</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#checks-are-tests-for-ai-output" class="table-of-contents__link toc-highlight">Checks are tests for AI output</a></li><li><a href="#the-report" class="table-of-contents__link toc-highlight">The Report</a><ul><li><a href="#what-the-run-was-evaluated-against" class="table-of-contents__link toc-highlight">What the run was evaluated against</a></li></ul></li><li><a href="#checking-a-change" class="table-of-contents__link toc-highlight">Checking a change</a></li><li><a href="#one-model-findings" class="table-of-contents__link toc-highlight">One model: findings</a></li><li><a href="#the-check-families" class="table-of-contents__link toc-highlight">The check families</a></li><li><a href="#composing-and-gating" class="table-of-contents__link toc-highlight">Composing and gating</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-22 16:35 UTC · a11f2e5</div></div></div></footer></div>
+</body>
+</html>
