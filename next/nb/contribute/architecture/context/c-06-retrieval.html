@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">C-06: Context retrieval | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/nb/contribute/architecture/context/c-06-retrieval"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-06: Context retrieval | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project&#x27;s context is retrieved through two primitives, by location and by content, offered identically on the CLI and over MCP, with the rendering a property of the address and the scope stated on every answer."><meta data-rh="true" property="og:description" content="Architecture decision: a project&#x27;s context is retrieved through two primitives, by location and by content, offered identically on the CLI and over MCP, with the rendering a property of the address and the scope stated on every answer."><meta data-rh="true" name="keywords" content="context retrieval,kapi context,context search,MCP,resources,staleness,scope,neokapi,architecture decision"><link data-rh="true" rel="icon" href="/next/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/nb/contribute/architecture/context/c-06-retrieval"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-06-retrieval" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/architecture/context/c-06-retrieval" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/architecture/context/c-06-retrieval" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-06-retrieval" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-06: Context retrieval","item":"https://neokapi.github.io/next/nb/contribute/architecture/context/c-06-retrieval"}]}</script><link rel="stylesheet" href="/next/nb/assets/css/styles.571fe4f0.css">
-<script src="/next/nb/assets/js/runtime~main.fa44c8a2.js" defer="defer"></script>
-<script src="/next/nb/assets/js/main.18255ae0.js" defer="defer"></script>
+<script src="/next/nb/assets/js/runtime~main.8915a45f.js" defer="defer"></script>
+<script src="/next/nb/assets/js/main.451c4ceb.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -84,9 +84,8 @@ parse must not be handed prose it cannot.</p>
 concerns (voice only, by name only, markdown only) into one narrow point. Once
 content is the whole context, addressing covers by-name, and rendering is a
 property, nothing is left over.</p>
-<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="the-prose-is-the-task">The prose is the task<a href="#the-prose-is-the-task" class="hash-link" aria-label="Direkte lenke til The prose is the task" title="Direkte lenke til The prose is the task" translate="no">​</a></h3>
-<p>The markdown answer is the brief a writer reads before changing a file, and
-nothing about how the answer was reached:</p>
+<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="the-prose-is-the-task">The writing brief<a href="#the-prose-is-the-task" class="hash-link" aria-label="Direkte lenke til The writing brief" title="Direkte lenke til The writing brief" translate="no">​</a></h3>
+<p>The Markdown response provides a writing brief:</p>
 <ul>
 <li class="">the <strong>voice</strong> in a sentence or two: its name, its description, and the tone
 and style fields the profile sets, with no line for a field it leaves unset,
@@ -98,8 +97,7 @@ time, keyed by the wording to use, so a rule held in two places is one line
 (<code>host/contextrules.go</code>); storage keeps the three apart;</li>
 <li class="">the suggestions under <strong>Suggested, not yet established</strong>, less any the list
 already states;</li>
-<li class="">a closing line naming <code>context_observe</code> (and <code>kapi context observe</code>), because
-what the writer notices while reading is how the next answer gets better.</li>
+<li class="">a closing line naming <code>context_observe</code> (and <code>kapi context observe</code>), for recording additional observations.</li>
 </ul>
 <p>Notes appear in the prose only when a person or an agent must act before relying
 on the answer: a checkout whose context nobody has imported into the store, a voice or terms binding that
@@ -145,80 +143,42 @@ all, so the by-name answer says in as many words that no recipe point stands
 behind it.</p>
 <p>Half an answer plus a statement of what was unreachable is more useful than an
 answer that quietly omits a store it could not open.</p>
-<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="an-answer-with-nothing-in-it-teaches">An answer with nothing in it teaches<a href="#an-answer-with-nothing-in-it-teaches" class="hash-link" aria-label="Direkte lenke til An answer with nothing in it teaches" title="Direkte lenke til An answer with nothing in it teaches" translate="no">​</a></h3>
-<p>Most projects meet kapi with no voice profile and no terms, and the honest
-answer for a location in one is short. It was once so short that an assistant
-read it as <em>there is nothing to do here</em> and worked without the project&#x27;s
-context for the rest of the session.</p>
-<p>So every answer carries a <code>coverage</code> grade, counting the kinds of material in
-force behind it:</p>
-<table><thead><tr><th>Primitive</th><th>What is counted</th></tr></thead><tbody><tr><td>By location</td><td>the voice profile in force at the point; the terms bound there and in force; the rules established and widened at it (<a class="" href="/next/nb/contribute/architecture/context/c-11-context-operations">C-11</a>)</td></tr><tr><td>By content</td><td>the terms the query matched; the prior wording it found</td></tr></tbody></table>
-<p>Two or more is <code>covered</code>, one is <code>thin</code>, none is <code>empty</code>. Three grades, because
-the grade is read by a model deciding how much to lean on the answer, and a
-finer scale would be a number nobody could act on differently. The grade
-describes <strong>the answer</strong>, so a search for a word the project has never written
-about is empty whatever else the project holds.</p>
-<p><strong>A suggestion counts for less than anything in force.</strong> A suggestion nobody
-has decided on holds no content to anything, so it never makes an answer
-<code>covered</code>. It does lift <code>empty</code> to <code>thin</code>, because a suggestion is evidence that
-someone looked here, and <code>empty</code> then means what it says: nothing at all has
-been recorded at this point. The by-location answer reads them through
-<code>App.ContextRulesAt</code>, the seam a check resolves them with, so a suggestion an
-answer mentions is a suggestion a check reports.</p>
-<p><strong>Suggestions are listed, apart from everything in force.</strong> The answer carries a
-<code>suggestions</code> list beside <code>voice</code> and <code>terms</code>. Each entry carries its status
-(<code>suggested</code>, or <code>contested</code> with <code>contested_by</code> naming the other side), the
-rule or note it states, who suggested it (<code>suggested_by</code>), in which session,
-and the evidence behind it, with the operation id a person keeps it by. The
-rules in it are the ones the resolution holds at the point, so the list and a
-check cannot disagree, and the operation log supplies the provenance a reader
-judges one by. The prose rendering lists them under <strong>Suggested, not yet
-established</strong>.</p>
-<p>The by-content answer carries the same <code>suggestions</code> list for the word it was
-asked about: suggested term rules whose forms or replacement contain it, and
-notes whose text does. A word an agent has just observed therefore reads as
-suggested rather than as nothing recorded, and the suggestion lifts an empty
-search to <code>thin</code> in the same way.</p>
-<p>A second agent reading a location therefore builds on what the first one
-recorded rather than working the same facts out again, and cannot mistake either
-for a rule in force. Neither can it act on them: deciding is a person&#x27;s
+<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="an-answer-with-nothing-in-it-teaches">Coverage and suggestions<a href="#an-answer-with-nothing-in-it-teaches" class="hash-link" aria-label="Direkte lenke til Coverage and suggestions" title="Direkte lenke til Coverage and suggestions" translate="no">​</a></h3>
+<p>Every response includes a <code>coverage</code> grade based on the kinds of context
+available for that query:</p>
+<table><thead><tr><th>Primitive</th><th>What is counted</th></tr></thead><tbody><tr><td>By location</td><td>applicable voice profile, terms, and established or workspace-wide rules</td></tr><tr><td>By content</td><td>matching terms and previously approved wording</td></tr></tbody></table>
+<p>Two or more kinds produce <code>covered</code>, one produces <code>thin</code>, and none produces
+<code>empty</code>. The grade describes the response, not the whole project. Unreviewed
+suggestions raise <code>empty</code> to <code>thin</code> but cannot produce <code>covered</code>.</p>
+<p>Suggestions appear separately from established context in a <code>suggestions</code>
+list. Each entry includes its status, rule or note, actor, session, evidence and
+operation id. Contested entries also identify the conflicting operations in
+<code>contested_by</code>. Markdown renders these under <strong>Suggested, not yet established</strong>.</p>
+<p>By-location queries resolve suggestions through <code>App.ContextRulesAt</code>, the same
+function used by checks. By-content queries match the query against term forms,
+replacements and note text. Agents can use earlier observations as context,
+but only a person can establish them as rules
 (<a class="" href="/next/nb/contribute/architecture/context/c-11-context-operations">C-11</a>).</p>
-<p>A thin or empty by-location answer adds one note to the JSON: that this project
-records nothing here yet, and what is worth noticing while the work is done (the
-names the project gives its own things, the spellings it keeps to, who the text
-addresses, how formal it is). Where suggestions stand behind a thin answer, the
-note counts them and says they are waiting to be kept or dropped. The
-prose says it in two sentences: nothing is recorded for this file yet, and
-record the names and spellings the project keeps to with <code>context_observe</code>. It
-<strong>states no rule</strong>, because none is in force, and handing a writer a suggestion
-the project has not agreed to is the one outcome worse than saying nothing.</p>
-<p>The by-content answer carries that note when it found nothing at all and on no
-other grade. A search graded thin found the word and answered the question
-asked, so the same sentence would be a lecture delivered on a successful call.</p>
-<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="every-answer-says-what-it-read">Every answer says what it read<a href="#every-answer-says-what-it-read" class="hash-link" aria-label="Direkte lenke til Every answer says what it read" title="Direkte lenke til Every answer says what it read" translate="no">​</a></h3>
-<p>An answer is quoted, acted on, and sometimes committed, often an hour after it
-was read and by a process that has since asked the same question of another
-project. So every answer carries a <code>provenance</code>: the project&#x27;s stable identity
-(<a class="" href="/next/nb/contribute/architecture/context/c-01-project-model">C-01</a>), the position the workspace&#x27;s operation log had
-reached, and whether the content kapi holds still matches the files on disk.</p>
-<p>The three are one fact each, and each is needed for a different reason. The
-identity says which project answered, for a caller that moves between them. The
-<strong>revision</strong> is a position: two answers carrying one revision were read from
-one state of the context, which is what makes them comparable. Opening a
-project is the most frequent thing that happens to a workspace, so it records
-an operation only when the registration changed, and a re-open leaves the
-position where it was.</p>
-<p>The <strong>projection&#x27;s state</strong> compares the extract-time stamps the block store
-already holds against the files on disk, one stat each and a hash only where
-the stat moved. It costs no walk of the tree, which matters on a path an agent
-hits repeatedly inside one thought, and it is what tells a caller that a term&#x27;s
-use count describes the files as they were rather than as they are.</p>
-<p>This reports position on every answer, in the JSON and under <code>--explain</code>. The
-staleness note beside it (<a class="" href="/next/nb/contribute/architecture/context/c-05-freshness">C-05</a>) reports movement, once, to
-the answer that first spans it. Neither resolves.</p>
-<p>A project kapi has read no content from yet is stale in the JSON, and its note
-says that only the term use counts are empty. The guidance in the answer does
-not depend on them, so the note names no command to run.</p>
+<p>Thin and empty by-location responses explain the available coverage and invite
+observations about project names, spelling and writing style. If suggestions
+are pending, the note reports their count and review status. By-content
+responses include this note only when the result is empty.</p>
+<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="every-answer-says-what-it-read">Response provenance<a href="#every-answer-says-what-it-read" class="hash-link" aria-label="Direkte lenke til Response provenance" title="Direkte lenke til Response provenance" translate="no">​</a></h3>
+<p>Every response includes <code>provenance</code>: the project identity, workspace operation
+log revision and projection freshness. These fields appear in JSON and in the
+CLI&#x27;s <code>--explain</code> output.</p>
+<p>The identity distinguishes projects. The revision identifies the workspace
+state used for the response. Reopening a project records a new operation only
+if its registration changed, preserving the revision for unchanged context.</p>
+<p>Projection freshness is checked against extraction stamps using file metadata,
+with a hash comparison when the metadata changes. It requires no directory
+walk. A stale projection means term usage counts may describe an earlier
+version of the content files.</p>
+<p>Provenance describes the current read. The separate freshness notice
+(<a class="" href="/next/nb/contribute/architecture/context/c-05-freshness">C-05</a>) reports changes since the previous read by that
+process. Neither check updates the underlying content.</p>
+<p>Before the first extraction, the projection is reported as stale and term usage
+counts are empty. Voice and terminology guidance remain available.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="results-are-grouped-never-merged-into-one-ranking">Results are grouped, never merged into one ranking<a href="#results-are-grouped-never-merged-into-one-ranking" class="hash-link" aria-label="Direkte lenke til Results are grouped, never merged into one ranking" title="Direkte lenke til Results are grouped, never merged into one ranking" translate="no">​</a></h3>
 <p>A term match and a memory match are not comparable scores. Results are grouped by
 kind, each group ranked within itself. A single blended list would impose an
@@ -262,11 +222,10 @@ exist.</li>
 where the answer lives is ours to change.</li>
 <li class=""><strong>A stale answer is visible to the caller holding it</strong>, rather than being a
 read with no memory.</li>
-<li class=""><strong>A project that has recorded nothing is still worth asking.</strong> The first hour
-of a project gets an answer that says it is empty and what to watch for,
-rather than one an assistant reads as permission to stop asking.</li>
-<li class=""><strong>Two answers can be compared without either having watched the other</strong>,
-because each carries the project and the revision it was read at.</li>
+<li class=""><strong>Empty responses are explicit.</strong> They describe missing context and explain
+how to record observations.</li>
+<li class=""><strong>Responses identify their source.</strong> Project identity and workspace revision
+support comparisons between reads.</li>
 <li class=""><strong>Partial answers stop reading as whole ones</strong>, the failure that makes a
 store-shaped retrieval tool actively misleading rather than merely narrow.</li>
 <li class=""><strong>A new registry tool does not become an agent tool by accident.</strong> Exposure is
@@ -294,6 +253,6 @@ and the enforcing gate.</li>
 <li class=""><a class="" href="/next/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent Skills</a>: the skill that
 drives these verbs.</li>
 <li class=""><a class="" href="/next/nb/reference/mcp">MCP reference</a>: the served tool and resource list.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-06-retrieval.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/architecture/context/c-05-freshness"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-05: Freshness and the composite ref</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/architecture/context/c-07-voice-profiles"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-07: Voice profiles</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#one-question-two-shapes" class="table-of-contents__link toc-highlight">One question, two shapes</a></li><li><a href="#two-address-forms-one-thing" class="table-of-contents__link toc-highlight">Two address forms, one thing</a></li><li><a href="#rendering-is-a-property-not-a-command" class="table-of-contents__link toc-highlight">Rendering is a property, not a command</a></li><li><a href="#the-prose-is-the-task" class="table-of-contents__link toc-highlight">The prose is the task</a></li><li><a href="#what-folds-in-and-what-does-not" class="table-of-contents__link toc-highlight">What folds in, and what does not</a></li><li><a href="#content-memory-is-recycled-not-searched" class="table-of-contents__link toc-highlight">Content memory is recycled, not searched</a></li><li><a href="#scope-not-capability" class="table-of-contents__link toc-highlight">Scope, not capability</a></li><li><a href="#an-answer-with-nothing-in-it-teaches" class="table-of-contents__link toc-highlight">An answer with nothing in it teaches</a></li><li><a href="#every-answer-says-what-it-read" class="table-of-contents__link toc-highlight">Every answer says what it read</a></li><li><a href="#results-are-grouped-never-merged-into-one-ranking" class="table-of-contents__link toc-highlight">Results are grouped, never merged into one ranking</a></li><li><a href="#every-answer-reports-its-own-freshness" class="table-of-contents__link toc-highlight">Every answer reports its own freshness</a></li><li><a href="#the-generated-surface-is-opt-in" class="table-of-contents__link toc-highlight">The generated surface is opt-in</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-24 00:42 UTC · 8caca94</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-06-retrieval.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/architecture/context/c-05-freshness"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-05: Freshness and the composite ref</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/architecture/context/c-07-voice-profiles"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-07: Voice profiles</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#one-question-two-shapes" class="table-of-contents__link toc-highlight">One question, two shapes</a></li><li><a href="#two-address-forms-one-thing" class="table-of-contents__link toc-highlight">Two address forms, one thing</a></li><li><a href="#rendering-is-a-property-not-a-command" class="table-of-contents__link toc-highlight">Rendering is a property, not a command</a></li><li><a href="#the-prose-is-the-task" class="table-of-contents__link toc-highlight">The writing brief</a></li><li><a href="#what-folds-in-and-what-does-not" class="table-of-contents__link toc-highlight">What folds in, and what does not</a></li><li><a href="#content-memory-is-recycled-not-searched" class="table-of-contents__link toc-highlight">Content memory is recycled, not searched</a></li><li><a href="#scope-not-capability" class="table-of-contents__link toc-highlight">Scope, not capability</a></li><li><a href="#an-answer-with-nothing-in-it-teaches" class="table-of-contents__link toc-highlight">Coverage and suggestions</a></li><li><a href="#every-answer-says-what-it-read" class="table-of-contents__link toc-highlight">Response provenance</a></li><li><a href="#results-are-grouped-never-merged-into-one-ranking" class="table-of-contents__link toc-highlight">Results are grouped, never merged into one ranking</a></li><li><a href="#every-answer-reports-its-own-freshness" class="table-of-contents__link toc-highlight">Every answer reports its own freshness</a></li><li><a href="#the-generated-surface-is-opt-in" class="table-of-contents__link toc-highlight">The generated surface is opt-in</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-24 21:27 UTC · c2bdb89</div></div></div></footer></div>
 </body>
 </html>

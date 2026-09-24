@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">C-11: Context operations | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/contribute/architecture/context/c-11-context-operations"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-11: Context operations | neokapi"><meta data-rh="true" name="description" content="Architecture decision: every change to a project&#x27;s context is an appended operation carrying an actor, a subject, the evidence behind it and the governance it was made against. Suggestions advise at neutral severity and can never fail a check; a person keeping one establishes the rule and writes it into the subsystem that already reads it."><meta data-rh="true" property="og:description" content="Architecture decision: every change to a project&#x27;s context is an appended operation carrying an actor, a subject, the evidence behind it and the governance it was made against. Suggestions advise at neutral severity and can never fail a check; a person keeping one establishes the rule and writes it into the subsystem that already reads it."><meta data-rh="true" name="keywords" content="context operations,suggestion,keep,drop,withdraw,contested,revert,widen,evidence,policy,actor,operation log,workspace,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/next/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/contribute/architecture/context/c-11-context-operations"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-11-context-operations" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/architecture/context/c-11-context-operations" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/architecture/context/c-11-context-operations" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-11-context-operations" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-11: Context operations","item":"https://neokapi.github.io/next/contribute/architecture/context/c-11-context-operations"}]}</script><link rel="stylesheet" href="/next/assets/css/styles.571fe4f0.css">
-<script src="/next/assets/js/runtime~main.5716e744.js" defer="defer"></script>
-<script src="/next/assets/js/main.763210be.js" defer="defer"></script>
+<script src="/next/assets/js/runtime~main.6fb5fd16.js" defer="defer"></script>
+<script src="/next/assets/js/main.e712a4a6.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -25,28 +25,19 @@ fails a check unless it is marked advisory, and writes it
 into the subsystem that already reads it: the terms store or the content
 memory. The log is the history and the source of suggestions; established
 rules live in the stores.</p>
-<p>Who may do what is one function, <code>contextop.PersonDecides</code>. An agent or a tool
+<p><code>contextop.PersonDecides</code> defines the permission policy. An agent or a tool
 may observe, record a correction, and withdraw its own suggestion in the
 session that recorded it. Only a person keeps, edits, drops, imports, reverts an
 established rule, or widens one.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="context">Context<a href="#context" class="hash-link" aria-label="Direct link to Context" title="Direct link to Context" translate="no">​</a></h2>
-<p>A project starts with an empty context. It has no terms, no voice profile and
-no content memory, and everything it comes to know accumulates out of ordinary
-work: somebody notices how the product name is written, an agent suggests a rule
-from a hundred documents that agree, a person corrects a translation, a check
-enforces what was agreed, and the next correction is evidence for the rule after
-that.</p>
-<div class="kdx"><div class="kdx-scroll"><div class="kdx-canvas" style="min-width:320px;max-width:440px"><svg viewBox="0 0 639.8873577297384 639.8873577297384" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cycle: Observe then Suggest then Keep then Enforce then Correct, then back to start"><defs><marker id="kdx-arrow-cyc" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="kdx-arrow"></path></marker></defs><path d="M425.2735227890722,151.17101715927416 A 198.94367886486918 198.94367886486918 0 0 1 447.90730676501335,167.61542378748163" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M513.0047303398924,367.9646926364112 A 198.94367886486918 198.94367886486918 0 0 1 504.35939415510563,394.572301485675" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M333.93212665602357,518.394959255504 A 198.94367886486918 198.94367886486918 0 0 1 305.95523107371486,518.394959255504" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M135.52796357463274,394.572301485675 A 198.94367886486918 198.94367886486918 0 0 1 126.88262738984596,367.9646926364112" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M191.98005096472508,167.6154237874816 A 198.94367886486918 198.94367886486918 0 0 1 214.61383494066604,151.17101715927421" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><g><rect x="214.94367886486918" y="100" width="210" height="42" rx="9" class="kdx-box"></rect><text x="319.9436788648692" y="120" text-anchor="middle" font-size="11.5" class="kdx-label">Observe</text><text x="319.9436788648692" y="132" text-anchor="middle" font-size="8.5" class="kdx-note">a fact or a term, with evidence</text></g><g><rect x="419.1503610250335" y="237.46670117215257" width="180" height="42" rx="9" class="kdx-box"></rect><text x="509.1503610250335" y="257.46670117215257" text-anchor="middle" font-size="11.5" class="kdx-label">Suggest</text><text x="509.1503610250335" y="269.46670117215257" text-anchor="middle" font-size="8.5" class="kdx-note">advice every check reports</text></g><g><rect x="376.8798393384491" y="459.8924959900204" width="120" height="42" rx="9" class="kdx-box"></rect><text x="436.8798393384491" y="479.8924959900204" text-anchor="middle" font-size="11.5" class="kdx-label">Keep</text><text x="436.8798393384491" y="491.8924959900204" text-anchor="middle" font-size="8.5" class="kdx-note">a person decides</text></g><g><rect x="161.00751839128932" y="459.8924959900204" width="84" height="42" rx="9" class="kdx-box"></rect><text x="203.00751839128932" y="479.8924959900204" text-anchor="middle" font-size="11.5" class="kdx-label">Enforce</text><text x="203.00751839128932" y="491.8924959900204" text-anchor="middle" font-size="8.5" class="kdx-note">kapi check</text></g><g><rect x="49.73699670470492" y="237.46670117215257" width="162" height="42" rx="9" class="kdx-box"></rect><text x="130.73699670470492" y="257.46670117215257" text-anchor="middle" font-size="11.5" class="kdx-label">Correct</text><text x="130.73699670470492" y="269.46670117215257" text-anchor="middle" font-size="8.5" class="kdx-note">wording someone changed</text></g></svg></div></div><p class="kdx-caption">Every leg is an operation in the workspace log. An agent records the observation and the correction, each of which takes effect as a suggestion; a person keeps it.</p></div>
-<p>Two properties decide whether that loop is usable. The first is that a machine&#x27;s
-suggestion must never stop a person&#x27;s work, because a project that fails its
-build over an unreviewed guess is a project whose context people turn off. The
-second is that every step must be attributable and reversible, because the loop
-writes into the files and stores a project is governed by, and nobody accepts an
-automated writer they cannot audit or undo.</p>
-<p><code>core/state</code> settled the same question for unit decisions
-(<a class="" href="/next/contribute/architecture/context/c-04-unit-state-and-decisions">C-04</a>): an append-only ledger, a content
-address, and one <code>Policy</code> function that every writer goes through. Context
-operations take the same shape for the same reasons.</p>
+<p>Projects accumulate context through observations and corrections made during
+normal writing work. Agents can propose rules with evidence; people review
+those proposals before checks enforce them.</p>
+<div class="kdx"><div class="kdx-scroll"><div class="kdx-canvas" style="min-width:320px;max-width:440px"><svg viewBox="0 0 639.8873577297384 639.8873577297384" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cycle: Observe then Suggest then Keep then Enforce then Correct, then back to start"><defs><marker id="kdx-arrow-cyc" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="kdx-arrow"></path></marker></defs><path d="M425.2735227890722,151.17101715927416 A 198.94367886486918 198.94367886486918 0 0 1 447.90730676501335,167.61542378748163" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M513.0047303398924,367.9646926364112 A 198.94367886486918 198.94367886486918 0 0 1 504.35939415510563,394.572301485675" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M333.93212665602357,518.394959255504 A 198.94367886486918 198.94367886486918 0 0 1 305.95523107371486,518.394959255504" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M135.52796357463274,394.572301485675 A 198.94367886486918 198.94367886486918 0 0 1 126.88262738984596,367.9646926364112" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M191.98005096472508,167.6154237874816 A 198.94367886486918 198.94367886486918 0 0 1 214.61383494066604,151.17101715927421" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><g><rect x="214.94367886486918" y="100" width="210" height="42" rx="9" class="kdx-box"></rect><text x="319.9436788648692" y="120" text-anchor="middle" font-size="11.5" class="kdx-label">Observe</text><text x="319.9436788648692" y="132" text-anchor="middle" font-size="8.5" class="kdx-note">a fact or a term, with evidence</text></g><g><rect x="422.1503610250335" y="237.46670117215257" width="174" height="42" rx="9" class="kdx-box"></rect><text x="509.1503610250335" y="257.46670117215257" text-anchor="middle" font-size="11.5" class="kdx-label">Suggest</text><text x="509.1503610250335" y="269.46670117215257" text-anchor="middle" font-size="8.5" class="kdx-note">advice reported by checks</text></g><g><rect x="337.8798393384491" y="459.8924959900204" width="198" height="42" rx="9" class="kdx-box"></rect><text x="436.8798393384491" y="479.8924959900204" text-anchor="middle" font-size="11.5" class="kdx-label">Keep</text><text x="436.8798393384491" y="491.8924959900204" text-anchor="middle" font-size="8.5" class="kdx-note">a person establishes the rule</text></g><g><rect x="161.00751839128932" y="459.8924959900204" width="84" height="42" rx="9" class="kdx-box"></rect><text x="203.00751839128932" y="479.8924959900204" text-anchor="middle" font-size="11.5" class="kdx-label">Enforce</text><text x="203.00751839128932" y="491.8924959900204" text-anchor="middle" font-size="8.5" class="kdx-note">kapi check</text></g><g><rect x="49.73699670470492" y="237.46670117215257" width="162" height="42" rx="9" class="kdx-box"></rect><text x="130.73699670470492" y="257.46670117215257" text-anchor="middle" font-size="11.5" class="kdx-label">Correct</text><text x="130.73699670470492" y="269.46670117215257" text-anchor="middle" font-size="8.5" class="kdx-note">record a wording change</text></g></svg></div></div><p class="kdx-caption">Observations and corrections become suggestions. A person reviews and keeps a suggestion before checks enforce it.</p></div>
+<p>Suggestions must not fail builds before review. Operations must also be
+attributable and reversible. The design follows the unit-decision model in
+<code>core/state</code> (<a class="" href="/next/contribute/architecture/context/c-04-unit-state-and-decisions">C-04</a>): an append-only ledger
+and a shared policy function for all writers.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direct link to Decision" title="Direct link to Decision" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="an-operation-is-the-unit">An operation is the unit<a href="#an-operation-is-the-unit" class="hash-link" aria-label="Direct link to An operation is the unit" title="Direct link to An operation is the unit" translate="no">​</a></h3>
 <p><code>contextop.Record</code> is one recorded change:</p>
@@ -66,12 +57,11 @@ editing the voice profile. Both are established from the start.</li>
 <li class=""><code>keep</code>, <code>drop</code>, <code>withdraw</code>, <code>revert</code> and <code>widen</code> name an earlier operation and
 say what became of it.</li>
 </ul>
-<p>Status is folded rather than stored. <code>contextop.Ledger</code> reads the log forward
-and reports each subject-bearing operation at the status the operations naming
-it left it:</p>
+<p><code>contextop.Ledger</code> derives status by replaying the log in order and applying
+subsequent operations to each subject:</p>
 <table><thead><tr><th>Status</th><th>What it means</th><th>Answers</th></tr></thead><tbody><tr><td><code>suggested</code></td><td>nothing has acted on it</td><td>advises</td></tr><tr><td><code>established</code></td><td>a person kept, imported or wrote it</td><td>fails a check unless advisory</td></tr><tr><td><code>contested</code></td><td>it disagrees with another rule, named in <code>ContestedBy</code></td><td>advises</td></tr><tr><td><code>withdrawn</code></td><td>its author took it back in the session that recorded it</td><td>silent</td></tr><tr><td><code>dropped</code></td><td>a person set it aside</td><td>silent</td></tr><tr><td><code>reverted</code></td><td>somebody undid it, alone or with its session</td><td>silent</td></tr></tbody></table>
-<p>Naming a decision rather than the rule it decided reaches the rule, so <code>revert</code>
-on a keep undoes the keep&#x27;s subject.</p>
+<p>Operations can target a decision indirectly: reverting a <code>keep</code> retracts the
+rule that operation established.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="an-observation-states-a-term-rule-by-its-forms">An observation states a term rule by its forms<a href="#an-observation-states-a-term-rule-by-its-forms" class="hash-link" aria-label="Direct link to An observation states a term rule by its forms" title="Direct link to An observation states a term rule by its forms" translate="no">​</a></h3>
 <p><code>kapi context observe --term Quickcast --instead-of &quot;Quick cast&quot;</code> records the
 form the project uses and a form it avoids. <code>contextop.AvoidedForms</code> derives
@@ -81,7 +71,7 @@ spacing, hyphen and case variants of a compound. The rule above avoids
 <p>A compound&#x27;s parts come from the term&#x27;s own spaces, hyphens and case changes,
 or, for a closed word such as <code>Quickcast</code>, from an <code>--instead-of</code> form that
 breaks it. A lower-case phrase such as <code>content memory</code> yields only
-<code>content-memory</code>, because nobody writes it closed. A word with neither has no
+<code>content-memory</code>, without generating a closed compound. A word with neither has no
 parts to vary, and its rule avoids what <code>--instead-of</code> lists. The first avoided
 form becomes the rule&#x27;s term and the rest its forms. A rule whose avoided forms
 differ from the term only in case matches as written, so the rule about
@@ -95,15 +85,13 @@ score and counts into <code>Summary.Reporting</code>, so a suggestion cannot fai
 <p>The flag is what a surface reads to show the finding as a suggestion rather than
 a broken rule, and <code>HitsToFindings</code> words the message accordingly: <em>Suggested
 rule about &quot;utilise&quot;, not yet established</em>.</p>
-<p>Suggestions also run outside the vocabulary analyzer, before it. An analyzer&#x27;s
-findings are its verdict, and <code>kapi check</code> counts them, scores them and holds
-the analyzer to a canary; a suggestion settles none of that. The same stance
-<code>core/check</code> takes with a <code>Warning</code>: reported beside the findings, read by no
-gate. That is also what lets a project with no voice profile and no terms report
-its suggestions, which is the ordinary case on the day a project is created.</p>
-<p>Keeping applies the rule&#x27;s own advisory marking, because keeping writes it into
-the project&#x27;s stores and every existing reader grades it from there. Only an
-established rule fails a check.</p>
+<p>Suggested-rule checks run before and independently of the vocabulary analyzer.
+This allows projects without a voice profile or terms store to report
+suggestions. Suggested findings have zero scoring weight and do not affect
+gates or the analyzer&#x27;s canary validation.</p>
+<p>Keeping a rule writes it into the project&#x27;s stores. Subsequent checks use the
+rule&#x27;s advisory setting: violations of an established rule fail unless it is
+marked advisory.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="disagreements-are-contested-until-a-person-chooses">Disagreements are contested until a person chooses<a href="#disagreements-are-contested-until-a-person-chooses" class="hash-link" aria-label="Direct link to Disagreements are contested until a person chooses" title="Direct link to Disagreements are contested until a person chooses" translate="no">​</a></h3>
 <p>Two rules disagree when they share a form to avoid and name different forms to
 use, or when one avoids the form the other says to use. Rules at points that
@@ -132,9 +120,7 @@ it with no second code path. A term rule with several forms to avoid lands each
 form, and a form that differs from the form to use only in case stays out of
 the store, which folds case.</p>
 <p>Reverting an established rule reverses it against the same stores: the term is
-deleted from the terms store, or the pair from the content memory. A concept&#x27;s
-other terms stand, because the delete addresses the term the rule named rather
-than the concept that held it.</p>
+deleted from the terms store, or the pair from the content memory. Other terms in the concept are preserved because deletion targets the term.</p>
 <p><code>kapi apply</code> records one <code>edit</code> operation for each term or content-memory entry
 it applies, established from the start and attributed to the person who ran the
 command. An entry naming an agent as its actor is refused by the policy before
@@ -156,15 +142,13 @@ in force for everyone working in the project. <code>kapi voice edit</code> recor
 the file&#x27;s project-relative path, so two checkouts of one project never skip
 each other&#x27;s files and a second import of unmoved bytes reports that it read
 nothing. <code>--force</code> reads regardless.</p>
-<p>A checkout carrying context files whose project store has never held context is
-the <strong>first meeting</strong>, and <code>host.ContextFilesUnread</code> answers for it: it stats
-the layout, asks the store whether it holds a concept, a content-memory entry, a
-voice profile or a decision, and returns the file list with the command that
-reads them. It opens no context file, so a checkout carrying one cannot reach an
-answer through the notice either. Every surface renders that one value
-(<a class="" href="/next/contribute/architecture/surfaces/s-02-kapi-desktop">S-02</a>,
-<a class="" href="/next/contribute/architecture/surfaces/s-03-agent-surfaces">S-03</a>), and <code>kapi check</code> carries it as a
-configuration warning, which changes neither the score nor the verdict.</p>
+<p><code>host.ContextFilesUnread</code> detects a checkout with context files and an empty
+project context store. It checks file metadata and whether the store contains
+any concept, memory entry, voice profile or decision, without reading the
+context files. It returns the file list and import command.</p>
+<p>Every surface uses this result (<a class="" href="/next/contribute/architecture/surfaces/s-02-kapi-desktop">S-02</a>,
+<a class="" href="/next/contribute/architecture/surfaces/s-03-agent-surfaces">S-03</a>). <code>kapi check</code> reports it as a
+configuration warning that affects neither scores nor verdicts.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="scope-is-set-by-evidence-and-widened-deliberately">Scope is set by evidence, and widened deliberately<a href="#scope-is-set-by-evidence-and-widened-deliberately" class="hash-link" aria-label="Direct link to Scope is set by evidence, and widened deliberately" title="Direct link to Scope is set by evidence, and widened deliberately" translate="no">​</a></h3>
 <p>An operation is scoped to the point its evidence was seen at: the coordinates
 <code>ResolveGovernanceFor</code> resolves for the file it was seen in
@@ -177,13 +161,10 @@ with <code>kapi context widen</code>. Naming an axis drops it
 from the rule&#x27;s point, so a rule learned at one mode answers at every mode of
 its brand. Naming <code>workspace</code> puts the rule in force in every project of the
 workspace.</p>
-<p>A workspace-wide rule has no project store to live in, so the workspace holds
-it: <code>workspace.Rule</code>, a row in <code>workspace.db</code> carrying an id, a kind, the
-project its evidence came from, and the rule as opaque JSON. The workspace never
-reads inside the payload, which keeps it ignorant of term rules and of whatever
-is widened next. Resolution puts these beneath what the project itself says: a
-term the project&#x27;s own store declares hides the workspace-wide rule about it,
-and the most specific answer wins.</p>
+<p>Workspace-wide rules use <code>workspace.Rule</code> rows in <code>workspace.db</code>. Each row
+contains an id, kind, source project and opaque JSON payload. This keeps
+workspace storage independent of the rule type. Project-specific terms take
+precedence over workspace rules for the same term.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="one-policy-function">One policy function<a href="#one-policy-function" class="hash-link" aria-label="Direct link to One policy function" title="Direct link to One policy function" translate="no">​</a></h3>
 <div class="language-go codeBlockContainer_M4jf theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_JkHG"><pre tabindex="0" class="prism-code language-go codeBlock_CzoH thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_CgN2"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> Transition </span><span class="token keyword" style="color:#00009f">struct</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Actor    Actor</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Kind     Kind</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Subject  SubjectKind</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Target   Record</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Targeted </span><span class="token builtin">bool</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Widening </span><span class="token builtin">bool</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Editing  </span><span class="token builtin">bool</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> Policy </span><span class="token keyword" style="color:#00009f">func</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">Transition</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">error</span><br></div></code></pre></div></div>
 <p><code>PersonDecides</code> is what ships. An agent or a tool may observe and record a
@@ -194,8 +175,7 @@ turns advice into a rule, or sets another actor&#x27;s advice aside, belongs to 
 person: keeping, editing what another actor suggested, importing, writing a
 rule directly, dropping, reverting an established rule or a whole session, and
 widening.</p>
-<p><code>drop</code> and <code>withdraw</code> both stop a suggestion answering, and they differ in who
-acts. A person drops a suggestion; asked to drop an established rule, kapi
+<p><code>drop</code> and <code>withdraw</code> deactivate suggestions but have different permissions. A person drops a suggestion; asked to drop an established rule, kapi
 refuses and names the <code>kapi context revert</code> that takes it out of the stores.
 Its author withdraws a suggestion, and only while it is still one.</p>
 <p>Widening is a property of the transition rather than of the verb, so the check
@@ -207,26 +187,22 @@ parties, so an agent acts on its own suggestion and on nobody else&#x27;s.</p>
 desktop feed. Agent roles with wider rights are a change to this function rather
 than to each call site.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="reversibility-is-exact">Reversibility is exact<a href="#reversibility-is-exact" class="hash-link" aria-label="Direct link to Reversibility is exact" title="Direct link to Reversibility is exact" translate="no">​</a></h3>
-<p>Reverting a session marks every operation it recorded as reverted and retracts
-whatever they put in force. What a check says before a session and after that
-session is reverted are the same findings, the same summary and the same
-verdict, not a similar answer. <code>host/contextops_test.go</code> asserts the equality
-rather than a resemblance.</p>
+<p>Reverting a session marks its operations as reverted and retracts the rules
+they established. With other state unchanged, checks produce the same findings,
+summary and verdict as before the session. <code>host/contextops_test.go</code> verifies
+this equality.</p>
 <p>Nothing is erased. A reverted operation stays in the log with its evidence, so
 the same suggestion is recognisable the next time it is made.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direct link to Consequences" title="Direct link to Consequences" translate="no">​</a></h2>
-<p>An agent can write into a project&#x27;s context continuously without any risk of
-stopping a build, because everything it writes is advice until a person says
-otherwise. A person reviewing a week of that work reads one list, decides in one
-verb, and can undo a whole session in another.</p>
+<p>Agents can record suggestions during normal work without affecting build
+results. People can review operations together, keep suggestions by session and
+revert a session when necessary.</p>
 <p>The log is folded on every read rather than indexed. A workspace holds one
 operation per context change, which stays small enough to read whole; an
 implementation that needs an index adds one behind <code>Ledger</code> without moving the
 model.</p>
-<p>Operation ids are workspace-local positions, so they are not portable between
-workspaces. Nothing needs them to be: established rules travel in the context
-bundles <code>kapi context export</code> and <code>kapi context snapshot</code> write, and those carry
-no operation ids.</p>
+<p>Operation ids are local to a workspace. Context exports and snapshots contain
+established rules without those ids; the operation history remains local.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="surfaces">Surfaces<a href="#surfaces" class="hash-link" aria-label="Direct link to Surfaces" title="Direct link to Surfaces" translate="no">​</a></h2>
 <p><code>kapi context observe</code>, <code>correct</code>, <code>log</code>, <code>keep</code>, <code>drop</code>, <code>withdraw</code>, <code>revert</code>
 and <code>widen</code> are the command-line half. <code>kapi context keep</code> takes several ids, or
@@ -240,17 +216,16 @@ agent tools and the desktop drive the same loop.</p>
 wrongly, and <code>context_session_summary</code>, which reports what one session recorded
 and what became of it and ends with the <code>kapi context keep --session</code> command a
 person reviews it with. Each wraps one host call and adds no rule of its own.
-There is no tool for keeping, dropping, reverting or widening, because those
-are a person&#x27;s and a tool that is always refused is one an assistant keeps
-trying (<a class="" href="/next/contribute/architecture/surfaces/s-03-agent-surfaces">S-03</a>).</p>
-<p>The actor rides on the call rather than in it. An MCP tool takes no actor
+Keeping, dropping, reverting and widening are reserved for people and are
+excluded from the agent tool set (<a class="" href="/next/contribute/architecture/surfaces/s-03-agent-surfaces">S-03</a>).</p>
+<p>The server assigns the actor identity. An MCP tool takes no actor
 argument and refuses one: the kind is <code>agent</code>, the name comes from the client&#x27;s
 own <code>initialize</code>, and the session is minted once per server process, so
-everything one run recorded reads back and reverts together. A command line
-records as the person running it, which is what a command line is.</p>
+operations from one run can be read and reverted together. Shell commands use
+environment-based actor detection to distinguish people from supported agent
+hosts.</p>
 <p>Evidence is required where a rule is stated. <code>context_observe</code> refuses a term
 rule with no <code>path</code>, and <code>context_correct</code> declares the path as a required
-argument and refuses a blank one, so a rule nobody can check never reaches the
-log.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-11-context-operations.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/contribute/architecture/context/c-10-redaction"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">C-10: Redaction and clearance</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/contribute/architecture/surfaces/s-01-kapi-cli"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">S-01: The kapi CLI</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#an-operation-is-the-unit" class="table-of-contents__link toc-highlight">An operation is the unit</a></li><li><a href="#an-observation-states-a-term-rule-by-its-forms" class="table-of-contents__link toc-highlight">An observation states a term rule by its forms</a></li><li><a href="#suggestions-advise-established-rules-bind" class="table-of-contents__link toc-highlight">Suggestions advise, established rules bind</a></li><li><a href="#disagreements-are-contested-until-a-person-chooses" class="table-of-contents__link toc-highlight">Disagreements are contested until a person chooses</a></li><li><a href="#keeping-writes-through-the-existing-appliers" class="table-of-contents__link toc-highlight">Keeping writes through the existing appliers</a></li><li><a href="#reading-a-checkouts-context-files-is-an-operation-too" class="table-of-contents__link toc-highlight">Reading a checkout&#39;s context files is an operation too</a></li><li><a href="#scope-is-set-by-evidence-and-widened-deliberately" class="table-of-contents__link toc-highlight">Scope is set by evidence, and widened deliberately</a></li><li><a href="#one-policy-function" class="table-of-contents__link toc-highlight">One policy function</a></li><li><a href="#reversibility-is-exact" class="table-of-contents__link toc-highlight">Reversibility is exact</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#surfaces" class="table-of-contents__link toc-highlight">Surfaces</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-24 00:40 UTC · 8caca94</div></div></div></footer></div>
+argument and refuses a blank one, so recorded rules have traceable evidence.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-11-context-operations.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/contribute/architecture/context/c-10-redaction"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">C-10: Redaction and clearance</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/contribute/architecture/surfaces/s-01-kapi-cli"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">S-01: The kapi CLI</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#an-operation-is-the-unit" class="table-of-contents__link toc-highlight">An operation is the unit</a></li><li><a href="#an-observation-states-a-term-rule-by-its-forms" class="table-of-contents__link toc-highlight">An observation states a term rule by its forms</a></li><li><a href="#suggestions-advise-established-rules-bind" class="table-of-contents__link toc-highlight">Suggestions advise, established rules bind</a></li><li><a href="#disagreements-are-contested-until-a-person-chooses" class="table-of-contents__link toc-highlight">Disagreements are contested until a person chooses</a></li><li><a href="#keeping-writes-through-the-existing-appliers" class="table-of-contents__link toc-highlight">Keeping writes through the existing appliers</a></li><li><a href="#reading-a-checkouts-context-files-is-an-operation-too" class="table-of-contents__link toc-highlight">Reading a checkout&#39;s context files is an operation too</a></li><li><a href="#scope-is-set-by-evidence-and-widened-deliberately" class="table-of-contents__link toc-highlight">Scope is set by evidence, and widened deliberately</a></li><li><a href="#one-policy-function" class="table-of-contents__link toc-highlight">One policy function</a></li><li><a href="#reversibility-is-exact" class="table-of-contents__link toc-highlight">Reversibility is exact</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#surfaces" class="table-of-contents__link toc-highlight">Surfaces</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-24 21:24 UTC · c2bdb89</div></div></div></footer></div>
 </body>
 </html>

@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">C-03: The context store and graph | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/nb/contribute/architecture/context/c-03-context-store-and-graph"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-03: The context store and graph | neokapi"><meta data-rh="true" name="description" content="Architecture decision: a project keeps two databases. The projection of its working tree stays in the checkout at .kapi/work/store.db; its authored context lives in a workspace outside every checkout, one database per project, beside the workspace&#x27;s project registry and context graph."><meta data-rh="true" property="og:description" content="Architecture decision: a project keeps two databases. The projection of its working tree stays in the checkout at .kapi/work/store.db; its authored context lives in a workspace outside every checkout, one database per project, beside the workspace&#x27;s project registry and context graph."><meta data-rh="true" name="keywords" content="workspace,context store,store.db,context graph,graph_nodes,graph_edges,project registry,projection,backend,neokapi,architecture decision"><link data-rh="true" rel="icon" href="/next/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/nb/contribute/architecture/context/c-03-context-store-and-graph"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-03-context-store-and-graph" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/architecture/context/c-03-context-store-and-graph" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/architecture/context/c-03-context-store-and-graph" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-03-context-store-and-graph" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-03: The context store and graph","item":"https://neokapi.github.io/next/nb/contribute/architecture/context/c-03-context-store-and-graph"}]}</script><link rel="stylesheet" href="/next/nb/assets/css/styles.571fe4f0.css">
-<script src="/next/nb/assets/js/runtime~main.fa44c8a2.js" defer="defer"></script>
-<script src="/next/nb/assets/js/main.18255ae0.js" defer="defer"></script>
+<script src="/next/nb/assets/js/runtime~main.8915a45f.js" defer="defer"></script>
+<script src="/next/nb/assets/js/main.451c4ceb.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -36,22 +36,16 @@ of them are signed off?</em> is answered in one pass.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="context">Context<a href="#context" class="hash-link" aria-label="Direkte lenke til Context" title="Direkte lenke til Context" translate="no">​</a></h2>
 <p>Context is relational. A term occurs in blocks; blocks belong to collections and
 sit at a point in the context space (<a class="" href="/next/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02</a>);
-a state record blesses a unit at a content hash; a memory entry recycles into a
+a state record approves a unit at a content hash; a memory entry recycles into a
 block. Retrieval (<a class="" href="/next/nb/contribute/architecture/context/c-06-retrieval">C-06</a>) and governance
 (<a class="" href="/next/nb/contribute/architecture/context/c-02-coordinates-and-governance">C-02</a>) both traverse those relations rather
 than reading one store in isolation.</p>
-<p>Context is also durable in a way a parse is not. A voice profile, a term, an
-approved wording and a recorded decision are what a person put there. A parsed
-block, an overlay and a stamp are what the last run computed, and the next run
-computes them again. Keeping both in one file inside the checkout made the
-durable half inherit the disposable half&#x27;s lifetime: a second clone started with
-no memory of what had been approved, a git worktree recorded decisions the main
-checkout never saw, and <code>rm -rf .kapi/work</code> was a sentence with two very
-different halves.</p>
-<p>A hosted layer answers such questions over one database spanning many projects.
-If a local project could not answer them at all, the two halves would differ in
-what they can be <em>asked</em>, not merely in scale, and the framework&#x27;s standing
-constraint is that kapi runs on its own.</p>
+<p>Authored context must survive checkout deletion and remain available across
+clones and worktrees. Parsed blocks, overlays and extraction stamps belong to a
+specific working tree and can be rebuilt. Separate databases give these data
+sets independent lifetimes and write locks.</p>
+<p>Both local and hosted storage support queries across context relationships.
+The local implementation provides these capabilities without a server.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="decision">Decision<a href="#decision" class="hash-link" aria-label="Direkte lenke til Decision" title="Direkte lenke til Decision" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="the-workspace">The workspace<a href="#the-workspace" class="hash-link" aria-label="Direkte lenke til The workspace" title="Direkte lenke til The workspace" translate="no">​</a></h3>
 <p>Every machine account has one implicit <strong>default workspace</strong>, created on first
@@ -70,26 +64,13 @@ first case the normal one.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="a-directory-per-workspace-a-database-per-project">A directory per workspace, a database per project<a href="#a-directory-per-workspace-a-database-per-project" class="hash-link" aria-label="Direkte lenke til A directory per workspace, a database per project" title="Direkte lenke til A directory per workspace, a database per project" translate="no">​</a></h3>
 <div class="language-text codeBlockContainer_M4jf theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_JkHG"><pre tabindex="0" class="prism-code language-text codeBlock_CzoH thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_CgN2"><div class="token-line" style="color:#393A34"><span class="token plain">&lt;DataDir&gt;/workspaces/default/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  workspace.db                  the project registry, the context graph,</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                the operation log</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  projects/</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    prj_9f2k…q7.db              one project&#x27;s context store</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    prj_4c8m…b1.db</span><br></div></code></pre></div></div>
-<p>The alternative was one database per workspace with a project column on every
-context table. A directory won, for four reasons:</p>
-<ul>
-<li class="">The <code>terms/</code>, <code>memory/</code> and <code>voice/</code> schemas move out of the checkout
-unchanged. A project column on every table would have meant a scoping change
-inside three subsystems, each with its own migration ledger and its own
-hosted counterpart to stay in step with.</li>
-<li class="">Write contention is bounded to the project that caused it. SQLite locks a
-file, so a converge run teaching one project&#x27;s content memory would otherwise
-queue every other project&#x27;s writers behind it.</li>
-<li class="">So is corruption. A truncated write costs the project that was being written
-rather than every project on the machine.</li>
-<li class="">Exporting a project, copying one, or deleting one is a file operation.</li>
-</ul>
-<p>What the split costs is a cross-project query, which is exactly what the
-workspace database absorbs: the graph&#x27;s node ids carry the project dimension
-already (<a href="#node-identity-carries-the-scope-tuple" class="">Node identity carries the scope tuple</a>),
-so <em>which projects use this concept</em> is a traversal there. A question the graph
-does not hold is a fan-out over the project databases, which is a loop over
-files a directory listing gives.</p>
+<p>A separate database per project preserves the terms, content-memory and voice
+schemas without adding project columns to each table. It also limits write
+contention and file corruption to one project and supports file-level export,
+copying and deletion.</p>
+<p>Cross-project graph queries use <code>workspace.db</code>, where node identities include
+project scope (<a href="#node-identity-carries-the-scope-tuple" class="">Node identity carries the scope tuple</a>).
+Queries for data outside the graph read the relevant project databases.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="where-the-authoritative-copy-lives-is-a-backend">Where the authoritative copy lives is a backend<a href="#where-the-authoritative-copy-lives-is-a-backend" class="hash-link" aria-label="Direkte lenke til Where the authoritative copy lives is a backend" title="Direkte lenke til Where the authoritative copy lives is a backend" translate="no">​</a></h3>
 <p><code>core/workspace.Backend</code> is where a workspace&#x27;s authoritative copy lives:</p>
 <table><thead><tr><th>Method</th><th>What it answers</th></tr></thead><tbody><tr><td><code>Describe</code></td><td>which backend this is, where the workspace is, whether it can be written</td></tr><tr><td><code>Registry</code></td><td>the workspace-wide database: registry, graph, operation log, widened rules, agent sessions</td></tr><tr><td><code>Project</code></td><td>one project&#x27;s context store, created on first use</td></tr><tr><td><code>Forget</code></td><td>drop one project&#x27;s context store</td></tr><tr><td><code>Record</code></td><td>append operations, assigning each a sequence number</td></tr><tr><td><code>Since</code></td><td>read operations back from a position</td></tr><tr><td><code>Head</code></td><td>the position the log stands at</td></tr><tr><td><code>Close</code></td><td>release every handle the backend owns</td></tr></tbody></table>
@@ -141,16 +122,12 @@ default for it.</p>
 temporary directory and cannot reach a real workspace, because there is no path
 inside the framework that names one.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="adoption">Adoption<a href="#adoption" class="hash-link" aria-label="Direkte lenke til Adoption" title="Direkte lenke til Adoption" translate="no">​</a></h3>
-<p>The first open of a project WITH a workspace, where the context store is new and
-the projection still carries context tables, carries the project across.</p>
-<p>Every context row moves, because nothing reproduces one. They are read out of
-the old store and written into the new one first, and nothing is dropped unless
-that succeeded.</p>
-<p>What is dropped afterwards is computed rather than listed: an empty projection
-is built in memory, its tables are what a projection is entitled to hold, and
-every other table in the file belonged to a subsystem that has moved out. A list
-would be a second copy of four subsystems&#x27; schemas with nothing keeping it
-current.</p>
+<p>When a project first opens with a workspace, kapi migrates any context tables
+from the projection into the new context store. It copies every context row
+before removing the old tables; a failed copy leaves the originals intact.</p>
+<p>To identify the tables to retain, kapi creates an empty projection in memory
+and compares its schema with the existing database. This avoids maintaining a
+separate list of tables owned by each context subsystem.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="joining-across-the-two-files">Joining across the two files<a href="#joining-across-the-two-files" class="hash-link" aria-label="Direkte lenke til Joining across the two files" title="Direkte lenke til Joining across the two files" translate="no">​</a></h3>
 <p><code>projectdb.DB.Join</code> runs a function on one connection with both files visible:
 the projection and the context store, the second attached under the schema name
@@ -187,8 +164,7 @@ workspace then reports itself read-only, answers reads, and refuses a write with
 path pattern: iCloud Drive, Dropbox, OneDrive and Google Drive, matched a path
 segment at a time. The message names the folder, the product and the way out,
 which is to set <code>KAPI_DATA_DIR</code> to a directory outside it.</p>
-<p>A sync client and a SQLite database in WAL mode disagree about what a file is.
-SQLite keeps a database, a write-ahead log and a shared-memory index consistent
+<p>SQLite keeps a database, a write-ahead log and a shared-memory index consistent
 with each other through byte-range locks the operating system enforces; a sync
 client copies each of the three whenever it notices a change, takes no lock, and
 replaces a file under an open handle when a second machine writes. The result is
@@ -199,7 +175,7 @@ names.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="one-pool-is-derived-and-one-is-authored">One pool is derived and one is authored<a href="#one-pool-is-derived-and-one-is-authored" class="hash-link" aria-label="Direkte lenke til One pool is derived and one is authored" title="Direkte lenke til One pool is derived and one is authored" translate="no">​</a></h3>
 <p>The <strong>projection</strong> is an index. Every row in it is a reading of the content
 files, source and target, so deleting it costs a re-extraction and nothing else.</p>
-<p>The <strong>context store</strong> is the truth for what a project has agreed: its terms
+<p>The <strong>context store</strong> is the authoritative store for the project’s terms
 (<a class="" href="/next/nb/contribute/architecture/context/c-08-terms">C-08</a>), its voice profiles (<a class="" href="/next/nb/contribute/architecture/context/c-07-voice-profiles">C-07</a>),
 its content memory (<a class="" href="/next/nb/contribute/architecture/context/c-09-content-memory">C-09</a>) and its decision ledger
 (<a class="" href="/next/nb/contribute/architecture/context/c-04-unit-state-and-decisions">C-04</a>). Nothing reproduces a row in it, and
@@ -207,22 +183,17 @@ no read path opens a file in the checkout to answer for one. A checkout may
 carry a snapshot of the same content under <code>.kapi/</code>, written by
 <code>kapi context snapshot</code>; <code>kapi context import</code> is the one command that reads it
 back, and <code>kapi context export</code> is the backup (<a class="" href="/next/nb/contribute/architecture/context/c-11-context-operations">C-11</a>).</p>
-<p>Two consequences follow, and both are the point. A branch carrying an older copy
-of a terms bundle enforces the terms the project agreed on rather than the ones
-its branch happens to hold. And a project whose team keeps no snapshot at all
-governs its content exactly as one that does.</p>
-<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="kapiwork-is-free-to-delete"><code>.kapi/work/</code> is free to delete<a href="#kapiwork-is-free-to-delete" class="hash-link" aria-label="Direkte lenke til kapiwork-is-free-to-delete" title="Direkte lenke til kapiwork-is-free-to-delete" translate="no">​</a></h3>
-<p>Everything under <code>.kapi/work/</code> is derived from the working tree: the parse
-cache, extraction batches, collection overlays, and <code>store.db</code> itself. Deleting
-the whole of it costs a re-extraction.</p>
-<p>What exists in a single place is the context store, and it sits in the
-workspace. Deleting <code>&lt;DataDir&gt;/workspaces/</code> costs the terms, the voice profiles,
-the content memory and the decisions of every project on the machine, which is
-what <code>kapi context export --workspace</code> exists to prevent.</p>
-<p>The redaction vault (<a class="" href="/next/nb/contribute/architecture/context/c-10-redaction">C-10</a>) at <code>.kapi/work/vault/</code> is the
-one thing under <code>work/</code> that is still a loss rather than a rebuild: it holds
-withheld originals, local-only by design, never committed and never sent
-anywhere, so nothing else has a copy.</p>
+<p>Branches use the current context store even when they contain older snapshot
+files. Governance is therefore independent of whether a team commits snapshots.</p>
+<h3 class="anchor anchorTargetStickyNavbar_ZMry" id="kapiwork-is-free-to-delete">Deleting derived data<a href="#kapiwork-is-free-to-delete" class="hash-link" aria-label="Direkte lenke til Deleting derived data" title="Direkte lenke til Deleting derived data" translate="no">​</a></h3>
+<p>The parse cache, extraction batches, collection overlays and <code>store.db</code> can be
+rebuilt from content files. The redaction vault at <code>.kapi/work/vault/</code> is an
+exception: it contains withheld originals that are neither committed nor sent
+to a service. Deleting it loses those values (<a class="" href="/next/nb/contribute/architecture/context/c-10-redaction">C-10</a>).</p>
+<p>The context store has a separate lifetime in the workspace. Deleting
+<code>&lt;DataDir&gt;/workspaces/</code> removes the terms, voice profiles, content memory and
+decisions of every local project. Use <code>kapi context export --workspace</code> to back
+up project context before deleting the workspace.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="locales-are-keyed-canonically">Locales are keyed canonically<a href="#locales-are-keyed-canonically" class="hash-link" aria-label="Direkte lenke til Locales are keyed canonically" title="Direkte lenke til Locales are keyed canonically" translate="no">​</a></h3>
 <p>Every subsystem keys its rows by the canonical BCP-47 locale beside the text:
 the content memory&#x27;s variants (<a class="" href="/next/nb/contribute/architecture/context/c-09-content-memory">C-09</a>), the terms
@@ -352,9 +323,8 @@ describe.</p>
 every block write costs roughly seven times the write: extraction writes every
 block in the project, which is too much to levy for a query that may never be
 asked. A write only marks the block stale, and the first search reconciles
-exactly what changed. The index narrows and never decides (a trigram match is
-necessary, not sufficient), so matching is done in Go, which is also how the
-browser build answers the same question by scanning.</p>
+exactly what changed. The index selects candidate matches; Go code verifies them. The browser build
+uses the same matcher with a scan instead of an index.</p>
 <p><code>kapi terms occurrences</code> is the surface that lists uses live from this index,
 with their positions. The usage count is a different reading: <code>kapi context search</code>, the <code>context_search</code> tool, the desktop explorer&#x27;s search and relations
 panes and the platform&#x27;s concept page all report how often a term is used, and
@@ -405,17 +375,17 @@ binary is not a test binary, which is why every in-repo surface that launches on
 sets <code>$KAPI_DATA_DIR</code> as part of the isolation contract.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="consequences">Consequences<a href="#consequences" class="hash-link" aria-label="Direkte lenke til Consequences" title="Direkte lenke til Consequences" translate="no">​</a></h2>
 <ul>
-<li class=""><strong>A clone starts where the project is, not where the checkout is.</strong> A second
+<li class=""><strong>Clones share project context.</strong> A second
 clone of a project with an <code>id:</code> opens with its terms, its voice profiles, its
 content memory and its decisions already in force, and re-extracts its own
 projection.</li>
-<li class=""><strong>A git worktree is a checkout, not a second project.</strong> Decisions recorded in
+<li class=""><strong>Worktrees share the decision ledger.</strong> Decisions recorded in
 one are in force in the other, and switching branches moves no authored
 context.</li>
 <li class=""><strong>Cross-subsystem questions are one query within a pool, and one join across
 them.</strong> Term coverage per collection, the blocks behind a coordinate, the
 units a term change puts at risk.</li>
-<li class=""><strong>One transaction still covers a decision and the wording it blesses.</strong> Both
+<li class=""><strong>One transaction still covers a decision and the wording it approves.</strong> Both
 are in the context pool, which is why they are in the same file.</li>
 <li class=""><strong>Store paths are not a user surface.</strong> The recipe binds what governs a point
 by name and names no database or context file, and it carries no workspace
@@ -449,6 +419,6 @@ the widened rules the workspace holds.</li>
 <li class=""><a class="" href="/next/nb/contribute/implementation/context/workspace-storage">Note: Workspace storage</a>:
 the files, the tables, the write settings and the contention measurements.</li>
 <li class=""><a class="" href="/next/nb/kapi/project-store">The project store</a>: the end-user view.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-03-context-store-and-graph.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/architecture/context/c-02-coordinates-and-governance"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-02: Coordinates and governance</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/architecture/context/c-04-unit-state-and-decisions"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-04: Unit state and the decision record</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-workspace" class="table-of-contents__link toc-highlight">The workspace</a></li><li><a href="#a-directory-per-workspace-a-database-per-project" class="table-of-contents__link toc-highlight">A directory per workspace, a database per project</a></li><li><a href="#where-the-authoritative-copy-lives-is-a-backend" class="table-of-contents__link toc-highlight">Where the authoritative copy lives is a backend</a></li><li><a href="#no-daemon" class="table-of-contents__link toc-highlight">No daemon</a></li><li><a href="#projects-register-on-first-use" class="table-of-contents__link toc-highlight">Projects register on first use</a></li><li><a href="#what-is-in-which-file" class="table-of-contents__link toc-highlight">What is in which file</a></li><li><a href="#opening-without-a-workspace" class="table-of-contents__link toc-highlight">Opening without a workspace</a></li><li><a href="#adoption" class="table-of-contents__link toc-highlight">Adoption</a></li><li><a href="#joining-across-the-two-files" class="table-of-contents__link toc-highlight">Joining across the two files</a></li><li><a href="#writes-are-ordered-reads-are-never-gated" class="table-of-contents__link toc-highlight">Writes are ordered; reads are never gated</a></li><li><a href="#reading-from-a-write-restricted-sandbox" class="table-of-contents__link toc-highlight">Reading from a write-restricted sandbox</a></li><li><a href="#a-synchronized-folder-is-refused" class="table-of-contents__link toc-highlight">A synchronized folder is refused</a></li><li><a href="#one-pool-is-derived-and-one-is-authored" class="table-of-contents__link toc-highlight">One pool is derived and one is authored</a></li><li><a href="#kapiwork-is-free-to-delete" class="table-of-contents__link toc-highlight"><code>.kapi/work/</code> is free to delete</a></li><li><a href="#locales-are-keyed-canonically" class="table-of-contents__link toc-highlight">Locales are keyed canonically</a></li><li><a href="#presence-is-table-level" class="table-of-contents__link toc-highlight">Presence is table-level</a></li><li><a href="#the-graph-relates-the-subsystems" class="table-of-contents__link toc-highlight">The graph relates the subsystems</a></li><li><a href="#node-identity-carries-the-scope-tuple" class="table-of-contents__link toc-highlight">Node identity carries the scope tuple</a></li><li><a href="#finding-a-term-inside-blocks" class="table-of-contents__link toc-highlight">Finding a term inside blocks</a></li><li><a href="#the-query-shapes-are-written-once" class="table-of-contents__link toc-highlight">The query shapes are written once</a></li><li><a href="#browser-and-wasm" class="table-of-contents__link toc-highlight">Browser and wasm</a></li><li><a href="#where-the-workspace-lives" class="table-of-contents__link toc-highlight">Where the workspace lives</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-24 00:42 UTC · 8caca94</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-03-context-store-and-graph.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/architecture/context/c-02-coordinates-and-governance"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">C-02: Coordinates and governance</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/architecture/context/c-04-unit-state-and-decisions"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-04: Unit state and the decision record</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-workspace" class="table-of-contents__link toc-highlight">The workspace</a></li><li><a href="#a-directory-per-workspace-a-database-per-project" class="table-of-contents__link toc-highlight">A directory per workspace, a database per project</a></li><li><a href="#where-the-authoritative-copy-lives-is-a-backend" class="table-of-contents__link toc-highlight">Where the authoritative copy lives is a backend</a></li><li><a href="#no-daemon" class="table-of-contents__link toc-highlight">No daemon</a></li><li><a href="#projects-register-on-first-use" class="table-of-contents__link toc-highlight">Projects register on first use</a></li><li><a href="#what-is-in-which-file" class="table-of-contents__link toc-highlight">What is in which file</a></li><li><a href="#opening-without-a-workspace" class="table-of-contents__link toc-highlight">Opening without a workspace</a></li><li><a href="#adoption" class="table-of-contents__link toc-highlight">Adoption</a></li><li><a href="#joining-across-the-two-files" class="table-of-contents__link toc-highlight">Joining across the two files</a></li><li><a href="#writes-are-ordered-reads-are-never-gated" class="table-of-contents__link toc-highlight">Writes are ordered; reads are never gated</a></li><li><a href="#reading-from-a-write-restricted-sandbox" class="table-of-contents__link toc-highlight">Reading from a write-restricted sandbox</a></li><li><a href="#a-synchronized-folder-is-refused" class="table-of-contents__link toc-highlight">A synchronized folder is refused</a></li><li><a href="#one-pool-is-derived-and-one-is-authored" class="table-of-contents__link toc-highlight">One pool is derived and one is authored</a></li><li><a href="#kapiwork-is-free-to-delete" class="table-of-contents__link toc-highlight">Deleting derived data</a></li><li><a href="#locales-are-keyed-canonically" class="table-of-contents__link toc-highlight">Locales are keyed canonically</a></li><li><a href="#presence-is-table-level" class="table-of-contents__link toc-highlight">Presence is table-level</a></li><li><a href="#the-graph-relates-the-subsystems" class="table-of-contents__link toc-highlight">The graph relates the subsystems</a></li><li><a href="#node-identity-carries-the-scope-tuple" class="table-of-contents__link toc-highlight">Node identity carries the scope tuple</a></li><li><a href="#finding-a-term-inside-blocks" class="table-of-contents__link toc-highlight">Finding a term inside blocks</a></li><li><a href="#the-query-shapes-are-written-once" class="table-of-contents__link toc-highlight">The query shapes are written once</a></li><li><a href="#browser-and-wasm" class="table-of-contents__link toc-highlight">Browser and wasm</a></li><li><a href="#where-the-workspace-lives" class="table-of-contents__link toc-highlight">Where the workspace lives</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-09-24 21:27 UTC · c2bdb89</div></div></div></footer></div>
 </body>
 </html>
