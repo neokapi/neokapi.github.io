@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">▒ É-09: Ţĥé çĥàñĝé çöñţŕàçţ ▒ | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/qps/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/qps/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/qps/contribute/architecture/engine/e-09-the-change-contract"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="qps"><meta data-rh="true" name="docsearch:language" content="qps"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="▒ É-09: Ţĥé çĥàñĝé çöñţŕàçţ ▒ | neokapi"><meta data-rh="true" name="description" content="▒ Éṽéŕý çĥàñĝé ţö çöñţéñţ, ţö à ŕéṽîéŵ đéçîšîöñ öŕ ţö à çöñţéẋţ àššéţ îš àñ öþéŕàţîöñ îñ öñé çĥàñĝé šéţ, ķàþî.çĥàñĝé/ṽ1, àþþļîéđ ƃý öñé šéŕṽîçé îñ çöŕé/çĥàñĝé ţĥŕöüĝĥ ţĥé ĥöḿé ţĥàţ ĥöļđš ţĥé đöçüḿéñţ&#x27;š ţéẋţ. ▒"><meta data-rh="true" property="og:description" content="▒ Éṽéŕý çĥàñĝé ţö çöñţéñţ, ţö à ŕéṽîéŵ đéçîšîöñ öŕ ţö à çöñţéẋţ àššéţ îš àñ öþéŕàţîöñ îñ öñé çĥàñĝé šéţ, ķàþî.çĥàñĝé/ṽ1, àþþļîéđ ƃý öñé šéŕṽîçé îñ çöŕé/çĥàñĝé ţĥŕöüĝĥ ţĥé ĥöḿé ţĥàţ ĥöļđš ţĥé đöçüḿéñţ&#x27;š ţéẋţ. ▒"><meta data-rh="true" name="keywords" content="neokapi,architecture decision,core/change,change set,kapi.change/v1,if_match,edition revision,change service,file home,commit check"><link data-rh="true" rel="icon" href="/next/qps/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/qps/contribute/architecture/engine/e-09-the-change-contract"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/engine/e-09-the-change-contract" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/architecture/engine/e-09-the-change-contract" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/architecture/engine/e-09-the-change-contract" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/engine/e-09-the-change-contract" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"▒ É-09: Ţĥé çĥàñĝé çöñţŕàçţ ▒","item":"https://neokapi.github.io/next/qps/contribute/architecture/engine/e-09-the-change-contract"}]}</script><link rel="stylesheet" href="/next/qps/assets/css/styles.2e670b61.css">
-<script src="/next/qps/assets/js/runtime~main.63dd7160.js" defer="defer"></script>
-<script src="/next/qps/assets/js/main.d28c7b06.js" defer="defer"></script>
+<script src="/next/qps/assets/js/runtime~main.203cebf0.js" defer="defer"></script>
+<script src="/next/qps/assets/js/main.9096d64f.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -44,13 +44,18 @@
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="-đéçîšîöñ-">▒ Đéçîšîöñ ▒<a href="#-đéçîšîöñ-" class="hash-link" aria-label="▒ Đîŕéçţ ļîñķ ţö ▒ Đéçîšîöñ ▒ ▒" title="▒ Đîŕéçţ ļîñķ ţö ▒ Đéçîšîöñ ▒ ▒" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="-ţĥé-çĥàñĝé-šéţ-">▒ Ţĥé çĥàñĝé šéţ ▒<a href="#-ţĥé-çĥàñĝé-šéţ-" class="hash-link" aria-label="▒ Đîŕéçţ ļîñķ ţö ▒ Ţĥé çĥàñĝé šéţ ▒ ▒" title="▒ Đîŕéçţ ļîñķ ţö ▒ Ţĥé çĥàñĝé šéţ ▒ ▒" translate="no">​</a></h3>
 <p>▒ À çĥàñĝé šéţ ĥàš àñ éñṽéļöþé àñđ öþéŕàţîöñš. ▒</p>
-<table><thead><tr><th>▒ Ƒîéļđ ▒</th><th>▒ Ḿéàñîñĝ ▒</th></tr></thead><tbody><tr><td>▒ <code>schema</code> ▒</td><td>▒ <code>kapi.change/v1</code> ▒</td></tr><tr><td>▒ <code>mode</code> ▒</td><td>▒ <code>apply</code> (ţĥé đéƒàüļţ) öŕ <code>preview</code>, ŵĥîçĥ çöḿþüţéš àñđ çĥéçķš éṽéŕýţĥîñĝ, ŵŕîţéš ñöţĥîñĝ, àñđ ŕéţüŕñš à đîƒƒ þéŕ đöçüḿéñţ ▒</td></tr><tr><td>▒ <code>gate</code> ▒</td><td>▒ <code>enforce</code> (ţĥé đéƒàüļţ) öŕ <code>report</code>: ŵĥàţ à ƒàîļîñĝ ĝöṽéŕñàñçé ƒîñđîñĝ ţĥé çĥàñĝé îñţŕöđüçéš đöéš ▒</td></tr><tr><td>▒ <code>require_basis</code> ▒</td><td>▒ ŕéƒüšé à ŵŕîţé ţö à đéŕîṽéđ éđîţîöñ ŵĥöšé àüţĥöŕîţàţîṽé éđîţîöñ ḿöṽéđ šîñçé ţĥé šéñđéŕ ŕéàđ îţ ▒</td></tr><tr><td>▒ <code>note</code>, <code>evidence</code> ▒</td><td>▒ ŵĥàţ à þéŕšöñ ŕéàđš îñ ĥîšţöŕý, àñđ ŵĥéŕé ţĥé ŵöŕđîñĝ ƃéĥîñđ ţĥé çĥàñĝé ŵàš šééñ ▒</td></tr><tr><td>▒ <code>ops</code> ▒</td><td>▒ ţĥé öþéŕàţîöñš, àþþļîéđ îñ öŕđéŕ ▒</td></tr></tbody></table>
+<table><thead><tr><th>▒ Ƒîéļđ ▒</th><th>▒ Ḿéàñîñĝ ▒</th></tr></thead><tbody><tr><td>▒ <code>schema</code> ▒</td><td>▒ <code>kapi.change/v1</code> ▒</td></tr><tr><td>▒ <code>mode</code> ▒</td><td>▒ <code>apply</code> (ţĥé đéƒàüļţ) öŕ <code>preview</code>, ŵĥîçĥ çöḿþüţéš àñđ çĥéçķš éṽéŕýţĥîñĝ, ŵŕîţéš ñöţĥîñĝ, àñđ ŕéţüŕñš à đîƒƒ þéŕ đöçüḿéñţ ▒</td></tr><tr><td>▒ <code>gate</code> ▒</td><td>▒ <code>enforce</code> (ţĥé đéƒàüļţ) öŕ <code>report</code>: ŵĥàţ à ƒàîļîñĝ ĝöṽéŕñàñçé ƒîñđîñĝ ţĥé çĥàñĝé îñţŕöđüçéš đöéš ▒</td></tr><tr><td>▒ <code>require_basis</code> ▒</td><td>▒ ŕéƒüšé à ŵŕîţé ţö à đéŕîṽéđ éđîţîöñ ŵĥöšé àüţĥöŕîţàţîṽé éđîţîöñ ḿöṽéđ šîñçé ţĥé šéñđéŕ ŕéàđ îţ ▒</td></tr><tr><td>▒ <code>note</code>, <code>evidence</code> ▒</td><td>▒ ŵĥàţ à þéŕšöñ ŕéàđš îñ ĥîšţöŕý, àñđ ŵĥéŕé ţĥé ŵöŕđîñĝ ƃéĥîñđ ţĥé çĥàñĝé ŵàš šééñ ▒</td></tr><tr><td>▒ <code>ops</code> ▒</td><td>▒ ţĥé öþéŕàţîöñš, àþþļîéđ îñ öŕđéŕ; à çĥàñĝé šéţ ŵîţĥ ñöñé çĥàñĝéš ñöţĥîñĝ ▒</td></tr></tbody></table>
 <p>▒ Ţĥé çöñţéñţ öþéŕàţîöñš àŕé <code>set_content</code>, <code>replace_text</code>, <code>set_attribute</code>,
 <code>mark</code>, <code>remove_edition</code>, <code>annotate</code>, <code>unannotate</code>, <code>insert_block</code>,
 <code>delete_block</code> àñđ <code>native</code>. <code>decide</code> ŕéçöŕđš à ŕéṽîéŵ đéçîšîöñ, àñđ <code>term</code>,
 <code>memory</code> àñđ <code>recipe</code> çĥàñĝé ţĥé þŕöĵéçţ&#x27;š ţéŕḿš šţöŕé, çöñţéñţ ḿéḿöŕý àñđ
 ŕéçîþé. Ţĥé éñṽéļöþé çàŕŕîéš ñö àçţöŕ: ţĥé ţŕàñšþöŕţ ţĥàţ đéļîṽéŕš à çĥàñĝé šéţ
-šàýš ŵĥö šéñţ îţ. ▒</p>
+šàýš ŵĥö šéñţ îţ. À <code>set_content</code> öŕ <code>replace_text</code> ḿàý šţàţé ĥöŵ à ţööļ
+þŕöđüçéđ îţš çöñţéñţ (<code>origin</code>: ţĥé ţööļ, àñđ ţĥé ķîñđ àñđ éñĝîñé îţ đŕéŵ öñ),
+àš à ŕüñ þŕîñţéđ ŵîţĥ <code>--print-ops</code> šţàţéš éàçĥ ţŕàñšļàţîöñ îţ ŵŕöţé. Ţĥé
+šéŕṽîçé ŕéçöŕđš ñö šţàţéđ öŕîĝîñ: àñ éđîţ ţàķéš ţĥé öŕîĝîñ îţš šéñđéŕ&#x27;š éđîţ
+ĝîṽéš îţ, à þéŕšöñ&#x27;š öŕ àñ àĝéñţ&#x27;š ţĥéîŕ öŵñ, àñđ à ţööļ îñ à ƒļöŵ ŕéçöŕđš ĥöŵ
+îţ þŕöđüçéđ à ţŕàñšļàţîöñ ŵîţĥ ţĥé îñ-þŕöçéšš þŕöṽéñàñçé öþéŕàţîöñ. ▒</p>
 <p>▒ <code>change.Decode</code> ŕéàđš à çĥàñĝé šéţ šţŕîçţļý: àñ üñķñöŵñ ƒîéļđ öŕ öþéŕàţîöñ îš
 ŕéƒüšéđ ŵîţĥ ţĥé ĴŠÖÑ þöîñţéŕ öƒ ŵĥàţ ŵàš ŵŕöñĝ. <code>changeschema.Schema</code> îš ţĥé
 ĴŠÖÑ Šçĥéḿà ĝéñéŕàţéđ ƒŕöḿ ţĥé šàḿé Ĝö ţýþéš. ŢýþéŠçŕîþţ çļîéñţš üšé
@@ -72,6 +77,20 @@
 ţöķéñ ĥöļđš îñ éṽéŕý ĥöḿé. <code>absent</code> çŕéàţéš àñ éđîţîöñ, àñđ <code>*</code> ŵŕîţéš ŵĥàţéṽéŕ
 îš ţĥéŕé. Éṽéŕý <code>if_match</code> îš çĥéçķéđ àĝàîñšţ ţĥé çöñţéñţ àš îţ šţööđ ŵĥéñ ţĥé
 çĥàñĝé šéţ ƃéĝàñ, šö à šéñđéŕ ñéṽéŕ çöḿþüţéš àñ îñţéŕḿéđîàţé ŕéṽîšîöñ. ▒</p>
+<p>▒ À þöšîţîöñ ñàḿéš ţĥàţ çöñţéñţ ţöö. Àñ éđîţ&#x27;š <code>start</code> àñđ <code>end</code>, à ŕüñ <code>range</code>,
+àñđ ţĥé ŕüñ îñđéẋ à <code>path</code> ŵàļķš ţĥŕöüĝĥ àļļ ŕéƒéŕ ţö ţĥé éđîţîöñ àţ ţĥé
+ŕéṽîšîöñ ţĥé šéñđéŕ ŕéàđ, àñđ ţĥé àþþļîéŕ ḿöṽéš éàçĥ ţĥŕöüĝĥ ţĥé ţéẋţ ţĥé
+öþéŕàţîöñš ƃéƒöŕé îţ çĥàñĝéđ îñ ţĥé šàḿé éđîţîöñ, îñ ţĥé öŕđéŕ ţĥéý ŵéŕé šéñţ:
+ţŵö ƒîẋéš <code>kapi check</code> þŕîñţš ƒöŕ đîƒƒéŕéñţ ŵöŕđš öƒ öñé ƃļöçķ, éàçĥ ĝüàŕđéđ ƃý
+ţĥé ŕéṽîšîöñ ţĥé çĥéçķ ŕéàđ, ƃöţĥ ļàñđ ŵĥéŕé ţĥéîŕ šéñđéŕ ḿéàñţ. À þöšîţîöñ
+îñšîđé ţéẋţ àñ éàŕļîéŕ öþéŕàţîöñ ŕéþļàçéđ, öŕ àƒţéŕ à <code>set_content</code> öƒ ţĥé
+šéǫüéñçé îţ ļîéš îñ, ĥàš ñö þļàçé îñ ţĥé éđîţîöñ àš îţ šţàñđš, àñđ ţĥé
+öþéŕàţîöñ îš ŕéƒüšéđ àš <code>guard</code> (<code>overlap</code>) ŵîţĥ à ḿéššàĝé ñàḿîñĝ ƃöţĥ
+öþéŕàţîöñš ƃý ţĥéîŕ þļàçé îñ ţĥé çĥàñĝé šéţ. À <code>find</code> ḿàţçĥéš ţĥé ţéẋţ àš ţĥé
+éàŕļîéŕ öþéŕàţîöñš ļéƒţ îţ, àñđ àñ àññöţàţîöñ&#x27;š àñçĥöŕ ḿàŕķš ţĥàţ ţéẋţ. Àñ
+îñ-þŕöçéšš çàļļéŕ ţĥàţ ƃüîļđš éàçĥ öþéŕàţîöñ öñ ţĥé ŕéšüļţ öƒ ţĥé öñé ƃéƒöŕé
+îţ, àš à ţŕàñšƒöŕḿ&#x27;š þàššéš đö, àþþļîéš ţĥéḿ ŵîţĥ <code>BlockEnv.Chained</code>, üñđéŕ
+ŵĥîçĥ éṽéŕý þöšîţîöñ ŕéàđš ţĥé éđîţîöñ àš ţĥé öþéŕàţîöñš ƃéƒöŕé îţ ļéƒţ îţ. ▒</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="-ţĥé-àþþļîéŕ-">▒ Ţĥé àþþļîéŕ ▒<a href="#-ţĥé-àþþļîéŕ-" class="hash-link" aria-label="▒ Đîŕéçţ ļîñķ ţö ▒ Ţĥé àþþļîéŕ ▒ ▒" title="▒ Đîŕéçţ ļîñķ ţö ▒ Ţĥé àþþļîéŕ ▒ ▒" translate="no">​</a></h3>
 <p>▒ <code>change.ApplyBlock</code> àþþļîéš çöñţéñţ öþéŕàţîöñš ţö öñé ƃļöçķ îñ ḿéḿöŕý àñđ
 ŕéţüŕñš öñé ŕéšüļţ þéŕ öþéŕàţîöñ. Îţ éñƒöŕçéš ţĥé ŕüļéš éṽéŕý çöñţéñţ öþéŕàţîöñ
@@ -97,9 +116,10 @@
 çĥàñĝéđ šîñçé îš ŕéƒüšéđ àš <code>stale</code>. <code>ReadEach</code> ŕéàđš éṽéŕý ƃļöçķ öƒ à
 đöçüḿéñţ îñ öñé þàšš àñđ ĥàñđš éàçĥ ţö à çàļļƃàçķ ƃéšîđé ţĥé ƃļöçķ îţ ŵàš
 ŕéàđ ƒŕöḿ, ƒöŕ à çöḿḿàñđ ļîñé ţĥàţ šţŕéàḿš à ŵĥöļé đöçüḿéñţ. ▒</li>
-<li class="">▒ <strong><code>Apply</code></strong> àþþļîéš à çĥàñĝé šéţ îñ ţŵö þĥàšéš. Îţ àšķš ţĥé þöļîçý àƃöüţ
-éṽéŕý öþéŕàţîöñ, ĝŕöüþš ţĥé öþéŕàţîöñš ƃý đöçüḿéñţ, àñđ öþéñš éàçĥ đöçüḿéñţ
-îñ îţš ĥöḿé. Îţ ţĥéñ þŕéþàŕéš éṽéŕý đöçüḿéñţ: ţĥé ĥöḿé ŕéàđš îţ, ţĥé
+<li class="">▒ <strong><code>Apply</code></strong> àþþļîéš à çĥàñĝé šéţ îñ ţŵö þĥàšéš. Îţ çĥéçķš éàçĥ öþéŕàţîöñ&#x27;š
+ƃöđý àš <code>Decode</code> đöéš, šîñçé à šéñđéŕ îñ ţĥé þŕöçéšš ñéṽéŕ þàššéđ ţĥé
+đéçöđéŕ, àšķš ţĥé þöļîçý àƃöüţ éṽéŕý öþéŕàţîöñ, ĝŕöüþš ţĥé öþéŕàţîöñš ƃý
+đöçüḿéñţ, àñđ öþéñš éàçĥ đöçüḿéñţ îñ îţš ĥöḿé. Îţ ţĥéñ þŕéþàŕéš éṽéŕý đöçüḿéñţ: ţĥé ĥöḿé ŕéàđš îţ, ţĥé
 šéŕṽîçé&#x27;š éđîţöŕ àþþļîéš ţĥé öþéŕàţîöñš àđđŕéššéđ ţö éàçĥ ƃļöçķ, àñđ ţĥé
 ĥöḿé šţàĝéš ţĥé ŕéšüļţ. Ţĥé šéŕṽîçé ŕéƒüšéš àñ éđîţîöñ ţĥé šţàĝéđ ƒîļé đöéš
 ñöţ çĥàñĝé, ƃéçàüšé ţĥé ƒöŕḿàţ ĥàš ñö þļàçé ƒöŕ îţ ţĥéŕé, àñđ ŕüñš ţĥé
@@ -199,7 +219,13 @@
 ƃéţŵééñ ţĥé öţĥéŕ&#x27;š šţàĝé àñđ çöḿḿîţ, à ŕéƒüšàļ îñ öñé đöçüḿéñţ ļéàṽéš éṽéŕý
 đöçüḿéñţ àš îţ ŵàš, ŵĥéţĥéŕ îţ îš ƒöüñđ àţ ţĥé šţàĝé öŕ àţ ţĥé çöḿḿîţ, à
 þŕéṽîéŵ ŵŕîţéš ñöţĥîñĝ, à ḿîššîñĝ ƃļöçķ îš ñöţ ƒöüñđ, ţĥé šàḿé çöñţéñţ šàîđ
-àĝàîñ îš üñçĥàñĝéđ, àñđ à ƒîļé ķééþš îţš ḿöđé. ▒</p>
+àĝàîñ îš üñçĥàñĝéđ, à ƒîļé ķééþš îţš ḿöđé, à ŕéḿöṽéđ ţŕàñšļàţîöñ ŕéàđš ƃàçķ
+àƃšéñţ ŵĥîļé à ŕéþļàý öƒ îţš ŕéḿöṽàļ îš šţàļé àñđ ŵŕîţéš ñöţĥîñĝ, àñđ à çĥàñĝé
+šéţ ŵîţĥ ñö öþéŕàţîöñ àþþļîéš àñđ ŵŕîţéš ñöţĥîñĝ. Éàçĥ ĥöḿé ŕüñš ţĥé ŕéḿöṽàļ öñ
+à ţŕàñšļàţîöñ îţ ĥöļđš: ţĥé šţŕéàḿ&#x27;š öŵñ ŕöŵš, à ÞÖ çàţàļöĝ ƒöŕ ţĥé ƒîļé ĥöḿé,
+àñđ ƒöŕ ţĥé þŕöĵéçţ ĥöḿéš ţĥé çàţàļöĝ à ÞÖ šöüŕçé&#x27;š ţàŕĝéţ ţéḿþļàţé ñàḿéš
+(<code>po/fr.po</code> ƃéšîđé <code>po/en.po</code>), ŵĥéŕé ţĥé šüîţé àļšö çĥéçķš ţĥàţ ţĥé ŕéḿöṽàļ îš
+ŵŕîţţéñ ţĥéŕé àñđ ţĥé šöüŕçé çàţàļöĝ ķééþš îţš ƃýţéš. ▒</p>
 <p>▒ <strong>Ţĥé ƒîļé ĥöḿé</strong> (<code>core/change/filehome</code>) ķééþš éàçĥ đöçüḿéñţ àš à ƒîļé. À
 šţàĝé ŕéàđš ţĥé đöçüḿéñţ ţĥŕöüĝĥ îţš ƒöŕḿàţ&#x27;š ŕéàđéŕ ŵîţĥ ţĥé ŵŕîţéŕ&#x27;š
 šķéļéţöñ šţöŕé ŵîŕéđ, àñđ ŵŕîţéš ţĥé ŕéšüļţ ţĥŕöüĝĥ ţĥé šàḿé ƒöŕḿàţ&#x27;š ŵŕîţéŕ
@@ -217,7 +243,16 @@
 ŵŕîţţéñ ƒŕöḿ ţĥé đöçüḿéñţ&#x27;š šķéļéţöñ. À çĥàñĝé šéţ ţĥàţ àđđš öŕ ŕéḿöṽéš
 ƃļöçķš ĥàš ţĥé ƒöŕḿàţ&#x27;š ŵŕîţéŕ ŵŕîţé ţĥöšé éđîţš îñţö ţĥé đöçüḿéñţ&#x27;š ƒîļé àñđ
 îñţö ţĥé ƒîļé öƒ éàçĥ éđîţîöñ ţĥé ƃļöçķš ĥöļđ öŕ ñàḿé, ķééþîñĝ ţĥéḿ îñ ḿéḿöŕý
-üñţîļ ţĥé çöḿḿîţ, àñđ ţĥé šţàĝé&#x27;š þàšš ŕéàđš ţĥé ŕéšüļţ. Ŵĥéŕé ţĥé ŕéàđéŕ àñđ
+üñţîļ ţĥé çöḿḿîţ, àñđ ţĥé šţàĝé&#x27;š þàšš ŕéàđš ţĥé ŕéšüļţ. À šţàĝé ţĥàţ ŕéḿöṽéš à
+ţŕàñšļàţîöñ à ƃîļîñĝüàļ ƒîļé ĥöļđš, ţĥé đöçüḿéñţ&#x27;š öŵñ öŕ ţĥé ţŕàñšļàţîöñ&#x27;š
+ƒîļé ţĥé ţàŕĝéţ ţéḿþļàţé ñàḿéš, ŕéàđš îţš ŵŕîţé ƃàçķ, àñđ ŕéƒüšéš ţĥé ŕéḿöṽàļ
+àš <code>unsupported</code> ŵĥéñ ţĥé ţŕàñšļàţîöñ îš šţîļļ ţĥéŕé: ţĥé ẊĻÎƑƑ àñđ ŢḾẊ ŵŕîţéŕš
+ŵŕîţé à ţŕàñšļàţîöñ öƒ éṽéŕý üñîţ, ƒŕöḿ ţĥé šöüŕçé ŵĥéŕé à ƃļöçķ ĥöļđš ñöñé,
+šö à ŕéḿöṽàļ ţĥéŕé ŵöüļđ þüţ ţĥé šöüŕçé îñ ţĥé ţŕàñšļàţîöñ&#x27;š þļàçé. Ţĥéîŕ
+đéšçŕîþţîöñ ļîšţš <code>remove_edition</code>, ŵĥîçĥ ţĥé šţàĝé ţĥéñ ŕéƒüšéš. Ţĥé ŕéàđ-ƃàçķ
+ƃéļöñĝš ţö à çĥàñĝé šéţ&#x27;š šţàĝé: à ƒļöŵ ţĥàţ ŵŕîţéš à ţŕàñšļàţîöñ&#x27;š ƒîļé
+ţĥŕöüĝĥ ţĥé ŵŕîţéŕ, šüçĥ àš <code>kapi exec remove-target</code> ŵŕîţîñĝ <code>fr/a.xlf</code>, ĝéţš
+ŵĥàţ ţĥé ŵŕîţéŕ ŵŕîţéš, ţĥé šöüŕçé îñ ţĥé ŕéḿöṽéđ ţŕàñšļàţîöñ&#x27;š þļàçé. Ŵĥéŕé ţĥé ŕéàđéŕ àñđ
 ţĥé ŵŕîţéŕ ƃöţĥ šţŕéàḿ àñđ ñö ƃļöçķ îš àđđéđ öŕ ŕéḿöṽéđ, ţĥé đöçüḿéñţ îš ñéṽéŕ
 ĥéļđ ŵĥöļé. Ţĥé ĥöḿé ŕéþöŕţš ŵĥàţ ţĥé đöçüḿéñţ&#x27;š ŵŕîţéŕ đéçļàŕéš: àñ
 îñ-þŕöçéšš ŵŕîţéŕ&#x27;š đéçļàŕàţîöñ, ŵîţĥ ţĥé ŵŕîţéŕ šþéļļîñĝ à çĥàñĝéđ àţţŕîƃüţé
@@ -277,7 +312,8 @@
 đöçüḿéñţ ƃéçöḿéš öþéŕàţîöñš, ţĥé đîƒƒéŕéñçé ƃéţŵééñ éàçĥ ƃļöçķ àš ţĥé ŕéàđéŕ
 ĝàṽé îţ àñđ àš ţĥé ŵŕîţéŕ ŕéçéîṽéđ îţ (<code>change.Diff</code>), éàçĥ ĝüàŕđéđ ƃý ţĥé
 ŕéṽîšîöñ ţĥé šéŕṽîçé ŕéàđ ƃéƒöŕé ţĥé ŕüñ àñđ éàçĥ <code>set_content</code> öƒ à
-ţŕàñšļàţîöñ çàŕŕýîñĝ îţš ƃàšîš. Ƃéƒöŕé à đöçüḿéñţ&#x27;š öþéŕàţîöñš ĵöîñ ţĥé çĥàñĝé
+ţŕàñšļàţîöñ çàŕŕýîñĝ îţš ƃàšîš àñđ, àš éàçĥ öþéŕàţîöñ öñ à ţŕàñšļàţîöñ đöéš,
+ţĥé <code>origin</code> ţĥé þŕöđüçîñĝ ţööļ ļéƒţ. Ƃéƒöŕé à đöçüḿéñţ&#x27;š öþéŕàţîöñš ĵöîñ ţĥé çĥàñĝé
 šéţ, ţĥéý àŕé àþþļîéđ ţö à þŕîṽàţé çöþý öƒ ţĥé ƒîļé ţĥŕöüĝĥ ţĥé šéŕṽîçé <code>kapi apply</code> ŕéàçĥéš, àñđ ţĥéý àŕé þŕîñţéđ öñļý ŵĥéñ ţĥé çöþý ţĥéñ ĥöļđš ţĥé ƃýţéš
 ţĥé ŕüñ ŵöüļđ ĥàṽé ŵŕîţţéñ. À ŕüñ ŵŕîţéš à ţàŕĝéţ-ļàñĝüàĝé ƒîļé ŵĥöļé ƒŕöḿ îţš
 šöüŕçé, ŵĥîļé ţĥé šéŕṽîçé éđîţš ţĥé ƃļöçķš à ƒîļé ĥöļđš àš îţ šţàñđš, šö ţĥé
@@ -286,9 +322,11 @@
 àñđ ļéƒţ öüţ. Šö îš à ƒîļé ţĥé ŕüñ ŵöüļđ ŵŕîţé ŵĥéŕé ţĥé šéŕṽîçé đöéš ñöţ ķééþ
 ţĥé éđîţîöñ (àñ öüţþüţ þàţĥ ĝîṽéñ öñ ţĥé çöḿḿàñđ ļîñé îñ þļàçé öƒ ţĥé ŕéçîþé&#x27;š
 ţàŕĝéţ), à çöñṽéŕšîöñ, àñ éẋþöŕţ àñđ àñ àŕçĥîṽé. <code>kapi apply</code> öƒ ţĥé çĥàñĝé šéţ
-ŵŕîţéš ţĥé ƃýţéš ţĥé ŕüñ ŵöüļđ ĥàṽé ŵŕîţţéñ, àñđ ŕéçöŕđš ţĥé éđîţ àš îţš öŵñ
-àçţöŕ&#x27;š: ţĥé þŕöṽéñàñçé öþéŕàţîöñ îš îñ-þŕöçéšš, šö ţĥé çĥàñĝé šéţ çàŕŕîéš ñö
-ţööļ šţàḿþ. ▒</p>
+ŵŕîţéš ţĥé ƃýţéš ţĥé ŕüñ ŵöüļđ ĥàṽé ŵŕîţţéñ, àñđ ŕéçöŕđš ţĥé éđîţ àš îţš
+àþþļîéŕ&#x27;š: à þéŕšöñ&#x27;š öŕ àñ àĝéñţ&#x27;š éđîţ îš ţĥéîŕš, šö ţĥé <code>origin</code> ţĥé
+öþéŕàţîöñš šţàţé îš ñöţ ķéþţ öñ ţĥé ţŕàñšļàţîöñ, àñđ <code>kapi apply</code> þŕîñţš öñé
+ļîñé ñàḿîñĝ ţĥé ţööļš àñđ šàýîñĝ šö. À ŕüñ ŵîţĥ ñöţĥîñĝ ţö çĥàñĝé þŕîñţš à
+çĥàñĝé šéţ ŵîţĥ ñö öþéŕàţîöñ, ŵĥîçĥ àþþļîéš àñđ ŵŕîţéš ñöţĥîñĝ. ▒</p>
 <p>▒ À þŕîñţîñĝ <code>kapi up</code> ŕüñš öñé þàšš. À ĝàţéđ þàšš đŕàƒţš îñţö îţš þŕîṽàţé ţŕéé
 àš àñý þàšš đöéš (<code>Options.WriteUnder</code> ļéţš ţĥé þŕîñţîñĝ ĥöḿé ŵŕîţé ţĥéŕé),
 ţĥé ĝàţé đéçîđéš ƒŕöḿ ţĥé đŕàƒţš, àñđ đéļîṽéŕý þŕîñţš ŵĥàţ îţ ŵöüļđ çöḿḿîţ ƒöŕ
@@ -301,7 +339,7 @@
 ƒîļé, àñđ þŕîñţš ñöţĥîñĝ ŵîţĥ à ñöţé. ▒</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="-ĥööķš-">▒ Ĥööķš ▒<a href="#-ĥööķš-" class="hash-link" aria-label="▒ Đîŕéçţ ļîñķ ţö ▒ Ĥööķš ▒ ▒" title="▒ Đîŕéçţ ļîñķ ţö ▒ Ĥööķš ▒ ▒" translate="no">​</a></h3>
 <p>▒ Ţĥé šéŕṽîçé çàļļš šîẋ ĥööķš à ĥöšţ šüþþļîéš. Éàçĥ îš öþţîöñàļ. ▒</p>
-<table><thead><tr><th>▒ Ĥööķ ▒</th><th>▒ Çàļļéđ ▒</th><th>▒ Ŵîţĥöüţ öñé ▒</th></tr></thead><tbody><tr><td>▒ <code>Policy</code> ▒</td><td>▒ ƒöŕ éṽéŕý öþéŕàţîöñ, ƃéƒöŕé àñýţĥîñĝ îš ŕéàđ ▒</td><td>▒ éṽéŕý öþéŕàţîöñ îš þéŕḿîţţéđ ▒</td></tr><tr><td>▒ <code>CommitCheck</code> ▒</td><td>▒ öṽéŕ ţĥé çĥàñĝéđ éđîţîöñš, ƃéƒöŕé àñýţĥîñĝ îš ŵŕîţţéñ; îţ ŕéţüŕñš ƒîñđîñĝš ƃéƒöŕé àñđ àƒţéŕ, àñđ ţĥé ĝöṽéŕñàñçé ƒîñĝéŕþŕîñţ îţ üšéđ ▒</td><td>▒ ñöţĥîñĝ îš çĥéçķéđ ▒</td></tr><tr><td>▒ <code>Assets</code> ▒</td><td>▒ ţö þŕéþàŕé <code>decide</code>, <code>term</code>, <code>memory</code> àñđ <code>recipe</code> ƃéƒöŕé àñýţĥîñĝ îš ŵŕîţţéñ, àñđ ţö àþþļý ţĥéḿ àƒţéŕ ţĥé çöñţéñţ ļàñđéđ ▒</td><td>▒ ţĥöšé öþéŕàţîöñš àŕé ŕéƒüšéđ àš <code>unsupported</code> ▒</td></tr><tr><td>▒ <code>Recorder</code> ▒</td><td>▒ àƒţéŕ ţĥé ĥöḿéš çöḿḿîţţéđ, ŵîţĥ ţĥé ţŕàñšîţîöñš àñđ ţĥé ƒîñĝéŕþŕîñţ ▒</td><td>▒ ñöţĥîñĝ îš ŕéçöŕđéđ ▒</td></tr><tr><td>▒ <code>EditionStates</code> ▒</td><td>▒ ƃý à ŕéàđ, ƒöŕ ţĥé šţàţüš àñđ ƃàšîš öƒ à đéŕîṽéđ éđîţîöñ ▒</td><td>▒ à ŕéàđ šĥöŵš ţĥé šţàţüš ţĥé đöçüḿéñţ ĥöļđš àñđ ñö ƃàšîš ▒</td></tr><tr><td>▒ <code>EditionHistories</code> ▒</td><td>▒ ƃý <code>History</code>, ƒöŕ ţĥé ŕéçöŕđéđ çĥàñĝéš ţö àñ éđîţîöñ ▒</td><td>▒ à ĥîšţöŕý ļîšţš ñöţĥîñĝ ▒</td></tr></tbody></table>
+<table><thead><tr><th>▒ Ĥööķ ▒</th><th>▒ Çàļļéđ ▒</th><th>▒ Ŵîţĥöüţ öñé ▒</th></tr></thead><tbody><tr><td>▒ <code>Policy</code> ▒</td><td>▒ ƒöŕ éṽéŕý öþéŕàţîöñ, ƃéƒöŕé àñýţĥîñĝ îš ŕéàđ ▒</td><td>▒ éṽéŕý öþéŕàţîöñ îš þéŕḿîţţéđ ▒</td></tr><tr><td>▒ <code>CommitCheck</code> ▒</td><td>▒ öṽéŕ ţĥé çĥàñĝéđ éđîţîöñš, ƃéƒöŕé àñýţĥîñĝ îš ŵŕîţţéñ; îţ ŕéţüŕñš ƒîñđîñĝš ƃéƒöŕé àñđ àƒţéŕ, àñđ ţĥé ĝöṽéŕñàñçé ƒîñĝéŕþŕîñţ îţ üšéđ ▒</td><td>▒ ñöţĥîñĝ îš çĥéçķéđ ▒</td></tr><tr><td>▒ <code>Assets</code> ▒</td><td>▒ ţö þŕéþàŕé <code>decide</code>, <code>term</code>, <code>memory</code> àñđ <code>recipe</code> ƃéƒöŕé àñýţĥîñĝ îš ŵŕîţţéñ, àñđ ţö àþþļý ţĥéḿ àƒţéŕ ţĥé çöñţéñţ ļàñđéđ ▒</td><td>▒ ţĥöšé öþéŕàţîöñš àŕé ŕéƒüšéđ àš <code>unsupported</code> ▒</td></tr><tr><td>▒ <code>Recorder</code> ▒</td><td>▒ àƒţéŕ ţĥé ĥöḿéš çöḿḿîţţéđ, ŵîţĥ ţĥé ţŕàñšîţîöñš àñđ ţĥé ƒîñĝéŕþŕîñţ ▒</td><td>▒ ñöţĥîñĝ îš ŕéçöŕđéđ ▒</td></tr><tr><td>▒ <code>EditionStates</code> ▒</td><td>▒ öñçé ƃý éàçĥ ŕéàđ öƒ à đöçüḿéñţ, ŵîţĥ ţĥé ḿöšţ ƃļöçķš ţĥé ŕéàđ šĥöŵš, ƒöŕ ţĥé šţàţüš àñđ ƃàšîš öƒ îţš đéŕîṽéđ éđîţîöñš ▒</td><td>▒ à ŕéàđ šĥöŵš ţĥé šţàţüš ţĥé đöçüḿéñţ ĥöļđš àñđ ñö ƃàšîš ▒</td></tr><tr><td>▒ <code>EditionHistories</code> ▒</td><td>▒ ƃý <code>History</code>, ƒöŕ ţĥé ŕéçöŕđéđ çĥàñĝéš ţö àñ éđîţîöñ ▒</td><td>▒ à ĥîšţöŕý ļîšţš ñöţĥîñĝ ▒</td></tr></tbody></table>
 <p>▒ Ţĥé šéŕṽîçé ŕéƒüšéš à çĥàñĝé öñļý ƒöŕ à ƒàîļîñĝ ƒîñđîñĝ îţ îñţŕöđüçéš
 (<code>change.Introduced</code>). Üñđéŕ <code>report</code> ţĥé çĥàñĝé ļàñđš ŵîţĥ îţš ƒîñđîñĝš, àñđ à
 þéŕšöñ&#x27;š öṽéŕŕîđđéñ ƒîñđîñĝš ĝö ţö ţĥé ŕéçöŕđ. ▒</p>
@@ -315,7 +353,10 @@
 đîŕéçţöŕý, ŕéàđ ŵîţĥ ţĥé ƒöŕḿàţ đéţéçţîöñ ƒîñđš ƃý ñàḿé, ţĥéñ ƃý çöñţéñţ. À
 ƒîļé öƒ à ţŕàñšļàţîöñ îñţéŕçĥàñĝé ƒöŕḿàţ, öŕ öƒ à ḿüļţîļîñĝüàļ šţŕîñĝ çàţàļöĝ
 (àñ Ẋçöđé <code>.xcstrings</code> ƒîļé), ĥöļđš îţš éđîţîöñš îñ ţĥé ƒîļé, üñļéšš ţĥé ŕéçîþé
-ŵŕîţéš ţĥé šöüŕçé&#x27;š ţŕàñšļàţîöñš ţö ƒîļéš öƒ ţĥéîŕ öŵñ. Đéçîšîöñš àñđ àššéţ öþéŕàţîöñš
+ŵŕîţéš ţĥé šöüŕçé&#x27;š ţŕàñšļàţîöñš ţö ƒîļéš öƒ ţĥéîŕ öŵñ: ŵîţĥ à ţàŕĝéţ
+<code>po/{lang}.po</code>, ţĥé Ƒŕéñçĥ öƒ <code>po/en.po</code> öŕ öƒ <code>po/messages.pot</code> îš ŕéàđ ƒŕöḿ àñđ
+ŵŕîţţéñ ţö <code>po/fr.po</code>, îñ Ƒŕéñçĥ, àñđ ţĥé šöüŕçé çàţàļöĝ ĥöļđš ñö éđîţîöñ, ƒöŕ
+éṽéŕý šüŕƒàçé. Đéçîšîöñš àñđ àššéţ öþéŕàţîöñš
 ļàñđ ţĥŕöüĝĥ ţĥé ĥöšţ&#x27;š ŕéṽîéŵ-ǫüéüé àñđ àššéţ ƒüñçţîöñš, à đéçîšîöñ ƃöüñđ ţö
 ţĥé ŵöŕđîñĝ ţĥé çĥàñĝé šéţ ļàñđéđ ŕàţĥéŕ ţĥàñ ţö à ļàţéŕ ŕéàđ öƒ ţĥé ƒîļé; öñ
 àñ éđîţîöñ ŵîţĥ ñö çöñţéñţ îñ îţš ĥöḿé, šüçĥ àš à þàŕķéđ ļöçàļé&#x27;š đŕàƒţ, ţĥé
@@ -366,8 +407,9 @@
 <code>kapiApply</code> àñđ <code>kapiDescribe</code> ƃüîļđ îţ ţĥŕöüĝĥ ţĥé šàḿé ƒüñçţîöñ àñđ çàŕŕý
 ţĥé çöñţŕàçţ àš ĴŠÖÑ îñ àñđ öüţ: à ŕéƒüšàļ, à çĥàñĝé šéţ ţĥàţ đöéš ñöţ đéçöđé
 îñçļüđéđ, îš àñšŵéŕéđ àš à ŕéšüļţ. À çàļļ öƒ éîţĥéŕ šüŕƒàçé ŕéàđš à ƃîļîñĝüàļ
-ƒîļé, šüçĥ àš à ÞÖ çàţàļöĝ, îñ ţĥé öñé ļàñĝüàĝé öţĥéŕ ţĥàñ ţĥé šöüŕçé ţĥàţ îţš
-ŕéàđ&#x27;š éđîţîöñš öŕ îţš öþéŕàţîöñš ñàḿé, àš <code>kapi apply</code> đöéš. Ţĥé þàĝé ñàḿéš
+ƒîļé ţĥàţ ĥöļđš îţš ţŕàñšļàţîöñ, šüçĥ àš à ÞÖ çàţàļöĝ, îñ ţĥé öñé ļàñĝüàĝé
+öţĥéŕ ţĥàñ ţĥé šöüŕçé ţĥàţ îţš ŕéàđ&#x27;š éđîţîöñš öŕ îţš öþéŕàţîöñš ñàḿé, àš
+<code>kapi apply</code> đöéš. Ţĥé þàĝé ñàḿéš
 ţĥé šéñđéŕ, à þéŕšöñ üñļéšš îţ šàýš àñ àĝéñţ, àñđ îñ à þŕöĵéçţ àñ àþþļîéđ
 çĥàñĝé îš ŕéçöŕđéđ îñ ţĥé ƃŕöŵšéŕ&#x27;š ŵöŕķšþàçé ļöĝ
 (<a class="" href="/next/qps/contribute/implementation/surfaces/wasm-engine-abi#the-change-contract">ŴÀŠḾ Éñĝîñé ÀƂÎ</a>). ▒</p>
@@ -376,10 +418,8 @@
 šöüŕçé&#x27;š šķéļéţöñ, ķééþîñĝ ŵĥàţ éàçĥ ƃļöçķ&#x27;š þàŕţñéŕ îñ ţĥé ƒîļé ĥéļđ ŵĥéŕé ţĥé
 çĥàñĝé šéţ ļéàṽéš îţ, àñđ à ţŕàñšļàţîöñ ƒöļļöŵš ţĥé šöüŕçé&#x27;š šţŕüçţüŕé, éṽéñ
 ŵĥéŕé ţĥé çĥàñĝé šéţ çĥàñĝéš ñö çöñţéñţ îñ à ƒîļé ŵĥöšé ƃļöçķš ñö ļöñĝéŕ þàîŕ
-ŵîţĥ ţĥé šöüŕçé&#x27;š. Šüçĥ à šéŕṽîçé ķééþš ţĥé ţŕàñšļàţîöñš öƒ à ƃîļîñĝüàļ šöüŕçé,
-à ÞÖ öŕ ẊĻÎƑƑ çàţàļöĝ ŵĥöšé çöļļéçţîöñ ñàḿéš à ţàŕĝéţ, îñ ţĥé ţàŕĝéţ
-ţéḿþļàţé&#x27;š ƒîļéš ţöö, éàçĥ ŕéàđ àñđ ŵŕîţţéñ îñ îţš ļàñĝüàĝé: à çàţàļöĝ ţĥàţ
-šţîļļ ĥöļđš éṽéŕý üñîţ öƒ îţš šöüŕçé ķééþš îţš öŵñ šķéļéţöñ, ĥéàđéŕ îñçļüđéđ.
+ŵîţĥ ţĥé šöüŕçé&#x27;š. À ƃîļîñĝüàļ ţŕàñšļàţîöñ ƒîļé ţĥàţ šţîļļ ĥöļđš éṽéŕý üñîţ
+öƒ îţš šöüŕçé ķééþš îţš öŵñ šķéļéţöñ, ĥéàđéŕ îñçļüđéđ.
 <code>kapi merge -i</code> çöḿþîļéš à ŕéţüŕñéđ ẊĻÎƑƑ, ÞÖ öŕ <code>.kpz</code> îñţö <code>set_content</code>
 öþéŕàţîöñš çàŕŕýîñĝ ţĥé <code>if_match</code> àñđ <code>basis</code> éàçĥ üñîţ ŵàš éẋţŕàçţéđ àĝàîñšţ,
 üñđéŕ <code>require_basis</code> àñđ ţĥé éñƒöŕçé ĝàţé, àñđ šéñđš ţĥéḿ àš à þéŕšöñ;
@@ -429,7 +469,9 @@
 <code>budget_exceeded</code>. À çĥàñĝé šéţ ŕéƒüšéđ ƃéƒöŕé àñý öþéŕàţîöñ îš çöñšîđéŕéđ,
 ƃéçàüšé îţ đöéš ñöţ đéçöđé öŕ ţĥé ŕéǫüéšţ çàŕŕýîñĝ îţ îš ŕéƒüšéđ, îš àñšŵéŕéđ
 ŵîţĥ ţĥé šàḿé ŕéšüļţ šĥàþé (<code>change.ErrorResult</code>): šţàţüš <code>refused</code>, ñö ŕéçöŕđ,
-ñö ƒîļéš öŕ öþéŕàţîöñš, àñđ ţĥé éŕŕöŕ. ▒</p>
+ñö ƒîļéš öŕ öþéŕàţîöñš, àñđ ţĥé éŕŕöŕ. <code>kapi apply --json</code> þŕîñţš ţĥàţ ŕéšüļţ
+ƒöŕ à çĥàñĝé šéţ ţĥàţ đöéš ñöţ đéçöđé öŕ çöñţŕàđîçţš îţšéļƒ, àñđ éẋîţš 2, àš
+ḾÇÞ àñđ ţĥé ƃŕöŵšéŕ àñšŵéŕ öñé. ▒</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="-çöñšéǫüéñçéš-">▒ Çöñšéǫüéñçéš ▒<a href="#-çöñšéǫüéñçéš-" class="hash-link" aria-label="▒ Đîŕéçţ ļîñķ ţö ▒ Çöñšéǫüéñçéš ▒ ▒" title="▒ Đîŕéçţ ļîñķ ţö ▒ Çöñšéǫüéñçéš ▒ ▒" translate="no">​</a></h2>
 <ul>
 <li class="">▒ À šéñđéŕ àļŵàýš ļéàŕñš ŵĥéţĥéŕ îţš çĥàñĝé ļàñđéđ àñđ, ŵĥéñ îţ đîđ ñöţ, ŵĥîçĥ
@@ -459,6 +501,6 @@
 <li class="">▒ <a class="" href="/next/qps/contribute/implementation/engine/change-applier">Ţĥé çĥàñĝé àþþļîéŕ</a> ▒</li>
 <li class="">▒ <a class="" href="/next/qps/contribute/implementation/engine/file-home">Ţĥé ƒîļé ĥöḿé</a> ▒</li>
 <li class="">▒ <a class="" href="/next/qps/contribute/architecture/surfaces/s-03-agent-surfaces">Š-03: Àĝéñţ šüŕƒàçéš</a> ▒</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-09-the-change-contract.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>▒ Éđîţ ţĥîš þàĝé ▒</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="▒ Đöçš þàĝéš ▒"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/qps/contribute/architecture/engine/e-08-document-structure-tiers"><div class="pagination-nav__sublabel">▒ Þŕéṽîöüš ▒</div><div class="pagination-nav__label">▒ É-08: Đöçüḿéñţ šţŕüçţüŕé ţîéŕš ▒</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/qps/contribute/architecture/context/c-01-project-model"><div class="pagination-nav__sublabel">▒ Ñéẋţ ▒</div><div class="pagination-nav__label">▒ Ç-01: Ţĥé þŕöĵéçţ ḿöđéļ ▒</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-šüḿḿàŕý-" class="table-of-contents__link toc-highlight">▒ Šüḿḿàŕý ▒</a></li><li><a href="#-çöñţéẋţ-" class="table-of-contents__link toc-highlight">▒ Çöñţéẋţ ▒</a></li><li><a href="#-đéçîšîöñ-" class="table-of-contents__link toc-highlight">▒ Đéçîšîöñ ▒</a><ul><li><a href="#-ţĥé-çĥàñĝé-šéţ-" class="table-of-contents__link toc-highlight">▒ Ţĥé çĥàñĝé šéţ ▒</a></li><li><a href="#-àđđŕéššîñĝ-àñđ-ŕéṽîšîöñš-" class="table-of-contents__link toc-highlight">▒ Àđđŕéššîñĝ àñđ ŕéṽîšîöñš ▒</a></li><li><a href="#-ţĥé-àþþļîéŕ-" class="table-of-contents__link toc-highlight">▒ Ţĥé àþþļîéŕ ▒</a></li><li><a href="#-ţĥé-šéŕṽîçé-" class="table-of-contents__link toc-highlight">▒ Ţĥé šéŕṽîçé ▒</a></li><li><a href="#-àđđîñĝ-àñđ-ŕéḿöṽîñĝ-ƃļöçķš-" class="table-of-contents__link toc-highlight">▒ Àđđîñĝ àñđ ŕéḿöṽîñĝ ƃļöçķš ▒</a></li><li><a href="#-ĥöḿéš-" class="table-of-contents__link toc-highlight">▒ Ĥöḿéš ▒</a></li><li><a href="#-ƒļöŵš-" class="table-of-contents__link toc-highlight">▒ Ƒļöŵš ▒</a></li><li><a href="#-ĥööķš-" class="table-of-contents__link toc-highlight">▒ Ĥööķš ▒</a></li><li><a href="#-ŕéšüļţš-àñđ-éŕŕöŕš-" class="table-of-contents__link toc-highlight">▒ Ŕéšüļţš àñđ éŕŕöŕš ▒</a></li></ul></li><li><a href="#-çöñšéǫüéñçéš-" class="table-of-contents__link toc-highlight">▒ Çöñšéǫüéñçéš ▒</a></li><li><a href="#-ŕéļàţéđ-" class="table-of-contents__link toc-highlight">▒ Ŕéļàţéđ ▒</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">▒ Đöçüḿéñţàţîöñ ▒</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/get-started/quickstart">▒ Ĝéţ šţàŕţéđ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/overview">▒ Ķàþî ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/framework/architecture">▒ Ƒŕàḿéŵöŕķ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/cli">▒ Ķàþî ÇĻÎ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/toolbox/overview">▒ ÇĻÎ ţööļš ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/react/introduction">▒ ñéöķàþî-î18ñ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/reference">▒ Ŕéƒéŕéñçé ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/formats">▒ Ƒöŕḿàţ Ŕéƒéŕéñçé ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/evals">▒ Ţéšţš &amp; Éṽàļš ▒</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">▒ Ḿöŕé ▒</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">▒ ĜîţĤüƃ ▒<svg width="13.5" height="13.5" aria-label="▒ (öþéñš îñ ñéŵ ţàƃ) ▒" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">▒ Ĥöḿéƃŕéŵ Ţàþ ▒<svg width="13.5" height="13.5" aria-label="▒ (öþéñš îñ ñéŵ ţàƃ) ▒" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">▒ Çöþýŕîĝĥţ © 2026 ñéöķàþî çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-10-03 16:04 ÜŢÇ · 4àđéƃ61 ▒</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-09-the-change-contract.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>▒ Éđîţ ţĥîš þàĝé ▒</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="▒ Đöçš þàĝéš ▒"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/qps/contribute/architecture/engine/e-08-document-structure-tiers"><div class="pagination-nav__sublabel">▒ Þŕéṽîöüš ▒</div><div class="pagination-nav__label">▒ É-08: Đöçüḿéñţ šţŕüçţüŕé ţîéŕš ▒</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/qps/contribute/architecture/context/c-01-project-model"><div class="pagination-nav__sublabel">▒ Ñéẋţ ▒</div><div class="pagination-nav__label">▒ Ç-01: Ţĥé þŕöĵéçţ ḿöđéļ ▒</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-šüḿḿàŕý-" class="table-of-contents__link toc-highlight">▒ Šüḿḿàŕý ▒</a></li><li><a href="#-çöñţéẋţ-" class="table-of-contents__link toc-highlight">▒ Çöñţéẋţ ▒</a></li><li><a href="#-đéçîšîöñ-" class="table-of-contents__link toc-highlight">▒ Đéçîšîöñ ▒</a><ul><li><a href="#-ţĥé-çĥàñĝé-šéţ-" class="table-of-contents__link toc-highlight">▒ Ţĥé çĥàñĝé šéţ ▒</a></li><li><a href="#-àđđŕéššîñĝ-àñđ-ŕéṽîšîöñš-" class="table-of-contents__link toc-highlight">▒ Àđđŕéššîñĝ àñđ ŕéṽîšîöñš ▒</a></li><li><a href="#-ţĥé-àþþļîéŕ-" class="table-of-contents__link toc-highlight">▒ Ţĥé àþþļîéŕ ▒</a></li><li><a href="#-ţĥé-šéŕṽîçé-" class="table-of-contents__link toc-highlight">▒ Ţĥé šéŕṽîçé ▒</a></li><li><a href="#-àđđîñĝ-àñđ-ŕéḿöṽîñĝ-ƃļöçķš-" class="table-of-contents__link toc-highlight">▒ Àđđîñĝ àñđ ŕéḿöṽîñĝ ƃļöçķš ▒</a></li><li><a href="#-ĥöḿéš-" class="table-of-contents__link toc-highlight">▒ Ĥöḿéš ▒</a></li><li><a href="#-ƒļöŵš-" class="table-of-contents__link toc-highlight">▒ Ƒļöŵš ▒</a></li><li><a href="#-ĥööķš-" class="table-of-contents__link toc-highlight">▒ Ĥööķš ▒</a></li><li><a href="#-ŕéšüļţš-àñđ-éŕŕöŕš-" class="table-of-contents__link toc-highlight">▒ Ŕéšüļţš àñđ éŕŕöŕš ▒</a></li></ul></li><li><a href="#-çöñšéǫüéñçéš-" class="table-of-contents__link toc-highlight">▒ Çöñšéǫüéñçéš ▒</a></li><li><a href="#-ŕéļàţéđ-" class="table-of-contents__link toc-highlight">▒ Ŕéļàţéđ ▒</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">▒ Đöçüḿéñţàţîöñ ▒</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/get-started/quickstart">▒ Ĝéţ šţàŕţéđ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/overview">▒ Ķàþî ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/framework/architecture">▒ Ƒŕàḿéŵöŕķ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/cli">▒ Ķàþî ÇĻÎ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/toolbox/overview">▒ ÇĻÎ ţööļš ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/react/introduction">▒ ñéöķàþî-î18ñ ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/reference">▒ Ŕéƒéŕéñçé ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/formats">▒ Ƒöŕḿàţ Ŕéƒéŕéñçé ▒</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/evals">▒ Ţéšţš &amp; Éṽàļš ▒</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">▒ Ḿöŕé ▒</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">▒ ĜîţĤüƃ ▒<svg width="13.5" height="13.5" aria-label="▒ (öþéñš îñ ñéŵ ţàƃ) ▒" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">▒ Ĥöḿéƃŕéŵ Ţàþ ▒<svg width="13.5" height="13.5" aria-label="▒ (öþéñš îñ ñéŵ ţàƃ) ▒" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">▒ Çöþýŕîĝĥţ © 2026 ñéöķàþî çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-10-03 19:13 ÜŢÇ · à90çƒ31 ▒</div></div></div></footer></div>
 </body>
 </html>
