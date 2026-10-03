@@ -285,6 +285,14 @@
       "gOxOAkxQVWx",
       "jWYvN1trElz"
     ],
+    "CheckFindingsDialog": [
+      "7KnOM42QZbz",
+      "8dRcMJXVr3V",
+      "bgILgAysCh3",
+      "eXcWs1G0Alv",
+      "gtjoVqGRPwc",
+      "j240pKBzItw"
+    ],
     "ClaimPage.stories": [
       "5RvPHe0B5xH",
       "6OUiJ59u6hI",
@@ -1557,6 +1565,9 @@
       "iijBvcNULN7",
       "lMPQmW0JxpU"
     ],
+    "PlaceholderText": [
+      "5Pc6rJnkJXd"
+    ],
     "Popover.stories": [
       "1djpdzkXBGq",
       "4Frm8rQ10ST",
@@ -1792,6 +1803,13 @@
       "dttkWd4yICO",
       "gsDjqWni2kp",
       "lXT6iA9bezn"
+    ],
+    "StaleChangeDialog": [
+      "cWx3X3zpha6",
+      "d5R6jpgywSh",
+      "eXcWs1G0Alv",
+      "fZvlAMb3baU",
+      "hFUOzuHWPkT"
     ],
     "StarterPromptCard": [
       "4DXSwQZVlGd",
