@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">WASM Engine ABI | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="WASM Engine ABI | neokapi"><meta data-rh="true" name="description" content="The stable JS contract between the browser wasm build of kapi and the @neokapi/engine npm package: the global function set, the change contract&#x27;s entry points, the kapiEngineABI feature-detection descriptor, and the optional host-provided reverse bridges."><meta data-rh="true" property="og:description" content="The stable JS contract between the browser wasm build of kapi and the @neokapi/engine npm package: the global function set, the change contract&#x27;s entry points, the kapiEngineABI feature-detection descriptor, and the optional host-provided reverse bridges."><meta data-rh="true" name="keywords" content="wasm,WebAssembly,engine ABI,kapiEngineABI,kapiApply,kapiRead,@neokapi/engine,browser engine,change contract,reverse bridge,implementation note"><link data-rh="true" rel="icon" href="/next/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"WASM Engine ABI","item":"https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi"}]}</script><link rel="stylesheet" href="/next/nb/assets/css/styles.7bae7412.css">
-<script src="/next/nb/assets/js/runtime~main.b8674eab.js" defer="defer"></script>
-<script src="/next/nb/assets/js/main.16284729.js" defer="defer"></script>
+<title data-rh="true">WASM Engine ABI | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="WASM Engine ABI | neokapi"><meta data-rh="true" name="description" content="The stable JS contract between the browser wasm build of kapi and the @neokapi/engine npm package: the global function set, the change contract&#x27;s entry points, the kapiEngineABI feature-detection descriptor, the engine&#x27;s Worker and the workspace it keeps, and the optional host-provided reverse bridges."><meta data-rh="true" property="og:description" content="The stable JS contract between the browser wasm build of kapi and the @neokapi/engine npm package: the global function set, the change contract&#x27;s entry points, the kapiEngineABI feature-detection descriptor, the engine&#x27;s Worker and the workspace it keeps, and the optional host-provided reverse bridges."><meta data-rh="true" name="keywords" content="wasm,WebAssembly,engine ABI,kapiEngineABI,kapiApply,kapiRead,@neokapi/engine,browser engine,change contract,reverse bridge,Worker,OPFS,opfs-sahpool,implementation note"><link data-rh="true" rel="icon" href="/next/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"WASM Engine ABI","item":"https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi"}]}</script><link rel="stylesheet" href="/next/nb/assets/css/styles.7bae7412.css">
+<script src="/next/nb/assets/js/runtime~main.3cb98eba.js" defer="defer"></script>
+<script src="/next/nb/assets/js/main.fee5d334.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -34,13 +34,51 @@ version.</li>
 <code>wasm_exec.js</code> environment) and the SQLite bridge (<code>__kapiSQL</code>, see
 <a href="#storage" class="">Storage</a>) before instantiation; after registering the globals,
 the engine invokes the host&#x27;s <code>__kapiCliReady()</code> callback and then blocks
-forever so the globals stay callable.</li>
+forever so the globals stay callable. In a browser the host is the
+engine&#x27;s Worker (<a href="#the-worker" class="">The Worker</a>), so the globals live there and
+the facade reaches them by message.</li>
 <li class=""><strong>Reverse bridges.</strong> Some features call back into optional host-provided
 globals: <code>__kapiPdfium</code> (PDF text + geometry), <code>kapiLocalGenerate</code>
 (on-device LLM), <code>kapiLocalNER</code> (on-device NER), and <code>kapiBrowserTranslate</code>
 (with the platform <code>Translator</code> API). Each degrades with an actionable
 error when its bridge is absent. The typed interfaces live in
-<code>packages/engine/src/capabilities.ts</code>.</li>
+<code>packages/engine/src/capabilities.ts</code>. A page installs them on its own
+<code>globalThis</code> whether the engine runs there or in a Worker.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="the-worker">The Worker<a href="#the-worker" class="hash-link" aria-label="Direkte lenke til The Worker" title="Direkte lenke til The Worker" translate="no">​</a></h2>
+<p><code>bootKapiRuntime</code> starts the engine in a dedicated Worker
+(<code>packages/engine/src/worker.ts</code>) wherever <code>Worker</code> exists: Go, SQLite and the
+engine&#x27;s file system run there, off the page&#x27;s thread. <code>{ worker: false }</code>, or
+an environment without <code>Worker</code> (Node, a test), runs it on the calling thread
+as before, with the workspace in memory.</p>
+<ul>
+<li class=""><strong>Calls by message.</strong> The facade sends each call as a message naming the
+engine global and its arguments (<code>packages/engine/src/protocol.ts</code>), and the
+Worker answers with the value. Calls that are not engine globals
+(<code>removeDatabase</code>, <code>reset</code>, and reading back a trace) run beside them in the
+Worker (<code>packages/engine/src/local.ts</code>). <code>kbf</code>, <code>segment</code>,
+<code>segmentEngines</code> and <code>removeDatabase</code> answer Promises on the facade, in both
+modes.</li>
+<li class=""><strong>The file system has a mirror on the page.</strong> <code>runtime.vol</code> stays
+synchronous: the page holds a copy of the engine&#x27;s file system, a write on
+the page reaches the Worker before the next call (messages keep their
+order), and the Worker sends the changes a call made before the call&#x27;s
+answer, so a page that reads <code>vol</code> after a call sees them. <code>memfs</code> reports
+each changed path (<code>onChange</code>) for this.</li>
+<li class=""><strong>The ABI descriptor.</strong> The Worker sends <code>kapiEngineABI()</code> with its ready
+message, and the facade installs it on the page, so <code>engineABI()</code> and
+<code>hasEngineFunction()</code> answer there.</li>
+<li class=""><strong>Reverse bridges stay on the page.</strong> With each call the facade sends which
+bridges the page has, and the Worker installs a stand-in for each that asks
+the page and waits for its answer. A stand-in answers with a Promise, so the
+engine waits for it on a goroutine: <code>labSegmentAsync</code> is <code>labSegment</code>
+answered as a Promise for that reason, and the ICU4X engine
+(<code>core/segment/icu4xjs</code>) accepts a Promise from its bridge. The Worker
+answers <code>kapiIntlSentenceBreaks</code> itself, since <code>Intl.Segmenter</code> exists
+there, and mirrors the presence of the platform <code>Translator</code> API.</li>
+<li class=""><strong>Loading <code>wasm_exec.js</code>.</strong> The Worker imports it as a module, falling back
+to <code>importScripts</code> in a classic Worker. A host on another origin serves it
+with CORS, as it already does for the engine binary.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="storage">Storage<a href="#storage" class="hash-link" aria-label="Direkte lenke til Storage" title="Direkte lenke til Storage" translate="no">​</a></h2>
 <p>Every store in the browser build is the native code: the workspace and its
@@ -49,21 +87,78 @@ store, the decision ledger, the context graph and the block cache. They are SQL
 behind <code>core/storage</code>, and the browser build&#x27;s driver runs that SQL on the
 official SQLite WebAssembly build, <code>@sqlite.org/sqlite-wasm</code>.</p>
 <ul>
-<li class=""><strong>The bridge.</strong> <code>packages/engine/src/sqlite.ts</code> loads the module and installs
+<li class="">
+<p><strong>Where the workspace is kept.</strong> In the Worker, the engine keeps its
+databases in SQLite&#x27;s <code>opfs-sahpool</code> VFS, in the origin private file system,
+and the files of its file system in a database of its own in the same pool
+(<code>/.kapi-engine/volume.db</code>, outside the driver&#x27;s namespace), written after
+each call. Both survive a reload and a browser restart, and need no COOP or
+COEP headers, which GitHub Pages cannot set. <code>runtime.storage</code> says which
+applies: <code>{ kind: &quot;opfs&quot; }</code>, or <code>{ kind: &quot;memory&quot;, reason }</code> with <code>reason</code>
+one of <code>disabled</code>, <code>main-thread</code>, <code>unsupported</code>, <code>another-tab</code> or <code>failed</code>,
+and <code>describeStorage()</code> turns it into a sentence for a page. The pool is
+named by a key (<code>BootOptions.persist</code>, default <code>&quot;kapi&quot;</code>); the docs key it by
+their base URL, since the stable docs, the preview channel and each pull
+request preview share an origin and serve different engines.</p>
+</li>
+<li class="">
+<p><strong>One tab owns the pool.</strong> The pool holds a synchronous handle on every file,
+which only one context may hold, so the Worker first takes a Web Lock named
+for the pool and holds it for its life. A tab that cannot take it within a
+short wait (a reload releases it as the old page closes) runs in memory, with
+<code>reason: &quot;another-tab&quot;</code>. Before installing the pool the Worker checks that no
+other context still holds its files and waits for one that is closing: a
+failed install in this release of <code>sqlite-wasm</code> removes the pool&#x27;s
+directory. The pool grows between calls, since growing it waits on the file
+system, keeping spare slots for the databases and journals a call creates.</p>
+</li>
+<li class="">
+<p><strong>Locks between connections.</strong> The pool&#x27;s own locks only remember the level
+asked for. The engine opens several connections to one database, so the
+bridge installs a lock table over the pool&#x27;s methods
+(<code>packages/engine/src/locks.ts</code>) that keeps SQLite&#x27;s lock levels per
+database, as <code>memdb</code> and <code>os_unix.c</code> do within one process: a write beside
+another connection&#x27;s transaction reports <code>database is locked</code> at once, as it
+does in memory.</p>
+</li>
+<li class="">
+<p><strong>The workspace is a cache.</strong> The browser may evict what a site keeps
+(Safari removes data a script wrote after seven days without interaction),
+so the workspace in a browser is a cache of a log that should also live
+elsewhere. <code>kapiExportWorkspace()</code> packs the engine&#x27;s files and the context
+of every project among them into a workspace package (<code>kpz.KindWorkspace</code>,
+<code>kapi-workspace</code>): the files under <code>files/</code>, and per project a context
+package under <code>contexts/</code>, the operation log <code>kapi context export</code> writes.
+<code>kapiImportWorkspace(bytes)</code> writes the files and merges each log, as
+<code>kapi context import</code> does, which rebuilds the project&#x27;s stores. A store
+outside every project is a projection of nothing and does not travel; the
+data root, <code>/tmp</code> and the lab&#x27;s own directory (<code>/.lab</code>) are left out. The
+facade&#x27;s <code>exportWorkspace()</code> and <code>importWorkspace()</code> wrap them, and the
+playground&#x27;s files panel offers both. The next step, syncing through a
+<code>workspace.Remote</code>, is not built.</p>
+</li>
+<li class="">
+<p><strong>The bridge.</strong> <code>packages/engine/src/sqlite.ts</code> loads the module and installs
 one object on <code>globalThis</code>, <code>__kapiSQL</code>, before Go starts. The Go driver
 (<code>core/storage/driver_js.go</code>, <code>core/storage/sqlitejs_js.go</code>) registers with
 <code>database/sql</code> and calls the bridge synchronously through <code>syscall/js</code>, so Go
 and SQLite share the page&#x27;s main thread. Arguments and result rows cross in
 one packed byte buffer per call. A failure comes back as SQLite&#x27;s own message
-and extended result code.</li>
-<li class=""><strong>Where the databases live.</strong> In SQLite&#x27;s <code>memdb</code> VFS, named by absolute path.
-Every connection to one name shares the database, and <code>ATTACH</code> by path reaches
-it. The bridge holds a connection of its own on each name, so a database
-outlives the pools that open and close it between commands. The engine names
-its data root <code>/.kapi-data</code> (<code>KAPI_DATA_DIR</code>), where the workspace lives.
-Nothing outlives the tab.</li>
-<li class=""><strong>The driver&#x27;s profile.</strong> <code>storage.DriverProfile()</code> reports one connection per
-file, no WAL, no cross-process lock and no durability. The busy timeout is
+and extended result code.</p>
+</li>
+<li class="">
+<p><strong>Where the databases live.</strong> Named by absolute path, in the pool or, in
+memory, in SQLite&#x27;s <code>memdb</code> VFS. Every connection to one name shares the
+database, and <code>ATTACH</code> by path reaches it, since the bridge makes its VFS the
+default. In memory the bridge holds a connection of its own on each name, so
+a database outlives the pools that open and close it between commands. The
+engine names its data root <code>/.kapi-data</code> (<code>KAPI_DATA_DIR</code>), where the
+workspace lives.</p>
+</li>
+<li class="">
+<p><strong>The driver&#x27;s profile.</strong> <code>storage.DriverProfile()</code> reports one connection per
+file, no WAL and no cross-process lock, and durability when the bridge says
+its databases outlive the page (<code>__kapiSQL.durable</code>). The busy timeout is
 zero: a second connection&#x27;s wait would spin the only thread, so a lock
 conflict reports <code>database is locked</code> at once. Code on these pools never holds
 a transaction or open rows and then waits for a second session on the same
@@ -77,52 +172,69 @@ that waits 20 seconds for the pool panics with every goroutine&#x27;s stack, and
 read on one pool beside a write the same code holds on another waits out the
 busy timeout and fails with <code>database is locked</code>, which the browser reports at
 once. CI runs it beside <code>make test-wasm-stores</code>, and on push runs the host
-suite the same way (<code>make test-host-oneconn</code>).</li>
-<li class=""><strong>Database files belong to the driver.</strong> The page&#x27;s file system never sees a
+suite the same way (<code>make test-host-oneconn</code>).</p>
+</li>
+<li class="">
+<p><strong>Database files belong to the driver.</strong> The page&#x27;s file system never sees a
 database, so code that asks whether one exists, removes, renames or lists them
 calls <code>storage.Exists</code>, <code>storage.Remove</code>, <code>storage.Rename</code>, <code>storage.List</code> and
 <code>storage.RemoveAll</code> rather than <code>os</code>. A database&#x27;s directory still has to
-exist in the engine&#x27;s file system, as it does natively.</li>
-<li class=""><strong>A database file a page adds.</strong> A SQLite file in the engine&#x27;s file system
+exist in the engine&#x27;s file system, as it does natively.</p>
+</li>
+<li class="">
+<p><strong>A database file a page adds.</strong> A SQLite file in the engine&#x27;s file system
 (one a reader uploads, say) is read into memory the first time a store opens
 its path, through <code>sqlite3_deserialize</code>, and writes go to the copy in memory.
 The namespace answers for such files too, and <code>storage.Remove</code> deletes the
 file with the database, so a removed database stays removed. A
 file that is not a database fails to open with <code>file is not a database</code>, as
 it does natively; one with an unflushed write-ahead log beside it fails with a
-message that says so.</li>
-<li class=""><strong>Row batches.</strong> A query&#x27;s rows cross 256 at a time, or about 1 MiB at a
-time when they are large.</li>
-<li class=""><strong>Word search.</strong> The module carries SQLite&#x27;s built-in FTS5 tokenizers and no
-ICU, so <code>storage.FTSWordTokenizer</code> is <code>unicode61</code>.</li>
-<li class=""><strong>The asset.</strong> <code>sqlite3.wasm</code> is served beside the engine binary, where
+message that says so.</p>
+</li>
+<li class="">
+<p><strong>Row batches.</strong> A query&#x27;s rows cross 256 at a time, or about 1 MiB at a
+time when they are large.</p>
+</li>
+<li class="">
+<p><strong>Word search.</strong> The module carries SQLite&#x27;s built-in FTS5 tokenizers and no
+ICU, so <code>storage.FTSWordTokenizer</code> is <code>unicode61</code>.</p>
+</li>
+<li class="">
+<p><strong>The asset.</strong> <code>sqlite3.wasm</code> is served beside the engine binary, where
 <code>make web-wasm-cli</code> stages it (with <code>sqlite3.wasm.gz</code>) from the pinned
 package, and the boot prefers the precompressed copy.
 <code>bootKapiRuntime(wasmExecUrl, wasmUrl, { sqliteWasmUrl })</code> takes another
 location. Measured with gzip -9, the asset is about 0.40 MB and the bundled
-JavaScript (the module&#x27;s glue and the bridge, minified) about 0.07 MB.</li>
-<li class=""><strong>The lab project.</strong> The read-only annotators behind <code>labInspectAnnotated</code>
+JavaScript (the module&#x27;s glue and the bridge, minified) about 0.07 MB.</p>
+</li>
+<li class="">
+<p><strong>The lab project.</strong> The read-only annotators behind <code>labInspectAnnotated</code>
 look terms up in a project the engine creates at <code>/.lab/project</code> on first use,
 and opens again if a reset closed it. Its terms are the bundle in
 <code>kapi/cmd/kapi-wasm-cli/fixtures/terms.json</code>, imported through the projector,
 so they are operations in the workspace log as they would be natively.
 Commands typed in a lab resolve stores as natively: inside a project they use
 the project&#x27;s, and outside one the standalone store a flag or the working
-directory names.</li>
-<li class=""><strong>Starting a directory over.</strong> <code>kapiReset(dir)</code> forgets every project at or
+directory names.</p>
+</li>
+<li class="">
+<p><strong>Starting a directory over.</strong> <code>kapiReset(dir)</code> forgets every project at or
 below <code>dir</code> in the workspace (<code>App.ForgetProjectsUnder</code>, which closes its
 stores and calls <code>workspace.Forget</code>), then removes every database there
 outside the workspace&#x27;s own. A project seeded there again begins with an
 empty context, because the projector replays only what the log holds after a
 project&#x27;s latest removal. <code>KapiRuntime.reset(dir)</code> calls it and then clears
 the directory&#x27;s files; the playground&#x27;s Reset button and the terminal&#x27;s <code>rm</code>
-(through <code>KapiRuntime.removeDatabase</code>) use them.</li>
-<li class=""><strong>Tested in Node.</strong> <code>make test-wasm-stores</code> runs the store suites under
+(through <code>KapiRuntime.removeDatabase</code>) use them.</p>
+</li>
+<li class="">
+<p><strong>Tested in Node.</strong> <code>make test-wasm-stores</code> runs the store suites under
 <code>GOOS=js</code> in Node over the same bridge (<code>scripts/wasm-stores/</code>), and the
 change service&#x27;s suites beside them (<a href="#the-change-contract" class="">The change
 contract</a>). A test that needs a subprocess (git, or a
 second writer process), directory permissions that reach a database, or
-preemption skips there and names which.</li>
+preemption skips there and names which.</p>
+</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="the-change-contract">The change contract<a href="#the-change-contract" class="hash-link" aria-label="Direkte lenke til The change contract" title="Direkte lenke til The change contract" translate="no">​</a></h2>
 <p>A page that edits content sends the change contract
@@ -163,8 +275,8 @@ resolves to its result whatever the status.</li>
 workspace&#x27;s log under <code>/.kapi-data</code> as one <code>content.edit</code> operation per
 document, the record <code>kapi apply</code> writes natively, and the projector writes
 it into the block history. A later read shows a translation&#x27;s basis from
-there. Outside a project nothing is recorded. Every edit lives as long as
-the tab, with the rest of the workspace.</li>
+there. Outside a project nothing is recorded. Every edit is kept with the
+rest of the workspace (<a href="#storage" class="">Storage</a>).</li>
 <li class=""><strong>One at a time.</strong> The calls, the commands <code>kapiRun</code> runs (a completion
 included) and <code>kapiReset</code> share the engine&#x27;s App, so the engine runs them in
 turn: a command started while a call runs waits for it, and the other way
@@ -236,9 +348,9 @@ program code instead, and strips the escapes so a <code>--json</code> payload pa
 <code>cli.BrowserUnavailableReason</code> for each command&#x27;s runnable-in-browser badge, so
 the Command Reference cannot claim a verb runs in the lab when it does not.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="where-the-pieces-live">Where the pieces live<a href="#where-the-pieces-live" class="hash-link" aria-label="Direkte lenke til Where the pieces live" title="Direkte lenke til Where the pieces live" translate="no">​</a></h2>
-<table><thead><tr><th>Concern</th><th>Location</th></tr></thead><tbody><tr><td>Registration table + <code>kapiEngineABI()</code></td><td><code>kapi/cmd/kapi-wasm-cli/main.go</code></td></tr><tr><td>Browser command set + recorded gaps</td><td><code>cli/browsercmds.go</code></td></tr><tr><td>Surface drift guard</td><td><code>cli/browsercmds_test.go</code></td></tr><tr><td>Runtime surface smoke</td><td><code>scripts/verify-snippets/command-surface-smoke.ts</code></td></tr><tr><td>Ambient TS typings for the globals</td><td><code>packages/engine/src/globals.ts</code></td></tr><tr><td>Wire shapes + <code>engineABI()</code> helper</td><td><code>packages/engine/src/abi.ts</code></td></tr><tr><td><code>KapiRuntime</code> facade + boot</td><td><code>packages/engine/src/runtime.ts</code></td></tr><tr><td>SQLite bridge (<code>__kapiSQL</code>)</td><td><code>packages/engine/src/sqlite.ts</code></td></tr><tr><td>Browser database driver + profile + namespace</td><td><code>core/storage/driver_js.go</code>, <code>core/storage/sqlitejs_js.go</code></td></tr><tr><td>Store suites under <code>GOOS=js</code></td><td><code>scripts/wasm-stores/</code>, <code>make test-wasm-stores</code></td></tr><tr><td>Lab project for the annotators</td><td><code>kapi/cmd/kapi-wasm-cli/labproject.go</code></td></tr><tr><td>Starting a directory over (<code>kapiReset</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/reset.go</code>, <code>App.ForgetProjectsUnder</code> in <code>host/projectstore.go</code></td></tr><tr><td>The change contract (<code>kapiRead</code>, <code>kapiApply</code>, <code>kapiDescribe</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/changes.go</code>, <code>host/changes_call.go</code></td></tr><tr><td>The change contract smoke</td><td><code>scripts/verify-snippets/change-smoke.ts</code>, <code>make change-wasm-smoke</code></td></tr><tr><td>Reverse-bridge capability types</td><td><code>packages/engine/src/capabilities.ts</code></td></tr><tr><td>Payload types (ContentTree, runs, the change contract)</td><td><code>@neokapi/contract-types</code> (generated)</td></tr></tbody></table>
+<table><thead><tr><th>Concern</th><th>Location</th></tr></thead><tbody><tr><td>Registration table + <code>kapiEngineABI()</code></td><td><code>kapi/cmd/kapi-wasm-cli/main.go</code></td></tr><tr><td>Browser command set + recorded gaps</td><td><code>cli/browsercmds.go</code></td></tr><tr><td>Surface drift guard</td><td><code>cli/browsercmds_test.go</code></td></tr><tr><td>Runtime surface smoke</td><td><code>scripts/verify-snippets/command-surface-smoke.ts</code></td></tr><tr><td>Ambient TS typings for the globals</td><td><code>packages/engine/src/globals.ts</code></td></tr><tr><td>Wire shapes + <code>engineABI()</code> helper</td><td><code>packages/engine/src/abi.ts</code></td></tr><tr><td><code>KapiRuntime</code> facade + boot</td><td><code>packages/engine/src/runtime.ts</code></td></tr><tr><td>SQLite bridge (<code>__kapiSQL</code>)</td><td><code>packages/engine/src/sqlite.ts</code></td></tr><tr><td>The engine&#x27;s Worker and its messages</td><td><code>packages/engine/src/worker.ts</code>, <code>packages/engine/src/protocol.ts</code></td></tr><tr><td>Where the workspace is kept (pool, Web Lock, file store)</td><td><code>packages/engine/src/storage.ts</code></td></tr><tr><td>Locks between connections on the pool</td><td><code>packages/engine/src/locks.ts</code></td></tr><tr><td>Workspace export and import (<code>kapiExportWorkspace</code>, <code>kapiImportWorkspace</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/workspace.go</code>, <code>kpz/workspacepkg.go</code></td></tr><tr><td>Persistence smoke (reload, restart, a second tab, an export)</td><td><code>scripts/wasm-persist/</code>, <code>make wasm-persist-smoke</code></td></tr><tr><td>Browser database driver + profile + namespace</td><td><code>core/storage/driver_js.go</code>, <code>core/storage/sqlitejs_js.go</code></td></tr><tr><td>Store suites under <code>GOOS=js</code></td><td><code>scripts/wasm-stores/</code>, <code>make test-wasm-stores</code></td></tr><tr><td>Lab project for the annotators</td><td><code>kapi/cmd/kapi-wasm-cli/labproject.go</code></td></tr><tr><td>Starting a directory over (<code>kapiReset</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/reset.go</code>, <code>App.ForgetProjectsUnder</code> in <code>host/projectstore.go</code></td></tr><tr><td>The change contract (<code>kapiRead</code>, <code>kapiApply</code>, <code>kapiDescribe</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/changes.go</code>, <code>host/changes_call.go</code></td></tr><tr><td>The change contract smoke</td><td><code>scripts/verify-snippets/change-smoke.ts</code>, <code>make change-wasm-smoke</code></td></tr><tr><td>Reverse-bridge capability types</td><td><code>packages/engine/src/capabilities.ts</code></td></tr><tr><td>Payload types (ContentTree, runs, the change contract)</td><td><code>@neokapi/contract-types</code> (generated)</td></tr></tbody></table>
 <p>When adding an entry point: add it to <code>engineExports</code>, type it in
 <code>globals.ts</code>, surface it on the facade if user-facing, and leave the <code>abi</code>
-value alone (additions don&#x27;t bump it).</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/implementation/surfaces/wasm-engine-abi.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/implementation/surfaces/mcp-tools-reference"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">MCP Tools Reference</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/implementation/multilingual/multimodal-content"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Multimodal content: implementation map</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#contract" class="table-of-contents__link toc-highlight">Contract</a></li><li><a href="#storage" class="table-of-contents__link toc-highlight">Storage</a></li><li><a href="#the-change-contract" class="table-of-contents__link toc-highlight">The change contract</a></li><li><a href="#command-surface" class="table-of-contents__link toc-highlight">Command surface</a></li><li><a href="#where-the-pieces-live" class="table-of-contents__link toc-highlight">Where the pieces live</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-06 09:15 UTC · f29e313</div></div></div></footer></div>
+value alone (additions don&#x27;t bump it).</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/implementation/surfaces/wasm-engine-abi.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/implementation/surfaces/mcp-tools-reference"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">MCP Tools Reference</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/implementation/multilingual/multimodal-content"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Multimodal content: implementation map</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#contract" class="table-of-contents__link toc-highlight">Contract</a></li><li><a href="#the-worker" class="table-of-contents__link toc-highlight">The Worker</a></li><li><a href="#storage" class="table-of-contents__link toc-highlight">Storage</a></li><li><a href="#the-change-contract" class="table-of-contents__link toc-highlight">The change contract</a></li><li><a href="#command-surface" class="table-of-contents__link toc-highlight">Command surface</a></li><li><a href="#where-the-pieces-live" class="table-of-contents__link toc-highlight">Where the pieces live</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-06 17:05 UTC · 05f7e2e</div></div></div></footer></div>
 </body>
 </html>

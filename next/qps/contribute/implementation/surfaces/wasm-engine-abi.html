@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">ŴÀŠḾ Éñĝîñé ÀƂÎ | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/qps/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/qps/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="qps"><meta data-rh="true" name="docsearch:language" content="qps"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="ŴÀŠḾ Éñĝîñé ÀƂÎ | neokapi"><meta data-rh="true" name="description" content="Ţĥé šţàƃļé ĴŠ çöñţŕàçţ ƃéţŵééñ ţĥé ƃŕöŵšéŕ ŵàšḿ ƃüîļđ öƒ ķàþî àñđ ţĥé @ñéöķàþî/éñĝîñé ñþḿ þàçķàĝé: ţĥé ĝļöƃàļ ƒüñçţîöñ šéţ, ţĥé çĥàñĝé çöñţŕàçţ&#x27;š éñţŕý þöîñţš, ţĥé ķàþîÉñĝîñéÀƂÎ ƒéàţüŕé-đéţéçţîöñ đéšçŕîþţöŕ, àñđ ţĥé öþţîöñàļ ĥöšţ-þŕöṽîđéđ ŕéṽéŕšé ƃŕîđĝéš."><meta data-rh="true" property="og:description" content="Ţĥé šţàƃļé ĴŠ çöñţŕàçţ ƃéţŵééñ ţĥé ƃŕöŵšéŕ ŵàšḿ ƃüîļđ öƒ ķàþî àñđ ţĥé @ñéöķàþî/éñĝîñé ñþḿ þàçķàĝé: ţĥé ĝļöƃàļ ƒüñçţîöñ šéţ, ţĥé çĥàñĝé çöñţŕàçţ&#x27;š éñţŕý þöîñţš, ţĥé ķàþîÉñĝîñéÀƂÎ ƒéàţüŕé-đéţéçţîöñ đéšçŕîþţöŕ, àñđ ţĥé öþţîöñàļ ĥöšţ-þŕöṽîđéđ ŕéṽéŕšé ƃŕîđĝéš."><meta data-rh="true" name="keywords" content="wasm,WebAssembly,engine ABI,kapiEngineABI,kapiApply,kapiRead,@neokapi/engine,browser engine,change contract,reverse bridge,implementation note"><link data-rh="true" rel="icon" href="/next/qps/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ŴÀŠḾ Éñĝîñé ÀƂÎ","item":"https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi"}]}</script><link rel="stylesheet" href="/next/qps/assets/css/styles.2e670b61.css">
-<script src="/next/qps/assets/js/runtime~main.1781ec60.js" defer="defer"></script>
-<script src="/next/qps/assets/js/main.658ac87f.js" defer="defer"></script>
+<title data-rh="true">ŴÀŠḾ Éñĝîñé ÀƂÎ | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/qps/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/qps/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="qps"><meta data-rh="true" name="docsearch:language" content="qps"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="ŴÀŠḾ Éñĝîñé ÀƂÎ | neokapi"><meta data-rh="true" name="description" content="Ţĥé šţàƃļé ĴŠ çöñţŕàçţ ƃéţŵééñ ţĥé ƃŕöŵšéŕ ŵàšḿ ƃüîļđ öƒ ķàþî àñđ ţĥé @ñéöķàþî/éñĝîñé ñþḿ þàçķàĝé: ţĥé ĝļöƃàļ ƒüñçţîöñ šéţ, ţĥé çĥàñĝé çöñţŕàçţ&#x27;š éñţŕý þöîñţš, ţĥé ķàþîÉñĝîñéÀƂÎ ƒéàţüŕé-đéţéçţîöñ đéšçŕîþţöŕ, ţĥé éñĝîñé&#x27;š Ŵöŕķéŕ àñđ ţĥé ŵöŕķšþàçé îţ ķééþš, àñđ ţĥé öþţîöñàļ ĥöšţ-þŕöṽîđéđ ŕéṽéŕšé ƃŕîđĝéš."><meta data-rh="true" property="og:description" content="Ţĥé šţàƃļé ĴŠ çöñţŕàçţ ƃéţŵééñ ţĥé ƃŕöŵšéŕ ŵàšḿ ƃüîļđ öƒ ķàþî àñđ ţĥé @ñéöķàþî/éñĝîñé ñþḿ þàçķàĝé: ţĥé ĝļöƃàļ ƒüñçţîöñ šéţ, ţĥé çĥàñĝé çöñţŕàçţ&#x27;š éñţŕý þöîñţš, ţĥé ķàþîÉñĝîñéÀƂÎ ƒéàţüŕé-đéţéçţîöñ đéšçŕîþţöŕ, ţĥé éñĝîñé&#x27;š Ŵöŕķéŕ àñđ ţĥé ŵöŕķšþàçé îţ ķééþš, àñđ ţĥé öþţîöñàļ ĥöšţ-þŕöṽîđéđ ŕéṽéŕšé ƃŕîđĝéš."><meta data-rh="true" name="keywords" content="wasm,WebAssembly,engine ABI,kapiEngineABI,kapiApply,kapiRead,@neokapi/engine,browser engine,change contract,reverse bridge,Worker,OPFS,opfs-sahpool,implementation note"><link data-rh="true" rel="icon" href="/next/qps/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/implementation/surfaces/wasm-engine-abi" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/implementation/surfaces/wasm-engine-abi" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ŴÀŠḾ Éñĝîñé ÀƂÎ","item":"https://neokapi.github.io/next/qps/contribute/implementation/surfaces/wasm-engine-abi"}]}</script><link rel="stylesheet" href="/next/qps/assets/css/styles.2e670b61.css">
+<script src="/next/qps/assets/js/runtime~main.069e5dbb.js" defer="defer"></script>
+<script src="/next/qps/assets/js/main.cfbf3de0.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -34,13 +34,51 @@
 <code>wasm_exec.js</code> éñṽîŕöñḿéñţ) àñđ ţĥé ŠǪĻîţé ƃŕîđĝé (<code>__kapiSQL</code>, šéé
 <a href="#storage" class="">Šţöŕàĝé</a>) ƃéƒöŕé îñšţàñţîàţîöñ; àƒţéŕ ŕéĝîšţéŕîñĝ ţĥé ĝļöƃàļš,
 ţĥé éñĝîñé îñṽöķéš ţĥé ĥöšţ&#x27;š <code>__kapiCliReady()</code> çàļļƃàçķ àñđ ţĥéñ ƃļöçķš
-ƒöŕéṽéŕ šö ţĥé ĝļöƃàļš šţàý çàļļàƃļé.</li>
+ƒöŕéṽéŕ šö ţĥé ĝļöƃàļš šţàý çàļļàƃļé. Îñ à ƃŕöŵšéŕ ţĥé ĥöšţ îš ţĥé
+éñĝîñé&#x27;š Ŵöŕķéŕ (<a href="#the-worker" class="">Ţĥé Ŵöŕķéŕ</a>), šö ţĥé ĝļöƃàļš ļîṽé ţĥéŕé àñđ
+ţĥé ƒàçàđé ŕéàçĥéš ţĥéḿ ƃý ḿéššàĝé.</li>
 <li class=""><strong>Ŕéṽéŕšé ƃŕîđĝéš.</strong> Šöḿé ƒéàţüŕéš çàļļ ƃàçķ îñţö öþţîöñàļ ĥöšţ-þŕöṽîđéđ
 ĝļöƃàļš: <code>__kapiPdfium</code> (ÞĐƑ ţéẋţ + ĝéöḿéţŕý), <code>kapiLocalGenerate</code>
 (öñ-đéṽîçé ĻĻḾ), <code>kapiLocalNER</code> (öñ-đéṽîçé ÑÉŔ), àñđ <code>kapiBrowserTranslate</code>
 (ŵîţĥ ţĥé þļàţƒöŕḿ <code>Translator</code> ÀÞÎ). Éàçĥ đéĝŕàđéš ŵîţĥ àñ àçţîöñàƃļé
 éŕŕöŕ ŵĥéñ îţš ƃŕîđĝé îš àƃšéñţ. Ţĥé ţýþéđ îñţéŕƒàçéš ļîṽé îñ
-<code>packages/engine/src/capabilities.ts</code>.</li>
+<code>packages/engine/src/capabilities.ts</code>. À þàĝé îñšţàļļš ţĥéḿ öñ îţš öŵñ
+<code>globalThis</code> ŵĥéţĥéŕ ţĥé éñĝîñé ŕüñš ţĥéŕé öŕ îñ à Ŵöŕķéŕ.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_ZMry" id="ţĥé-ŵöŕķéŕ">Ţĥé Ŵöŕķéŕ<a href="#ţĥé-ŵöŕķéŕ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé Ŵöŕķéŕ" title="Đîŕéçţ ļîñķ ţö Ţĥé Ŵöŕķéŕ" translate="no">​</a></h2>
+<p><code>bootKapiRuntime</code> šţàŕţš ţĥé éñĝîñé îñ à đéđîçàţéđ Ŵöŕķéŕ
+(<code>packages/engine/src/worker.ts</code>) ŵĥéŕéṽéŕ <code>Worker</code> éẋîšţš: Ĝö, ŠǪĻîţé àñđ ţĥé
+éñĝîñé&#x27;š ƒîļé šýšţéḿ ŕüñ ţĥéŕé, öƒƒ ţĥé þàĝé&#x27;š ţĥŕéàđ. <code>{ worker: false }</code>, öŕ
+àñ éñṽîŕöñḿéñţ ŵîţĥöüţ <code>Worker</code> (Ñöđé, à ţéšţ), ŕüñš îţ öñ ţĥé çàļļîñĝ ţĥŕéàđ
+àš ƃéƒöŕé, ŵîţĥ ţĥé ŵöŕķšþàçé îñ ḿéḿöŕý.</p>
+<ul>
+<li class=""><strong>Çàļļš ƃý ḿéššàĝé.</strong> Ţĥé ƒàçàđé šéñđš éàçĥ çàļļ àš à ḿéššàĝé ñàḿîñĝ ţĥé
+éñĝîñé ĝļöƃàļ àñđ îţš àŕĝüḿéñţš (<code>packages/engine/src/protocol.ts</code>), àñđ ţĥé
+Ŵöŕķéŕ àñšŵéŕš ŵîţĥ ţĥé ṽàļüé. Çàļļš ţĥàţ àŕé ñöţ éñĝîñé ĝļöƃàļš
+(<code>removeDatabase</code>, <code>reset</code>, àñđ ŕéàđîñĝ ƃàçķ à ţŕàçé) ŕüñ ƃéšîđé ţĥéḿ îñ ţĥé
+Ŵöŕķéŕ (<code>packages/engine/src/local.ts</code>). <code>kbf</code>, <code>segment</code>,
+<code>segmentEngines</code> àñđ <code>removeDatabase</code> àñšŵéŕ Þŕöḿîšéš öñ ţĥé ƒàçàđé, îñ ƃöţĥ
+ḿöđéš.</li>
+<li class=""><strong>Ţĥé ƒîļé šýšţéḿ ĥàš à ḿîŕŕöŕ öñ ţĥé þàĝé.</strong> <code>runtime.vol</code> šţàýš
+šýñçĥŕöñöüš: ţĥé þàĝé ĥöļđš à çöþý öƒ ţĥé éñĝîñé&#x27;š ƒîļé šýšţéḿ, à ŵŕîţé öñ
+ţĥé þàĝé ŕéàçĥéš ţĥé Ŵöŕķéŕ ƃéƒöŕé ţĥé ñéẋţ çàļļ (ḿéššàĝéš ķééþ ţĥéîŕ
+öŕđéŕ), àñđ ţĥé Ŵöŕķéŕ šéñđš ţĥé çĥàñĝéš à çàļļ ḿàđé ƃéƒöŕé ţĥé çàļļ&#x27;š
+àñšŵéŕ, šö à þàĝé ţĥàţ ŕéàđš <code>vol</code> àƒţéŕ à çàļļ šééš ţĥéḿ. <code>memfs</code> ŕéþöŕţš
+éàçĥ çĥàñĝéđ þàţĥ (<code>onChange</code>) ƒöŕ ţĥîš.</li>
+<li class=""><strong>Ţĥé ÀƂÎ đéšçŕîþţöŕ.</strong> Ţĥé Ŵöŕķéŕ šéñđš <code>kapiEngineABI()</code> ŵîţĥ îţš ŕéàđý
+ḿéššàĝé, àñđ ţĥé ƒàçàđé îñšţàļļš îţ öñ ţĥé þàĝé, šö <code>engineABI()</code> àñđ
+<code>hasEngineFunction()</code> àñšŵéŕ ţĥéŕé.</li>
+<li class=""><strong>Ŕéṽéŕšé ƃŕîđĝéš šţàý öñ ţĥé þàĝé.</strong> Ŵîţĥ éàçĥ çàļļ ţĥé ƒàçàđé šéñđš ŵĥîçĥ
+ƃŕîđĝéš ţĥé þàĝé ĥàš, àñđ ţĥé Ŵöŕķéŕ îñšţàļļš à šţàñđ-îñ ƒöŕ éàçĥ ţĥàţ àšķš
+ţĥé þàĝé àñđ ŵàîţš ƒöŕ îţš àñšŵéŕ. À šţàñđ-îñ àñšŵéŕš ŵîţĥ à Þŕöḿîšé, šö ţĥé
+éñĝîñé ŵàîţš ƒöŕ îţ öñ à ĝöŕöüţîñé: <code>labSegmentAsync</code> îš <code>labSegment</code>
+àñšŵéŕéđ àš à Þŕöḿîšé ƒöŕ ţĥàţ ŕéàšöñ, àñđ ţĥé ÎÇÜ4Ẋ éñĝîñé
+(<code>core/segment/icu4xjs</code>) àççéþţš à Þŕöḿîšé ƒŕöḿ îţš ƃŕîđĝé. Ţĥé Ŵöŕķéŕ
+àñšŵéŕš <code>kapiIntlSentenceBreaks</code> îţšéļƒ, šîñçé <code>Intl.Segmenter</code> éẋîšţš
+ţĥéŕé, àñđ ḿîŕŕöŕš ţĥé þŕéšéñçé öƒ ţĥé þļàţƒöŕḿ <code>Translator</code> ÀÞÎ.</li>
+<li class=""><strong>Ļöàđîñĝ <code>wasm_exec.js</code>.</strong> Ţĥé Ŵöŕķéŕ îḿþöŕţš îţ àš à ḿöđüļé, ƒàļļîñĝ ƃàçķ
+ţö <code>importScripts</code> îñ à çļàššîç Ŵöŕķéŕ. À ĥöšţ öñ àñöţĥéŕ öŕîĝîñ šéŕṽéš îţ
+ŵîţĥ ÇÖŔŠ, àš îţ àļŕéàđý đöéš ƒöŕ ţĥé éñĝîñé ƃîñàŕý.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="šţöŕàĝé">Šţöŕàĝé<a href="#šţöŕàĝé" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Šţöŕàĝé" title="Đîŕéçţ ļîñķ ţö Šţöŕàĝé" translate="no">​</a></h2>
 <p>Éṽéŕý šţöŕé îñ ţĥé ƃŕöŵšéŕ ƃüîļđ îš ţĥé ñàţîṽé çöđé: ţĥé ŵöŕķšþàçé àñđ îţš
@@ -49,21 +87,78 @@
 ƃéĥîñđ <code>core/storage</code>, àñđ ţĥé ƃŕöŵšéŕ ƃüîļđ&#x27;š đŕîṽéŕ ŕüñš ţĥàţ ŠǪĻ öñ ţĥé
 öƒƒîçîàļ ŠǪĻîţé ŴéƃÀššéḿƃļý ƃüîļđ, <code>@sqlite.org/sqlite-wasm</code>.</p>
 <ul>
-<li class=""><strong>Ţĥé ƃŕîđĝé.</strong> <code>packages/engine/src/sqlite.ts</code> ļöàđš ţĥé ḿöđüļé àñđ îñšţàļļš
+<li class="">
+<p><strong>Ŵĥéŕé ţĥé ŵöŕķšþàçé îš ķéþţ.</strong> Îñ ţĥé Ŵöŕķéŕ, ţĥé éñĝîñé ķééþš îţš
+đàţàƃàšéš îñ ŠǪĻîţé&#x27;š <code>opfs-sahpool</code> ṼƑŠ, îñ ţĥé öŕîĝîñ þŕîṽàţé ƒîļé šýšţéḿ,
+àñđ ţĥé ƒîļéš öƒ îţš ƒîļé šýšţéḿ îñ à đàţàƃàšé öƒ îţš öŵñ îñ ţĥé šàḿé þööļ
+(<code>/.kapi-engine/volume.db</code>, öüţšîđé ţĥé đŕîṽéŕ&#x27;š ñàḿéšþàçé), ŵŕîţţéñ àƒţéŕ
+éàçĥ çàļļ. Ƃöţĥ šüŕṽîṽé à ŕéļöàđ àñđ à ƃŕöŵšéŕ ŕéšţàŕţ, àñđ ñééđ ñö ÇÖÖÞ öŕ
+ÇÖÉÞ ĥéàđéŕš, ŵĥîçĥ ĜîţĤüƃ Þàĝéš çàññöţ šéţ. <code>runtime.storage</code> šàýš ŵĥîçĥ
+àþþļîéš: <code>{ kind: &quot;opfs&quot; }</code>, öŕ <code>{ kind: &quot;memory&quot;, reason }</code> ŵîţĥ <code>reason</code>
+öñé öƒ <code>disabled</code>, <code>main-thread</code>, <code>unsupported</code>, <code>another-tab</code> öŕ <code>failed</code>,
+àñđ <code>describeStorage()</code> ţüŕñš îţ îñţö à šéñţéñçé ƒöŕ à þàĝé. Ţĥé þööļ îš
+ñàḿéđ ƃý à ķéý (<code>BootOptions.persist</code>, đéƒàüļţ <code>&quot;kapi&quot;</code>); ţĥé đöçš ķéý îţ ƃý
+ţĥéîŕ ƃàšé ÜŔĻ, šîñçé ţĥé šţàƃļé đöçš, ţĥé þŕéṽîéŵ çĥàññéļ àñđ éàçĥ þüļļ
+ŕéǫüéšţ þŕéṽîéŵ šĥàŕé àñ öŕîĝîñ àñđ šéŕṽé đîƒƒéŕéñţ éñĝîñéš.</p>
+</li>
+<li class="">
+<p><strong>Öñé ţàƃ öŵñš ţĥé þööļ.</strong> Ţĥé þööļ ĥöļđš à šýñçĥŕöñöüš ĥàñđļé öñ éṽéŕý ƒîļé,
+ŵĥîçĥ öñļý öñé çöñţéẋţ ḿàý ĥöļđ, šö ţĥé Ŵöŕķéŕ ƒîŕšţ ţàķéš à Ŵéƃ Ļöçķ ñàḿéđ
+ƒöŕ ţĥé þööļ àñđ ĥöļđš îţ ƒöŕ îţš ļîƒé. À ţàƃ ţĥàţ çàññöţ ţàķé îţ ŵîţĥîñ à
+šĥöŕţ ŵàîţ (à ŕéļöàđ ŕéļéàšéš îţ àš ţĥé öļđ þàĝé çļöšéš) ŕüñš îñ ḿéḿöŕý, ŵîţĥ
+<code>reason: &quot;another-tab&quot;</code>. Ƃéƒöŕé îñšţàļļîñĝ ţĥé þööļ ţĥé Ŵöŕķéŕ çĥéçķš ţĥàţ ñö
+öţĥéŕ çöñţéẋţ šţîļļ ĥöļđš îţš ƒîļéš àñđ ŵàîţš ƒöŕ öñé ţĥàţ îš çļöšîñĝ: à
+ƒàîļéđ îñšţàļļ îñ ţĥîš ŕéļéàšé öƒ <code>sqlite-wasm</code> ŕéḿöṽéš ţĥé þööļ&#x27;š
+đîŕéçţöŕý. Ţĥé þööļ ĝŕöŵš ƃéţŵééñ çàļļš, šîñçé ĝŕöŵîñĝ îţ ŵàîţš öñ ţĥé ƒîļé
+šýšţéḿ, ķééþîñĝ šþàŕé šļöţš ƒöŕ ţĥé đàţàƃàšéš àñđ ĵöüŕñàļš à çàļļ çŕéàţéš.</p>
+</li>
+<li class="">
+<p><strong>Ļöçķš ƃéţŵééñ çöññéçţîöñš.</strong> Ţĥé þööļ&#x27;š öŵñ ļöçķš öñļý ŕéḿéḿƃéŕ ţĥé ļéṽéļ
+àšķéđ ƒöŕ. Ţĥé éñĝîñé öþéñš šéṽéŕàļ çöññéçţîöñš ţö öñé đàţàƃàšé, šö ţĥé
+ƃŕîđĝé îñšţàļļš à ļöçķ ţàƃļé öṽéŕ ţĥé þööļ&#x27;š ḿéţĥöđš
+(<code>packages/engine/src/locks.ts</code>) ţĥàţ ķééþš ŠǪĻîţé&#x27;š ļöçķ ļéṽéļš þéŕ
+đàţàƃàšé, àš <code>memdb</code> àñđ <code>os_unix.c</code> đö ŵîţĥîñ öñé þŕöçéšš: à ŵŕîţé ƃéšîđé
+àñöţĥéŕ çöññéçţîöñ&#x27;š ţŕàñšàçţîöñ ŕéþöŕţš <code>database is locked</code> àţ öñçé, àš îţ
+đöéš îñ ḿéḿöŕý.</p>
+</li>
+<li class="">
+<p><strong>Ţĥé ŵöŕķšþàçé îš à çàçĥé.</strong> Ţĥé ƃŕöŵšéŕ ḿàý éṽîçţ ŵĥàţ à šîţé ķééþš
+(Šàƒàŕî ŕéḿöṽéš đàţà à šçŕîþţ ŵŕöţé àƒţéŕ šéṽéñ đàýš ŵîţĥöüţ îñţéŕàçţîöñ),
+šö ţĥé ŵöŕķšþàçé îñ à ƃŕöŵšéŕ îš à çàçĥé öƒ à ļöĝ ţĥàţ šĥöüļđ àļšö ļîṽé
+éļšéŵĥéŕé. <code>kapiExportWorkspace()</code> þàçķš ţĥé éñĝîñé&#x27;š ƒîļéš àñđ ţĥé çöñţéẋţ
+öƒ éṽéŕý þŕöĵéçţ àḿöñĝ ţĥéḿ îñţö à ŵöŕķšþàçé þàçķàĝé (<code>kpz.KindWorkspace</code>,
+<code>kapi-workspace</code>): ţĥé ƒîļéš üñđéŕ <code>files/</code>, àñđ þéŕ þŕöĵéçţ à çöñţéẋţ
+þàçķàĝé üñđéŕ <code>contexts/</code>, ţĥé öþéŕàţîöñ ļöĝ <code>kapi context export</code> ŵŕîţéš.
+<code>kapiImportWorkspace(bytes)</code> ŵŕîţéš ţĥé ƒîļéš àñđ ḿéŕĝéš éàçĥ ļöĝ, àš
+<code>kapi context import</code> đöéš, ŵĥîçĥ ŕéƃüîļđš ţĥé þŕöĵéçţ&#x27;š šţöŕéš. À šţöŕé
+öüţšîđé éṽéŕý þŕöĵéçţ îš à þŕöĵéçţîöñ öƒ ñöţĥîñĝ àñđ đöéš ñöţ ţŕàṽéļ; ţĥé
+đàţà ŕööţ, <code>/tmp</code> àñđ ţĥé ļàƃ&#x27;š öŵñ đîŕéçţöŕý (<code>/.lab</code>) àŕé ļéƒţ öüţ. Ţĥé
+ƒàçàđé&#x27;š <code>exportWorkspace()</code> àñđ <code>importWorkspace()</code> ŵŕàþ ţĥéḿ, àñđ ţĥé
+þļàýĝŕöüñđ&#x27;š ƒîļéš þàñéļ öƒƒéŕš ƃöţĥ. Ţĥé ñéẋţ šţéþ, šýñçîñĝ ţĥŕöüĝĥ à
+<code>workspace.Remote</code>, îš ñöţ ƃüîļţ.</p>
+</li>
+<li class="">
+<p><strong>Ţĥé ƃŕîđĝé.</strong> <code>packages/engine/src/sqlite.ts</code> ļöàđš ţĥé ḿöđüļé àñđ îñšţàļļš
 öñé öƃĵéçţ öñ <code>globalThis</code>, <code>__kapiSQL</code>, ƃéƒöŕé Ĝö šţàŕţš. Ţĥé Ĝö đŕîṽéŕ
 (<code>core/storage/driver_js.go</code>, <code>core/storage/sqlitejs_js.go</code>) ŕéĝîšţéŕš ŵîţĥ
 <code>database/sql</code> àñđ çàļļš ţĥé ƃŕîđĝé šýñçĥŕöñöüšļý ţĥŕöüĝĥ <code>syscall/js</code>, šö Ĝö
 àñđ ŠǪĻîţé šĥàŕé ţĥé þàĝé&#x27;š ḿàîñ ţĥŕéàđ. Àŕĝüḿéñţš àñđ ŕéšüļţ ŕöŵš çŕöšš îñ
 öñé þàçķéđ ƃýţé ƃüƒƒéŕ þéŕ çàļļ. À ƒàîļüŕé çöḿéš ƃàçķ àš ŠǪĻîţé&#x27;š öŵñ ḿéššàĝé
-àñđ éẋţéñđéđ ŕéšüļţ çöđé.</li>
-<li class=""><strong>Ŵĥéŕé ţĥé đàţàƃàšéš ļîṽé.</strong> Îñ ŠǪĻîţé&#x27;š <code>memdb</code> ṼƑŠ, ñàḿéđ ƃý àƃšöļüţé þàţĥ.
-Éṽéŕý çöññéçţîöñ ţö öñé ñàḿé šĥàŕéš ţĥé đàţàƃàšé, àñđ <code>ATTACH</code> ƃý þàţĥ ŕéàçĥéš
-îţ. Ţĥé ƃŕîđĝé ĥöļđš à çöññéçţîöñ öƒ îţš öŵñ öñ éàçĥ ñàḿé, šö à đàţàƃàšé
-öüţļîṽéš ţĥé þööļš ţĥàţ öþéñ àñđ çļöšé îţ ƃéţŵééñ çöḿḿàñđš. Ţĥé éñĝîñé ñàḿéš
-îţš đàţà ŕööţ <code>/.kapi-data</code> (<code>KAPI_DATA_DIR</code>), ŵĥéŕé ţĥé ŵöŕķšþàçé ļîṽéš.
-Ñöţĥîñĝ öüţļîṽéš ţĥé ţàƃ.</li>
-<li class=""><strong>Ţĥé đŕîṽéŕ&#x27;š þŕöƒîļé.</strong> <code>storage.DriverProfile()</code> ŕéþöŕţš öñé çöññéçţîöñ þéŕ
-ƒîļé, ñö ŴÀĻ, ñö çŕöšš-þŕöçéšš ļöçķ àñđ ñö đüŕàƃîļîţý. Ţĥé ƃüšý ţîḿéöüţ îš
+àñđ éẋţéñđéđ ŕéšüļţ çöđé.</p>
+</li>
+<li class="">
+<p><strong>Ŵĥéŕé ţĥé đàţàƃàšéš ļîṽé.</strong> Ñàḿéđ ƃý àƃšöļüţé þàţĥ, îñ ţĥé þööļ öŕ, îñ
+ḿéḿöŕý, îñ ŠǪĻîţé&#x27;š <code>memdb</code> ṼƑŠ. Éṽéŕý çöññéçţîöñ ţö öñé ñàḿé šĥàŕéš ţĥé
+đàţàƃàšé, àñđ <code>ATTACH</code> ƃý þàţĥ ŕéàçĥéš îţ, šîñçé ţĥé ƃŕîđĝé ḿàķéš îţš ṼƑŠ ţĥé
+đéƒàüļţ. Îñ ḿéḿöŕý ţĥé ƃŕîđĝé ĥöļđš à çöññéçţîöñ öƒ îţš öŵñ öñ éàçĥ ñàḿé, šö
+à đàţàƃàšé öüţļîṽéš ţĥé þööļš ţĥàţ öþéñ àñđ çļöšé îţ ƃéţŵééñ çöḿḿàñđš. Ţĥé
+éñĝîñé ñàḿéš îţš đàţà ŕööţ <code>/.kapi-data</code> (<code>KAPI_DATA_DIR</code>), ŵĥéŕé ţĥé
+ŵöŕķšþàçé ļîṽéš.</p>
+</li>
+<li class="">
+<p><strong>Ţĥé đŕîṽéŕ&#x27;š þŕöƒîļé.</strong> <code>storage.DriverProfile()</code> ŕéþöŕţš öñé çöññéçţîöñ þéŕ
+ƒîļé, ñö ŴÀĻ àñđ ñö çŕöšš-þŕöçéšš ļöçķ, àñđ đüŕàƃîļîţý ŵĥéñ ţĥé ƃŕîđĝé šàýš
+îţš đàţàƃàšéš öüţļîṽé ţĥé þàĝé (<code>__kapiSQL.durable</code>). Ţĥé ƃüšý ţîḿéöüţ îš
 žéŕö: à šéçöñđ çöññéçţîöñ&#x27;š ŵàîţ ŵöüļđ šþîñ ţĥé öñļý ţĥŕéàđ, šö à ļöçķ
 çöñƒļîçţ ŕéþöŕţš <code>database is locked</code> àţ öñçé. Çöđé öñ ţĥéšé þööļš ñéṽéŕ ĥöļđš
 à ţŕàñšàçţîöñ öŕ öþéñ ŕöŵš àñđ ţĥéñ ŵàîţš ƒöŕ à šéçöñđ šéššîöñ öñ ţĥé šàḿé
@@ -77,52 +172,69 @@
 ŕéàđ öñ öñé þööļ ƃéšîđé à ŵŕîţé ţĥé šàḿé çöđé ĥöļđš öñ àñöţĥéŕ ŵàîţš öüţ ţĥé
 ƃüšý ţîḿéöüţ àñđ ƒàîļš ŵîţĥ <code>database is locked</code>, ŵĥîçĥ ţĥé ƃŕöŵšéŕ ŕéþöŕţš àţ
 öñçé. ÇÎ ŕüñš îţ ƃéšîđé <code>make test-wasm-stores</code>, àñđ öñ þüšĥ ŕüñš ţĥé ĥöšţ
-šüîţé ţĥé šàḿé ŵàý (<code>make test-host-oneconn</code>).</li>
-<li class=""><strong>Đàţàƃàšé ƒîļéš ƃéļöñĝ ţö ţĥé đŕîṽéŕ.</strong> Ţĥé þàĝé&#x27;š ƒîļé šýšţéḿ ñéṽéŕ šééš à
+šüîţé ţĥé šàḿé ŵàý (<code>make test-host-oneconn</code>).</p>
+</li>
+<li class="">
+<p><strong>Đàţàƃàšé ƒîļéš ƃéļöñĝ ţö ţĥé đŕîṽéŕ.</strong> Ţĥé þàĝé&#x27;š ƒîļé šýšţéḿ ñéṽéŕ šééš à
 đàţàƃàšé, šö çöđé ţĥàţ àšķš ŵĥéţĥéŕ öñé éẋîšţš, ŕéḿöṽéš, ŕéñàḿéš öŕ ļîšţš ţĥéḿ
 çàļļš <code>storage.Exists</code>, <code>storage.Remove</code>, <code>storage.Rename</code>, <code>storage.List</code> àñđ
 <code>storage.RemoveAll</code> ŕàţĥéŕ ţĥàñ <code>os</code>. À đàţàƃàšé&#x27;š đîŕéçţöŕý šţîļļ ĥàš ţö
-éẋîšţ îñ ţĥé éñĝîñé&#x27;š ƒîļé šýšţéḿ, àš îţ đöéš ñàţîṽéļý.</li>
-<li class=""><strong>À đàţàƃàšé ƒîļé à þàĝé àđđš.</strong> À ŠǪĻîţé ƒîļé îñ ţĥé éñĝîñé&#x27;š ƒîļé šýšţéḿ
+éẋîšţ îñ ţĥé éñĝîñé&#x27;š ƒîļé šýšţéḿ, àš îţ đöéš ñàţîṽéļý.</p>
+</li>
+<li class="">
+<p><strong>À đàţàƃàšé ƒîļé à þàĝé àđđš.</strong> À ŠǪĻîţé ƒîļé îñ ţĥé éñĝîñé&#x27;š ƒîļé šýšţéḿ
 (öñé à ŕéàđéŕ üþļöàđš, šàý) îš ŕéàđ îñţö ḿéḿöŕý ţĥé ƒîŕšţ ţîḿé à šţöŕé öþéñš
 îţš þàţĥ, ţĥŕöüĝĥ <code>sqlite3_deserialize</code>, àñđ ŵŕîţéš ĝö ţö ţĥé çöþý îñ ḿéḿöŕý.
 Ţĥé ñàḿéšþàçé àñšŵéŕš ƒöŕ šüçĥ ƒîļéš ţöö, àñđ <code>storage.Remove</code> đéļéţéš ţĥé
 ƒîļé ŵîţĥ ţĥé đàţàƃàšé, šö à ŕéḿöṽéđ đàţàƃàšé šţàýš ŕéḿöṽéđ. À
 ƒîļé ţĥàţ îš ñöţ à đàţàƃàšé ƒàîļš ţö öþéñ ŵîţĥ <code>file is not a database</code>, àš
 îţ đöéš ñàţîṽéļý; öñé ŵîţĥ àñ üñƒļüšĥéđ ŵŕîţé-àĥéàđ ļöĝ ƃéšîđé îţ ƒàîļš ŵîţĥ à
-ḿéššàĝé ţĥàţ šàýš šö.</li>
-<li class=""><strong>Ŕöŵ ƃàţçĥéš.</strong> À ǫüéŕý&#x27;š ŕöŵš çŕöšš 256 àţ à ţîḿé, öŕ àƃöüţ 1 ḾîƂ àţ à
-ţîḿé ŵĥéñ ţĥéý àŕé ļàŕĝé.</li>
-<li class=""><strong>Ŵöŕđ šéàŕçĥ.</strong> Ţĥé ḿöđüļé çàŕŕîéš ŠǪĻîţé&#x27;š ƃüîļţ-îñ ƑŢŠ5 ţöķéñîžéŕš àñđ ñö
-ÎÇÜ, šö <code>storage.FTSWordTokenizer</code> îš <code>unicode61</code>.</li>
-<li class=""><strong>Ţĥé àššéţ.</strong> <code>sqlite3.wasm</code> îš šéŕṽéđ ƃéšîđé ţĥé éñĝîñé ƃîñàŕý, ŵĥéŕé
+ḿéššàĝé ţĥàţ šàýš šö.</p>
+</li>
+<li class="">
+<p><strong>Ŕöŵ ƃàţçĥéš.</strong> À ǫüéŕý&#x27;š ŕöŵš çŕöšš 256 àţ à ţîḿé, öŕ àƃöüţ 1 ḾîƂ àţ à
+ţîḿé ŵĥéñ ţĥéý àŕé ļàŕĝé.</p>
+</li>
+<li class="">
+<p><strong>Ŵöŕđ šéàŕçĥ.</strong> Ţĥé ḿöđüļé çàŕŕîéš ŠǪĻîţé&#x27;š ƃüîļţ-îñ ƑŢŠ5 ţöķéñîžéŕš àñđ ñö
+ÎÇÜ, šö <code>storage.FTSWordTokenizer</code> îš <code>unicode61</code>.</p>
+</li>
+<li class="">
+<p><strong>Ţĥé àššéţ.</strong> <code>sqlite3.wasm</code> îš šéŕṽéđ ƃéšîđé ţĥé éñĝîñé ƃîñàŕý, ŵĥéŕé
 <code>make web-wasm-cli</code> šţàĝéš îţ (ŵîţĥ <code>sqlite3.wasm.gz</code>) ƒŕöḿ ţĥé þîññéđ
 þàçķàĝé, àñđ ţĥé ƃööţ þŕéƒéŕš ţĥé þŕéçöḿþŕéššéđ çöþý.
 <code>bootKapiRuntime(wasmExecUrl, wasmUrl, { sqliteWasmUrl })</code> ţàķéš àñöţĥéŕ
 ļöçàţîöñ. Ḿéàšüŕéđ ŵîţĥ ĝžîþ -9, ţĥé àššéţ îš àƃöüţ 0.40 ḾƂ àñđ ţĥé ƃüñđļéđ
-ĴàṽàŠçŕîþţ (ţĥé ḿöđüļé&#x27;š ĝļüé àñđ ţĥé ƃŕîđĝé, ḿîñîƒîéđ) àƃöüţ 0.07 ḾƂ.</li>
-<li class=""><strong>Ţĥé ļàƃ þŕöĵéçţ.</strong> Ţĥé ŕéàđ-öñļý àññöţàţöŕš ƃéĥîñđ <code>labInspectAnnotated</code>
+ĴàṽàŠçŕîþţ (ţĥé ḿöđüļé&#x27;š ĝļüé àñđ ţĥé ƃŕîđĝé, ḿîñîƒîéđ) àƃöüţ 0.07 ḾƂ.</p>
+</li>
+<li class="">
+<p><strong>Ţĥé ļàƃ þŕöĵéçţ.</strong> Ţĥé ŕéàđ-öñļý àññöţàţöŕš ƃéĥîñđ <code>labInspectAnnotated</code>
 ļööķ ţéŕḿš üþ îñ à þŕöĵéçţ ţĥé éñĝîñé çŕéàţéš àţ <code>/.lab/project</code> öñ ƒîŕšţ üšé,
 àñđ öþéñš àĝàîñ îƒ à ŕéšéţ çļöšéđ îţ. Îţš ţéŕḿš àŕé ţĥé ƃüñđļé îñ
 <code>kapi/cmd/kapi-wasm-cli/fixtures/terms.json</code>, îḿþöŕţéđ ţĥŕöüĝĥ ţĥé þŕöĵéçţöŕ,
 šö ţĥéý àŕé öþéŕàţîöñš îñ ţĥé ŵöŕķšþàçé ļöĝ àš ţĥéý ŵöüļđ ƃé ñàţîṽéļý.
 Çöḿḿàñđš ţýþéđ îñ à ļàƃ ŕéšöļṽé šţöŕéš àš ñàţîṽéļý: îñšîđé à þŕöĵéçţ ţĥéý üšé
 ţĥé þŕöĵéçţ&#x27;š, àñđ öüţšîđé öñé ţĥé šţàñđàļöñé šţöŕé à ƒļàĝ öŕ ţĥé ŵöŕķîñĝ
-đîŕéçţöŕý ñàḿéš.</li>
-<li class=""><strong>Šţàŕţîñĝ à đîŕéçţöŕý öṽéŕ.</strong> <code>kapiReset(dir)</code> ƒöŕĝéţš éṽéŕý þŕöĵéçţ àţ öŕ
+đîŕéçţöŕý ñàḿéš.</p>
+</li>
+<li class="">
+<p><strong>Šţàŕţîñĝ à đîŕéçţöŕý öṽéŕ.</strong> <code>kapiReset(dir)</code> ƒöŕĝéţš éṽéŕý þŕöĵéçţ àţ öŕ
 ƃéļöŵ <code>dir</code> îñ ţĥé ŵöŕķšþàçé (<code>App.ForgetProjectsUnder</code>, ŵĥîçĥ çļöšéš îţš
 šţöŕéš àñđ çàļļš <code>workspace.Forget</code>), ţĥéñ ŕéḿöṽéš éṽéŕý đàţàƃàšé ţĥéŕé
 öüţšîđé ţĥé ŵöŕķšþàçé&#x27;š öŵñ. À þŕöĵéçţ šééđéđ ţĥéŕé àĝàîñ ƃéĝîñš ŵîţĥ àñ
 éḿþţý çöñţéẋţ, ƃéçàüšé ţĥé þŕöĵéçţöŕ ŕéþļàýš öñļý ŵĥàţ ţĥé ļöĝ ĥöļđš àƒţéŕ à
 þŕöĵéçţ&#x27;š ļàţéšţ ŕéḿöṽàļ. <code>KapiRuntime.reset(dir)</code> çàļļš îţ àñđ ţĥéñ çļéàŕš
 ţĥé đîŕéçţöŕý&#x27;š ƒîļéš; ţĥé þļàýĝŕöüñđ&#x27;š Ŕéšéţ ƃüţţöñ àñđ ţĥé ţéŕḿîñàļ&#x27;š <code>rm</code>
-(ţĥŕöüĝĥ <code>KapiRuntime.removeDatabase</code>) üšé ţĥéḿ.</li>
-<li class=""><strong>Ţéšţéđ îñ Ñöđé.</strong> <code>make test-wasm-stores</code> ŕüñš ţĥé šţöŕé šüîţéš üñđéŕ
+(ţĥŕöüĝĥ <code>KapiRuntime.removeDatabase</code>) üšé ţĥéḿ.</p>
+</li>
+<li class="">
+<p><strong>Ţéšţéđ îñ Ñöđé.</strong> <code>make test-wasm-stores</code> ŕüñš ţĥé šţöŕé šüîţéš üñđéŕ
 <code>GOOS=js</code> îñ Ñöđé öṽéŕ ţĥé šàḿé ƃŕîđĝé (<code>scripts/wasm-stores/</code>), àñđ ţĥé
 çĥàñĝé šéŕṽîçé&#x27;š šüîţéš ƃéšîđé ţĥéḿ (<a href="#the-change-contract" class="">Ţĥé çĥàñĝé
 çöñţŕàçţ</a>). À ţéšţ ţĥàţ ñééđš à šüƃþŕöçéšš (ĝîţ, öŕ à
 šéçöñđ ŵŕîţéŕ þŕöçéšš), đîŕéçţöŕý þéŕḿîššîöñš ţĥàţ ŕéàçĥ à đàţàƃàšé, öŕ
-þŕééḿþţîöñ šķîþš ţĥéŕé àñđ ñàḿéš ŵĥîçĥ.</li>
+þŕééḿþţîöñ šķîþš ţĥéŕé àñđ ñàḿéš ŵĥîçĥ.</p>
+</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="ţĥé-çĥàñĝé-çöñţŕàçţ">Ţĥé çĥàñĝé çöñţŕàçţ<a href="#ţĥé-çĥàñĝé-çöñţŕàçţ" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ţĥé çĥàñĝé çöñţŕàçţ" title="Đîŕéçţ ļîñķ ţö Ţĥé çĥàñĝé çöñţŕàçţ" translate="no">​</a></h2>
 <p>À þàĝé ţĥàţ éđîţš çöñţéñţ šéñđš ţĥé çĥàñĝé çöñţŕàçţ
@@ -163,8 +275,8 @@
 ŵöŕķšþàçé&#x27;š ļöĝ üñđéŕ <code>/.kapi-data</code> àš öñé <code>content.edit</code> öþéŕàţîöñ þéŕ
 đöçüḿéñţ, ţĥé ŕéçöŕđ <code>kapi apply</code> ŵŕîţéš ñàţîṽéļý, àñđ ţĥé þŕöĵéçţöŕ ŵŕîţéš
 îţ îñţö ţĥé ƃļöçķ ĥîšţöŕý. À ļàţéŕ ŕéàđ šĥöŵš à ţŕàñšļàţîöñ&#x27;š ƃàšîš ƒŕöḿ
-ţĥéŕé. Öüţšîđé à þŕöĵéçţ ñöţĥîñĝ îš ŕéçöŕđéđ. Éṽéŕý éđîţ ļîṽéš àš ļöñĝ àš
-ţĥé ţàƃ, ŵîţĥ ţĥé ŕéšţ öƒ ţĥé ŵöŕķšþàçé.</li>
+ţĥéŕé. Öüţšîđé à þŕöĵéçţ ñöţĥîñĝ îš ŕéçöŕđéđ. Éṽéŕý éđîţ îš ķéþţ ŵîţĥ ţĥé
+ŕéšţ öƒ ţĥé ŵöŕķšþàçé (<a href="#storage" class="">Šţöŕàĝé</a>).</li>
 <li class=""><strong>Öñé àţ à ţîḿé.</strong> Ţĥé çàļļš, ţĥé çöḿḿàñđš <code>kapiRun</code> ŕüñš (à çöḿþļéţîöñ
 îñçļüđéđ) àñđ <code>kapiReset</code> šĥàŕé ţĥé éñĝîñé&#x27;š Àþþ, šö ţĥé éñĝîñé ŕüñš ţĥéḿ îñ
 ţüŕñ: à çöḿḿàñđ šţàŕţéđ ŵĥîļé à çàļļ ŕüñš ŵàîţš ƒöŕ îţ, àñđ ţĥé öţĥéŕ ŵàý
@@ -236,9 +348,9 @@
 <code>cli.BrowserUnavailableReason</code> ƒöŕ éàçĥ çöḿḿàñđ&#x27;š ŕüññàƃļé-îñ-ƃŕöŵšéŕ ƃàđĝé, šö
 ţĥé Çöḿḿàñđ Ŕéƒéŕéñçé çàññöţ çļàîḿ à ṽéŕƃ ŕüñš îñ ţĥé ļàƃ ŵĥéñ îţ đöéš ñöţ.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="ŵĥéŕé-ţĥé-þîéçéš-ļîṽé">Ŵĥéŕé ţĥé þîéçéš ļîṽé<a href="#ŵĥéŕé-ţĥé-þîéçéš-ļîṽé" class="hash-link" aria-label="Đîŕéçţ ļîñķ ţö Ŵĥéŕé ţĥé þîéçéš ļîṽé" title="Đîŕéçţ ļîñķ ţö Ŵĥéŕé ţĥé þîéçéš ļîṽé" translate="no">​</a></h2>
-<table><thead><tr><th>Çöñçéŕñ</th><th>Ļöçàţîöñ</th></tr></thead><tbody><tr><td>Ŕéĝîšţŕàţîöñ ţàƃļé + <code>kapiEngineABI()</code></td><td><code>kapi/cmd/kapi-wasm-cli/main.go</code></td></tr><tr><td>Ƃŕöŵšéŕ çöḿḿàñđ šéţ + ŕéçöŕđéđ ĝàþš</td><td><code>cli/browsercmds.go</code></td></tr><tr><td>Šüŕƒàçé đŕîƒţ ĝüàŕđ</td><td><code>cli/browsercmds_test.go</code></td></tr><tr><td>Ŕüñţîḿé šüŕƒàçé šḿöķé</td><td><code>scripts/verify-snippets/command-surface-smoke.ts</code></td></tr><tr><td>Àḿƃîéñţ ŢŠ ţýþîñĝš ƒöŕ ţĥé ĝļöƃàļš</td><td><code>packages/engine/src/globals.ts</code></td></tr><tr><td>Ŵîŕé šĥàþéš + <code>engineABI()</code> ĥéļþéŕ</td><td><code>packages/engine/src/abi.ts</code></td></tr><tr><td><code>KapiRuntime</code> ƒàçàđé + ƃööţ</td><td><code>packages/engine/src/runtime.ts</code></td></tr><tr><td>ŠǪĻîţé ƃŕîđĝé (<code>__kapiSQL</code>)</td><td><code>packages/engine/src/sqlite.ts</code></td></tr><tr><td>Ƃŕöŵšéŕ đàţàƃàšé đŕîṽéŕ + þŕöƒîļé + ñàḿéšþàçé</td><td><code>core/storage/driver_js.go</code>, <code>core/storage/sqlitejs_js.go</code></td></tr><tr><td>Šţöŕé šüîţéš üñđéŕ <code>GOOS=js</code></td><td><code>scripts/wasm-stores/</code>, <code>make test-wasm-stores</code></td></tr><tr><td>Ļàƃ þŕöĵéçţ ƒöŕ ţĥé àññöţàţöŕš</td><td><code>kapi/cmd/kapi-wasm-cli/labproject.go</code></td></tr><tr><td>Šţàŕţîñĝ à đîŕéçţöŕý öṽéŕ (<code>kapiReset</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/reset.go</code>, <code>App.ForgetProjectsUnder</code> îñ <code>host/projectstore.go</code></td></tr><tr><td>Ţĥé çĥàñĝé çöñţŕàçţ (<code>kapiRead</code>, <code>kapiApply</code>, <code>kapiDescribe</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/changes.go</code>, <code>host/changes_call.go</code></td></tr><tr><td>Ţĥé çĥàñĝé çöñţŕàçţ šḿöķé</td><td><code>scripts/verify-snippets/change-smoke.ts</code>, <code>make change-wasm-smoke</code></td></tr><tr><td>Ŕéṽéŕšé-ƃŕîđĝé çàþàƃîļîţý ţýþéš</td><td><code>packages/engine/src/capabilities.ts</code></td></tr><tr><td>Þàýļöàđ ţýþéš (ÇöñţéñţŢŕéé, ŕüñš, ţĥé çĥàñĝé çöñţŕàçţ)</td><td><code>@neokapi/contract-types</code> (ĝéñéŕàţéđ)</td></tr></tbody></table>
+<table><thead><tr><th>Çöñçéŕñ</th><th>Ļöçàţîöñ</th></tr></thead><tbody><tr><td>Ŕéĝîšţŕàţîöñ ţàƃļé + <code>kapiEngineABI()</code></td><td><code>kapi/cmd/kapi-wasm-cli/main.go</code></td></tr><tr><td>Ƃŕöŵšéŕ çöḿḿàñđ šéţ + ŕéçöŕđéđ ĝàþš</td><td><code>cli/browsercmds.go</code></td></tr><tr><td>Šüŕƒàçé đŕîƒţ ĝüàŕđ</td><td><code>cli/browsercmds_test.go</code></td></tr><tr><td>Ŕüñţîḿé šüŕƒàçé šḿöķé</td><td><code>scripts/verify-snippets/command-surface-smoke.ts</code></td></tr><tr><td>Àḿƃîéñţ ŢŠ ţýþîñĝš ƒöŕ ţĥé ĝļöƃàļš</td><td><code>packages/engine/src/globals.ts</code></td></tr><tr><td>Ŵîŕé šĥàþéš + <code>engineABI()</code> ĥéļþéŕ</td><td><code>packages/engine/src/abi.ts</code></td></tr><tr><td><code>KapiRuntime</code> ƒàçàđé + ƃööţ</td><td><code>packages/engine/src/runtime.ts</code></td></tr><tr><td>ŠǪĻîţé ƃŕîđĝé (<code>__kapiSQL</code>)</td><td><code>packages/engine/src/sqlite.ts</code></td></tr><tr><td>Ţĥé éñĝîñé&#x27;š Ŵöŕķéŕ àñđ îţš ḿéššàĝéš</td><td><code>packages/engine/src/worker.ts</code>, <code>packages/engine/src/protocol.ts</code></td></tr><tr><td>Ŵĥéŕé ţĥé ŵöŕķšþàçé îš ķéþţ (þööļ, Ŵéƃ Ļöçķ, ƒîļé šţöŕé)</td><td><code>packages/engine/src/storage.ts</code></td></tr><tr><td>Ļöçķš ƃéţŵééñ çöññéçţîöñš öñ ţĥé þööļ</td><td><code>packages/engine/src/locks.ts</code></td></tr><tr><td>Ŵöŕķšþàçé éẋþöŕţ àñđ îḿþöŕţ (<code>kapiExportWorkspace</code>, <code>kapiImportWorkspace</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/workspace.go</code>, <code>kpz/workspacepkg.go</code></td></tr><tr><td>Þéŕšîšţéñçé šḿöķé (ŕéļöàđ, ŕéšţàŕţ, à šéçöñđ ţàƃ, àñ éẋþöŕţ)</td><td><code>scripts/wasm-persist/</code>, <code>make wasm-persist-smoke</code></td></tr><tr><td>Ƃŕöŵšéŕ đàţàƃàšé đŕîṽéŕ + þŕöƒîļé + ñàḿéšþàçé</td><td><code>core/storage/driver_js.go</code>, <code>core/storage/sqlitejs_js.go</code></td></tr><tr><td>Šţöŕé šüîţéš üñđéŕ <code>GOOS=js</code></td><td><code>scripts/wasm-stores/</code>, <code>make test-wasm-stores</code></td></tr><tr><td>Ļàƃ þŕöĵéçţ ƒöŕ ţĥé àññöţàţöŕš</td><td><code>kapi/cmd/kapi-wasm-cli/labproject.go</code></td></tr><tr><td>Šţàŕţîñĝ à đîŕéçţöŕý öṽéŕ (<code>kapiReset</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/reset.go</code>, <code>App.ForgetProjectsUnder</code> îñ <code>host/projectstore.go</code></td></tr><tr><td>Ţĥé çĥàñĝé çöñţŕàçţ (<code>kapiRead</code>, <code>kapiApply</code>, <code>kapiDescribe</code>)</td><td><code>kapi/cmd/kapi-wasm-cli/changes.go</code>, <code>host/changes_call.go</code></td></tr><tr><td>Ţĥé çĥàñĝé çöñţŕàçţ šḿöķé</td><td><code>scripts/verify-snippets/change-smoke.ts</code>, <code>make change-wasm-smoke</code></td></tr><tr><td>Ŕéṽéŕšé-ƃŕîđĝé çàþàƃîļîţý ţýþéš</td><td><code>packages/engine/src/capabilities.ts</code></td></tr><tr><td>Þàýļöàđ ţýþéš (ÇöñţéñţŢŕéé, ŕüñš, ţĥé çĥàñĝé çöñţŕàçţ)</td><td><code>@neokapi/contract-types</code> (ĝéñéŕàţéđ)</td></tr></tbody></table>
 <p>Ŵĥéñ àđđîñĝ àñ éñţŕý þöîñţ: àđđ îţ ţö <code>engineExports</code>, ţýþé îţ îñ
 <code>globals.ts</code>, šüŕƒàçé îţ öñ ţĥé ƒàçàđé îƒ üšéŕ-ƒàçîñĝ, àñđ ļéàṽé ţĥé <code>abi</code>
-ṽàļüé àļöñé (àđđîţîöñš đöñ&#x27;ţ ƃüḿþ îţ).</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/implementation/surfaces/wasm-engine-abi.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/qps/contribute/implementation/surfaces/mcp-tools-reference"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">ḾÇÞ Ţööļš Ŕéƒéŕéñçé</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/qps/contribute/implementation/multilingual/multimodal-content"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">Ḿüļţîḿöđàļ çöñţéñţ: îḿþļéḿéñţàţîöñ ḿàþ</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#çöñţŕàçţ" class="table-of-contents__link toc-highlight">Çöñţŕàçţ</a></li><li><a href="#šţöŕàĝé" class="table-of-contents__link toc-highlight">Šţöŕàĝé</a></li><li><a href="#ţĥé-çĥàñĝé-çöñţŕàçţ" class="table-of-contents__link toc-highlight">Ţĥé çĥàñĝé çöñţŕàçţ</a></li><li><a href="#çöḿḿàñđ-šüŕƒàçé" class="table-of-contents__link toc-highlight">Çöḿḿàñđ šüŕƒàçé</a></li><li><a href="#ŵĥéŕé-ţĥé-þîéçéš-ļîṽé" class="table-of-contents__link toc-highlight">Ŵĥéŕé ţĥé þîéçéš ļîṽé</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/overview">Ķàþî</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/cli">Ķàþî ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/react/introduction">ñéöķàþî-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/evals">Ţéšţš &amp; Éṽàļš</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 ñéöķàþî çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-10-06 09:11 ÜŢÇ · ƒ29é313</div></div></div></footer></div>
+ṽàļüé àļöñé (àđđîţîöñš đöñ&#x27;ţ ƃüḿþ îţ).</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/implementation/surfaces/wasm-engine-abi.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Éđîţ ţĥîš þàĝé</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Đöçš þàĝéš"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/qps/contribute/implementation/surfaces/mcp-tools-reference"><div class="pagination-nav__sublabel">Þŕéṽîöüš</div><div class="pagination-nav__label">ḾÇÞ Ţööļš Ŕéƒéŕéñçé</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/qps/contribute/implementation/multilingual/multimodal-content"><div class="pagination-nav__sublabel">Ñéẋţ</div><div class="pagination-nav__label">Ḿüļţîḿöđàļ çöñţéñţ: îḿþļéḿéñţàţîöñ ḿàþ</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#çöñţŕàçţ" class="table-of-contents__link toc-highlight">Çöñţŕàçţ</a></li><li><a href="#ţĥé-ŵöŕķéŕ" class="table-of-contents__link toc-highlight">Ţĥé Ŵöŕķéŕ</a></li><li><a href="#šţöŕàĝé" class="table-of-contents__link toc-highlight">Šţöŕàĝé</a></li><li><a href="#ţĥé-çĥàñĝé-çöñţŕàçţ" class="table-of-contents__link toc-highlight">Ţĥé çĥàñĝé çöñţŕàçţ</a></li><li><a href="#çöḿḿàñđ-šüŕƒàçé" class="table-of-contents__link toc-highlight">Çöḿḿàñđ šüŕƒàçé</a></li><li><a href="#ŵĥéŕé-ţĥé-þîéçéš-ļîṽé" class="table-of-contents__link toc-highlight">Ŵĥéŕé ţĥé þîéçéš ļîṽé</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Đöçüḿéñţàţîöñ</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/get-started/quickstart">Ĝéţ šţàŕţéđ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/overview">Ķàþî</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/framework/architecture">Ƒŕàḿéŵöŕķ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/kapi/cli">Ķàþî ÇĻÎ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/toolbox/overview">ÇĻÎ ţööļš</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/react/introduction">ñéöķàþî-î18ñ</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/reference">Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/formats">Ƒöŕḿàţ Ŕéƒéŕéñçé</a></li><li class="footer__item"><a class="footer__link-item" href="/next/qps/evals">Ţéšţš &amp; Éṽàļš</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Ḿöŕé</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">ĜîţĤüƃ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Ĥöḿéƃŕéŵ Ţàþ<svg width="13.5" height="13.5" aria-label="(öþéñš îñ ñéŵ ţàƃ)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Çöþýŕîĝĥţ © 2026 ñéöķàþî çöñţŕîƃüţöŕš. Ƃüîļţ ŵîţĥ Đöçüšàüŕüš. · ƃüîļţ 2026-10-06 17:01 ÜŢÇ · 05ƒ7é2é</div></div></div></footer></div>
 </body>
 </html>
