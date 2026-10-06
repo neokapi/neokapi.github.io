@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">E-09: The change contract | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/nb/contribute/architecture/engine/e-09-the-change-contract"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="E-09: The change contract | neokapi"><meta data-rh="true" name="description" content="Every change to content, to a review decision or to a context asset is an operation in one change set, kapi.change/v1, applied by one service in core/change through the home that holds the document&#x27;s text."><meta data-rh="true" property="og:description" content="Every change to content, to a review decision or to a context asset is an operation in one change set, kapi.change/v1, applied by one service in core/change through the home that holds the document&#x27;s text."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,core/change,change set,kapi.change/v1,if_match,edition revision,change service,file home,commit check"><link data-rh="true" rel="icon" href="/next/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/nb/contribute/architecture/engine/e-09-the-change-contract"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/engine/e-09-the-change-contract" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/architecture/engine/e-09-the-change-contract" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/architecture/engine/e-09-the-change-contract" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/engine/e-09-the-change-contract" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"E-09: The change contract","item":"https://neokapi.github.io/next/nb/contribute/architecture/engine/e-09-the-change-contract"}]}</script><link rel="stylesheet" href="/next/nb/assets/css/styles.7bae7412.css">
-<script src="/next/nb/assets/js/runtime~main.49ab4316.js" defer="defer"></script>
-<script src="/next/nb/assets/js/main.e8dd0d74.js" defer="defer"></script>
+<script src="/next/nb/assets/js/runtime~main.b8674eab.js" defer="defer"></script>
+<script src="/next/nb/assets/js/main.16284729.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -24,10 +24,10 @@ file home commits by renaming a staged file onto the document under an advisory
 lock, and applies the change again when the file moved since it was read. A
 flow commits each document it writes through the same home and records it as
 the flow&#x27;s edit.</p>
-<p>The service lives below every surface. It imports <code>core/model</code> and
-<code>core/safeio</code> and nothing above them, so the CLI, the agent tools, Kapi Desktop
-and an application that embeds the engine all build the same service and differ
-only in the home and the hooks they give it.</p>
+<p>The service lives below every surface. It imports <code>core/model</code>, <code>core/format</code>
+and <code>core/safeio</code>, and nothing from the host, the CLI or a surface, so the CLI,
+the agent tools, Kapi Desktop and an application that embeds the engine all
+build the same service and differ only in the home and the hooks they give it.</p>
 <h2 class="anchor anchorTargetStickyNavbar_ZMry" id="context">Context<a href="#context" class="hash-link" aria-label="Direkte lenke til Context" title="Direkte lenke til Context" translate="no">​</a></h2>
 <p>A change to content has to answer the same questions wherever it comes from:
 which block it means, whether that block still says what the sender read,
@@ -64,10 +64,12 @@ that schema and whose result, read and description types are generated from the
 structs the service marshals; a drift gate regenerates them on every change. The
 note <a class="" href="/next/nb/contribute/implementation/engine/change-applier">The change applier</a> covers
 the types, the decoder, the schema and the TypeScript types.</p>
-<p><code>kapi.change/v1</code> is frozen, and from then on is only extended. A frozen file
-beside each golden holds the contract as it was published: the change set&#x27;s
-schema, the result&#x27;s (<code>kapi.change-result/v1</code>, <code>changeschema.ResultSchema</code>) and
-the read&#x27;s (<code>changeschema.ReadSchema</code>), and the MCP tool surface. A test walks
+<p><code>kapi.change/v1</code> is frozen for release 1.3.0 and is only extended. A frozen
+file beside each golden holds the contract as it was published: the change
+set&#x27;s schema, the result&#x27;s (<code>kapi.change-result/v1</code>,
+<code>changeschema.ResultSchema</code>) and the read&#x27;s (<code>changeschema.ReadSchema</code>), and
+the MCP tool surface, whose tool names may only grow and whose input schemas
+are held to the request rule below. A test walks
 each frozen schema beside the one the Go types generate and refuses a change that
 breaks the side that depends on it: for a request, a property, <code>$defs</code> entry or
 operation removed or renamed, a type, <code>const</code>, <code>$ref</code>, pattern, format or bound
@@ -233,7 +235,8 @@ record holds every edition added or removed.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="homes">Homes<a href="#homes" class="hash-link" aria-label="Direkte lenke til Homes" title="Direkte lenke til Homes" translate="no">​</a></h3>
 <p>A home holds the text of documents and decides when two writers conflict.</p>
 <div class="language-go codeBlockContainer_M4jf theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_JkHG"><pre tabindex="0" class="prism-code language-go codeBlock_CzoH thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_CgN2"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> Home </span><span class="token keyword" style="color:#00009f">interface</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">	</span><span class="token function" style="color:#d73a49">Name</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">string</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">	</span><span class="token function" style="color:#d73a49">Open</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> doc </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">Session</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
-<p>A session reads the document at its head, stages a change by running the
+<p><code>Name</code> is the home as a result reports it: <code>file</code>, <code>workspace</code> or
+<code>stream:&lt;id&gt;</code>. A session reads the document at its head, stages a change by running the
 service&#x27;s editor over its blocks, and hands back a staged change that names the
 commit locks it needs, settles (makes sure the change still applies with those
 locks held), commits and releases. A home that reads a document whole streams
@@ -342,6 +345,12 @@ workspace holds anything of it yet, and under <code>manual</code> it is the file
 the workspace still keeps a draft of it. A project that declares redaction
 records a kept edition redacted and reads it back from the vault
 (<a class="" href="/next/nb/contribute/architecture/context/c-03-context-store-and-graph#the-workspace-home">C-03</a>).</p>
+<p><strong>A stream home</strong> keeps the documents of one stream of a server&#x27;s project as
+rows, one per block, each holding every edition of its block. Its commit lock
+is the rows a stage read, held on one database transaction for every document
+of the change set; a settle applies the operations again to rows that moved,
+and the commit stores them with their history and commits the transaction, so
+the change set lands whole or not at all. A result names it <code>stream:&lt;id&gt;</code>.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="flows">Flows<a href="#flows" class="hash-link" aria-label="Direkte lenke til Flows" title="Direkte lenke til Flows" translate="no">​</a></h3>
 <p>A flow writes a document whole: its writer renders every block the run passed
 through, into the file it reads or into a target-language file built from the
@@ -442,6 +451,24 @@ file, and prints nothing with a note.</p>
 <p>The service refuses a change only for a failing finding it introduces
 (<code>change.Introduced</code>). Under <code>report</code> the change lands with its findings, and a
 person&#x27;s overridden findings go to the record.</p>
+<p>The kapi host&#x27;s policy (<code>ChangePolicy</code>) lets a person send every operation.
+An agent may change content, and is refused as <code>not_permitted</code> when it sends a
+<code>term</code>, <code>memory</code> or <code>recipe</code> operation, a <code>decide</code> with any outcome but
+<code>advise</code>, an <code>if_match</code> of <code>*</code>, or the <code>report</code> gate. A tool in a flow may
+choose <code>report</code> and decides only with <code>advise</code>, and only a tool sends the
+in-process provenance operation. A sender of any other kind is refused every
+operation.</p>
+<p>The kapi host&#x27;s recorder writes each change set into the workspace&#x27;s log, one
+<code>content.edit</code> operation per document, in one write, and the projector writes
+it into the block history: who changed which edition, from which revision to
+which, through which surface (the origin), and under which governance
+fingerprint. A person&#x27;s or an agent&#x27;s record keeps the runs around each change
+and the change set as sent; a tool&#x27;s keeps revisions and hashes, and the file
+holds the text. A document the workspace home holds is recorded by that home&#x27;s
+commit, and the recorder records the rest of the change set. A project that
+declares redaction records the runs and the note redacted, or neither under a
+policy that detects entities, and keeps no copy of the change set as sent
+(<a class="" href="/next/nb/contribute/architecture/context/c-10-redaction">C-10</a>).</p>
 <p>The kapi host builds the service for a surface with <code>App.Changes</code> and
 <code>App.ChangeService</code>. Inside a project the file home&#x27;s layout resolves a
 reference the way the recipe does: a source file is read with the format and
@@ -470,7 +497,7 @@ where the most recent recorded change to the edition left the content it holds;
 and a history lists the edition&#x27;s rows of that block history. A decision binds
 to the revision of the edition it decides and of the authoritative edition
 beside it (<code>DecisionTarget.Rev</code> and <code>SourceRev</code>), which the decision ledger
-pairs (<a class="" href="/next/nb/contribute/architecture/context/c-04-unit-state-and-decisions">C-04</a>).</p>
+pairs (<a class="" href="/next/nb/contribute/architecture/context/c-04-block-state-and-decisions">C-04</a>).</p>
 <p>On the command line, <code>kapi apply</code> hands a decoded change set to the service,
 <code>kapi inspect</code> prints the service&#x27;s read records, and <code>ksed</code> compiles its
 substitutions into <code>replace_text</code> operations and applies them through it
@@ -523,9 +550,9 @@ where the change set changes no content in a file whose blocks no longer pair
 with the source&#x27;s. A bilingual translation file that still holds every unit
 of its source keeps its own skeleton, header included.
 <code>kapi merge -i</code> compiles a returned XLIFF, PO or <code>.kpz</code> into <code>set_content</code>
-operations carrying the <code>if_match</code> and <code>basis</code> each unit was extracted against,
+operations carrying the <code>if_match</code> and <code>basis</code> each entry was extracted against,
 under <code>require_basis</code> and the enforce gate, and sends them as a person;
-<code>kapi extract</code> stamps each unit with the revision of the source it carries and
+<code>kapi extract</code> stamps each entry with the revision of the source it carries and
 the translation&#x27;s revision a read through the service gives
 (<a class="" href="/next/nb/contribute/architecture/multilingual/m-01-bilingual-interop">M-01</a>). <code>kapi merge</code> with no <code>-i</code>
 sends the targets the block store holds for a source and language as one
@@ -558,18 +585,25 @@ edition, while the check read it as source and held it to the source
 language&#x27;s rules.</p>
 <h3 class="anchor anchorTargetStickyNavbar_ZMry" id="results-and-errors">Results and errors<a href="#results-and-errors" class="hash-link" aria-label="Direkte lenke til Results and errors" title="Direkte lenke til Results and errors" translate="no">​</a></h3>
 <p>A result has a status (<code>applied</code>, <code>refused</code>, <code>previewed</code>, or <code>partial</code> when an
-I/O error stopped the final renames after some files landed), a record id, one
-entry per file written or read with its digests before and after and whether it
-was written, and one result per operation with its revisions, the positions it
-resolved, the derived editions it left on an older basis (<code>invalidates</code>), and
-on a refusal an error from a closed set of codes, each mapped once to an exit
-code and an HTTP status. A refused operation reports no revision or position,
+I/O error stopped the final renames after some files landed, or a store refused
+a decision or an asset operation after the content landed), a record id, one
+entry per file written or read with its home, its digests before and after and
+whether it was written, and one result per operation. An operation&#x27;s status is
+<code>applied</code>, <code>unchanged</code> (its <code>if_match</code> holds and the edition already says what
+it sends), <code>refused</code>, <code>not_applied</code> (blocked by another operation&#x27;s refusal) or
+<code>previewed</code>; it carries its revisions, the positions it resolved, the derived
+editions it left on an older basis (<code>invalidates</code>), and on a refusal an error
+from a closed set of codes, each mapped once to an exit code and an HTTP status
+(<code>Code.ExitCode</code>, <code>Code.HTTPStatus</code>):</p>
+<table><thead><tr><th>Code</th><th>Means</th><th>Exit</th><th>HTTP</th></tr></thead><tbody><tr><td><code>invalid</code></td><td>the change set does not decode, fails its schema or contradicts itself</td><td>2</td><td>400</td></tr><tr><td><code>not_found</code></td><td>a reference resolves to no document, block or edition, or a <code>find</code> matches nothing</td><td>3</td><td>404</td></tr><tr><td><code>ambiguous</code></td><td>a key or a <code>find</code> matches more than one thing</td><td>3</td><td>409</td></tr><tr><td><code>stale</code></td><td>an <code>if_match</code> no longer holds, or under <code>require_basis</code> the basis moved</td><td>3</td><td>409</td></tr><tr><td><code>doc_changed</code></td><td>the document changed under the commit and one more pass could not settle it</td><td>3</td><td>409</td></tr><tr><td><code>guard</code></td><td>the result breaks an inline code, a plural or select, or a position (subcode <code>codes_changed</code>, <code>structure_lost</code>, <code>bad_position</code> or <code>overlap</code>)</td><td>3</td><td>422</td></tr><tr><td><code>gate_failed</code></td><td>the commit check found a failing finding the change introduces</td><td>3</td><td>422</td></tr><tr><td><code>unsupported</code></td><td>the format, the edition or the home lacks the capability the operation needs</td><td>3</td><td>422</td></tr><tr><td><code>not_permitted</code></td><td>the policy refuses the operation to its sender</td><td>3</td><td>403</td></tr><tr><td><code>budget_exceeded</code></td><td>a resource bound was reached</td><td>3</td><td>413</td></tr><tr><td><code>unreachable</code></td><td>a backend did not answer</td><td>5</td><td>503</td></tr></tbody></table>
+<p>A refused operation reports no revision or position,
 since nothing was written; a change set refused after its documents were read
 lists each with <code>written: false</code>. A resolved position prints its run and its
-offset, a zero offset included. Each document carries the findings the commit
-check made on the edit, failing or not, each with the range it found and, for a
-term rule, the wording it asks for: an empty list when the check ran and found
-nothing, and none where no check applies. A <code>gate_failed</code> refusal counts the
+offset, a zero offset included. Each document carries the findings the edit
+introduced, failing or not (<code>change.NewFindings</code>), each with the range it found
+where the rule locates one and, for a term rule, the wording it asks for: an
+empty list when the check ran and found nothing, and none where no check
+applies. A <code>gate_failed</code> refusal counts the
 failing findings and leaves them on the document. A <code>find</code> that matches nothing
 is refused <code>not_found</code> with the path and the text it searched and up to three
 candidates. In a <code>partial</code> result the operations on the files that
@@ -612,6 +646,6 @@ applier and the rules stay one.</li>
 <li class=""><a class="" href="/next/nb/contribute/implementation/engine/change-applier">The change applier</a></li>
 <li class=""><a class="" href="/next/nb/contribute/implementation/engine/file-home">The file home</a></li>
 <li class=""><a class="" href="/next/nb/contribute/architecture/surfaces/s-03-agent-surfaces">S-03: Agent surfaces</a></li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-09-the-change-contract.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/architecture/engine/e-08-document-structure-tiers"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">E-08: Document structure tiers</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/architecture/context/c-01-project-model"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-01: The project model</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-change-set" class="table-of-contents__link toc-highlight">The change set</a></li><li><a href="#addressing-and-revisions" class="table-of-contents__link toc-highlight">Addressing and revisions</a></li><li><a href="#the-applier" class="table-of-contents__link toc-highlight">The applier</a></li><li><a href="#the-service" class="table-of-contents__link toc-highlight">The service</a></li><li><a href="#adding-and-removing-blocks" class="table-of-contents__link toc-highlight">Adding and removing blocks</a></li><li><a href="#homes" class="table-of-contents__link toc-highlight">Homes</a></li><li><a href="#flows" class="table-of-contents__link toc-highlight">Flows</a></li><li><a href="#hooks" class="table-of-contents__link toc-highlight">Hooks</a></li><li><a href="#results-and-errors" class="table-of-contents__link toc-highlight">Results and errors</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-06 07:34 UTC · 6238072</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/engine/e-09-the-change-contract.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/contribute/architecture/engine/e-08-document-structure-tiers"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">E-08: Document structure tiers</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/contribute/architecture/context/c-01-project-model"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">C-01: The project model</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-change-set" class="table-of-contents__link toc-highlight">The change set</a></li><li><a href="#addressing-and-revisions" class="table-of-contents__link toc-highlight">Addressing and revisions</a></li><li><a href="#the-applier" class="table-of-contents__link toc-highlight">The applier</a></li><li><a href="#the-service" class="table-of-contents__link toc-highlight">The service</a></li><li><a href="#adding-and-removing-blocks" class="table-of-contents__link toc-highlight">Adding and removing blocks</a></li><li><a href="#homes" class="table-of-contents__link toc-highlight">Homes</a></li><li><a href="#flows" class="table-of-contents__link toc-highlight">Flows</a></li><li><a href="#hooks" class="table-of-contents__link toc-highlight">Hooks</a></li><li><a href="#results-and-errors" class="table-of-contents__link toc-highlight">Results and errors</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-06 09:15 UTC · f29e313</div></div></div></footer></div>
 </body>
 </html>
