@@ -1,0 +1,38 @@
+import{n as e}from"./rolldown-runtime-CsOFd3vK.js";import{t}from"./react-BqsWhH8F.js";import{t as n}from"./jsx-runtime-CadfrxEJ.js";import{n as r,r as i,t as a}from"./runtime-DQa1Xtyr.js";import{n as o,t as s}from"./UnifiedTargetEditor-28JtNwn6.js";import{a as c,o as l}from"./blockStatus-DyIx5w8q.js";function u(e){return{id:`blk-messages`,source:`You have {count} messages`,has_spans:!0,source_spans:[{span_type:`placeholder`,type:`jsx:var`,id:`0`,data:`{count}`,equiv_text:`count`}],targets:e,targets_coded:{},translatable:!0,properties:{}}}function d(e){return{id:`blk-rich`,source:`Click <strong>here</strong> for {count} pending.`,has_spans:!0,source_spans:[{span_type:`opening`,type:`fmt:bold`,id:`0`,data:`<strong>`,equiv_text:`strong`},{span_type:`closing`,type:`fmt:bold`,id:`0`,data:`</strong>`,equiv_text:`strong`},{span_type:`placeholder`,type:`jsx:var`,id:`1`,data:`{count}`,equiv_text:`count`}],targets:e,targets_coded:{},translatable:!0,properties:{}}}function f(e){return{id:`blk-plain`,source:`Welcome back!`,has_spans:!1,source_spans:[],targets:e,targets_coded:{},translatable:!0,properties:{}}}function p({block:e,locale:t=`de`}){let[n,i]=(0,h.useState)(null),[o,l]=(0,h.useState)(null),[u,d]=(0,h.useState)(!0);return(0,g.jsxs)(`div`,{style:{minHeight:500,padding:16,fontFamily:`sans-serif`},children:[(0,g.jsx)(`div`,{style:{marginBottom:12,fontSize:14},children:r(`4D3PfDI35ox`,`{=m0}Source:{/=m0} {=m1}{block.source}{/=m1}`,{"=m0":(0,g.jsx)(`strong`,{children:`Source:`}),"=m1":(0,g.jsx)(`code`,{children:e.source})},{"block.source":e.source},{"=m1":`no`})}),(0,g.jsx)(`div`,{style:{marginBottom:12,fontSize:14},children:r(`ehQmiDt86az`,`{=m0}Target ({locale}):{/=m0} {=m2}{value}{/=m2}`,{"=m0":(0,g.jsxs)(`strong`,{children:[`Target (`,t,`):`]}),"=m2":(0,g.jsx)(`code`,{children:c(e,t)||`(empty)`})},{locale:t,value:c(e,t)||`(empty)`},{"=m2":`no`})}),u?(0,g.jsx)(s,{block:e,locale:t,onSave:e=>{e.kind===`flat`?i({codedText:e.codedText,spansCount:e.spans.length}):e.kind===`plural`&&l(e.text),d(!1)},onCancel:()=>d(!1)}):(0,g.jsx)(`button`,{type:`button`,onClick:()=>d(!0),children:a(`joVpNxa7r1t`,`Reopen editor`)}),n&&(0,g.jsxs)(`pre`,{style:{background:`#f4f4f5`,padding:8,borderRadius:4,marginTop:12},children:[`flat saved → codedText=`,JSON.stringify(n.codedText),` spans=`,n.spansCount]}),o&&(0,g.jsxs)(`pre`,{style:{background:`#f4f4f5`,padding:8,borderRadius:4,marginTop:12,whiteSpace:`pre-wrap`},children:[`plural saved → `,o]})]})}function m(e){let t={ph:{id:`n`,type:`code:variable`,data:`#`,equiv:`#`}};return{id:`blk-plural-message`,source:` messages`,source_runs:[{plural:{pivot:`count`,forms:{one:[t,{text:` message`}],other:[t,{text:` messages`}]}}}],has_spans:!0,targets:e?{de:{text:` Nachrichten`,status:`translated`}}:{},targets_runs:e?{de:[{plural:{pivot:`count`,forms:{one:[t,{text:` Nachricht`}],other:[t,{text:` Nachrichten`}]}}}]}:{},translatable:!0,properties:{}}}var h,g,_,v,y,b,x,S,C,w,T,E,D;function O(){return(O=e((()=>{i(),h=t(),o(),l(),g=n(),_={title:`Editor/Core/UnifiedTargetEditor`,component:s,tags:[`autodocs`],parameters:{docs:{description:{component:`Single editor surface for every target — flat or plural, with inline codes or plain. Replaces TargetCellEditor + the textarea fallback + the Plurals dialog. Lexical chips render identically across modes; plural authoring is a mode toggle inside the editor. See AD #408 / #409.`}}}},v={name:`Flat target with placeholder`,render:()=>(0,g.jsx)(p,{block:u({de:`Sie haben {count} Nachrichten`})})},y={name:`Flat target with paired inline codes`,render:()=>(0,g.jsx)(p,{block:d({de:`Klicken Sie hier — {count} ausstehend.`})})},b={name:`Flat plain text (no spans)`,render:()=>(0,g.jsx)(p,{block:f({de:`Willkommen zurück!`})})},x={name:`Plural target — opens in per-form view`,render:()=>(0,g.jsx)(p,{block:u({de:`{count, plural, one {Sie haben 1 Nachricht} other {Sie haben {count} Nachrichten}}`})})},S={name:`Plural target with paired inline codes`,render:()=>(0,g.jsx)(p,{block:d({de:`{count, plural, one {Klicken Sie {=strong}hier{/=strong} — 1 ausstehend.} other {Klicken Sie {=strong}hier{/=strong} — {count} ausstehend.}}`})})},C={name:`Plural translation read back as runs — opens on its forms`,render:()=>(0,g.jsx)(p,{block:m(!0)})},w={name:`Untranslated plural message — opens in plural mode on the source pivot`,render:()=>(0,g.jsx)(p,{block:m(!1)})},T={name:`Empty target — author flat, then upgrade`,render:()=>(0,g.jsx)(p,{block:u({})})},E={name:`No pivot candidates — upgrade button hidden`,render:()=>(0,g.jsx)(p,{block:f({})})},D=[`FlatPlaceholder`,`FlatRichInlineCodes`,`FlatPlainText`,`PluralTarget`,`PluralWithInlineCodes`,`PluralTranslationReadBack`,`UntranslatedPluralMessage`,`EmptyFlatThenUpgrade`,`NoPivotCandidates`],v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  name: "Flat target with placeholder",
+  render: () => <Wrapper block={makeMessagesBlock({
+    de: "Sie haben {count} Nachrichten"
+  })} />
+}`,...v.parameters?.docs?.source}}},y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`{
+  name: "Flat target with paired inline codes",
+  render: () => <Wrapper block={makeRichBlock({
+    de: "Klicken Sie hier — {count} ausstehend."
+  })} />
+}`,...y.parameters?.docs?.source}}},b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`{
+  name: "Flat plain text (no spans)",
+  render: () => <Wrapper block={makePlainBlock({
+    de: "Willkommen zurück!"
+  })} />
+}`,...b.parameters?.docs?.source}}},x.parameters={...x.parameters,docs:{...x.parameters?.docs,source:{originalSource:`{
+  name: "Plural target — opens in per-form view",
+  render: () => <Wrapper block={makeMessagesBlock({
+    de: "{count, plural, one {Sie haben 1 Nachricht} other {Sie haben {count} Nachrichten}}"
+  })} />
+}`,...x.parameters?.docs?.source}}},S.parameters={...S.parameters,docs:{...S.parameters?.docs,source:{originalSource:`{
+  name: "Plural target with paired inline codes",
+  render: () => <Wrapper block={makeRichBlock({
+    de: "{count, plural, one {Klicken Sie {=strong}hier{/=strong} — 1 ausstehend.} other {Klicken Sie {=strong}hier{/=strong} — {count} ausstehend.}}"
+  })} />
+}`,...S.parameters?.docs?.source}}},C.parameters={...C.parameters,docs:{...C.parameters?.docs,source:{originalSource:`{
+  name: "Plural translation read back as runs — opens on its forms",
+  render: () => <Wrapper block={makePluralMessageBlock(true)} />
+}`,...C.parameters?.docs?.source}}},w.parameters={...w.parameters,docs:{...w.parameters?.docs,source:{originalSource:`{
+  name: "Untranslated plural message — opens in plural mode on the source pivot",
+  render: () => <Wrapper block={makePluralMessageBlock(false)} />
+}`,...w.parameters?.docs?.source}}},T.parameters={...T.parameters,docs:{...T.parameters?.docs,source:{originalSource:`{
+  name: "Empty target — author flat, then upgrade",
+  render: () => <Wrapper block={makeMessagesBlock({})} />
+}`,...T.parameters?.docs?.source}}},E.parameters={...E.parameters,docs:{...E.parameters?.docs,source:{originalSource:`{
+  name: "No pivot candidates — upgrade button hidden",
+  render: () => <Wrapper block={makePlainBlock({})} />
+}`,...E.parameters?.docs?.source}}}})))()}O();export{T as EmptyFlatThenUpgrade,v as FlatPlaceholder,b as FlatPlainText,y as FlatRichInlineCodes,E as NoPivotCandidates,x as PluralTarget,C as PluralTranslationReadBack,S as PluralWithInlineCodes,w as UntranslatedPluralMessage,D as __namedExportsOrder,_ as default};
