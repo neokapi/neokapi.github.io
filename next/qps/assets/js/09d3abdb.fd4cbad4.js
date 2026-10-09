@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[9002],{89098(e){e.exports=JSON.parse('{"name":"neokapi-learn-routes","id":"default"}')}}]);
