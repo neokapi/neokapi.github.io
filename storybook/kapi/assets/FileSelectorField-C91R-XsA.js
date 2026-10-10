@@ -77,14 +77,30 @@ fmt.Println("hello, world")
   "body": "Hi, we love the color of your order. Jane Doe will follow up tomorrow.",
   "footer": "Thanks for choosing Acme Corp"
 }
-`},{id:`greeting-bilingual-xliff`,label:`greeting.xliff`,filename:`greeting.xliff`,blurb:`A bilingual XLIFF 2.x already carrying a French target for every segment, so each Block holds both source and target, so the content model shows the source↔target pair directly.`,content:`<?xml version="1.0" encoding="UTF-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.2" version="2.2" srcLang="en" trgLang="fr">
-  <file id="app.json" original="app.json">
-    <unit id="greeting"><segment><source>Hello, World!</source><target>Bonjour, le monde !</target></segment></unit>
-    <unit id="farewell"><segment><source>See you tomorrow</source><target>À demain</target></segment></unit>
-    <unit id="cart.empty"><segment><source>Your cart is empty</source><target>Votre panier est vide</target></segment></unit>
-  </file>
-</xliff>
+`},{id:`greeting-xcstrings`,label:`Localizable.xcstrings`,filename:`Localizable.xcstrings`,blurb:`An Apple string catalog: one file carries every language of a string. Each French entry becomes a Block holding the English source and its French edition, so the content model shows the pair directly.`,content:`{
+  "sourceLanguage": "en",
+  "strings": {
+    "greeting": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Hello, World!" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Bonjour, le monde !" } }
+      }
+    },
+    "farewell": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "See you tomorrow" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "À demain" } }
+      }
+    },
+    "cart.empty": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Your cart is empty" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Votre panier est vide" } }
+      }
+    }
+  },
+  "version": "1.0"
+}
 `},{id:`checkout-messageformat`,label:`checkout.mf`,filename:`checkout.mf`,blurb:`Checkout messages with a named placeholder and plural branches.`,content:`Hello, {name}!
 {count, plural, =0 {Your cart is empty} one {# item is ready for checkout} other {# items are ready for checkout}}
 Review your order before continuing.
