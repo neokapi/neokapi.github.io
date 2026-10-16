@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-2s6bX4vc.js";function t(e){if(!e?.length)return``;let t=new Map;for(let n of e){let e=n.default_source_language?.trim();e&&t.set(e,(t.get(e)??0)+1)}let n=``,r=0;for(let[e,i]of t)(i>r||i===r&&e<n)&&(n=e,r=i);return n}function n(){return(n=e((()=>{})))()}export{t as n,n as t};
