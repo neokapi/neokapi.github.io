@@ -48,6 +48,15 @@
       "kCHUFceHBNk",
       "luDgDplI2mB"
     ],
+    "ActorMark.stories": [
+      "2DQPUn1Uo47",
+      "2x0zKLjmTpk",
+      "6S0F3QN0sn4",
+      "bBUhe1Zz2pY",
+      "bLZHlDI0zfS",
+      "eoZVGebDkJB",
+      "lM3KHxhdJre"
+    ],
     "AddMemberDialog": [
       "113DgU3iZ5O",
       "2T79MHAEjBm",
@@ -1305,6 +1314,10 @@
     "JudgementCard.stories": [
       "7wZWH8Kt6KP"
     ],
+    "KindIcon.stories": [
+      "6S0F3QN0sn4",
+      "eoZVGebDkJB"
+    ],
     "Label.stories": [
       "4Y8TX3rHqVp",
       "5JTvASFcqom",
@@ -1323,6 +1336,24 @@
     ],
     "LinearFlowEditor.stories": [
       "3Xcatqg3S7J"
+    ],
+    "ListDetail.stories": [
+      "140qBYbklqp",
+      "1JmMGuLCHIO",
+      "3ArFX8iKJlo",
+      "66a9XyvDhj",
+      "7Huekl4g3JE",
+      "7HyWJz9DYR3",
+      "7gXNQc2djw7",
+      "9pCXMld227M",
+      "atyW4bVizoI",
+      "i5D6Q7xRl3M",
+      "iSiVpT6jumi",
+      "jX0xectEvyg",
+      "k0DI1LonKHN",
+      "k5iToin3nme",
+      "l9PtYP0yGjb",
+      "lN1YMgy0Rsh"
     ],
     "LocaleCompletionChart": [
       "5C6iBrXyn6u",
@@ -1847,6 +1878,11 @@
       "kkNxsSZoOSJ",
       "lIiCdVu9MtV"
     ],
+    "StatRow.stories": [
+      "6S0F3QN0sn4",
+      "YLdgxtzIOV",
+      "eoZVGebDkJB"
+    ],
     "StatusBadge.stories": [
       "6S0F3QN0sn4",
       "7EzXsrJEN",
@@ -2304,6 +2340,10 @@
       "8G2UCf1JaHI",
       "iNN2kFqzUMP",
       "l3P1hRiNtsY"
+    ],
+    "actor-mark": [
+      "jrcN0w8ARp0",
+      "jwu0EgKKrXo"
     ],
     "attachment": [
       "3EgCFAuiO6J",
@@ -3683,6 +3723,15 @@
       "hhHG9GHpRCF",
       "iNTJXFZObfa"
     ],
+    "kind-icon": [
+      "2mLhch5DtvK",
+      "3H2fpGf2gBo",
+      "41bWHEqT4eK",
+      "72QFACnLhNO",
+      "7JhESszT3M4",
+      "ig5hZ1qnBgk",
+      "jo7M1jxx8Lw"
+    ],
     "list-cap-row": [
       "cDapI3zTOpK"
     ],
@@ -4047,6 +4096,9 @@
     ],
     "starter-packs": [
       "k2UniVFj7Og"
+    ],
+    "stat-row": [
+      "eHlNueIgrPP"
     ],
     "status-badge": [
       "1gJXZnmcgHy",
