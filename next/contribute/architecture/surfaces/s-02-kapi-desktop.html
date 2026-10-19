@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">S-02: Kapi Desktop | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/contribute/architecture/surfaces/s-02-kapi-desktop"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="S-02: Kapi Desktop | neokapi"><meta data-rh="true" name="description" content="Kapi Desktop uses the shared host runtime for project management, context review and content processing, with a Wails v3 backend and React frontend."><meta data-rh="true" property="og:description" content="Kapi Desktop uses the shared host runtime for project management, context review and content processing, with a Wails v3 backend and React frontend."><meta data-rh="true" name="keywords" content="neokapi,architecture decision,Kapi Desktop,Wails,desktop app,module isolation,workspace,context hub,context operations,sharing,context backend,agent wiring,rules files,point map,governance,review,credential vault"><link data-rh="true" rel="icon" href="/next/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/contribute/architecture/surfaces/s-02-kapi-desktop"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/surfaces/s-02-kapi-desktop" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/architecture/surfaces/s-02-kapi-desktop" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/architecture/surfaces/s-02-kapi-desktop" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/surfaces/s-02-kapi-desktop" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"S-02: Kapi Desktop","item":"https://neokapi.github.io/next/contribute/architecture/surfaces/s-02-kapi-desktop"}]}</script><link rel="stylesheet" href="/next/assets/css/styles.e7410203.css">
-<script src="/next/assets/js/runtime~main.7d63601b.js" defer="defer"></script>
-<script src="/next/assets/js/main.293f44bc.js" defer="defer"></script>
+<script src="/next/assets/js/runtime~main.87b41ddf.js" defer="defer"></script>
+<script src="/next/assets/js/main.8d86f39c.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -277,43 +277,50 @@ routable so a
 persisted view still lands, and the ad-hoc rail keeps both stores, having no
 project to file them under.</p>
 <h3 class="anchor anchorTargetStickyNavbar_s11o" id="exploring-the-context">Exploring the context<a href="#exploring-the-context" class="hash-link" aria-label="Direct link to Exploring the context" title="Direct link to Exploring the context" translate="no">​</a></h3>
-<p>Explore reads the project once per visit through <code>ProjectContextAtlas</code>, which
+<p>Explore loads the project once per visit through <code>ProjectContextAtlas</code>, which
 returns the <code>kapi context atlas --json</code> document
 (<a class="" href="/next/contribute/implementation/context/context-atlas">the atlas contract</a>): the
-axes, every record with its full status history, and the dated events. A tab
-with a checkout includes the content cells; a context-only tab reads the log
-and the stores alone. Every view after the read is drawn in the frontend from
-that one document, so moving the window, the columns or the snapshot calls
-nothing.</p>
-<p><code>@neokapi/context-atlas</code> holds the views and a React-free model beside them.
-The model owns the query (OR within an axis, AND across axes, a window, a
-snapshot that follows the window&#x27;s end, the recorded or the effective clock),
-the state of each record at an instant, the derived axes (state at the
-window&#x27;s start and at the snapshot, lifetime, age), the adjacent-pair layout
-of the flow and the A/B comparison, so a test, a host or an agent resolves an
-exported investigation against the same data without rendering it. The page is
-an overview with a supporting pane for the selected record
-(<code>packages/ui/docs/page-patterns.md</code>).
-An evidence path opens Ask at that file.</p>
-<p>The map draws a geo axis over the places the atlas carries
-(<a class="" href="/next/contribute/architecture/context/c-12-places">C-12</a>). It opens on <strong>Shapes</strong>: real outlines,
-starting at the deepest country or region that holds every record and
-drilling from the world to a country, to its subdivisions and to the
-project&#x27;s own places, with a breadcrumb built from the place&#x27;s path. A place
-is filled by the records sitting within it and hatched where a record at a
+axes, every record with its full status history, and the dated events. For a
+tab with a checkout, the document includes the content cells. For a
+context-only tab, it is built from the log and the stores only. The frontend
+draws every view from that one document, so moving the window, the columns or
+the snapshot makes no backend call.</p>
+<p><code>@neokapi/context-atlas</code> contains the views and a React-free model beside them.
+The model implements:</p>
+<ul>
+<li class="">the query: OR within an axis, AND across axes, a window, a snapshot that
+follows the window&#x27;s end, and the recorded or the effective clock;</li>
+<li class="">the state of each record at an instant;</li>
+<li class="">the derived axes: state at the window&#x27;s start and at the snapshot, lifetime,
+and age;</li>
+<li class="">the adjacent-pair layout of the flow and the A/B comparison.</li>
+</ul>
+<p>A test, a host or an agent can therefore evaluate an exported investigation
+against the same data without rendering it. The page is an overview with a
+supporting pane for the selected record (<code>packages/ui/docs/page-patterns.md</code>).
+Selecting an evidence path opens Ask at that file.</p>
+<p>The map draws a geo axis over the places in the atlas
+(<a class="" href="/next/contribute/architecture/context/c-12-places">C-12</a>). Its default mode is <strong>Shapes</strong>, which
+draws real outlines. It starts at the deepest country or region that contains
+every record, and drills from the world to a country, to its subdivisions and
+to the project&#x27;s own places, with a breadcrumb built from the place&#x27;s path. A
+place is filled when records sit within it. It is hatched when a record at a
 wider place, or at a place made of places that covers it, holds there. Records
-at <code>world</code> are one <em>Held everywhere</em> count rather than a hatch over the globe.
-A declared place draws its own geometry, else a circle at its centroid, else
-it is listed beside the map, and a declared place whose centroid falls outside
-the outline of the place it sits within is flagged. Places made of places are
-chips beside the map, and hovering one outlines its members. The side list
-gives each place&#x27;s records <em>Here</em> and the records <em>Held</em> through a wider
-place, and every place is a button with an accessible name and count.
-Selecting a place keeps the records at every place that shares ground with it,
-by the same overlap rule the engine uses. <strong>Grid</strong> draws one equal tile per
-country instead, for comparing counts with land area left out. The outlines
-are Natural Earth data that ship in <code>@neokapi/context-atlas</code> and load per
-country as the map drills in.</p>
+at <code>world</code> are shown as one <em>Held everywhere</em> count instead of a hatch over
+the globe. A declared place is drawn from its own geometry, else as a circle at
+its centroid, else listed beside the map. The map flags a declared place whose
+centroid falls outside the outline of the place it sits within. Places made of
+places are chips beside the map, and hovering over one outlines its members.
+The side list shows, for each place, the records <em>Here</em> and the records <em>Held</em>
+through a wider place. Every place in the list is a button with an accessible
+name and count. When the view has up to 30 places, the list shows all of them,
+so a county can be picked by name. In a larger view, such as the world&#x27;s
+countries, the list shows only the places that have records within them, that
+the map cannot draw, or that are flagged. Selecting a place filters to the
+records at every place that overlaps it, by the same overlap rule as the
+engine. <strong>Grid</strong> draws one equal tile per country instead, for comparing
+counts independently of land area. The outlines are Natural Earth data that
+ship in <code>@neokapi/context-atlas</code>, loaded per country as the map drills in.</p>
 <h3 class="anchor anchorTargetStickyNavbar_s11o" id="the-feed-of-recorded-context-operations">The feed of recorded context operations<a href="#the-feed-of-recorded-context-operations" class="hash-link" aria-label="Direct link to The feed of recorded context operations" title="Direct link to The feed of recorded context operations" translate="no">​</a></h3>
 <p>The app is meant to sit open beside an agent that is working. The agent runs in
 another process, through the CLI or its MCP server, and records what it learns
@@ -512,20 +519,29 @@ about how the store copy addresses the reader. The second takes the other side
 of the correction and notes one more name, so the digest opens with a conflict
 under Needs you, and a first-time user practises keeping, changing, dropping,
 choosing and resetting on the real surfaces with no model call.</p>
-<p>Before the sessions, a teammate records six notes and keeps them, so they
-arrive established and the digest still opens on the assistants&#x27; suggestions.
-They give Explore something on each declared axis: the sample&#x27;s recipe
-declares places (the Nordics, Oslo, Grünerløkka and Greater Oslo) and types
-<code>market</code> as a geo axis over them, <code>age</code> as a range and <code>lifecycle</code> as an
-ordered axis (<a class="" href="/next/contribute/architecture/context/c-02-coordinates-and-governance">C-02</a>). An Oslo
-youth campaign sits at <code>market: oslo, age: 13-17</code>, with its pick-up page at
-Grünerløkka. The notes hold in Japan, in Germany, in the Nordics, for readers
-aged 13 to 17, in that campaign&#x27;s city and age, and for windows set relative to
-the day the sample is created, so one is in force, one has ended and one has
-yet to open whenever the sample is opened.</p>
+<p>Before the agent sessions, the seed records six notes as a teammate and keeps
+them. The notes are established from the start, and the digest still opens on
+the assistants&#x27; suggestions. The notes give Explore data on each declared axis.
+The sample&#x27;s recipe declares places (the Nordics, Oslo, Grünerløkka and
+Greater Oslo) and types <code>market</code> as a geo axis over them, <code>age</code> as a range and
+<code>lifecycle</code> as an ordered axis
+(<a class="" href="/next/contribute/architecture/context/c-02-coordinates-and-governance">C-02</a>). An Oslo youth campaign
+sits at <code>market: oslo, age: 13-17</code>, with its pick-up page at Grünerløkka. Five
+of the notes have a point: Japan, Germany, the Nordics, ages 13 to 17, and the
+campaign&#x27;s city and age together. Three have windows set relative to the day
+the sample is created. Whenever the sample is opened, one of those windows is
+in force, one has ended and one has not yet started.</p>
 <p>Seeding is idempotent: it runs only when the project&#x27;s log holds no agent
 session, read from the ledger, so reopening or resetting the sample records
 nothing twice.</p>
+<p>A scaffolded sample records the revision it was written at in
+<code>.kapi/sample.json</code>, and <code>sample.Revision</code> is the revision this build ships.
+The home of an older copy that still loads offers the upgrade. An older copy
+whose recipe this build rejects is refreshed when it is opened, from Try the
+sample or from the workspace home. The old directory is kept beside it as
+<code>&lt;name&gt; (backup rN)</code>, and the current sample is scaffolded in its place. For a
+sample at the current revision, and for any project that is not a sample, the
+app reports the load error and leaves the directory unchanged.</p>
 <h3 class="anchor anchorTargetStickyNavbar_s11o" id="three-faces-one-record">Three faces, one record<a href="#three-faces-one-record" class="hash-link" aria-label="Direct link to Three faces, one record" title="Direct link to Three faces, one record" translate="no">​</a></h3>
 <p>kapi answers the same questions from the CLI, over MCP, and from the desktop.
 A face parity suite holds the three to one recorded answer: <code>host/facetest</code>
@@ -638,6 +654,6 @@ it.</li>
 <li class=""><a class="" href="/next/contribute/architecture/surfaces/s-06-visual-editor">S-06: The visual editor data model</a>: the preview kit the desktop hosts</li>
 <li class=""><a class="" href="/next/contribute/architecture/surfaces/s-07-context-centric-review">S-07: The review model</a>: the model the queue&#x27;s detail pane and the document view render</li>
 <li class=""><a class="" href="/next/kapi/desktop/overview">Kapi Desktop overview</a>: the user-facing guide</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/surfaces/s-02-kapi-desktop.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/contribute/architecture/surfaces/s-01-kapi-cli"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">S-01: The kapi CLI</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/contribute/architecture/surfaces/s-03-agent-surfaces"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">S-03: Agent surfaces: MCP and skills</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#stack-and-module-boundary" class="table-of-contents__link toc-highlight">Stack and module boundary</a></li><li><a href="#one-bound-service-many-open-projects" class="table-of-contents__link toc-highlight">One bound service, many open projects</a></li><li><a href="#every-edit-is-a-change-set" class="table-of-contents__link toc-highlight">Every edit is a change set</a></li><li><a href="#the-app-opens-on-the-workspace" class="table-of-contents__link toc-highlight">The app opens on the workspace</a></li><li><a href="#the-project-home-and-the-point-map" class="table-of-contents__link toc-highlight">The project home and the point map</a></li><li><a href="#the-context-hub" class="table-of-contents__link toc-highlight">The Context hub</a></li><li><a href="#exploring-the-context" class="table-of-contents__link toc-highlight">Exploring the context</a></li><li><a href="#the-feed-of-recorded-context-operations" class="table-of-contents__link toc-highlight">The feed of recorded context operations</a></li><li><a href="#the-digest" class="table-of-contents__link toc-highlight">The digest</a></li><li><a href="#sharing-and-the-ladder-of-reach" class="table-of-contents__link toc-highlight">Sharing and the ladder of reach</a></li><li><a href="#connecting-an-assistant" class="table-of-contents__link toc-highlight">Connecting an assistant</a></li><li><a href="#governance-editing" class="table-of-contents__link toc-highlight">Governance editing</a></li><li><a href="#runs-go-through-the-up-venue" class="table-of-contents__link toc-highlight">Runs go through the up venue</a></li><li><a href="#the-toolbox-is-a-reference-flows-run-through-the-runner" class="table-of-contents__link toc-highlight">The toolbox is a reference; flows run through the runner</a></li><li><a href="#the-sample-project" class="table-of-contents__link toc-highlight">The sample project</a></li><li><a href="#three-faces-one-record" class="table-of-contents__link toc-highlight">Three faces, one record</a></li><li><a href="#the-frontend-consumes-the-workspace-packages" class="table-of-contents__link toc-highlight">The frontend consumes the workspace packages</a></li><li><a href="#configuration-lives-in-two-roots" class="table-of-contents__link toc-highlight">Configuration lives in two roots</a></li><li><a href="#it-reuses-framework-primitives-rather-than-re-deriving-them" class="table-of-contents__link toc-highlight">It reuses framework primitives rather than re-deriving them</a></li><li><a href="#distribution" class="table-of-contents__link toc-highlight">Distribution</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-19 16:59 UTC · 565d3d5</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_sISv"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/surfaces/s-02-kapi-desktop.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_oFod" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_asXu"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/contribute/architecture/surfaces/s-01-kapi-cli"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">S-01: The kapi CLI</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/contribute/architecture/surfaces/s-03-agent-surfaces"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">S-03: Agent surfaces: MCP and skills</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_iiwO thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#stack-and-module-boundary" class="table-of-contents__link toc-highlight">Stack and module boundary</a></li><li><a href="#one-bound-service-many-open-projects" class="table-of-contents__link toc-highlight">One bound service, many open projects</a></li><li><a href="#every-edit-is-a-change-set" class="table-of-contents__link toc-highlight">Every edit is a change set</a></li><li><a href="#the-app-opens-on-the-workspace" class="table-of-contents__link toc-highlight">The app opens on the workspace</a></li><li><a href="#the-project-home-and-the-point-map" class="table-of-contents__link toc-highlight">The project home and the point map</a></li><li><a href="#the-context-hub" class="table-of-contents__link toc-highlight">The Context hub</a></li><li><a href="#exploring-the-context" class="table-of-contents__link toc-highlight">Exploring the context</a></li><li><a href="#the-feed-of-recorded-context-operations" class="table-of-contents__link toc-highlight">The feed of recorded context operations</a></li><li><a href="#the-digest" class="table-of-contents__link toc-highlight">The digest</a></li><li><a href="#sharing-and-the-ladder-of-reach" class="table-of-contents__link toc-highlight">Sharing and the ladder of reach</a></li><li><a href="#connecting-an-assistant" class="table-of-contents__link toc-highlight">Connecting an assistant</a></li><li><a href="#governance-editing" class="table-of-contents__link toc-highlight">Governance editing</a></li><li><a href="#runs-go-through-the-up-venue" class="table-of-contents__link toc-highlight">Runs go through the up venue</a></li><li><a href="#the-toolbox-is-a-reference-flows-run-through-the-runner" class="table-of-contents__link toc-highlight">The toolbox is a reference; flows run through the runner</a></li><li><a href="#the-sample-project" class="table-of-contents__link toc-highlight">The sample project</a></li><li><a href="#three-faces-one-record" class="table-of-contents__link toc-highlight">Three faces, one record</a></li><li><a href="#the-frontend-consumes-the-workspace-packages" class="table-of-contents__link toc-highlight">The frontend consumes the workspace packages</a></li><li><a href="#configuration-lives-in-two-roots" class="table-of-contents__link toc-highlight">Configuration lives in two roots</a></li><li><a href="#it-reuses-framework-primitives-rather-than-re-deriving-them" class="table-of-contents__link toc-highlight">It reuses framework primitives rather than re-deriving them</a></li><li><a href="#distribution" class="table-of-contents__link toc-highlight">Distribution</a></li></ul></li><li><a href="#consequences" class="table-of-contents__link toc-highlight">Consequences</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/kapi/get-started/quickstart">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_rW2t"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-19 17:19 UTC · 1f39867</div></div></div></footer></div>
 </body>
 </html>
