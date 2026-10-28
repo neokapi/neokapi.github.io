@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[33858],{94773(e){e.exports=JSON.parse('{"labId":"free-terminal"}')}}]);
