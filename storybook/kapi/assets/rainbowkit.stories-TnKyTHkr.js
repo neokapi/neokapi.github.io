@@ -1,4 +1,0 @@
-import{n as e}from"./rolldown-runtime-BCiCTKAo.js";import{t}from"./jsx-runtime-BB9-612F.js";import{a as n,n as r}from"./schema-story-CtSd28EE.js";var i,a,o,s;function c(){return(c=e((()=>{n(),i=t(),a={title:`Formats & Tools/Formats/Data/Rainbow Translation Kit Filter`,parameters:{layout:`padded`}},o={name:`Configuration`,render:()=>(0,i.jsx)(r,{schemaName:`okf_rainbowkit`,source:`bridge`})},s=[`OkapiConfig`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  name: "Configuration",
-  render: () => <FormatConfig schemaName="okf_rainbowkit" source="bridge" />
-}`,...o.parameters?.docs?.source}}}})))()}c();export{o as OkapiConfig,s as __namedExportsOrder,a as default};

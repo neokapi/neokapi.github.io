@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-2s6bX4vc.js";import{t}from"./src-CC62kP2l.js";import{o as n,s as r}from"./CodedTextDisplay-BpvWln6I.js";import{f as i}from"./MemoryGroupedEntry-znZT1mJm.js";function a(e){return r(n(e??[]))}function o(e,t){return i(e,[...t])}function s(e){return a(e).spans}function c(){return(c=e((()=>{t()})))()}export{a as i,o as n,c as r,s as t};
