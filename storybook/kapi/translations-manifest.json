@@ -1578,6 +1578,7 @@
       "5F4pm00UY7l",
       "5F6GqmyBRll",
       "5NbJA5ykWEO",
+      "5XSN6frwqOG",
       "5oDelL63719",
       "5qLf09DOmGG",
       "5wGV2QBDqdw",
@@ -1597,7 +1598,6 @@
       "7RGB1IrfAIj",
       "7YKvXR9XNue",
       "7c1roWz2tyh",
-      "7kAdglwXuvl",
       "7y0Zg6Pwqj5",
       "84cgxGXko6U",
       "86hghWkmolK",
@@ -1697,6 +1697,7 @@
       "kCSVI2deUy4",
       "kD7ZzeZJ7Zu",
       "kPRZnGkyyn8",
+      "kUsglcpSvhB",
       "kUy1wuZegx3",
       "kXuURzZFUER",
       "kjZKt4sCa4q",
@@ -1805,10 +1806,6 @@
       "7C8ou7q9nve",
       "7H5qOn1MIwb",
       "Ff9dnY5Ia1"
-    ],
-    "LanguagesPage.stories": [
-      "hoU2zJItA1l",
-      "kFhUGxvtoJM"
     ],
     "Launcher.stories": [
       "2TakCYCiik9",
@@ -2679,7 +2676,7 @@
       "dEEX3GdTbU3",
       "ioxnqpSijqc"
     ],
-    "ProjectSettingsPage": [
+    "ProjectSettingsPage.stories": [
       "15iW4GPyhYf",
       "1MA0sFOC5s8",
       "2INqLDgslXz",
