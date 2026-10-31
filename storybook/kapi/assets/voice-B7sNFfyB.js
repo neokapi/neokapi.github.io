@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-BCiCTKAo.js";function t(e){return e?`reports`:`fails`}function n(e){return e.fails&&!e.advisory?`fails`:`reports`}function r(e,t){let{fails:n,advisory:r,...i}=e;return t===`fails`?{...i,fails:!0}:i}var i;function a(){return(a=e((()=>{i={values:[`fails`,`reports`],open:!1}})))()}export{r as a,t as i,a as n,n as r,i as t};
