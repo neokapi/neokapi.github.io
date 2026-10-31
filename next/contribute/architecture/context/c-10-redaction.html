@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">C-10: Redaction and clearance | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/contribute/architecture/context/c-10-redaction"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="C-10: Redaction and clearance | neokapi"><meta data-rh="true" name="description" content="Architecture decision: redaction replaces sensitive spans with protected placeholders before content leaves the machine, keeping the original in a local vault; the policy is read at extract, at ingest, by single-tool runs, and by the flow placement gate."><meta data-rh="true" property="og:description" content="Architecture decision: redaction replaces sensitive spans with protected placeholders before content leaves the machine, keeping the original in a local vault; the policy is read at extract, at ingest, by single-tool runs, and by the flow placement gate."><meta data-rh="true" name="keywords" content="redaction,sensitive content,placeholders,unredact,vault,privacy,architecture decision,neokapi"><link data-rh="true" rel="icon" href="/next/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/contribute/architecture/context/c-10-redaction"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-10-redaction" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/contribute/architecture/context/c-10-redaction" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/contribute/architecture/context/c-10-redaction" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/contribute/architecture/context/c-10-redaction" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"C-10: Redaction and clearance","item":"https://neokapi.github.io/next/contribute/architecture/context/c-10-redaction"}]}</script><link rel="stylesheet" href="/next/assets/css/styles.add8fcdf.css">
-<script src="/next/assets/js/runtime~main.fd5f16b6.js" defer="defer"></script>
-<script src="/next/assets/js/main.cd6711dd.js" defer="defer"></script>
+<script src="/next/assets/js/runtime~main.6d08ee35.js" defer="defer"></script>
+<script src="/next/assets/js/main.e3bc904b.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -57,15 +57,21 @@ token (<code>redaction.RedactedValue.Doc</code>, the project-relative path). Blo
 repeat across files and the token counter starts again in every block, so a
 key without the document lets one file&#x27;s original overwrite another&#x27;s. Content
 that sits in no file (an edit record, a note) names itself in its block ID and
-records no document. The file format is version 2, which records the
-document and, for a vault a redacted package names, the vault&#x27;s ID
-(<code>redaction.FileVault.ID</code>, optional). A version 1 file, which records no
-document, still reads, and a lookup that names a document falls back to the
-entry that names none. A file above version 2 was written by a newer kapi, and
-<code>redaction.OpenFileVault</code> refuses it with <code>ErrNewerVault</code>, so
-merge fails for that file and a write to the workspace home is refused. The
-vault is the only copy of the originals, never a cache, so it is read as it is
-rather than reset.</p>
+records no document. <code>Flush</code> writes version 2 (<code>fileVaultVersion</code>), which
+records the document and, for a vault a redacted package names, the vault&#x27;s ID
+(<code>redaction.FileVault.ID</code>, optional), and
+<code>redaction.OpenFileVault</code> reads from version 2 (<code>oldestVaultVersion</code>) up to the
+version it writes; the floor stays put when the written version moves. A file
+with no version, or below the floor, was written by an earlier kapi, and it is
+refused with an <code>*OlderVaultError</code> (<code>ErrOlderVault</code>) that names the version
+found; one above the written version was written by a newer kapi, and it is
+refused with <code>ErrNewerVault</code>. Either way merge fails for that file, and a
+write to the workspace home and a read of a kept edition fail. The caller
+names the command that writes a new vault (<code>redaction.WithRun</code>): <code>kapi extract</code> for a batch sidecar or a package sidecar, whose entries belong to the
+files that extraction wrote, and, for the project vault, a run after moving the file
+aside, since the old file holds the only copy of every recorded edit&#x27;s
+originals. The vault is the only copy of the originals, never a cache, so kapi
+leaves a refused file as it is.</p>
 <p><code>vault/</code> sits beside <code>work/</code>, outside it. <strong><code>work/</code> is defined by being
 disposable</strong>: losing it costs CPU. <strong>The vault is defined by an exclusion</strong>: a
 named destination must never read it, and losing it means redacted content can
@@ -275,7 +281,8 @@ as it was rather than lose the value.</p>
 <p><strong>The deeper look.</strong> It sends chunks of the project&#x27;s block texts to a model
 (<code>host/contextdeeper.go</code>). A chunk holds blocks of files under one policy
 only, and each chunk is redacted under that policy before the model reads
-it.</p>
+it. Each chunk then carries that policy and the values read back from the
+vault, so the rest of its requests is redacted as below.</p>
 </li>
 <li class="">
 <p><strong>The operation log.</strong> The record of an applied edit travels to every
@@ -300,6 +307,87 @@ annotations, which a record does not carry, so under one a record keeps
 revisions and hashes only and the workspace home keeps no edition.</p>
 </li>
 </ol>
+<h3 class="anchor anchorTargetStickyNavbar_fyYt" id="everything-a-request-carries">Everything a request carries<a href="#everything-a-request-carries" class="hash-link" aria-label="Direct link to Everything a request carries" title="Direct link to Everything a request carries" translate="no">​</a></h3>
+<p>A request to a model carries more than the block, and the policy covers all
+of it. The project strings a request can carry, by where the prompt takes
+them from:</p>
+<table><thead><tr><th>String</th><th>Source</th><th>Prompts</th></tr></thead><tbody><tr><td>The block, its translations, its plural forms</td><td>the block</td><td>every prompt</td></tr><tr><td>The neighbouring blocks</td><td>the document</td><td>translate</td></tr><tr><td>The block&#x27;s key</td><td>the block&#x27;s name</td><td>translate</td></tr><tr><td>The previous source and approved translation</td><td>the content memory (<code>prompt.Context.Prior</code>)</td><td>translate</td></tr><tr><td>Each term and its replacement, the do-not-translate terms</td><td>the term rules (<code>profile.TermRuleMap</code>)</td><td>translate, review</td></tr><tr><td>Guidance, style, patterns, examples</td><td>the voice profile (<code>profile.RenderVoiceGuide</code>)</td><td>translate, review, voice-check</td></tr><tr><td>The instruction</td><td><code>--instruction</code>, the recipe, a fix pass&#x27;s findings</td><td>translate, segment</td></tr><tr><td>The domain</td><td>a tool preset</td><td>term-extract, voice-infer</td></tr><tr><td>The known terms</td><td>the terms store</td><td>entity-extract</td></tr><tr><td>The neighbouring lines</td><td>the document</td><td>media-refine</td></tr></tbody></table>
+<p>The redact step leaves its policy (<code>redaction.Policy</code>: the rule detector and
+the placeholder options) on every block it reads in-process, in the block&#x27;s
+secret annotation, whether or not the block holds a value to withhold. A
+tool&#x27;s view of a block puts a <code>redaction.Egress</code> over that entry on the
+view&#x27;s context (<code>tool.ContextBinder</code>). A tool that sends several blocks in one
+request binds them together: the translate batch (<code>redaction.BindBlocks</code>),
+and the voice-infer corpus and the media-refine neighbours
+(<code>redaction.BindCorpus</code>). Each exported AI tool constructor and prompt
+function in <code>core/ai/tools</code> wraps the provider it is given in
+<code>aiprovider.Redacting</code>, whoever built the provider; the wrapper reports the
+provider&#x27;s limits and does nothing for a context with no Egress. It reads the
+Egress from the call&#x27;s context and redacts each text part and section of a
+chat, and every field of a translate request, before the provider sends it.
+The recorder sits inside the wrapper, so <code>--explain-prompts</code> shows the
+request as it was sent.</p>
+<p>The Egress matches the policy&#x27;s rules, and every original the request&#x27;s
+blocks already withhold, the latter by literal text, so a value an entity
+step found is redacted beside the block too. A JSON payload in a prompt (the
+translate batch) holds each string escaped, so the Egress also reads the
+unescaped text and replaces each match at its escaped span, with the token
+escaped the same way. Entity detection itself reads the blocks only: a value
+named only beside the block is redacted when a rule names it or a block of
+the request withholds the same text. Tokens are shared within a request:</p>
+<ul>
+<li class="">A value a block withholds is drawn as the token the request already shows
+for it: its placeholder tag when the prompt carries the block&#x27;s runs as
+tags (translate), its visible token (<code>[REDACTED:Person]</code>) otherwise. In a
+batch, the value is also kept in each other block&#x27;s entry, so it restores
+in whichever block&#x27;s answer the model copies it into.</li>
+<li class="">A value met only beside the block takes the next token in the block&#x27;s
+sequence, under a visible token that no other value of the request uses and
+that the request&#x27;s text does not already hold, and is kept in the block&#x27;s
+entry. <code>unredact</code> restores it from there by its visible token, so a token
+that matched text the person wrote would replace that text.</li>
+<li class="">A span inside a token the request already shows is left alone.</li>
+</ul>
+<p>Only the request that produced a translation fills the entry its tokens
+restore from, so the translate tool neither serves a block that carries an
+entry from the session&#x27;s target cache nor keeps its translation there. A
+later redact step keeps the values an earlier one left in the entry and
+takes the entry&#x27;s policy over.</p>
+<p>A prompt that carries text alone (review, quality check, term-extract,
+voice-check, voice-infer, entity-extract, the media-refine neighbours, the
+deeper look) draws each placeholder as its visible token
+(<code>redaction.VisibleText</code>), so the model reads a token where the value was.
+entity-extract reports spans in the text it sent, and
+<code>redaction.VisibleSource</code> maps each back to the runs; a span on a token names
+a withheld value and is dropped. The LLM segmenter reads the block as every
+segmentation engine does, with each inline code masked, because its chunks
+must align with the runs.</p>
+<p>The entry grows in memory only, by at most one value per distinct original
+the rest of the request carries and the block does not hold, and <code>unredact</code>
+discards it with the entry. On <code>samples/northsea</code>, a policy over the product
+and company names adds 250 values to the 23 the redact step recorded, across
+136 blocks, at most 2 in one block: the voice profile names both, and every
+request carries it. The deeper look reads the project vault and writes
+nothing back to it.</p>
+<p>Two commands ask a model outside a run of a registry tool. <code>kapi voice check --ai</code> runs its tool between redact and unredact (<code>host.VoiceCheckTools</code>)
+under the policy of the file it reads, or <code>defaults.redaction</code> for text given
+inline. <code>kapi terms expand</code> holds no block, so it redacts each request under
+the rules of <code>defaults.redaction</code> (<code>host.TermsExpandRedaction</code>); a project
+whose only policies sit on collections or items gives it none to apply. A
+withheld term goes out as its token, and the forms the model returns for a
+token name no term that was asked about, so none is written. The AI actions
+on Kapi Desktop&#x27;s review (Fix with AI, Retranslate, Explain, the AI
+pre-review) run their tool through <code>host.RedactionChain</code>, under the policy of
+the unit&#x27;s file.</p>
+<p>A machine-translation engine reads a redacted block through semantic HTML:
+each withheld value is a placeholder element
+(<code>&lt;span data-type=&quot;redaction:person&quot;/&gt;</code>) that maps back to its placeholder by
+position, and unredact restores it by id, as the translate tool&#x27;s placeholder
+tag does. The engine never reads the visible token as text: an engine
+translates text, so <code>[REDACTED:Person]</code> could come back reworded and match
+nothing, where it keeps markup in place.</p>
+<p>Not covered:</p>
+<table><thead><tr><th>Path</th><th>What reaches the provider</th></tr></thead><tbody><tr><td>Media payloads (media-refine&#x27;s image crop, speech clip, video frame)</td><td>The media as recognised; the rules match text, and a crop or clip holds none</td></tr><tr><td>Machine-translation plugin engines (<code>translate</code> with an MT provider)</td><td>The redacted block, each withheld value a placeholder element; no term rules, voice profile or other project text. The request goes through the plugin&#x27;s provider, not <code>aiprovider.Redacting</code>, so anything the plugin sends beyond it is outside the policy</td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_fyYt" id="cli-surface">CLI surface<a href="#cli-surface" class="hash-link" aria-label="Direct link to CLI surface" title="Direct link to CLI surface" translate="no">​</a></h3>
 <ul>
 <li class=""><code>kapi run secure-translate -i &lt;file&gt; --target-lang &lt;l&gt;</code>: the in-process flow
@@ -349,6 +437,6 @@ contracts and the placement pass.</li>
 runs and the semantic vocabulary.</li>
 <li class=""><a class="" href="/next/contribute/architecture/multilingual/m-01-bilingual-interop">M-01: Bilingual Format Interop</a>:
 the extract and merge round trip redaction slots into.</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_SDVB"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-10-redaction.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_SCWr" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_ZStg"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/contribute/architecture/context/c-09-content-memory"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">C-09: Content memory</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/contribute/architecture/context/c-11-context-operations"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">C-11: Context operations</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_XtBz thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-placeholder-model" class="table-of-contents__link toc-highlight">The placeholder model</a></li><li><a href="#the-locality-guarantee" class="table-of-contents__link toc-highlight">The locality guarantee</a></li><li><a href="#redacted-packages" class="table-of-contents__link toc-highlight">Redacted packages</a></li><li><a href="#detection" class="table-of-contents__link toc-highlight">Detection</a></li><li><a href="#redaction-is-a-structured-edit" class="table-of-contents__link toc-highlight">Redaction is a structured edit</a></li><li><a href="#restoration" class="table-of-contents__link toc-highlight">Restoration</a></li><li><a href="#the-policy-and-its-readers" class="table-of-contents__link toc-highlight">The policy and its readers</a></li><li><a href="#cli-surface" class="table-of-contents__link toc-highlight">CLI surface</a></li><li><a href="#not-yet-built-clearance-as-a-destination-ladder" class="table-of-contents__link toc-highlight">Not yet built: clearance as a destination ladder</a></li></ul></li><li><a href="#rationale" class="table-of-contents__link toc-highlight">Rationale</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/kapi/get-started/first-project">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-31 11:13 UTC · 3ddbc50</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_SDVB"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/contribute/architecture/context/c-10-redaction.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_SCWr" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_ZStg"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/contribute/architecture/context/c-09-content-memory"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">C-09: Content memory</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/contribute/architecture/context/c-11-context-operations"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">C-11: Context operations</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_XtBz thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#context" class="table-of-contents__link toc-highlight">Context</a></li><li><a href="#decision" class="table-of-contents__link toc-highlight">Decision</a><ul><li><a href="#the-placeholder-model" class="table-of-contents__link toc-highlight">The placeholder model</a></li><li><a href="#the-locality-guarantee" class="table-of-contents__link toc-highlight">The locality guarantee</a></li><li><a href="#redacted-packages" class="table-of-contents__link toc-highlight">Redacted packages</a></li><li><a href="#detection" class="table-of-contents__link toc-highlight">Detection</a></li><li><a href="#redaction-is-a-structured-edit" class="table-of-contents__link toc-highlight">Redaction is a structured edit</a></li><li><a href="#restoration" class="table-of-contents__link toc-highlight">Restoration</a></li><li><a href="#the-policy-and-its-readers" class="table-of-contents__link toc-highlight">The policy and its readers</a></li><li><a href="#everything-a-request-carries" class="table-of-contents__link toc-highlight">Everything a request carries</a></li><li><a href="#cli-surface" class="table-of-contents__link toc-highlight">CLI surface</a></li><li><a href="#not-yet-built-clearance-as-a-destination-ladder" class="table-of-contents__link toc-highlight">Not yet built: clearance as a destination ladder</a></li></ul></li><li><a href="#rationale" class="table-of-contents__link toc-highlight">Rationale</a></li><li><a href="#see-also" class="table-of-contents__link toc-highlight">See also</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/kapi/get-started/first-project">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/kapi/cli">Kapi CLI</a></li><li class="footer__item"><a class="footer__link-item" href="/next/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-10-31 11:28 UTC · 44bfffc</div></div></div></footer></div>
 </body>
 </html>
