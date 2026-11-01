@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-2s6bX4vc.js";import{c as t,s as n}from"./useRouteContext-DNUCgxrn.js";function r(e){return t({from:e.from,strict:e.strict,shouldThrow:e.shouldThrow,structuralSharing:e.structuralSharing,select:t=>e.select?e.select(t.search):t.search})}function i(){return(i=e((()=>{n()})))()}export{r as n,i as t};
