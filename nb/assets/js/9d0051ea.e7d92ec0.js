@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[61676],{9580(s){s.exports=JSON.parse('{"labId":"segmentation"}')}}]);

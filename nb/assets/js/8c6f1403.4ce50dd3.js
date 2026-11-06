@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[83620],{58617(s){s.exports=JSON.parse('{"labId":"northsea-project"}')}}]);

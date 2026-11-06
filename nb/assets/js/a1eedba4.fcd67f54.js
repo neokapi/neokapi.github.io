@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[41582],{21577(a){a.exports=JSON.parse('{"labId":"kbf-anatomy"}')}}]);

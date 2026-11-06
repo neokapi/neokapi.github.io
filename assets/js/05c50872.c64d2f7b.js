@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[36673],{50723(s){s.exports=JSON.parse('{"labId":"compass-axis"}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkneokapi_docs=globalThis.webpackChunkneokapi_docs||[]).push([[96365],{38797(s){s.exports=JSON.parse('{"labId":"mart-tools"}')}}]);
