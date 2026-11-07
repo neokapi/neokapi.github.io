@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Formats | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/framework/formats"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="nb"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Formats | neokapi"><meta data-rh="true" name="description" content="neokapi formats are paired readers and writers that convert documents to and from the Part stream. Built-in formats span message catalogs, documents, data, subtitles, office files, and bilingual interchange; more are available through plugins."><meta data-rh="true" property="og:description" content="neokapi formats are paired readers and writers that convert documents to and from the Part stream. Built-in formats span message catalogs, documents, data, subtitles, office files, and bilingual interchange; more are available through plugins."><meta data-rh="true" name="keywords" content="formats,format reader,format writer,XLIFF,JSON,DOCX,Markdown,message catalogs,format plugins"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/framework/formats"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/framework/formats" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/nb/framework/formats" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/qps/framework/formats" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/framework/formats" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Formats","item":"https://neokapi.github.io/framework/formats"}]}</script><link rel="stylesheet" href="/assets/css/styles.2ba2b2da.css">
-<script src="/assets/js/runtime~main.9ce7f674.js" defer="defer"></script>
-<script src="/assets/js/main.4a717a27.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a875d7c5.js" defer="defer"></script>
+<script src="/assets/js/main.2d39b3a2.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -15,10 +15,13 @@
 <p>A <strong>format</strong> in neokapi is a paired reader and writer for a document type. The
 <a class="" href="/framework/content-model">reader</a> turns a file into a stream of Parts (the
 content <a class="" href="/framework/content-model">blocks</a> and the surrounding structure), and the
-writer turns that stream back into a file. This read/process/write symmetry is
-what lets the same <a class="" href="/framework/tools">tools</a> and <a class="" href="/framework/flows">flows</a> operate
-on any format: by the time a tool sees a Block, it no longer matters whether it
-came from JSON, HTML, or DOCX.</p>
+writer turns that stream back into a file. Every reader produces the same Parts,
+so the same <a class="" href="/framework/tools">tools</a> and <a class="" href="/framework/flows">flows</a> operate on
+any format. A tool handles a Block the same way whether it came from JSON, HTML
+or DOCX.</p>
+<p>The diagram shows one round trip: the reader records the skeleton, and the
+writer replays it around the edited blocks.</p>
+<div class="kdx"><div class="kdx-scroll"><div class="kdx-canvas" style="min-width:520px;max-width:611px"><svg viewBox="0 0 611 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A format round trip: the reader captures the skeleton, the writer replays it"><defs><marker id="kdx-arr-r" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="kdx-arrow"></path></marker><marker id="kdx-arr-l" markerWidth="7" markerHeight="7" refX="0.5" refY="3" orient="auto"><path d="M6,0 L0,3 L6,6 Z" class="kdx-arrow"></path></marker></defs><path d="M234,104 L305.5,126" class="kdx-link kdx-link--resource"></path><g><rect x="241.35" y="106" width="56.8" height="15" rx="7" class="kdx-pill"></rect><text x="269.75" y="117" text-anchor="middle" font-size="8.5" class="kdx-chan">captures</text></g><path d="M305.5,180 L234,214" class="kdx-link kdx-link--resource"></path><g><rect x="244.15" y="188" width="51.199999999999996" height="15" rx="7" class="kdx-pill"></rect><text x="269.75" y="199" text-anchor="middle" font-size="8.5" class="kdx-chan">replays</text></g><g><rect x="36" y="54" width="105" height="50" rx="9" class="kdx-box kdx-box--io"></rect><text x="88.5" y="83" text-anchor="middle" font-size="12" class="kdx-label">source file</text><line x1="141" y1="79" x2="181" y2="79" class="kdx-channel" marker-end="url(#kdx-arr-r)"></line></g><g><rect x="185" y="54" width="98" height="50" rx="9" class="kdx-box"></rect><text x="234" y="78" text-anchor="middle" font-size="12" class="kdx-label">reader</text><text x="234" y="92" text-anchor="middle" font-size="9" class="kdx-sub">DataFormat</text><line x1="283" y1="79" x2="323" y2="79" class="kdx-channel" marker-end="url(#kdx-arr-r)"></line></g><g><rect x="327" y="54" width="120" height="50" rx="9" class="kdx-box"></rect><text x="387" y="78" text-anchor="middle" font-size="12" class="kdx-label">Part stream</text><text x="387" y="92" text-anchor="middle" font-size="9" class="kdx-sub">blocks · data</text><line x1="447" y1="79" x2="487" y2="79" class="kdx-channel" marker-end="url(#kdx-arr-r)"></line></g><g><rect x="491" y="54" width="84" height="50" rx="9" class="kdx-box"></rect><text x="533" y="83" text-anchor="middle" font-size="12" class="kdx-label">tools</text></g><g><rect x="36" y="214" width="105" height="50" rx="9" class="kdx-box kdx-box--io"></rect><text x="88.5" y="243" text-anchor="middle" font-size="12" class="kdx-label">output file</text><line x1="137" y1="239" x2="185" y2="239" class="kdx-channel" marker-start="url(#kdx-arr-l)"></line></g><g><rect x="185" y="214" width="98" height="50" rx="9" class="kdx-box"></rect><text x="234" y="238" text-anchor="middle" font-size="12" class="kdx-label">writer</text><text x="234" y="252" text-anchor="middle" font-size="9" class="kdx-sub">DataFormat</text><line x1="279" y1="239" x2="327" y2="239" class="kdx-channel" marker-start="url(#kdx-arr-l)"></line></g><g><rect x="327" y="214" width="112" height="50" rx="9" class="kdx-box"></rect><text x="383" y="243" text-anchor="middle" font-size="12" class="kdx-label">edited Parts</text></g><rect x="230.5" y="126" width="150" height="54" rx="10" class="kdx-hub"></rect><text x="305.5" y="150" text-anchor="middle" font-size="12.5" class="kdx-label">skeleton</text><text x="305.5" y="166" text-anchor="middle" font-size="9" class="kdx-sub" style="fill:var(--kdx-resource)">structure + block refs</text></svg></div></div></div>
 <div class="theme-admonition theme-admonition-tip admonition_DM6m alert alert--success"><div class="admonitionHeading_GnE6"><span class="admonitionIcon_Yulp"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>See the skeleton preserved</div><div class="admonitionContent_Vdjd"><p>Reading a file splits it into content <a class="" href="/framework/content-model">blocks</a> and
 a non-translatable <em>skeleton</em>: every tag, key, attribute, and delimiter the
 writer needs to reproduce the original structure. Run a file through
@@ -41,7 +44,7 @@ per-locale assets.</li>
 <li class=""><strong>Source code</strong>: the prose inside source files, read with a grammar (a
 package cask&#x27;s description, a string literal in Go or TypeScript), provided by
 the <code>kapi-sourcecode</code> plugin. It is read-only: a collection in this format is
-declared <code>source_only: true</code> and is checked rather than translated. See
+declared <code>source_only: true</code>, and kapi checks it without translating it. See
 <a class="" href="/reference/formats/sourcecode">Source code</a> and
 <a class="" href="/kapi/recipes/verify-content">Verify content in source files</a>.</li>
 <li class=""><strong>Bilingual interchange</strong>: XLIFF 1.2 and 2.x, PO, TMX, and the native
@@ -53,10 +56,10 @@ folder of sub-documents (see below).</li>
 a workflow can replace with a per-locale variant. With the <code>kapi-vision</code> plugin
 installed (and the <code>ocr</code>/<code>layout</code> options on), the reader also extracts in-image
 text and document layout (regions, reading order, tables), turning a screenshot
-or scanned page into structured, translatable content. The design, and the full
+or scanned page into structured content. The design, and the full
 set of image-adaptation modes, are described in
 <a class="" href="/contribute/architecture/multilingual/m-03-multimodal-content">M-03</a>.</p>
-<p>PDF is read by Google&#x27;s PDFium rather than a built-in reader: on the desktop and
+<p>PDF is read by Google&#x27;s PDFium: on the desktop and
 CLI through the <code>kapi-pdfium</code> plugin, and in the browser through PDFium compiled
 to WebAssembly. Beyond text, it recovers each fragment&#x27;s position on the page
 (geometry) and the document&#x27;s structure (headings, paragraphs, and tables) from
@@ -64,8 +67,8 @@ the PDF&#x27;s own tags where present and by geometric inference otherwise. You 
 it on your own files in the <a class="" href="/learn/structure">Structure and layout</a> lab; the design is described in
 <a class="" href="/contribute/architecture/engine/e-08-document-structure-tiers">E-08</a>.</p>
 <p>An <strong>archive</strong> (a ZIP, TAR, or gzip-compressed TAR) is a <em>namespace</em> of inner
-documents rather than one document, so it is handled as a <strong>container binding</strong>
-(<a class="" href="/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>) rather than a format
+documents, so kapi handles it as a <strong>container binding</strong>
+(<a class="" href="/contribute/architecture/engine/e-04-flows-and-io-binding">E-04</a>), not as a format
 with a writer. Pointed at an output-producing command, each entry is processed
 as its <strong>own file run</strong> (through that entry&#x27;s normal reader and writer with full
 skeleton round-trip) and the results are repacked over the original container,
@@ -78,14 +81,12 @@ pseudo-translates every recognised file inside it, nested Office
 documents included, in one pass. For inspection, a read-only <code>archive</code> reader surfaces each entry&#x27;s
 content so <code>kapi inspect bundle.zip</code> shows what is inside.</p>
 <p>Each format exposes its own configuration (extraction rules, segmentation,
-inline-code handling). Rather than maintain a list by hand, the
-<a class="" href="/formats">Format Reference</a> is generated directly from the format registry;
-it always reflects the formats and parameters in the current build.</p>
+inline-code handling). The <a class="" href="/formats">Format Reference</a> is generated from the
+format registry, so it lists the formats and parameters in the current build.</p>
 <h2 class="anchor anchorTargetStickyNavbar_fyYt" id="how-kapi-reads-a-file">How kapi reads a file<a href="#how-kapi-reads-a-file" class="hash-link" aria-label="Direct link to How kapi reads a file" title="Direct link to How kapi reads a file" translate="no">​</a></h2>
-<p>The clearest way to see what a format reader does is to watch it parse a file.
-Below, kapi reads an Android <code>strings.xml</code> resource and produces the content
-model: the translatable blocks, their identifiers, and their source text. This
-is the reader stage of the pipeline, with no transformation applied:</p>
+<p>Below, kapi reads an Android <code>strings.xml</code> resource and produces the content
+model: the blocks, their identifiers and their source text. This is the reader
+stage of the pipeline, with no transformation applied:</p>
 <div class="kapi-cur"></div>
 <p>The same parser, pointed at a different format, produces blocks of the same
 shape. Here an XLIFF bilingual file resolves to the same kind of block stream:</p>
@@ -94,29 +95,27 @@ shape. Here an XLIFF bilingual file resolves to the same kind of block stream:</
 format (JSON, YAML, properties) produces whole-block source content with no
 internal segment structure. A bilingual format (XLIFF, TMX) additionally
 populates stand-off <a class="" href="/framework/content-model">segmentation and alignment overlays</a>:
-the file&#x27;s existing segment boundaries and source↔target pairings are recorded as
-overlays over the runs rather than baked into structure, so they survive a
-round-trip when present and are absent when a format doesn&#x27;t define them.
-Tools and writers read those overlays; a format that emits none works at
-whole-block granularity.</p>
+the file&#x27;s segment boundaries and source↔target pairings are recorded as
+overlays over the runs, and they survive a round trip. Tools and writers read
+those overlays, and work at whole-block granularity when a format emits none.</p>
 <h2 class="anchor anchorTargetStickyNavbar_fyYt" id="content-fidelity-context-for-ingestion">Content fidelity: context for ingestion<a href="#content-fidelity-context-for-ingestion" class="hash-link" aria-label="Direct link to Content fidelity: context for ingestion" title="Direct link to Content fidelity: context for ingestion" translate="no">​</a></h2>
 <p>Documents also contain useful text outside the content selected for translation:
 code listings, image captions and alt-text, formulas, strings marked
 do-not-translate, and values excluded by configuration. An LLM or retrieval index
 may need this material to interpret the document.</p>
 <p>By default, neokapi readers <strong>surface</strong> this contextual content as
-non-translatable blocks rather than hiding it in the skeleton. Such a block is
-visible to anything that reads the Part stream (the editor, an export to
-Markdown, an ingestion pipeline) and is tagged with a role (code, formula,
-caption, …) so consumers know what it is, but machine translation skips it and
-the round-trip is unaffected (its original bytes are still replayed verbatim).
+non-translatable blocks, outside the skeleton. Anything that reads the Part
+stream sees such a block: the editor, an export to Markdown, an ingestion
+pipeline. Each carries a role (code, formula, caption, …) that tells consumers
+what it is. Machine translation skips it, and the writer replays its original
+bytes verbatim, so the round trip is unaffected.
 Comments and similar metadata surface as data or notes alongside the content.</p>
 <p>Each reader that supports this exposes an <code>extractNonTranslatableContent</code> option
-(on by default) in the <a class="" href="/formats">Format Reference</a>; set it false to restore the
-older skeleton-only behavior. The design, and why it leaves translation output
+(on by default) in the <a class="" href="/formats">Format Reference</a>; set it to false to keep that
+content in the skeleton only. The design, and why it leaves translation output
 and the round-trip guarantee unchanged, is described in
-<a class="" href="/contribute/architecture/engine/e-02-format-system">E-02</a>. Equations are
-a notable case: Word/OMML formulas are converted to LaTeX/MathML and rendered on
+<a class="" href="/contribute/architecture/engine/e-02-format-system">E-02</a>. Equations get
+their own handling: Word/OMML formulas are converted to LaTeX/MathML and rendered on
 cross-format export, and the natural-language prose inside an equation is
 translatable; see <a class="" href="/toolbox/kconv">kconv</a> and
 <a class="" href="/contribute/architecture/multilingual/m-04-math-and-equations">M-04</a>.</p>
@@ -125,7 +124,7 @@ translatable; see <a class="" href="/toolbox/kconv">kconv</a> and
 alongside the built-in set: the <code>kapi-pdfium</code> plugin adds the PDF reader, for
 example. Once installed, a plugin&#x27;s formats participate in detection, <code>kapi formats</code>, and flows exactly like the built-in ones.</p>
 <h2 class="anchor anchorTargetStickyNavbar_fyYt" id="format-detection">Format Detection<a href="#format-detection" class="hash-link" aria-label="Direct link to Format Detection" title="Direct link to Format Detection" translate="no">​</a></h2>
-<p>neokapi automatically detects formats using a cascade strategy:</p>
+<p>neokapi detects a file&#x27;s format from these signals, in order:</p>
 <ol>
 <li class="">Explicit MIME type (if provided)</li>
 <li class="">File extension mapping</li>
@@ -137,6 +136,12 @@ example. Once installed, a plugin&#x27;s formats participate in detection, <code
 <p>Use <code>--mime</code> or <code>--ext</code> to filter:</p>
 <div class="language-bash codeBlockContainer__kUZ theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_Wq78"><pre tabindex="0" class="prism-code language-bash codeBlock_fYYn thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_p8wC"><div class="token-line" style="color:#393A34"><span class="token plain">kapi formats </span><span class="token parameter variable" style="color:#36acaa">--mime</span><span class="token plain"> text/html</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">kapi formats </span><span class="token parameter variable" style="color:#36acaa">--ext</span><span class="token plain"> .docx</span><br></div></code></pre></div></div>
 <h2 class="anchor anchorTargetStickyNavbar_fyYt" id="interactive-format-reference">Interactive Format Reference<a href="#interactive-format-reference" class="hash-link" aria-label="Direct link to Interactive Format Reference" title="Direct link to Interactive Format Reference" translate="no">​</a></h2>
-<p>See the <a class="" href="/formats">Format Reference</a> page for interactive documentation of all formats with configurable parameters.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_SDVB"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/framework/formats.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_SCWr" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_ZStg"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/framework/vocabularies"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Vocabularies</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/framework/format-maturity"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Format support &amp; maturity</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_XtBz thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#how-kapi-reads-a-file" class="table-of-contents__link toc-highlight">How kapi reads a file</a></li><li><a href="#content-fidelity-context-for-ingestion" class="table-of-contents__link toc-highlight">Content fidelity: context for ingestion</a></li><li><a href="#plugin-formats" class="table-of-contents__link toc-highlight">Plugin formats</a></li><li><a href="#format-detection" class="table-of-contents__link toc-highlight">Format Detection</a></li><li><a href="#listing-formats" class="table-of-contents__link toc-highlight">Listing Formats</a></li><li><a href="#interactive-format-reference" class="table-of-contents__link toc-highlight">Interactive Format Reference</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/first-project">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/desktop/overview">Kapi Desktop</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Command line</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-11-06 23:56 UTC · af39e62</div></div></div></footer></div>
+<p>See the <a class="" href="/formats">Format Reference</a> page for interactive documentation of all formats with configurable parameters.</p>
+<h2 class="anchor anchorTargetStickyNavbar_fyYt" id="related">Related<a href="#related" class="hash-link" aria-label="Direct link to Related" title="Direct link to Related" translate="no">​</a></h2>
+<ul>
+<li class=""><a class="" href="/framework/content-model">Content Model</a>: the Parts a reader produces.</li>
+<li class=""><a class="" href="/framework/inline-formatting">Inline Formatting</a>: how markup inside a block becomes runs.</li>
+<li class=""><a class="" href="/format-maturity">Format maturity</a>: the evidence for each reader and writer.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_SDVB"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/framework/formats.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_SCWr" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_ZStg"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/framework/vocabularies"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Vocabularies</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/framework/format-maturity"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Format support &amp; maturity</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_XtBz thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#how-kapi-reads-a-file" class="table-of-contents__link toc-highlight">How kapi reads a file</a></li><li><a href="#content-fidelity-context-for-ingestion" class="table-of-contents__link toc-highlight">Content fidelity: context for ingestion</a></li><li><a href="#plugin-formats" class="table-of-contents__link toc-highlight">Plugin formats</a></li><li><a href="#format-detection" class="table-of-contents__link toc-highlight">Format Detection</a></li><li><a href="#listing-formats" class="table-of-contents__link toc-highlight">Listing Formats</a></li><li><a href="#interactive-format-reference" class="table-of-contents__link toc-highlight">Interactive Format Reference</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/kapi/get-started/first-project">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/desktop/overview">Kapi Desktop</a></li><li class="footer__item"><a class="footer__link-item" href="/kapi/cli">Command line</a></li><li class="footer__item"><a class="footer__link-item" href="/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-11-07 00:40 UTC · fb165f6</div></div></div></footer></div>
 </body>
 </html>
