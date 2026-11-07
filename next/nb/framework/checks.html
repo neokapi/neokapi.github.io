@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Checks | neokapi</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="robots" content="noindex, nofollow"><meta data-rh="true" property="og:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" name="twitter:image" content="https://neokapi.github.io/next/nb/img/og-card.png"><meta data-rh="true" property="og:url" content="https://neokapi.github.io/next/nb/framework/checks"><meta data-rh="true" property="og:locale" content="nb"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="nb"><meta data-rh="true" name="docsearch:language" content="nb"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@neokapi"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Checks | neokapi"><meta data-rh="true" name="description" content="Checks are tests for AI output: read-only verifiers that inspect content against rules and return one machine-readable Report (verdict, score, located findings that fail or report) without modifying it. A content-first checkset (hygiene, length, patterns, voice) plus opt-in bilingual checks, all one family."><meta data-rh="true" property="og:description" content="Checks are tests for AI output: read-only verifiers that inspect content against rules and return one machine-readable Report (verdict, score, located findings that fail or report) without modifying it. A content-first checkset (hygiene, length, patterns, voice) plus opt-in bilingual checks, all one family."><meta data-rh="true" name="keywords" content="checks,content verification,tests for AI,findings,voice profile,terminology,gate,CI"><link data-rh="true" rel="icon" href="/next/nb/img/favicon.png"><link data-rh="true" rel="canonical" href="https://neokapi.github.io/next/nb/framework/checks"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/framework/checks" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/nb/framework/checks" hreflang="nb"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/qps/framework/checks" hreflang="en"><link data-rh="true" rel="alternate" href="https://neokapi.github.io/next/framework/checks" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Checks","item":"https://neokapi.github.io/next/nb/framework/checks/"}]}</script><link rel="stylesheet" href="/next/nb/assets/css/styles.2ba2b2da.css">
-<script src="/next/nb/assets/js/runtime~main.71f83136.js" defer="defer"></script>
-<script src="/next/nb/assets/js/main.0e2bf553.js" defer="defer"></script>
+<script src="/next/nb/assets/js/runtime~main.721b93dd.js" defer="defer"></script>
+<script src="/next/nb/assets/js/main.7a330a2c.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -16,28 +16,28 @@
 findings without modifying it</strong>. neokapi runs every kind of verification through
 one engine: deterministic rule-based checks, terminology enforcement, placeholder and
 do-not-translate integrity, and <a class="" href="/next/nb/framework/checks/voice">voice profile</a> are
-check families that share one model rather than separate systems.</p>
+check families that share one model.</p>
 <p>In the CLI, <code>kapi check &lt;path&gt;</code> checks authored content and <code>kapi check --ship</code>
 enforces project release gates. Checks also run inside <code>kapi up</code>&#x27;s loop: each pass runs the project&#x27;s bound
 checks over what was produced. <code>kapi exec</code> runs a single check tool (<code>qa</code>,
 <code>term-check</code>, <code>voice-check</code>) on its own. See
 <a class="" href="/next/nb/kapi/direct-execution-layer">Understanding the CLI layers</a>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_fyYt" id="checks-are-tests-for-ai-output">Checks are tests for AI output<a href="#checks-are-tests-for-ai-output" class="hash-link" aria-label="Direkte lenke til Checks are tests for AI output" title="Direkte lenke til Checks are tests for AI output" translate="no">​</a></h2>
-<p>Exact rule checks behave like tests: for fixed input and context they are
-repeatable, and report a specific violation: an over-long string, a forbidden phrase, an
-off-brand term, a doubled word. <code>kapi check</code> runs a <strong>content-first</strong> checkset
-over any file, with no translation needed, and returns one stable, machine-readable
+<p>Exact rule checks behave like tests. For fixed input and context they are
+repeatable, and each reports a specific violation: an over-long string, a
+forbidden phrase, an off-voice term, a doubled word.</p>
+<p><code>kapi check</code> runs a <strong>content-first</strong> checkset over any file, with no
+translation needed, and returns one stable, machine-readable
 <a href="#the-report" class=""><code>kapi.check/v2</code> Report</a>: <code>pass</code>, a 0–100 score, and a finding
 per <strong>stable rule id</strong> (<code>length.max-chars-exceeded</code>, <code>hygiene.doubled-word</code>, …)
 anchored to the exact <strong>block</strong>. The <a class="" href="/next/nb/reference/checks">Check reference</a>
 documents every rule id the source checks report and what fixes each. Each
 finding either fails or reports, as the rule that raised it says (see <a href="#what-fails" class="">What
 fails</a>). The command <strong>exits
-non-zero when a finding fails</strong>, so a regression is caught in CI, or inside an
-AI assistant&#x27;s fix-loop, the same way a failing test is. The assistant drafts,
-the checks tell it which block and which rule broke, it fixes that block
-(through <code>kapi apply</code>, or the <code>apply_edits</code> MCP tool), and re-checks. Meaning
-and unsupported guidance remain for review.</p>
+non-zero when a finding fails</strong>, so CI or an AI assistant&#x27;s fix-loop catches a
+regression the way it catches a failing test. The fix-loop:</p>
+<div class="kdx"><div class="kdx-scroll"><div class="kdx-canvas" style="min-width:320px;max-width:440px"><svg viewBox="0 0 464.83382530491383 464.83382530491383" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cycle: Draft then Check then Findings then Fix, then back to start"><defs><marker id="kdx-arrow-cyc" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="kdx-arrow"></path></marker></defs><path d="M315.6459142154495,129.42578655299252 A 132.41691265245692 132.41691265245692 0 0 1 335.40803875192137,149.1879110894643" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M335.40803875192137,315.6459142154495 A 132.41691265245692 132.41691265245692 0 0 1 315.6459142154495,335.4080387519213" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M149.18791108946436,335.40803875192137 A 132.41691265245692 132.41691265245692 0 0 1 129.4257865529925,315.64591421544947" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><path d="M129.42578655299246,149.18791108946436 A 132.41691265245692 132.41691265245692 0 0 1 149.18791108946434,129.4257865529925" class="kdx-channel" marker-end="url(#kdx-arrow-cyc)"></path><g><rect x="160.41691265245692" y="79" width="144" height="42" rx="9" class="kdx-box"></rect><text x="232.41691265245692" y="99" text-anchor="middle" font-size="11.5" class="kdx-label">Draft</text><text x="232.41691265245692" y="111" text-anchor="middle" font-size="8.5" class="kdx-note">the assistant writes</text></g><g><rect x="322.83382530491383" y="211.41691265245692" width="84" height="42" rx="9" class="kdx-box"></rect><text x="364.83382530491383" y="231.41691265245692" text-anchor="middle" font-size="11.5" class="kdx-label">Check</text><text x="364.83382530491383" y="243.41691265245692" text-anchor="middle" font-size="8.5" class="kdx-note">kapi check</text></g><g><rect x="175.41691265245692" y="343.83382530491383" width="114" height="42" rx="9" class="kdx-box"></rect><text x="232.41691265245692" y="363.83382530491383" text-anchor="middle" font-size="11.5" class="kdx-label">Findings</text><text x="232.41691265245692" y="375.83382530491383" text-anchor="middle" font-size="8.5" class="kdx-note">block + rule id</text></g><g><rect x="16" y="211.41691265245694" width="168" height="42" rx="9" class="kdx-box"></rect><text x="100" y="231.41691265245694" text-anchor="middle" font-size="11.5" class="kdx-label">Fix</text><text x="100" y="243.41691265245694" text-anchor="middle" font-size="8.5" class="kdx-note">kapi apply / apply_edits</text></g></svg></div></div><p class="kdx-caption">The assistant re-checks after each fix until no finding fails.</p></div>
+<p>Meaning, and guidance that no rule encodes, remain for review.</p>
 <p>Bilingual checks (do-not-translate and placeholder integrity, which
 compare a translated target against its source) are an opt-in: pass
 <code>kapi check src.json --target src.de.json --target-lang de</code>.</p>
@@ -54,9 +54,9 @@ rule&#x27;s <code>replacement</code>, carries a <code>fix</code>: the <code>repl
 finding objects to, addressed to the block and naming the revision the check
 read. Each fix names its words by their place in the text the check read, so
 the fixes for one block travel as one operation, their edits together; a second
-operation on the same block would see the text the first one left. This applies
-every fix of a report, and a fix whose block changed since the check is refused
-as stale:</p>
+operation on the same block would see the text the first one left. The command
+below applies every fix in a report. kapi refuses a fix whose block changed
+since the check as stale:</p>
 <div class="language-bash codeBlockContainer__kUZ theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_Wq78"><pre tabindex="0" class="prism-code language-bash codeBlock_fYYn thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_p8wC"><div class="token-line" style="color:#393A34"><span class="token plain">kapi check docs/guide.md </span><span class="token parameter variable" style="color:#36acaa">--json</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">\</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> jq </span><span class="token string" style="color:#e3116c">&#x27;{ops: [.findings[] | select(.fix) | .fix] | group_by(.at) | map(.[0] + {edits: [.[].edits[]]})}&#x27;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">\</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> kapi apply -</span><br></div></code></pre></div></div>
 <p>A fix names its document by its path from the project root, so <code>kapi apply</code>
 finds it from any directory of the project. Two findings over the same words,
@@ -195,9 +195,8 @@ project, which revision and which build the gates were evaluated against.</p>
 applicable profile and channel. An explicit profile replaces that voice
 selection, while project terms still apply. Check the reported scope before
 using a passing result to assess the task.</p>
-<p>A passing verdict means no failing findings in the configured checks. It does
-not establish factual accuracy or compliance with
-rules that were never encoded. Exact voice rules, advisory example similarity
+<p>A passing verdict means the configured checks raised no failing finding.
+Factual accuracy, and rules nobody encoded, are outside it. Exact voice rules, advisory example similarity
 (<code>--voice</code>), and optional LLM review are distinct analyses. <code>kapi check</code> does not
 run LLM review and records <code>voice.llm</code> as <code>not_requested</code>. Applicable profile
 guidance that exact rules cannot assess is recorded as <code>voice.guidance</code> with
@@ -228,8 +227,8 @@ at another commit.</p>
 <p>Every diff check is governed by the recipe, voice profiles and terms on disk
 where kapi runs. For a range, those are the rules in force now, never the
 versions B holds, so each commit in a range is held to today&#x27;s rules. A pull
-request check needs exactly that, and so does a search of history for the
-commit where a file first broke a rule. Inside a project, a file B holds is
+request check needs that, and so does a search of history for the commit where
+a file first broke a rule. Inside a project, a file B holds is
 content when that recipe declares its path.
 <a class="" href="/next/nb/kapi/recipes/verify-content#check-changes-in-git">Check changes in git</a> has a
 pre-commit hook, a pull request check, a sweep for the commits that added
@@ -331,15 +330,15 @@ and in other content.</p>
 code counts as content. A leading or trailing placeholder is the edge of the
 content, so the space beside it is a separator, not stray whitespace:
 <code>{price} each</code> has no leading whitespace, <code>Hello {name} world</code> has no double
-space, and a block that is only a placeholder is not empty. Genuine
-whitespace (<code> {price} each</code>) still reports.</p>
+space, and a block that is only a placeholder is not empty. Real whitespace
+(<code> {price} each</code>) still reports.</p>
 <p>An inline code is likewise a real <strong>boundary</strong> for the adjacency rules: it
 separates what sits either side of it, so <code>the {name} the cat</code> holds no doubled
-word. It is a token of its own rather than part of the word beside it, so it
-cannot hide one either: <code>{name}the the cat</code> reports. Nothing separates two
-<em>adjacent text runs</em>, so a defect spanning their join (<code>the </code> + <code>the cat</code>) is
-real and reports. The editor&#x27;s highlights come from these same rules, so a
-preview and a <code>kapi check</code> finding cannot disagree.</p>
+word. It is a token of its own, so it cannot hide a doubled word either:
+<code>{name}the the cat</code> reports. Nothing separates two <em>adjacent text runs</em>, so a
+defect spanning their join (<code>the </code> + <code>the cat</code>) reports. The editor&#x27;s
+highlights come from these same rules, so a preview and a <code>kapi check</code>
+finding agree.</p>
 </li>
 <li class="">
 <p><strong>Length</strong>: flag content over a character or word budget (<code>--max-chars</code>/
@@ -403,8 +402,8 @@ the <code>term-check</code> tool.</li>
 consistency, optional LLM review) is documented under
 <a class="" href="/next/nb/framework/checks/rule-checks">Rule-based checks</a>.</p>
 <blockquote>
-<p><strong>Document structure &amp; encoding validity</strong> is a format-reader concern rather
-than a content check: the readers extract leniently by default. Surface it on
+<p><strong>Document structure &amp; encoding validity</strong> belongs to the format readers,
+which extract leniently by default. Surface it on
 demand with <code>kapi check --validate report</code>: the reader emits located
 <code>structure.*</code> / <code>encoding.*</code> findings (malformed XML/YAML, invalid UTF-8,
 charset mismatch, and the JSON faults the parser rejects) into the same
@@ -418,21 +417,14 @@ the check goes on to the other files. A file named on the command line that
 cannot be parsed ends the check with the error.</p>
 </blockquote>
 <h2 class="anchor anchorTargetStickyNavbar_fyYt" id="composing-and-gating">Composing and gating<a href="#composing-and-gating" class="hash-link" aria-label="Direkte lenke til Composing and gating" title="Direkte lenke til Composing and gating" translate="no">​</a></h2>
-<p>Checks are tools, so they compose in a <a class="" href="/next/nb/framework/flows">flow</a> exactly like
-translation or transform stages, typically as the trailing stage after
-translation. In CI, gate on the exit code; in an editor or assistant, surface
-the findings and apply the fixes they carry through the change service. A check
-annotates and changes no content itself, and a failing finding fails the
-check.</p>
+<p>Checks are tools, so they compose in a <a class="" href="/next/nb/framework/flows">flow</a> like
+translation or transform stages, usually as the last stage after translation.
+In CI, gate on the exit code. In an editor or assistant, surface the findings
+and apply the fixes they carry through the change service. A check changes no
+content itself.</p>
 <p>In a project, <code>kapi check --ship</code> (and each pass of <code>kapi up</code>) runs the bound
-gates over what was produced. The project-gate response groups findings by gate:
-<strong>voice</strong>
-(the bound profile&#x27;s rules, failing on a failing finding, with the compliance
-score reported),
-<strong>terminology</strong>, <strong>qa</strong>, <strong>ship</strong> (the ship gate on target status), <strong>source</strong>
-(the source-side checks), and <strong>staleness</strong> (content produced under a context
-that has since changed, such as a new voice profile version or new term rules,
-must be re-run before its locale ships).</p>
+gates over what was produced. The project-gate response groups findings by gate:</p>
+<table><thead><tr><th>Gate</th><th>What it checks</th></tr></thead><tbody><tr><td><strong>voice</strong></td><td>The bound profile&#x27;s rules; fails on a failing finding, and reports the compliance score</td></tr><tr><td><strong>terminology</strong></td><td>The terms the project requires</td></tr><tr><td><strong>qa</strong></td><td>The rule-based quality checks</td></tr><tr><td><strong>ship</strong></td><td>Target status</td></tr><tr><td><strong>source</strong></td><td>The source-side checks</td></tr><tr><td><strong>staleness</strong></td><td>Content produced under a context that has since changed, such as a new voice profile version or new term rules; it must be re-run before its locale ships</td></tr></tbody></table>
 <p>Source-only collections receive authored-content checks, including in a project
 that also has translated targets. Naming a source-only file checks that content
 directly; translation checks apply to target content with its source. Each gate
@@ -441,7 +433,11 @@ or whose checks did not catch their canaries, did not run, and the command
 exits <code>4</code>. See
 <a class="" href="/next/nb/contribute/architecture/surfaces/s-03-agent-surfaces">the agent surface design</a>
 for the edit loop and its release checks.</p>
-<p>For a worked example of gating a pull request on a project&#x27;s bound checks with
-GitHub Actions, see <a class="" href="/next/nb/kapi/recipes/ship-gates-and-ci">Ship gates &amp; CI</a>.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_SDVB"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/framework/checks/index.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_SCWr" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_ZStg"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/framework/prompts"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">Prompts</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/framework/checks/rule-checks"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Rule-based checks</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_XtBz thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#checks-are-tests-for-ai-output" class="table-of-contents__link toc-highlight">Checks are tests for AI output</a></li><li><a href="#the-report" class="table-of-contents__link toc-highlight">The Report</a><ul><li><a href="#what-the-run-was-evaluated-against" class="table-of-contents__link toc-highlight">What the run was evaluated against</a></li></ul></li><li><a href="#checking-a-change" class="table-of-contents__link toc-highlight">Checking a change</a></li><li><a href="#one-model-findings" class="table-of-contents__link toc-highlight">One model: findings</a><ul><li><a href="#what-fails" class="table-of-contents__link toc-highlight">What fails</a></li></ul></li><li><a href="#the-check-families" class="table-of-contents__link toc-highlight">The check families</a></li><li><a href="#composing-and-gating" class="table-of-contents__link toc-highlight">Composing and gating</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/first-project">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/desktop/overview">Kapi Desktop</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Command line</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-11-07 00:00 UTC · 93ca006</div></div></div></footer></div>
+<h2 class="anchor anchorTargetStickyNavbar_fyYt" id="related">Related<a href="#related" class="hash-link" aria-label="Direkte lenke til Related" title="Direkte lenke til Related" translate="no">​</a></h2>
+<ul>
+<li class=""><a class="" href="/next/nb/kapi/recipes/ship-gates-and-ci">Ship gates &amp; CI</a>: gate a pull request on a project&#x27;s bound checks with GitHub Actions.</li>
+<li class=""><a class="" href="/next/nb/framework/checks/rule-checks">Rule-based checks</a>: the full rule-based family.</li>
+<li class=""><a class="" href="/next/nb/reference/checks">Check reference</a>: every rule id and its fix.</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_SDVB"><a href="https://github.com/neokapi/neokapi/tree/main/web/docs/framework/checks/index.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_SCWr" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Rediger denne siden</a></div><div class="col lastUpdated_ZStg"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Dokumenter side"><a class="pagination-nav__link pagination-nav__link--prev" href="/next/nb/framework/prompts"><div class="pagination-nav__sublabel">Forrige</div><div class="pagination-nav__label">Prompts</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/next/nb/framework/checks/rule-checks"><div class="pagination-nav__sublabel">Neste</div><div class="pagination-nav__label">Rule-based checks</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_XtBz thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#checks-are-tests-for-ai-output" class="table-of-contents__link toc-highlight">Checks are tests for AI output</a></li><li><a href="#the-report" class="table-of-contents__link toc-highlight">The Report</a><ul><li><a href="#what-the-run-was-evaluated-against" class="table-of-contents__link toc-highlight">What the run was evaluated against</a></li></ul></li><li><a href="#checking-a-change" class="table-of-contents__link toc-highlight">Checking a change</a></li><li><a href="#one-model-findings" class="table-of-contents__link toc-highlight">One model: findings</a><ul><li><a href="#what-fails" class="table-of-contents__link toc-highlight">What fails</a></li></ul></li><li><a href="#the-check-families" class="table-of-contents__link toc-highlight">The check families</a></li><li><a href="#composing-and-gating" class="table-of-contents__link toc-highlight">Composing and gating</a></li><li><a href="#related" class="table-of-contents__link toc-highlight">Related</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/get-started/first-project">Get started</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/overview">Kapi</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/framework/architecture">Framework</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/desktop/overview">Kapi Desktop</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/kapi/cli">Command line</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/toolbox/overview">CLI tools</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/react/introduction">neokapi-i18n</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/reference">Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/formats">Format Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/next/nb/evals">Tests &amp; Evals</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/neokapi/neokapi" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/neokapi/homebrew-tap" target="_blank" rel="noopener noreferrer" class="footer__link-item">Homebrew Tap<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_yHPA"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 neokapi contributors. Built with Docusaurus. · built 2026-11-07 00:41 UTC · 6fe0b2f</div></div></div></footer></div>
 </body>
 </html>
