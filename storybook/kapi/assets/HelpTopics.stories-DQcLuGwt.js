@@ -1,0 +1,9 @@
+import{n as e}from"./rolldown-runtime-BCiCTKAo.js";import{t}from"./react-BWPDF9mI.js";import{t as n}from"./jsx-runtime-BB9-612F.js";import{r,t as i}from"./runtime-BFRAZW6z.js";import{t as a}from"./src-DdetKLFD.js";import{a as o}from"./HelpButton-BixmZphe.js";import{t as s}from"./PageHeader-BHl7aQcT.js";import{i as c,n as l,r as u,t as d}from"./DesktopGuide-CeRYW3ST.js";function f({topic:e}){let t=o();return(0,p.useEffect)(()=>{t.openHelp(e)},[e]),null}var p,m,h,g,_,v,y,b;function x(){return(x=e((()=>{r(),p=t(),a(),l(),c(),m=n(),{fn:h}=__STORYBOOK_MODULE_TEST__,g={title:`Components/HelpTopics`,parameters:{layout:`fullscreen`},args:{topic:u.decide},render:({topic:e})=>(0,m.jsxs)(d,{navigate:h(),hasProject:!0,onOpenUrl:h(),children:[(0,m.jsx)(`div`,{className:`p-6`,children:(0,m.jsx)(s,{title:i(`bfgdKMDyV7g`,`Decide`),help:u.decide})}),(0,m.jsx)(f,{topic:e})]})},_={},v={args:{topic:u.overview}},y={args:{topic:void 0}},b=[`Decide`,`Overview`,`List`],_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{}`,..._.parameters?.docs?.source},description:{story:`The Decide section of the Kapi Desktop overview, read in the app.`,..._.parameters?.docs?.description}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  args: {
+    topic: TOPIC_IDS.overview
+  }
+}`,...v.parameters?.docs?.source},description:{story:`The Overview section, whose links open the Decide, Reader and checks topics.`,...v.parameters?.docs?.description}}},y.parameters={...y.parameters,docs:{...y.parameters?.docs,source:{originalSource:`{
+  args: {
+    topic: undefined
+  }
+}`,...y.parameters?.docs?.source},description:{story:`The list of guides and topics, with the info button beside the title.`,...y.parameters?.docs?.description}}}})))()}x();export{_ as Decide,y as List,v as Overview,b as __namedExportsOrder,g as default};
