@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-2s6bX4vc.js";import{g as t,h as n,n as r,t as i}from"./useBaseQuery-7KCGPRAl.js";function a(e,t){return r(e,n,t)}function o(){return(o=e((()=>{i(),t()})))()}export{a as n,o as t};
