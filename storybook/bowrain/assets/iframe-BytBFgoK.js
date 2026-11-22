@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BlapA4-a.js";e();
